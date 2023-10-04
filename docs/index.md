@@ -41,6 +41,12 @@ window.onload = function() {
     background-color: transparent;
     padding: 15px;
 }
+
+@media screen and (max-width: 600px) {
+    .md-main .toc_custom_sec {
+        display: none;
+    }
+}
 </style>
 
 ## Chapter 1: Getting Started
@@ -4413,7 +4419,7 @@ is no great sin.
 
 ---
 
-## Chapter 10
+## Chapter 10: Objects and Classes
 
 <details><summary>
 List of what you will learn
@@ -4740,30 +4746,65 @@ Using classes is a good way to implement what computer scientists describe as ab
 ADT describes a data type in a general fashion without bringing in language or implementa-
 tion details.
 
-<!-- --------------------------------------------------------------------------------- -->
+Stack example: you can store data so that Abstract Data Types
+data is always added to or deleted from the top of the stack. For example, C++ programs
+use a stack to manage automatic variables.As new automatic variables are generated, they
+are added to the top of the stack.When they expire, they are removed from the stack.
 
+Stack is characterized by the operations you can perform on it:
+
+- You can create an empty stack.
+- You can add an item to the top of a stack (that is, you can push an item).
+- You can remove an item from the top (that is, you can pop an item).
+- You can check whether the stack is full.
+- You can check whether the stack is empty.
+
+??? example "stack.h - stack data type library"
+    <!--codeinclude-->
+    [](../programs/stack.h)
+    <!--/codeinclude-->
+
+??? example "stack.cpp - implementation of class methods"
+    <!--codeinclude-->
+    [](../programs/stack.cpp)
+    <!--/codeinclude-->
+
+??? example "stacker.cpp - testing stack program - LIFO approach"
+    <!--codeinclude-->
+    [](../programs/stacker.cpp)
+    <!--/codeinclude-->
+
+## Chapter 11: Working with Classes
+
+<details><summary>
+List of what you will learn
+</summary>
+
+```cpp
+In this chapter you’ll learn about the following:
+ - Operator overloading
+ - Friend functions
+ - Overloading the << operator for output
+ - State members
+ - Using rand() to generate random values
+ - Automatic conversions and type casts for classes
+ - Class conversion functions
+```
+
+<!--
 ```sh
 ./programs/
 
-# str 447 Begin (ch 9) 501 -> 497 Summary 
-# Chapter 9 Review : 7
-Chapter 9 Exercises: 4
+[str 563] (ch 11) -> [str 621] Summary 
+[str 627] ch 12 - dynamic memory -> [699] Summary
+[str 707] ch 13 - class inheritance -> [778] Summary
 
-str 505 Begin (ch 10) -> 557 Summary 
-Chapter 10 Review : 10
-Chapter 10 Exercises: 8
-
-str 563 Begin (ch 11) -> 621 Summary 
-Chapter 11 Review : 7
-Chapter 11 Exercises: 7
-
-ch 12 - dynamic memory
-ch 13 - class inheritance 
 ch 14 - reusing code in c++ 
 ch 15 - friends, exemptions, and more
 ch 16 - string class and STL 
 ch 17 - input, output and files 
-ch 18 - the new c++ standard
+ch 18 - the new c++ standard 
+-> [1213]
 
 
 ## Chapter 4
@@ -4780,8 +4821,6 @@ ch 18 - the new c++ standard
 
 ### Chapter Review
 
-<!-- -------------------------------------------- -->
-
 Notes\C++PrimerPlus\exercises\
 
 <details><summary>
@@ -4792,4 +4831,4 @@ Notes\C++PrimerPlus\exercises\
 
 ### Programming Exercises
 
-<!-- [1.](../exercises/exercise_ch4_1.cpp) -->
+ [1.](../exercises/exercise_ch4_1.cpp) -->
