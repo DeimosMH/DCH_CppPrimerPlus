@@ -1,5 +1,40 @@
 # Reviews
 
+<button id="toggle-admonitions" class="md-button">Collapse All/Expand All Code</button>
+<button id="collapse-all-code" class="md-button">Collapse All</button>
+
+<script>
+document.getElementById('toggle-admonitions').addEventListener('click', function(event) {
+  event.preventDefault();
+  var admonitions = document.querySelectorAll('details');
+  var anyOpen = false;
+  admonitions.forEach(function(admonition) {
+    if (admonition.hasAttribute('open')) {
+      admonition.removeAttribute('open');
+    } else {
+      admonition.setAttribute('open', '');
+      anyOpen = true;
+    }
+  });
+  var button = document.getElementById('toggle-admonitions');
+  if (anyOpen) {
+    button.textContent = 'Toggle - Collapse All';
+  } else {
+    button.textContent = 'Toggle - Expand All';
+  }
+});
+
+document.getElementById('collapse-all-code').addEventListener('click', function(event) {
+  event.preventDefault();
+  var admonitions = document.querySelectorAll('details');
+    admonitions.forEach(function(admonition) {
+        if (admonition.hasAttribute('open')) {
+        admonition.removeAttribute('open');
+        }
+    });
+});
+</script>
+
 ## Chapter 2
 
 <details><summary>
@@ -327,7 +362,6 @@ e. double
 </details>
 
 ## Chapter 4
-
 
 <details><summary>
 1. How would you declare each of the following?
@@ -1067,7 +1101,6 @@ while (cin.get(ch) && ch != 'Q')
 
 </details>
 
-
 ## Chapter 7
 
 <!-- -------------------------------------------- -->
@@ -1374,7 +1407,6 @@ p_f2 (*pa)[10];
 ```
 
 </details>
-
 
 ## Chapter 8
 
@@ -2166,7 +2198,6 @@ object itself.
 
 ## Chapter 11
 
-
 <details><summary>
 2. What is a class?</br></br>
 
@@ -2237,7 +2268,6 @@ object itself.
 </details>
 
 <!-- -------------------------------------------- -->
-
 
 ## Chapter 12
 
@@ -2322,7 +2352,6 @@ object itself.
 
 <!-- -------------------------------------------- -->
 
-
 ## Chapter 13
 
 <!-- -------------------------------------------- -->
@@ -2405,7 +2434,6 @@ object itself.
 </details>
 
 <!-- -------------------------------------------- -->
-
 
 ## Chapter 14
 
@@ -2490,7 +2518,6 @@ object itself.
 
 <!-- -------------------------------------------- -->
 
-
 ## Chapter 15
 
 <!-- -------------------------------------------- -->
@@ -2573,7 +2600,6 @@ object itself.
 </details>
 
 <!-- -------------------------------------------- -->
-
 
 ## Chapter 16
 
@@ -2658,7 +2684,6 @@ object itself.
 
 <!-- -------------------------------------------- -->
 
-
 ## Chapter 17
 
 <!-- -------------------------------------------- -->
@@ -2741,7 +2766,6 @@ object itself.
 </details>
 
 <!-- -------------------------------------------- -->
-
 
 ## Chapter 18
 

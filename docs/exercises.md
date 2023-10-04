@@ -567,7 +567,7 @@ Enter number of rows: 5
 
 1 -
 Write a program that reads keyboard input to the @ symbol and that echoes the input except for digits,
-converting each uppercase character to lowercase, and vice versa. (Don’t forget the `cctype` family.)
+converting each uppercase character to lowercase, and vice versa. (Don’t forget the <code>cctype</code> family.)
 
 ??? note "Code"
     <!--codeinclude-->
@@ -763,21 +763,31 @@ Rich Raptor
 
 ## Chapter 7 Programming Exercises
 
-[1.](./exercises/exercise_ch7_1.cpp)
+1 -
 Write a program that repeatedly asks the user to enter pairs of numbers until at least one of the pair is 0.
 For each pair, the program should use a function to calculate the harmonic mean of the numbers.
 The function should return the answer to `main()`, which should report the result. The harmonic mean of the
 numbers is the inverse of the average of the inverses and can be calculated as follows:
 $$HarmonicMean = 2.0 × x × y / (x + y)$$
 
-[2.](./exercises/exercise_ch7_2.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch7_1.cpp)
+    <!--/codeinclude-->
+
+2 -
 Write a program that asks the user to enter up to 10 golf scores, which are to be
 stored in an array.You should provide a means for the user to terminate input prior
 to entering 10 scores.The program should display all the scores on one line and
 report the average score. Handle input, display, and the average calculation with
 three separate array-processing functions
 
-[3.](./exercises/exercise_ch7_3.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch7_2.cpp)
+    <!--/codeinclude-->
+
+3 -
 Here is a structure declaration:
 
 ```cpp
@@ -797,7 +807,12 @@ value of each member.
 `volume` member to the product of the other three dimensions.
 - Write a simple program that uses these two functions.
 
-[4.](./exercises/exercise_ch7_4.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch7_3.cpp)
+    <!--/codeinclude-->
+
+4 -
 Many state lotteries use a variation of the simple lottery portrayed by Listing 7.4 (lotto). In
 these variations you choose several numbers from one set and call them the field
 numbers. For example, you might select five numbers from the field of 1–47).You
@@ -809,14 +824,24 @@ probability of winning the example described here is the product of the probabil
 of picking 5 out of 47 correctly times the probability of picking 1 out of 27 correctly.
 Modify Listing 7.4 to calculate the probability of winning this kind of lottery.
 
-[5.](./exercises/exercise_ch7_5.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch7_4.cpp)
+    <!--/codeinclude-->
+
+5 -
 Define a recursive function that takes an integer argument and returns the factorial
 of that argument. Recall that 3 factorial, written 3!, equals 3 × 2!, and so on, with 0!
 defined as 1. In general, if n is greater than zero, n! = n * (n - 1)!.Test your function
 in a program that uses a loop to allow the user to enter various values for which the
 program reports the factorial
 
-[6.](./exercises/exercise_ch7_6.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch7_5.cpp)
+    <!--/codeinclude-->
+
+6 -
 Write a program that uses the following functions:
 
 `Fill_array()` takes as arguments the name of an array of double values and an
@@ -833,14 +858,24 @@ The program should use these functions to fill an array, show the array, reverse
 array, show the array, reverse all but the first and last elements of the array, and then
 show the array.
 
-[7.](./exercises/exercise_ch7_7.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch7_6.cpp)
+    <!--/codeinclude-->
+
+7 -
 Redo Listing 7.7 (arrfun3), modifying the three array-handling functions to each use two
 pointer parameters to represent a range. The `fill_array()` function, instead of
 returning the actual number of items read, should return a pointer to the location
 after the last location filled; the other functions can use this pointer as the second
 argument to identify the end of the data.
 
-[8.](./exercises/exercise_ch7_8.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch7_7.cpp)
+    <!--/codeinclude-->
+
+8 -
 Redo Listing 7.15 (arrobj) without using the array class. Do two versions:
 
 a. Use an ordinary array of `const char *` for the strings representing the season
@@ -851,7 +886,12 @@ names, and use a structure whose sole member is an ordinary array of
 double for the expenses. (This design is similar to the basic design of the
 array class.)
 
-[9.](./exercises/exercise_ch7_9.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch7_8.cpp)
+    <!--/codeinclude-->
+
+9 -
 This exercise provides practice in writing functions dealing with arrays and structures.
 The following is a program skeleton. Complete it by providing the described
 functions:
@@ -912,7 +952,12 @@ int main()
 }
 ```
 
-[10.](./exercises/exercise_ch7_10.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch7_9.cpp)
+    <!--/codeinclude-->
+
+10 -
 Design a function `calculate()` that takes two type `double` values and a pointer to
 a function that takes two `double` arguments and returns a double.The
 `calculate()` function should also be type double, and it should return the value
@@ -949,9 +994,14 @@ double (*pf[3])(double, double);
 You can initialize such an array by using the usual array initialization syntax and
 function names as addresses.
 
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch7_10.cpp)
+    <!--/codeinclude-->
+
 ## Chapter 8: Programming Exercises
 
-[1.](./exercises/exercise_ch8_1.cpp)
+1 -
 Write a function that normally takes one argument, the address of a string, and
 prints that string once. However, if a second, type int, argument is provided and is
 nonzero, the function should print the string a number of times equal to the number
@@ -961,7 +1011,12 @@ equal to the number of times the function has been called.) Yes, this is a silly
 but it makes you use some of the techniques discussed in this chapter. Use the
 function in a simple program that demonstrates how the function works.
 
-[2.](./exercises/exercise_ch8_2.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch8_1.cpp)
+    <!--/codeinclude-->
+
+2 -
 The `CandyBar` structure contains three members.The first member holds the brand
 name of a candy bar.The second member holds the weight (which may have a fractional
 part) of the candy bar, and the third member holds the number of calories
@@ -972,7 +1027,12 @@ three arguments should have default values of “Millennium Munch,” 2.85, and 
 Also the program should use a function that takes a reference to a `CandyBar` as an
 argument and displays the contents of the structure. Use `const` where appropriate.
 
-[3.](./exercises/exercise_ch8_3.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch8_2.cpp)
+    <!--/codeinclude-->
+
+3 -
 Write a function that takes a reference to a `string` object as its parameter and that
 converts the contents of the `string` to uppercase. Use the `toupper()` function
 described in Table 6.4 of Chapter 6.Write a program that uses a loop which allows
@@ -987,7 +1047,12 @@ Next string (q to quit): q
 Bye.
 ```
 
-[4.](./exercises/exercise_ch8_4.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch8_3.cpp)
+    <!--/codeinclude-->
+
+4 -
 The following is a program skeleton:
 
 ```cpp
@@ -1027,14 +1092,24 @@ sufficient space to hold the designated string.The techniques used here are simi
 to those used in designing and implementing classes. (You might have to alter the
 header filenames and delete the `using` directive, depending on your compiler.)
 
-[5.](./exercises/exercise_ch8_5.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch8_4.cpp)
+    <!--/codeinclude-->
+
+5 -
 Write a template function `max5()` that takes as its argument an array of five items
 of type `T` and returns the largest item in the array. (Because the size is fixed, it can
 be hard-coded into the loop instead of being passed as an argument.) Test it in a
 program that uses the function with an array of five int value and an array of five
 double values.
 
-[6.](./exercises/exercise_ch8_6.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch8_5.cpp)
+    <!--/codeinclude-->
+
+6 -
 Write a template function `maxn()` that takes as its arguments an array of items of
 type T and an integer representing the number of elements in the array and that
 returns the largest item in the array.Test it in a program that uses the function template
@@ -1045,15 +1120,24 @@ address of the longest string. If multiple strings are tied for having the longe
 length, the function should return the address of the first one tied for longest.Test
 the specialization with an array of five string pointers.
 
-[7.](./exercises/exercise_ch8_7.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch8_6.cpp)
+    <!--/codeinclude-->
+
+7 -
 Modify Listing 8.14 (tempover) so that it uses two template functions called `SumArray()` to
 return the sum of the array contents instead of displaying the contents.The program
 now should report the total number of things and the sum of all the debts
 
-## Chapter 10: Programming Exercises
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch8_7.cpp)
+    <!--/codeinclude-->
+
+## Chapter 9: Programming Exercises
 
 1 -
-
 Here is a header file:
 
 ```cpp
@@ -1110,19 +1194,34 @@ structures and terminate when the array is full or the user enters an empty stri
 for the golfer’s name. The `main()` function should use only the prototyped functions
 to access the golf structures.
 
-??? note "Code"
+(compile: `g++ exercise_ch9_1_golf.cpp exercise_ch9_1_main.cpp`)
+
+??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_1.cpp)
+    [](../exercises/exercise_ch9_1_golf.cpp)
     <!--/codeinclude-->
 
-[2.](./exercises/exercise_ch9_2.cpp)
+??? note "Code - headers"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch9_1_golf.h)
+    <!--/codeinclude-->
 
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch9_1_main.cpp)
+    <!--/codeinclude-->
+
+2 -
 Redo Listing 9.9 (`static.cpp`), replacing the character array with a string object. The program
 should no longer have to check whether the input string fits, and it can compare
 the input string to "" to check for an empty line.
 
-[3.](./exercises/exercise_ch9_3.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch9_2.cpp)
+    <!--/codeinclude-->
 
+3 -
 Begin with the following structure declaration:
 
 ```cpp
@@ -1139,8 +1238,12 @@ strcpy() for the char array) and use a loop to display the contents. Option 1 is
 use a static array, like that in Listing 9.10 ([newplace.cpp](./programs/newplace.cpp)), for the buffer. Option 2 is to use regular
 new to allocate the buffer.
 
-[4.](./exercises/exercise_ch9_4.cpp) [Prototypes](./exercises/exercise_ch9_4_sales.cpp) [Headers](./exercises/exercise_ch9_4_sales.h)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch9_3.cpp)
+    <!--/codeinclude-->
 
+4-
 Write a three-file program based on the following namespace:
 
 ```cpp
@@ -1176,15 +1279,43 @@ and the non-interactive version of setSales() to provide values for the second
 structure. It should display the contents of both structures by using
 showSales().
 
+??? note "Code - prototypes"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch9_4_sales.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - headers"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch9_4_sales.h)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch9_4.cpp)
+    <!--/codeinclude-->
+
 ## Chapter 10: Programming Exercises
 
-[1.](./exercises/exercise_ch10_1.cpp)
-
+1 -
 Provide method definitions for the class described in Chapter Review Question 5
 and write a short program that illustrates all the features.
 
-[2.](./exercises/exercise_ch10_2.cpp)
+??? note "Code - prototypes"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_1.h)
+    <!--/codeinclude-->
 
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_1.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_1_main.cpp)
+    <!--/codeinclude-->
+
+2 -
 Here is a rather simple class definition:
 
 ```cpp
@@ -1203,8 +1334,10 @@ public:
 ```
 
 (It uses both a string object and a character array so that you can compare how
-the two forms are used.) Write a program that completes the implementation by
-providing code for the undefined methods.The program in which you use the class
+the two forms are used.)
+
+Write a program that completes the implementation by
+providing code for the undefined methods. The program in which you use the class
 should also use the three possible constructor calls (no arguments, one argument,
 and two arguments) and the two display methods. Here’s an example that uses the
 constructors and methods:
@@ -1219,26 +1352,48 @@ one.FormalShow();
 // etc. for two and three
 ```
 
-[3.](./exercises/exercise_ch10_3.cpp)
+??? note "Code - prototypes"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_2.h)
+    <!--/codeinclude-->
 
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_2.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_2_main.cpp)
+    <!--/codeinclude-->
+
+3 -
 Do Programming Exercise 1 from Chapter 9 but replace the code shown there with
 an appropriate golf class declaration. Replace <code>setgolf(golf &, const char*,int)</code>
 with a constructor with the appropriate argument for providing initial values.
 Retain the interactive version of setgolf() but implement it by using the constructor.
-(For example, for the code for setgolf(), obtain the data, pass the data to
+(For example, for the code for <code>setgolf()</code>, obtain the data, pass the data to
 the constructor to create a temporary object, and assign the temporary object to the
-invoking object, which is *this.)
+invoking object, which is <code>*this</code>.)
 
-[4.](./exercises/exercise_ch10_4.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_3.cpp)
+    <!--/codeinclude-->
 
+4 -
 Do Programming Exercise 4 from Chapter 9 but convert the Sales structure and
 its associated functions to a class and its methods. Replace the setSales(Sales &,
 double [], int) function with a constructor. Implement the interactive
 setSales(Sales &) method by using the constructor. Keep the class within the
 namespace SALES.
 
-[5.](./exercises/exercise_ch10_5.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_4.cpp)
+    <!--/codeinclude-->
 
+5 -
 Consider the following structure declaration:
 
 ```cpp
@@ -1254,8 +1409,12 @@ payment should be added to a running total, and the running total should be
 reported. Note: You should be able to use the Stack class unaltered; just change the
 typedef declaration so that Item is type customer instead of unsigned long.
 
-[6.](./exercises/exercise_ch10_6.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_5.cpp)
+    <!--/codeinclude-->
 
+6 -
 Here’s a class declaration:
 
 ```cpp
@@ -1277,8 +1436,12 @@ public:
 
 Create member function definitions and a program that exercises the class.
 
-[7.](./exercises/exercise_ch10_7.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_6.cpp)
+    <!--/codeinclude-->
 
+7 -
 A Betelgeusean plorg has these properties:
 
 ```sh
@@ -1296,8 +1459,12 @@ Write a Plorg class declaration (including data members and member function prot
 that represents a plorg.Write the function definitions for the member functions.
 Write a short program that demonstrates all the features of the Plorg class.
 
-[8.](./exercises/exercise_ch10_8.cpp)
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_7.cpp)
+    <!--/codeinclude-->
 
+8 -
 You can describe a simple list as follows:
 
 - The simple list can hold zero or more items of some particular type.
@@ -1327,3 +1494,8 @@ void visit(void (*pf)(Item &));
 Here <code>pf</code> points to a function (not a member function) that takes a reference to <code>Item</code>
 argument, where <code>Item</code> is the type for items in the list.The <code>visit()</code> function applies
 this function to each item in the list.You can use the <code>Stack</code> class as a general guide.
+
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_8.cpp)
+    <!--/codeinclude-->
