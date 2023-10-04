@@ -1,6 +1,6 @@
 # Reviews
 
-## Chapter 2 Review
+## Chapter 2
 
 <details><summary>
 1. What are the modules of C++ programs called?
@@ -11,7 +11,12 @@ They are called functions
 <details><summary>
 2. What does the following preprocessor directive do?
 
-```#include <iostream>```
+<pre>
+```cpp
+cpp #include <iostream>
+```
+</pre>
+
 </summary>
 It causes the contents of the iostream file to be substituted for this
 directive before final compilation.
@@ -20,7 +25,12 @@ directive before final compilation.
 <details><summary>
 3. What does the following statement do?
 
-``using namespace std;``
+<pre>
+```cpp
+using namespace std;
+```
+</pre>
+
 </summary>
 It makes definitions made in the std namespace available to a program.
 </details>
@@ -54,7 +64,7 @@ int cheeses;
 </details>
 
 <details><summary>
-6. What statement would you use to assign the value 32 to the variable cheeses ?
+6. What statement would you use to assign the value 32 to the variable cheeses?
 </summary>
 
 ```cpp
@@ -98,13 +108,13 @@ void rattle(int n);
 
 The function froop() expects to be called with one argument, which will be type
 double, and that the function will return a type int value. For instance, it
-could be used as follows: ``int gval = froop(3.14159);``
+could be used as follows: <code> int gval = froop(3.14159); </code><br>
 
 The function rattle() has no return value and expects an int argument.
-For instance, it could be used as follows: ``rattle(37);``
+For instance, it could be used as follows: <code> rattle(37); </code><br>
 
 The function prune() returns an int and expects to be used without an argument.
-For instance, it could be used as follows: ``int residue = prune();``
+For instance, it could be used as follows: <code> int residue = prune(); </code><br>
 </details>
 
 <details><summary>
@@ -112,31 +122,51 @@ For instance, it could be used as follows: ``int residue = prune();``
 </summary>
 
 You don’t have to use return in a function when the function has the return type
-`void`. However, you can use it if you don’t give a return value: ``return;``
+<code>void</code>. However, you can use it if you don’t give a return value: <code> return; </code>
+
 </details>
 
 <details><summary>
 11. Suppose your main() function has the following line:
 
-``cout << “Please enter your PIN: “;``
+<pre>
+```cpp
+cout << “Please enter your PIN: “;
+```
+</pre>
+
 And suppose the compiler complains that cout is an unknown identifier.
 What is the likely cause of this complaint, and what are three ways to fix the problem?
     </summary>
-***Lack of caller for std library.***
-Use directive: ``using namespace std;`` or ``using std::cout`` for only
-`cout` or call library with `std::cout` instead of `cout`
+
+<b>Lack of caller for std library.<b>
+
+Use directive:
+
+```cpp
+using namespace std;
+```
+
+or
+
+```cpp
+using std::cout
+```
+
+for only <code>cout</code> or call library with <code>std::cout</code> instead of <code>cout</code>
+
 </details>
 
 ---
 
-## Chapter 3 Review
+## Chapter 3
 
 <details><summary>
 1. Why does C++ have more than one integer type?
 </summary>
 
 Having more than one integer type lets you choose the type that is best suited to
-a particular need. For example, you could use `short` to conserve space or `long
+a particular need. For example, you could use <code>short</code> to conserve space or <code>long</code>
 to guarantee storage capacity or to find that a particular type speeds up a
 particular calculation.
 
@@ -296,7 +326,7 @@ e. double
 
 </details>
 
-## Chapter 4 Review
+## Chapter 4
 
 
 <details><summary>
@@ -565,7 +595,7 @@ std::array<std::string, Str_num> astr;
 
 </details>
 
-## Chapter 5 Review
+## Chapter 5
 
 <details><summary>
 1. What’s the difference between an entry-condition loop and an exit-condition loop?
@@ -711,7 +741,7 @@ The `cin >> ch` form skips over spaces, newlines, and tabs when it encounters th
 The other two forms read those characters
 </details>
 
-## Chapter 6 Review
+## Chapter 6
 
 <details><summary>
 1. Consider the following two code fragments for counting spaces and newlines
@@ -1036,3 +1066,1762 @@ while (cin.get(ch) && ch != 'Q')
 ```
 
 </details>
+
+
+## Chapter 7
+
+<!-- -------------------------------------------- -->
+<details><summary>
+1. What are the three steps in using a function?
+</summary>
+// Definition
+// Prototype
+// Caller
+
+The three steps are defining the function, providing a prototype, and calling the function.
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+2. Construct function prototypes that match the following descriptions:
+
+- `igor()` takes no arguments and has no return value.
+- `tofu()` takes an int argument and returns a float.
+- `mpg()` takes two type double arguments and returns a double.
+- `summation()` takes the name of a long array and an array size as values and returns a long value.
+- `doctor()` takes a string argument (the string is not to be modified) and returns a double value.
+- `ofcourse()` takes a boss structure as an argument and returns nothing.
+- `plot()` takes a pointer to a map structure as an argument and returns a string.
+
+</summary>
+
+```cpp
+void igor(void); // or void igor()
+float tofu(int n); // or float tofu(int);
+double mpg(double miles, double gallons);
+long summation(long harray[], int size);
+double doctor(const char * str);
+void ofcourse(boss dude);
+char * plot(map *pmap);
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+3. Write a function that takes three arguments: the name of an int array, the array
+size, and an int value. Have the function set each element of the array to the int
+value.
+</summary>
+
+```cpp
+void set_array(int arr[], int size, int value)
+{
+    for (int i = 0; i < size; i++)
+    arr[i] = value;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+4. Write a function that takes three arguments: a pointer to the first element of a
+range in an array, a pointer to the element following the end of a range in an array,
+and an int value. Have the function set each element of the array to the int value.
+</summary>
+
+```cpp
+// // My solution -> tested 
+// fnTemp(int *begin, int *end, int val){
+//     int i{};
+//     while(*(begin + i) != *end){
+//         *(begin + i) = val;
+//         ++i;
+//     }
+// }
+
+void set_array(int * begin, int * end, int value)
+{
+    for (int * pt = begin; pt != end; pt++)
+    pt* = value;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+5. Write a function that takes a double array name and an array size as arguments and
+returns the largest value in that array. Note that this function shouldn’t alter the
+contents of the array.
+</summary>
+
+```cpp
+// // My solution -> tested 
+// double fnTemp(const double name[], int size){
+//     double max = name[0];
+//     for(int i {}; i < size; ++i)
+//         if(name[i] > max)
+//             max = name[i];
+//     return max;
+// }
+
+double biggest (const double foot[], int size)
+{
+    double max;
+    if (size < 1)
+    {
+        cout << "Invalid array size of " << size << endl;
+        cout << "Returning a value of 0\n";
+        return 0;
+    }
+    else // not necessary because return terminates program
+    {
+        max = foot[0];
+        for (int i = 1; i < size; i++)
+        if (foot[i] > max)
+        max = foot[i];
+        return max;
+    }
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. Why don’t you use the const qualifier for function arguments that are one of the fundamental types?
+</summary>
+You use the const qualifier with pointers to protect the original pointed-to data from being altered.
+When a program passes a fundamental type such as an int or a double, it passes it by value so that the function
+works with a copy. Thus, the original data is already protected.
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+7. What are the three forms a C-style string can take in a C++ program?
+</summary>
+
+```cpp
+char str[]; 
+"asdf";
+char *ptr = &str;
+```
+
+A string can be stored in a `char array`, it can be represented by a string constant in double quotation marks, and it can
+be represented by a pointer pointing to the first character of a string.
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+8. Write a function that has this prototype:
+
+```cpp
+int replace(char * str, char c1, char c2);
+```
+
+Have the function replace every occurrence of c1 in the string str with c2, and have the function return the number
+of replacements it makes.
+</summary>
+
+```cpp
+int replace(char * str, char c1, char c2)
+{
+    int count = 0;
+    while (*str) // while not at end of string
+    {
+        if (*str == c1)
+        {
+            *str = c2;
+            count++;
+        }
+        str++; // advance to next character
+    }
+return count;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+9. What does the expression *"pizza" mean? What about "taco"[2]?
+</summary>
+
+Because C++ interprets `"pizza"` as the address of its first element, applying the `*` operator yields the value of that
+first element, which is the character `p`. Because C++ interprets `"taco"` as the address of its first element, it interprets
+`"taco"[2]` as the value of the element two positions down the line that is, as the character `c`. In other words, the string
+constant acts the same as an array name
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+10. C++ enables you to pass a structure by value, and it lets you
+pass the address of a structure. If glitz is a structure variable, how would you pass it by value?
+How would you pass its address? What are the trade-offs of the two approaches?
+</summary>
+
+```sh
+// my answer
+By value: fun(glitz)
+- it copies everything from glitz to local structure - less efficient
+
+By address: fun(*glitz)
+- operates on original data - more prone to data corruption 
+- less understandable, use indirect membership operator (->)
+```
+
+To pass it by value, you just pass the structure name `glitz`. To pass its address, you use the address operator `&glitz`.
+Passing by the value automatically protects the original data, but it takes time and memory.
+Passing by address saves time and memory but doesn’t protect the original data unless you use the const modifier for the
+function parameter. Also passing by value means you can use ordinary structure member notation, but passing a pointer
+means you have to remember to use the indirect membership operator.
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+11. The function `judge()` has a type `int` return value. As an argument, it takes the
+address of a function. The function whose address is passed, in turn, takes a pointer
+to a const char as an argument and returns an int. Write the function prototype.
+
+</summary>
+
+```cpp
+int judge (int (*pf)(const char *));
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+12. Suppose we have the following structure declaration:
+
+```cpp
+struct applicant {
+    char name[30];
+    int credit_ratings[3];
+};
+```
+
+- Write a function that takes an applicant structure as an argument and displays its contents.
+- Write a function that takes the address of an applicant structure as an argument and displays the contents of the
+pointed-to structure
+
+</summary>
+
+```cpp
+// my answer
+fnTemp(applicant)(
+    std::cout << applicant.name << "  " << applicant.credit_ratings;
+)
+
+fnTemp(*applicant)(
+    std::cout << applicant->name << "  " << applicant->credit_ratings;
+)
+```
+
+a. Note that if ap is an applicant structure, then ap.credit_ratings is an array name and ap.credit_ratings[i]
+is an array element.
+
+```cpp
+void display(applicant ap)
+{
+    cout << ap.name << endl;
+    for (int i = 0; i < 3; i++)
+        cout << ap.credit_ratings[i] << endl;
+}
+```
+
+b. Note that if pa is a pointer to an applicant structure, then `pa->credit_ratings` is an array name and
+`pa->credit_ratings[i]` is an array element.
+
+```cpp
+void show(const applicant * pa)
+{
+    cout << pa->name << endl;
+    for (int i = 0; i < 3; i++)
+        cout << pa->credit_ratings[i] << endl;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+13. Suppose the functions `f1()` and `f2()` have the following prototypes:
+
+```cpp
+void f1(applicant * a);
+const char * f2(const applicant * a1, const applicant * a2);
+```
+
+Declare `p1` as a pointer that points to `f1` and `p2` as a pointer to `f2`.
+Declare `ap` as an array of five pointers of the same type as `p1`,
+and declare `pa` as a pointer to an array of ten pointers of the same type as `p2`.
+Use `typedef` as an aid.
+
+</summary>
+
+```cpp
+typedef void (*p_f1)(applicant *);
+p_f1 p1 = f1;
+typedef const char * (*p_f2)(const applicant *, const applicant *);
+p_f2 p2 = f2;
+p_f1 ap[5];
+p_f2 (*pa)[10];
+```
+
+</details>
+
+
+## Chapter 8
+
+<!-- -------------------------------------------- -->
+<details><summary>
+1. What kinds of functions are good candidates for inline status?
+</summary>
+// Short ones.
+// The ones, that are not repeatable
+
+Short, nonrecursive functions that can fit in one line of code are good candidates for `inline status`.
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+2. Suppose the song() function has this prototype:
+
+```cpp
+void song(const char * name, int times);
+```
+
+- How would you modify the prototype so that the default value for `times` is `1`?
+- What changes would you make in the function definition?
+- Can you provide a default value of `"O, My Papa"` for name?
+
+</summary>
+
+a.
+
+```cpp
+void song(const char * name, int times = 1);
+```
+
+b. None. Only prototypes contain the default value information.
+
+c. Yes, provided that you retain the default value for times:
+
+```cpp
+void song(char * name = "O, My Papa", int times = 1);
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+3. Write overloaded versions of iquote(), a function that displays its argument
+enclosed in double quotation marks. Write three versions: one for an `int` argument,
+one for a `double` argument, and one for a `string` argument.
+</summary>
+
+You can use either the string "\"" or the character '"' to print a quotation mark.
+The following functions show both methods:
+
+```cpp
+#include <iostream.h>
+void iquote(int arg){
+    cout << "\"" << arg << "\"" << endl;
+}
+
+void iquote(double arg){
+    cout << "\"" << arg << "\"" << endl;
+}
+
+void iquote(const char * str){
+    cout << "\"" << arg << "\"" << endl;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+4. The following is a structure template:
+
+```cpp
+struct box
+{
+    char maker[40];
+    float height;
+    float width;
+    float length;
+    float volume;
+};
+```
+
+- Write a function that has a reference to a `box` structure as its formal argument
+and displays the value of each member.
+- Write a function that has a reference to a `box` structure as its formal argument
+and sets the `volume` member to the product of the other three dimensions.
+
+</summary>
+
+a. This function shouldn’t alter the structure members, so use the const qualifier:
+
+```cpp
+void show_box(const box & container)
+{
+    cout << "Made by " << container. maker << endl;
+    cout << "Height = " << container.height << endl;
+    cout << "Width = " << container.width << endl;
+    cout << "Length = " << container.length << endl;
+    cout << "Volume = " << container.volume << endl;
+}
+```
+
+b.
+
+```cpp
+void set_volume(box & crate)
+{
+    crate.volume = crate.height * crate.width * crate.length;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+5. What changes would need be made to Listing 7.15 (arrobj) so that the functions `fill()`
+and `show()` use reference parameters?
+</summary>
+
+Note that `show()` should use const to protect the object from being modified.
+Next, within `main()`, change the `fill()` call to this:
+
+Note that `(*pa)[i]` gets changed to the simpler `pa[i]`.
+Finally, the only change to `show()` is to the function header.
+
+```cpp
+// arrobj.cpp -- functions with array objects (C++11)
+#include <iostream>
+#include <array>
+#include <string>
+
+// constant data
+const int Seasons = 4;
+const std::array<std::string, Seasons> Snames =
+    {"Spring", "Summer", "Fall", "Winter"};
+
+// function to modify array object
+void fill(std::array<double, Seasons> &pa);
+// function that uses array object without modifying it
+void show(const std::array<double, Seasons> &da);
+
+int main()
+{
+    std::array<double, Seasons> expenses;
+    fill(expenses);
+    show(expenses);
+    return 0;
+}
+
+void fill(std::array<double, Seasons> &pa)
+{
+    using namespace std;
+    for (int i = 0; i < Seasons; i++)
+    {
+        cout << "Enter " << Snames[i] << " expenses: ";
+        cin >> pa[i];
+    }
+}
+
+void show(const std::array<double, Seasons> &da)
+{
+    using namespace std;
+    double total = 0.0;
+    cout << "\nEXPENSES\n";
+    for (int i = 0; i < Seasons; i++)
+    {
+        cout << Snames[i] << ": $" << da[i] << endl;
+        total += da[i];
+    }
+    cout << "Total Expenses: $" << total << endl;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. The following are some desired effects. Indicate whether each can be accomplished
+with default arguments, function overloading, both, or neither. Provide
+appropriate prototypes.
+
+- `mass(density, volume)` returns the mass of an object having a density of
+`density` and a volume of `volume`, whereas `mass(density)` returns the mass
+having a density of `density` and a volume of 1.0 cubic meters. All quantities
+are type `double`.
+- repeat(10, "I'm OK") displays the indicated string 10 times, and
+repeat("But you're kind of stupid") displays the indicated string 5
+times.
+- average(3,6) returns the int average of two int arguments, and
+average(3.0, 6.0) returns the double average of two double values.
+- mangle("I'm glad to meet you") returns the character I or a pointer to
+the string "I'm mad to gleet you", depending on whether you assign the
+return value to a char variable or to a char* variable.
+
+</summary>
+
+```cpp
+// My answer
+double mass(double density, double volume = 1);
+
+void repeat(int num, const char * words[]);
+void repeat(const char * words[], int num = 5);
+
+int average(int numA, int numB);
+double average(double numA, double numB);
+
+???
+```
+
+```cpp
+// a. This can be done by using a default value for the second argument:
+double mass(double d, double v = 1.0);
+It can also be done by using function overloading:
+double mass(double d, double v);
+double mass(double d);
+
+// b. You can’t use a default for the repeat value because you have to provide
+// default values from right to left. You can use overloading:
+void repeat(int times, const char * str);
+void repeat(const char * str);
+
+// c. You can use function overloading:
+int average(int a, int b);
+double average(double x, double y);
+
+// d. You can’t do this because both versions would have the same signature.
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+7. Write a function template that returns the larger of its two arguments.
+</summary>
+
+```cpp
+// My answer
+template <typename t1, typpename t2>
+auto(t1 myTypeA, t2 myTypeB){
+    return myTypeA > myTypeB ? myTypeA : myTypeB;
+}
+```
+
+```cpp
+template<class T>
+T max(T t1, T t2) // or T max(const T & t1, const T & t2)
+{
+    return t1 > t2? t1 : t2;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+8. Given the template of Chapter Review Question 7 and the box structure of Chapter
+Review Question 4, provide a template specialization that takes two box arguments
+and returns the one with the larger volume.
+</summary>
+
+```cpp
+template<> box max(box b1, box b2)
+{
+    return b1.volume > b2.volume? b1 : b2;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+9. What types are assigned to v1, v2, v3, v4, and v5 in the following code (assuming
+the code is part of a complete program)?
+
+```cpp
+int g(int x);
+...
+float m = 5.5f;
+float & rm = m;
+decltype(m) v1 = m;
+decltype(rm) v2 = m;
+decltype((m)) v3 = m;
+decltype (g(100)) v4;
+decltype (2.0 * m) v5;
+```
+
+</summary>
+v1 = float
+v2 = float &
+v3 = float
+v4 = int
+v5 = double (The literal 2.0 is type double)
+</details>
+
+## Chapter 9
+
+<!-- -------------------------------------------- -->
+<details><summary>
+1. What storage scheme would you use for the following situations?</br></br>
+
+a. `homer` is a formal argument (parameter) to a function.
+b. The `secret` variable is to be shared by two files.
+c. The `topsecret` variable is to be shared by the functions in one file but hidden
+from other files.
+d. `beencalled` keeps track of how many times the function containing it has
+been called.
+
+</summary>
+
+a. `homer` is automatically an automatic variable.
+b. `secret` should be defined as an external variable in one file and declared using extern in the second file.
+c. `topsecret` could be defined as a static variable with internal linkage by prefacing the external definition with the
+keyword static. Or it could be defined in an unnamed namespace.
+d. `beencalled` should be defined as a local static variable by prefacing a declaration in the function with the
+keyword static.
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+2. Describe the differences between a `using` declaration and a `using` directive
+</summary>
+
+//Declaration will only allow to use one declared thing from namespace.
+//Directive will allow to use all things declared namespace.
+
+A using declaration makes available a single name from a namespace, and it has the
+scope corresponding to the declarative region in which the using declaration
+occurs.A using directive makes available all the names in a namespace.When you
+use a using directive, it is as if you have declared the names in the smallest declarative
+region containing both the using declaration and the namespace itself.
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+3. Rewrite the following so that it doesn’t use using declarations or using directives:
+
+```cpp
+#include <iostream>
+using namespace std;
+int main()
+{
+    double x;
+    cout << "Enter value: ";
+    while (!(cin >> x))
+    {
+        cout << "Bad input. Please enter a number: ";
+        cin.clear();
+        while (cin.get() != '\n')
+            continue;
+    }
+    cout << "Value = " << x << endl;
+    return 0;
+}
+```
+
+</summary>
+
+```cpp
+#include <iostream>
+
+int main()
+{
+    double x;
+    std::cout << "Enter value: ";
+    while (!(std::cin >> x))
+    {
+        std::cout << "Bad input. Please enter a number: ";
+        std::cin.clear();
+        while (std::cin.get() != '\n')
+            continue;
+    }
+    std::cout << "Value = " << x << std::endl;
+    return 0;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+4. Rewrite the following so that it uses using declarations instead of the using directive:
+
+```cpp
+#include <iostream>
+
+int main()
+{
+    double x;
+    cout << "Enter value: ";
+    while (!(cin >> x))
+    {
+        cout << "Bad input. Please enter a number: ";
+        cin.clear();
+        while (cin.get() != '\n')
+            continue;
+    }
+    cout << "Value = " << x << endl;
+    return 0;
+}
+```
+
+</summary>
+
+```cpp
+#include <iostream>
+
+int main()
+{
+    using std::cin;
+    using std::cout;
+    using std::endl;
+
+    double x;
+    cout << "Enter value: ";
+    while (!(cin >> x))
+    {
+        cout << "Bad input. Please enter a number: ";
+        cin.clear();
+        while (cin.get() != '\n')
+            continue;
+    }
+    cout << "Value = " << x << endl;
+    return 0;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+5. Suppose you want the average(3,6) function to return an int average of the two
+int arguments when it is called in one file, and you want it to return a double
+average of the two int arguments when it is called in a second file in the same program.
+How could you set this up?
+</summary>
+
+You could have separate static function definitions in each file. Or each file could
+define the appropriate `average()` function in an unnamed namespace.
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. What will the following two-file program display?
+
+```cpp
+// file1.cpp
+#include <iostream>
+using namespace std;
+void other();
+void another();
+int x = 10;
+int y;
+int main()
+{
+    cout << x << endl;
+    {
+        int x = 4;
+        cout << x << endl;
+        cout << y << endl;
+    }
+    other();
+    another();
+    return 0;
+}
+void other()
+{
+    int y = 1;
+    cout << "Other: " << x << ", " << y << endl;
+}
+
+// file 2.cpp
+#include <iostream>
+using namespace std;
+extern int x;
+namespace
+{
+    int y = -4;
+}
+void another()
+{
+    cout << "another(): " << x << ", " << y << endl;
+}
+```
+
+</summary>
+
+```sh
+10
+4
+0 //?? - why, y is not initialized... - undefined
+Other: 10, 1
+another(): 10, -4
+
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+7. What will the following program display?
+
+```cpp
+#include <iostream>
+using namespace std;
+void other();
+namespace n1
+{
+    int x = 1;
+}
+namespace n2
+{
+    int x = 2;
+}
+int main()
+{
+    using namespace n1;
+    cout << x << endl;
+    {
+        int x = 4;
+        cout << x << ", " << n1::x << ", " << n2::x << endl;
+    }
+    using n2::x;
+    cout << x << endl;
+    other();
+    return 0;
+}
+void other()
+{
+    using namespace n2;
+    cout << x << endl;
+    {
+        int x = 4;
+        cout << x << ", " << n1::x << ", " << n2::x << endl;
+    }
+    using n2::x;
+    cout << x << endl;
+}
+```
+
+</summary>
+
+```cpp
+1
+4, 1, 2
+2
+2
+4, 1, 2
+2
+```
+
+</details>
+
+## Chapter 10
+
+<!-- -------------------------------------------- -->
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+Schema for creating object.
+
+A class is a definition of a user-defined type. A class declaration specifies how data is
+to be stored, and it specifies the methods (class member functions) that can be used
+to access and manipulate that data.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+2. How does a class accomplish abstraction, encapsulation, and data hiding?</br></br>
+
+</summary>
+
+by division of methods and variables by `public` and `private`
+
+A class represents the operations you can perform on a class object with a public
+interface of class methods; this is abstraction.The class can use private visibility (the
+default) for data members, meaning that the data can be accessed only through the
+member functions; this is data hiding. Details of the implementation, such as data
+representation and method code, are hidden; this is encapsulation.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+3. What is the relationship between an object and a class?</br></br>
+
+</summary>
+
+Class is used for creating object and defining its behaviour.
+We can use object on operate on it in accordance to the methods defined in class.  
+
+A class defines a type, including how it can be used.An object is a variable or
+another data object, such as that produced by new, which is created and used
+according to the class definition.The relationship between a class and an object is
+the same as that between a standard type and a variable of that type
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+4. In what way, aside from being functions, are class function members different from class data members?</br></br>
+
+</summary>
+
+Class functions are used with objects and part of the processed data can be encapsulated.
+
+If you create several objects of a given class, each object comes with storage for its
+own set of data. But all the objects use the one set of member functions. (Typically,
+methods are public and data members are private, but that’s a matter of policy, not
+of class requirements.)
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+5. Define a class to represent a bank account.
+Data members should include the depositor’s name, the account number (use a string), and the balance. Member functions should allow the following:
+
+- Creating an object and initializing it.
+- Displaying the depositor’s name, account number, and balance
+- Depositing an amount of money given by an argument
+- Withdrawing an amount of money given by an argument
+
+Just show the class declaration, not the method implementations. (Programming Exercise 1 provides you with an opportunity to write the implementation.)
+</br></br>
+
+</summary>
+
+```cpp
+// #include <cstring>
+// class definition
+class BankAccount
+{
+private:
+    char name[40]; // or std::string name;
+    char acctnum[25]; // or std::string acctnum;
+    double balance;
+    public:
+BankAccount(const char * client, const char * num, double bal = 0.0);
+    //or BankAccount(const std::string & client,
+    // const std::string & num, double bal = 0.0);
+    void show(void) const;
+    void deposit(double cash);
+    void withdraw(double cash);
+};
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. When are class constructors called? When are class destructors called?</br></br>
+
+</summary>
+
+constructors are called when object is created and during initialization.
+destructors are called when object is deleted or on the end of the program.
+
+A class constructor is called when you create an object of that class or when you
+explicitly call the constructor. A class destructor is called when the object expires.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+7. Provide code for a constructor for the bank account class from Chapter Review Question 5.</br></br>
+
+</summary>
+
+These are two possible solutions (note that you must include cstring or string.h
+in order to use <code>strncpy()</code> or else you must include <code>string</code> to use the string
+class):
+
+```cpp
+BankAccount::BankAccount(const char * client, const char * num, double bal)
+{
+    strncpy(name, client, 39);
+    name[39] = '\0';
+    strncpy(acctnum, num, 24);
+    acctnum[24] = '\0';
+    balance = bal;
+}
+```
+
+or
+
+```cpp
+BankAccount::BankAccount(const std::string & client,
+const std::string & num, double bal)
+{
+    name = client;
+    acctnum = num;
+    balance = bal;
+}
+```
+
+Keep in mind that default arguments go in the prototype, not in the function definition.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+8. What is a default constructor? What is the advantage of having one?</br></br>
+
+</summary>
+
+It initializes class without any arguments.
+
+A default constructor either has no arguments or has defaults for all the arguments.
+Having a default constructor enables you to declare objects without initializing
+them, even if you’ve already defined an initializing constructor. It also allows you to
+declare arrays.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+9. Modify the Stock class definition (the version in stock20.h) so that it has member
+    functions that return the values of the individual data members. Note: A member
+    that returns the company name should not provide a weapon for altering the array.
+    That is, it can’t simply return a string reference. It could return a const reference.</br></br>
+
+</summary>
+
+```cpp
+// stock30.h
+#ifndef STOCK30_H_
+#define STOCK30_H_
+
+class Stock
+{
+private:
+    std::string company;
+    long shares;
+    double share_val;
+    double total_val;
+    void set_tot() { total_val = shares * share_val; }
+public:
+    Stock(); // default constructor
+    Stock(const std::string & co, long n, double pr);
+    ~Stock() {} // do-nothing destructor
+    void buy(long num, double price);
+    void sell(long num, double price);
+    void update(double price);
+    void show() const;
+    const Stock & topval(const Stock & s) const;
+    int numshares() const { return shares; }
+    double shareval() const { return share_val; }
+    double totalval() const { return total_val; }
+const string & co_name() const { return company; }
+};
+
+
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+10. What are this and *this?</br></br>
+
+</summary>
+
+this  - pointer to current object
+*this - dereferention of object (object itself)
+
+The this pointer is available to class methods. It points to the object used to
+invoke the method. Thus, this is the address of the object, and *this represents the
+object itself.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+## Chapter 11
+
+
+<details><summary>
+2. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+3. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+4. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+5. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+7. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+8. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+
+## Chapter 12
+
+<!-- -------------------------------------------- -->
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+2. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+3. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+4. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+5. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+7. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+8. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+
+## Chapter 13
+
+<!-- -------------------------------------------- -->
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+2. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+3. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+4. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+5. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+7. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+8. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+
+## Chapter 14
+
+<!-- -------------------------------------------- -->
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+2. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+3. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+4. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+5. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+7. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+8. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+
+## Chapter 15
+
+<!-- -------------------------------------------- -->
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+2. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+3. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+4. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+5. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+7. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+8. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+
+## Chapter 16
+
+<!-- -------------------------------------------- -->
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+2. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+3. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+4. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+5. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+7. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+8. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+
+## Chapter 17
+
+<!-- -------------------------------------------- -->
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+2. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+3. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+4. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+5. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+7. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+8. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+
+## Chapter 18
+
+<!-- -------------------------------------------- -->
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+2. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+3. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+4. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+5. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+6. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+7. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+8. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+1. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->

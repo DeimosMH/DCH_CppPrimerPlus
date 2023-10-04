@@ -760,3 +760,570 @@ Rich Raptor
     <!--codeinclude-->
     [](../exercises/exercise_ch6_9.cpp)
     <!--/codeinclude-->
+
+## Chapter 7 Programming Exercises
+
+[1.](./exercises/exercise_ch7_1.cpp)
+Write a program that repeatedly asks the user to enter pairs of numbers until at least one of the pair is 0.
+For each pair, the program should use a function to calculate the harmonic mean of the numbers.
+The function should return the answer to `main()`, which should report the result. The harmonic mean of the
+numbers is the inverse of the average of the inverses and can be calculated as follows:
+$$HarmonicMean = 2.0 × x × y / (x + y)$$
+
+[2.](./exercises/exercise_ch7_2.cpp)
+Write a program that asks the user to enter up to 10 golf scores, which are to be
+stored in an array.You should provide a means for the user to terminate input prior
+to entering 10 scores.The program should display all the scores on one line and
+report the average score. Handle input, display, and the average calculation with
+three separate array-processing functions
+
+[3.](./exercises/exercise_ch7_3.cpp)
+Here is a structure declaration:
+
+```cpp
+struct box
+{
+    char maker[40];
+    float height;
+    float width;
+    float length;
+    float volume;
+};
+```
+
+- Write a function that passes a `box` structure by value and that displays the
+value of each member.
+- Write a function that passes the address of a `box` structure and that sets the
+`volume` member to the product of the other three dimensions.
+- Write a simple program that uses these two functions.
+
+[4.](./exercises/exercise_ch7_4.cpp)
+Many state lotteries use a variation of the simple lottery portrayed by Listing 7.4 (lotto). In
+these variations you choose several numbers from one set and call them the field
+numbers. For example, you might select five numbers from the field of 1–47).You
+also pick a single number (called a mega number or a power ball, etc.) from a second
+range, such as 1–27. To win the grand prize, you have to guess all the picks correctly.
+The chance of winning is the product of the probability of picking all the
+field numbers times the probability of picking the mega number. For instance, the
+probability of winning the example described here is the product of the probability
+of picking 5 out of 47 correctly times the probability of picking 1 out of 27 correctly.
+Modify Listing 7.4 to calculate the probability of winning this kind of lottery.
+
+[5.](./exercises/exercise_ch7_5.cpp)
+Define a recursive function that takes an integer argument and returns the factorial
+of that argument. Recall that 3 factorial, written 3!, equals 3 × 2!, and so on, with 0!
+defined as 1. In general, if n is greater than zero, n! = n * (n - 1)!.Test your function
+in a program that uses a loop to allow the user to enter various values for which the
+program reports the factorial
+
+[6.](./exercises/exercise_ch7_6.cpp)
+Write a program that uses the following functions:
+
+`Fill_array()` takes as arguments the name of an array of double values and an
+array size. It prompts the user to enter double values to be entered in the array. It
+ceases taking input when the array is full or when the user enters non-numeric
+input, and it returns the actual number of entries.
+
+`Show_array()` takes as arguments the name of an array of double values and an
+array size and displays the contents of the array.
+
+`Reverse_array()` takes as arguments the name of an array of double values and an
+array size and reverses the order of the values stored in the array.
+The program should use these functions to fill an array, show the array, reverse the
+array, show the array, reverse all but the first and last elements of the array, and then
+show the array.
+
+[7.](./exercises/exercise_ch7_7.cpp)
+Redo Listing 7.7 (arrfun3), modifying the three array-handling functions to each use two
+pointer parameters to represent a range. The `fill_array()` function, instead of
+returning the actual number of items read, should return a pointer to the location
+after the last location filled; the other functions can use this pointer as the second
+argument to identify the end of the data.
+
+[8.](./exercises/exercise_ch7_8.cpp)
+Redo Listing 7.15 (arrobj) without using the array class. Do two versions:
+
+a. Use an ordinary array of `const char *` for the strings representing the season
+names, and use an ordinary array of double for the expenses.
+
+b. Use an ordinary array of `const char *` for the strings representing the season
+names, and use a structure whose sole member is an ordinary array of
+double for the expenses. (This design is similar to the basic design of the
+array class.)
+
+[9.](./exercises/exercise_ch7_9.cpp)
+This exercise provides practice in writing functions dealing with arrays and structures.
+The following is a program skeleton. Complete it by providing the described
+functions:
+
+```cpp
+#include <iostream>
+using namespace std;
+const int SLEN = 30;
+
+struct student
+{
+    char fullname[SLEN];
+    char hobby[SLEN];
+    int ooplevel;
+};
+
+// getinfo() has two arguments: a pointer to the first element of
+// an array of student structures and an int representing the
+// number of elements of the array. The function solicits and
+// stores data about students. It terminates input upon filling
+// the array or upon encountering a blank line for the student
+// name. The function returns the actual number of array elements
+// filled.
+int getinfo(student pa[], int n);
+
+// display1() takes a student structure as an argument
+// and displays its contents
+void display1(student st);
+
+// display2() takes the address of student structure as an
+// argument and displays the structure’s contents
+void display2(const student *ps);
+
+// display3() takes the address of the first element of an array
+// of student structures and the number of array elements as
+// arguments and displays the contents of the structures
+void display3(const student pa[], int n);
+
+int main()
+{
+    cout << "Enter class size : ";
+    int class_size;
+    cin >> class_size;
+    while (cin.get() != '\n')
+        continue;
+
+    student *ptr_stu = new student[class_size];
+    int entered = getinfo(ptr_stu, class_size);
+    for (int i = 0; i < entered; i++)
+    {
+        display1(ptr_stu[i]);
+        display2(&ptr_stu[i]);
+    }
+    display3(ptr_stu, entered);
+    delete[] ptr_stu;
+    cout << "Done\n";
+    return 0;
+}
+```
+
+[10.](./exercises/exercise_ch7_10.cpp)
+Design a function `calculate()` that takes two type `double` values and a pointer to
+a function that takes two `double` arguments and returns a double.The
+`calculate()` function should also be type double, and it should return the value
+that the pointed-to function calculates, using the double arguments to
+`calculate()`. For example, suppose you have this definition for the `add()`
+function:
+
+```cpp
+double add(double x, double y)
+{
+    return x + y;
+}
+```
+
+Then, the function call in the following would cause `calculate()` to pass the values
+2.5 and 10.4 to the `add()` function and then return the `add()` return value
+(12.9):
+
+```cpp
+double q = calculate(2.5, 10.4, add);
+```
+
+Use these functions and at least one additional function in the `add()` mold in a
+program.The program should use a loop that allows the user to enter pairs of numbers.
+For each pair, use `calculate()` to invoke `add()` and at least one other function.
+If you are feeling adventurous, try creating an array of pointers to add()-style
+functions and use a loop to successively apply `calculate()` to a series of functions
+by using these pointers. Hint: Here’s how to declare such an array of three pointers:
+
+```cpp
+double (*pf[3])(double, double);
+```
+
+You can initialize such an array by using the usual array initialization syntax and
+function names as addresses.
+
+## Chapter 8: Programming Exercises
+
+[1.](./exercises/exercise_ch8_1.cpp)
+Write a function that normally takes one argument, the address of a string, and
+prints that string once. However, if a second, type int, argument is provided and is
+nonzero, the function should print the string a number of times equal to the number
+of times that function has been called at that point. (Note that the number of
+times the string is printed is not equal to the value of the second argument; it is
+equal to the number of times the function has been called.) Yes, this is a silly function,
+but it makes you use some of the techniques discussed in this chapter. Use the
+function in a simple program that demonstrates how the function works.
+
+[2.](./exercises/exercise_ch8_2.cpp)
+The `CandyBar` structure contains three members.The first member holds the brand
+name of a candy bar.The second member holds the weight (which may have a fractional
+part) of the candy bar, and the third member holds the number of calories
+(an integer value) in the candy bar.Write a program that uses a function that takes
+as arguments a reference to CandyBar, a pointer-to-char, a double, and an `int` and
+uses the last three values to set the corresponding members of the structure. The last
+three arguments should have default values of “Millennium Munch,” 2.85, and 350.
+Also the program should use a function that takes a reference to a `CandyBar` as an
+argument and displays the contents of the structure. Use `const` where appropriate.
+
+[3.](./exercises/exercise_ch8_3.cpp)
+Write a function that takes a reference to a `string` object as its parameter and that
+converts the contents of the `string` to uppercase. Use the `toupper()` function
+described in Table 6.4 of Chapter 6.Write a program that uses a loop which allows
+you to test the function with different input.A sample run might look like this:
+
+```sh
+Enter a string (q to quit): go away
+GO AWAY
+Next string (q to quit): good grief!
+GOOD GRIEF!
+Next string (q to quit): q
+Bye.
+```
+
+[4.](./exercises/exercise_ch8_4.cpp)
+The following is a program skeleton:
+
+```cpp
+#include <iostream>
+using namespace std;
+#include <cstring> // for strlen(), strcpy()
+struct stringy
+{
+    char *str; // points to a string
+    int ct;    // length of string (not counting '\0')
+};
+// prototypes for set(), show(), and show() go here
+int main()
+{
+    stringy beany;
+    char testing[] = "Reality isn't what it used to be.";
+    set(beany, testing); // first argument is a reference,
+    // allocates space to hold copy of testing,
+    // sets str member of beany to point to the
+    // new block, copies testing to new block,
+    // and sets ct member of beany
+    show(beany);    // prints member string once
+    show(beany, 2); // prints member string twice
+    testing[0] = 'D';
+    testing[1] = 'u';
+    show(testing);    // prints testing string once
+    show(testing, 3); // prints testing string thrice
+    show("Done!");
+    return 0;
+}
+```
+
+Complete this skeleton by providing the described functions and prototypes. Note
+that there should be two `show()` functions, each using default arguments. Use
+`const` arguments when appropriate. Note that `set()` should use `new` to allocate
+sufficient space to hold the designated string.The techniques used here are similar
+to those used in designing and implementing classes. (You might have to alter the
+header filenames and delete the `using` directive, depending on your compiler.)
+
+[5.](./exercises/exercise_ch8_5.cpp)
+Write a template function `max5()` that takes as its argument an array of five items
+of type `T` and returns the largest item in the array. (Because the size is fixed, it can
+be hard-coded into the loop instead of being passed as an argument.) Test it in a
+program that uses the function with an array of five int value and an array of five
+double values.
+
+[6.](./exercises/exercise_ch8_6.cpp)
+Write a template function `maxn()` that takes as its arguments an array of items of
+type T and an integer representing the number of elements in the array and that
+returns the largest item in the array.Test it in a program that uses the function template
+with an array of six int value and an array of four double values.The program
+should also include a specialization that takes an array of pointers-to-char as
+an argument and the number of pointers as a second argument and that returns the
+address of the longest string. If multiple strings are tied for having the longest
+length, the function should return the address of the first one tied for longest.Test
+the specialization with an array of five string pointers.
+
+[7.](./exercises/exercise_ch8_7.cpp)
+Modify Listing 8.14 (tempover) so that it uses two template functions called `SumArray()` to
+return the sum of the array contents instead of displaying the contents.The program
+now should report the total number of things and the sum of all the debts
+
+## Chapter 10: Programming Exercises
+
+1 -
+
+Here is a header file:
+
+```cpp
+// golf.h -- for pe9-1.cpp
+const int Len = 40;
+struct golf
+{
+    char fullname[Len];
+    int handicap;
+};
+// non-interactive version:
+// function sets golf structure to provided name, handicap
+// using values passed as arguments to the function
+void setgolf(golf & g, const char * name, int hc);
+
+// interactive version:
+// function solicits name and handicap from user
+// and sets the members of g to the values entered
+// returns 1 if name is entered, 0 if name is empty string
+int setgolf(golf & g);
+
+// function resets handicap to new value
+void handicap(golf & g, int hc);
+
+// function displays contents of golf structure
+void showgolf(const golf & g);
+```
+
+Note that setgolf() is overloaded. Using the first version of setgolf() would
+look like this:
+
+```cpp
+golf ann;
+setgolf(ann, "Ann Birdfree", 24);
+```
+
+The function call provides the information that’s stored in the ann structure. Using
+the second version of setgolf() would look like this:
+
+```cpp
+golf andy;
+setgolf(andy);
+```
+
+The function would prompt the user to enter the name and handicap and store
+them in the `andy` structure. This function could (but doesn’t need to) use the first
+version internally.
+
+Put together a multifile program based on this header. One file, named `golf.cpp`,
+should provide suitable function definitions to match the prototypes in the header
+file. A second file should contain `main()` and demonstrate all the features of the
+prototyped functions. For example, a loop should solicit input for an array of golf
+structures and terminate when the array is full or the user enters an empty string
+for the golfer’s name. The `main()` function should use only the prototyped functions
+to access the golf structures.
+
+??? note "Code"
+    <!--codeinclude-->
+    [](../exercises/exercise_ch10_1.cpp)
+    <!--/codeinclude-->
+
+[2.](./exercises/exercise_ch9_2.cpp)
+
+Redo Listing 9.9 (`static.cpp`), replacing the character array with a string object. The program
+should no longer have to check whether the input string fits, and it can compare
+the input string to "" to check for an empty line.
+
+[3.](./exercises/exercise_ch9_3.cpp)
+
+Begin with the following structure declaration:
+
+```cpp
+struct chaff
+{
+    char dross[20];
+    int slag;
+};
+```
+
+Write a program that uses placement new to place an array of two such structures in
+a buffer. Then assign values to the structure members (remembering to use
+strcpy() for the char array) and use a loop to display the contents. Option 1 is to
+use a static array, like that in Listing 9.10 ([newplace.cpp](./programs/newplace.cpp)), for the buffer. Option 2 is to use regular
+new to allocate the buffer.
+
+[4.](./exercises/exercise_ch9_4.cpp) [Prototypes](./exercises/exercise_ch9_4_sales.cpp) [Headers](./exercises/exercise_ch9_4_sales.h)
+
+Write a three-file program based on the following namespace:
+
+```cpp
+namespace SALES
+{
+    const int QUARTERS = 4;
+    struct Sales
+    {
+        double sales[QUARTERS];
+        double average;
+        double max;
+        double min;
+    };
+    // copies the lesser of 4 or n items from the array ar
+    // to the sales member of s and computes and stores the
+    // average, maximum, and minimum values of the entered items;
+    // remaining elements of sales, if any, set to 0
+    void setSales(Sales & s, const double ar[], int n);
+    // gathers sales for 4 quarters interactively, stores them
+    // in the sales member of s and computes and stores the
+    // average, maximum, and minimum values
+    void setSales(Sales & s);
+    // display all information in structure s
+    void showSales(const Sales & s);
+}
+```
+
+The first file should be a header file that contains the namespace.The second file
+should be a source code file that extends the namespace to provide definitions for
+the three prototyped functions. The third file should declare two Sales objects. It
+should use the interactive version of setSales() to provide values for one structure
+and the non-interactive version of setSales() to provide values for the second
+structure. It should display the contents of both structures by using
+showSales().
+
+## Chapter 10: Programming Exercises
+
+[1.](./exercises/exercise_ch10_1.cpp)
+
+Provide method definitions for the class described in Chapter Review Question 5
+and write a short program that illustrates all the features.
+
+[2.](./exercises/exercise_ch10_2.cpp)
+
+Here is a rather simple class definition:
+
+```cpp
+class Person {
+private:
+    static const LIMIT = 25;
+    string lname; // Person’s last name
+    char fname[LIMIT]; // Person’s first name
+public:
+    Person() {lname = ""; fname[0] = ‘\0’; } // #1
+    Person(const string & ln, const char * fn = "Heyyou"); // #2
+    // the following methods display lname and fname
+    void Show() const; // firstname lastname format
+    void FormalShow() const; // lastname, firstname format
+};
+```
+
+(It uses both a string object and a character array so that you can compare how
+the two forms are used.) Write a program that completes the implementation by
+providing code for the undefined methods.The program in which you use the class
+should also use the three possible constructor calls (no arguments, one argument,
+and two arguments) and the two display methods. Here’s an example that uses the
+constructors and methods:
+
+```cpp
+Person one;                         // use default constructor
+Person two("Smythecraft");          // use #2 with one default argument
+Person three("Dimwiddy", "Sam");    // use #2, no defaults
+one.Show();
+cout << endl;
+one.FormalShow();
+// etc. for two and three
+```
+
+[3.](./exercises/exercise_ch10_3.cpp)
+
+Do Programming Exercise 1 from Chapter 9 but replace the code shown there with
+an appropriate golf class declaration. Replace <code>setgolf(golf &, const char*,int)</code>
+with a constructor with the appropriate argument for providing initial values.
+Retain the interactive version of setgolf() but implement it by using the constructor.
+(For example, for the code for setgolf(), obtain the data, pass the data to
+the constructor to create a temporary object, and assign the temporary object to the
+invoking object, which is *this.)
+
+[4.](./exercises/exercise_ch10_4.cpp)
+
+Do Programming Exercise 4 from Chapter 9 but convert the Sales structure and
+its associated functions to a class and its methods. Replace the setSales(Sales &,
+double [], int) function with a constructor. Implement the interactive
+setSales(Sales &) method by using the constructor. Keep the class within the
+namespace SALES.
+
+[5.](./exercises/exercise_ch10_5.cpp)
+
+Consider the following structure declaration:
+
+```cpp
+struct customer {
+char fullname[35];
+double payment;
+};
+```
+
+Write a program that adds and removes customer structures from a stack, represented
+by a Stack class declaration. Each time a customer is removed, his or her
+payment should be added to a running total, and the running total should be
+reported. Note: You should be able to use the Stack class unaltered; just change the
+typedef declaration so that Item is type customer instead of unsigned long.
+
+[6.](./exercises/exercise_ch10_6.cpp)
+
+Here’s a class declaration:
+
+```cpp
+class Move
+{
+private:
+    double x;
+    double y;
+public:
+    Move(double a = 0, double b = 0); // sets x, y to a, b
+    showmove() const; // shows current x, y values
+    Move add(const Move & m) const;
+    // this function adds x of m to x of invoking object to get new x,
+    // adds y of m to y of invoking object to get new y, creates a new
+    // move object initialized to new x, y values and returns it
+    reset(double a = 0, double b = 0); // resets x,y to a, b
+};
+```
+
+Create member function definitions and a program that exercises the class.
+
+[7.](./exercises/exercise_ch10_7.cpp)
+
+A Betelgeusean plorg has these properties:
+
+```sh
+Data
+A plorg has a name with no more than 19 letters.
+A plorg has a contentment index (CI), which is an integer.
+Operations
+A new plorg starts out with a name and a CI of 50.
+A plorg’s CI can change.
+A plorg can report its name and CI.
+The default plorg has the name "Plorga".
+```
+
+Write a Plorg class declaration (including data members and member function prototypes)
+that represents a plorg.Write the function definitions for the member functions.
+Write a short program that demonstrates all the features of the Plorg class.
+
+[8.](./exercises/exercise_ch10_8.cpp)
+
+You can describe a simple list as follows:
+
+- The simple list can hold zero or more items of some particular type.
+- You can create an empty list.
+- You can add items to the list.
+- You can determine whether the list is empty.
+- You can determine whether the list is full.
+- You can visit each item in the list and perform some action on it.
+
+As you can see, this list really is simple; it doesn’t allow insertion or deletion, for example. <br>
+Design a List class to represent this abstract type.You should provide a <code>list.h</code>
+header file with the class declaration and a <code>list.cpp</code> file with the class method
+implementations.You should also create a short program that utilizes your design.<br>
+
+The main reason for keeping the list specification simple is to simplify this programming
+exercise.You can implement the list as an array or, if you’re familiar with
+the data type, as a linked list. But the public interface should not depend on your
+choice.That is, the public interface should not have array indices, pointers to nodes,
+and so on. It should be expressed in the general concepts of creating a list, adding
+an item to the list, and so on.The usual way to handle visiting each item and performing
+an action is to use a function that takes a function pointer as an argument:
+
+```cpp
+void visit(void (*pf)(Item &));
+```
+
+Here <code>pf</code> points to a function (not a member function) that takes a reference to <code>Item</code>
+argument, where <code>Item</code> is the type for items in the list.The <code>visit()</code> function applies
+this function to each item in the list.You can use the <code>Stack</code> class as a general guide.
