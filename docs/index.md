@@ -2,27 +2,35 @@
 
 Personal notes / Summary
 
+<head>
+    <link rel="canonical" href="https://deimosmh.github.io/DCH_CppPrimerPlus/" />
+</head>
+
 <script>
-function createTOC() {
-    var headings = document.querySelectorAll('h2');
-    var toc = document.createElement('ul');
-    toc.classList.add('toc_custom_sec'); // Add the class here
-    headings.forEach(function(heading, index) {
-        var li = document.createElement('li');
-        var a = document.createElement('a');
-        a.href = '#' + heading.id;
-        a.textContent = heading.textContent;
-        li.appendChild(a);
-        toc.appendChild(li);
-    });
-    return toc;
+window.onload = function() {
+    function createTOC() {
+        var headings = document.querySelectorAll('h2');
+        var toc = document.createElement('ul');
+        toc.classList.add('toc_custom_sec'); // Add the class here
+        headings.forEach(function(heading, index) {
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.href = '#' + heading.id;
+            a.textContent = heading.textContent;
+            li.appendChild(a);
+            toc.appendChild(li);
+        });
+        return toc;
+    }
+
+    function insertTOC() {
+        var main = document.querySelector('.md-main');
+        var toc = createTOC();
+        main.insertBefore(toc, main.firstChild);
+    }
+
+    insertTOC();
 }
-function insertTOC() {
-    var main = document.querySelector('.md-main');
-    var toc = createTOC();
-    main.insertBefore(toc, main.firstChild);
-}
-document.addEventListener('DOMContentLoaded', insertTOC);
 </script>
 
 <style>

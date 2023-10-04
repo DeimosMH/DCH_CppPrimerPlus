@@ -13,4 +13,4 @@ Documentation of Daily Coding Habit (subrepository) personal project - adventure
 
 ## Auto deploy - gh-pages
 
-[C++ Primer Plus: main page](https://deimosmh.github.io/DCH_CppPrimerPlus/)
+[Daily Coding Habit: C++ Primer Plus](https://deimosmh.github.io/DCH_CppPrimerPlus/)
