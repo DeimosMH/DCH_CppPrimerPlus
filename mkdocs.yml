@@ -4,8 +4,10 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
-    - toc.integrate
+    - navigation.tabs.sticky
     - navigation.top
+    - toc.follow
+    - toc.integrate
     - search.suggest
     - search.highlight
     - content.tabs.link
@@ -57,6 +59,8 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - toc:
+      toc_depth: 3
 
 plugins:
   - search

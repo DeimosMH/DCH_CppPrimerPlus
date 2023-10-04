@@ -2,6 +2,39 @@
 
 Personal notes / Summary
 
+<script>
+function createTOC() {
+    var headings = document.querySelectorAll('h2');
+    var toc = document.createElement('ul');
+    toc.classList.add('toc_custom_sec'); // Add the class here
+    headings.forEach(function(heading, index) {
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = '#' + heading.id;
+        a.textContent = heading.textContent;
+        li.appendChild(a);
+        toc.appendChild(li);
+    });
+    return toc;
+}
+function insertTOC() {
+    var main = document.querySelector('.md-main');
+    var toc = createTOC();
+    main.insertBefore(toc, main.firstChild);
+}
+document.addEventListener('DOMContentLoaded', insertTOC);
+</script>
+
+<style>
+.md-main .toc_custom_sec {
+    position: fixed;
+    top: 100px;
+    left: 10px;
+    background-color: transparent;
+    padding: 15px;
+}
+</style>
+
 ## Chapter 1: Getting Started
 
 Computer language deal with 2 concepts: DATA (information) & ALGORITHMS (methods)
@@ -698,8 +731,8 @@ char bird[11] = "Mr. Cheeps"; // the \0 is understood
 char fish[] = "Bubbles"; // let the compiler count
 ```
 
-<img src="./assets/_ch4CString.png" alt="Image description"
-style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
+<!-- <img src="./assets/_ch4CString.png" alt="Image description"
+style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;"> -->
 
 ```cpp
 char shirt_size = 'S'; // this is fine
