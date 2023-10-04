@@ -619,9 +619,8 @@ You can access array elements individually.The way to do this is to use a
 `subscript`, or an `index`, to number the elements. C++ array numbering starts
 with zero. **The `index` of the last element is one less than the size of the `array`**
 
-<img src="../assets/_ch4Array.png" alt="Image description"
+<img src="./assets/_ch4Array.png" alt="Image description"
 style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
-
 
 *Declaring* an `array`, *assigning values* to `array` elements,
 and *initializing* an `array`:
@@ -699,7 +698,7 @@ char bird[11] = "Mr. Cheeps"; // the \0 is understood
 char fish[] = "Bubbles"; // let the compiler count
 ```
 
-<img src="../assets/_ch4CString.png" alt="Image description"
+<img src="./assets/_ch4CString.png" alt="Image description"
 style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
 
 ```cpp
@@ -726,7 +725,7 @@ cout << "I'd give my right ar"
 "m to be a great violinist.\n";
 ```
 
-<img src="../assets/_ch4CString2.png" alt="Image description"
+<img src="./assets/_ch4CString2.png" alt="Image description"
 style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
 
 ??? example "Strings in an Array: strings.cpp"
@@ -910,7 +909,7 @@ Given that `hat` is type inflatable, you use the membership operator (.)
 to access individual members. For example, `hat.volume` refers to the `volume`
 member of the structure, and `hat.price` refers to the `price` member.
 
-<img src="../assets/_ch4Structure.png" alt="Image description"
+<img src="./assets/_ch4Structure.png" alt="Image description"
 style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
 
 ??? example "structur.cpp, example use of structure."
@@ -1123,10 +1122,10 @@ yields the value at the location.
     [](../programs/pointer.cpp)
     <!--/codeinclude-->
 
-<img src="../assets/_ch4Pointer.png" alt="Image description"
+<img src="./assets/_ch4Pointer.png" alt="Image description"
 style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
 
-<img src="../assets/_ch4Pointer2.png" alt="Image description"
+<img src="./assets/_ch4Pointer2.png" alt="Image description"
 style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
 
 In C++, the combination `int *` is a compound type, pointer-to-int.
@@ -1247,7 +1246,7 @@ delete ps; // effect is undefined, don't do it
     [](../programs/addpntrs.cpp)
     <!--/codeinclude-->
 
-<img src="../assets/_ch4PointerAddition.png" alt="Image description"
+<img src="./assets/_ch4PointerAddition.png" alt="Image description"
 style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
 
 <details><summary>
@@ -1477,7 +1476,7 @@ inflatable * ps = new inflatable;
 inflatable * ps = new inflatable[10];
 ```
 
-<img src="../assets/_ch4NewStructure.png" alt="Image description"
+<img src="./assets/_ch4NewStructure.png" alt="Image description"
 style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
 
 ??? example "newstrct.cpp"
@@ -2095,7 +2094,7 @@ is the value of `expression3`.
 
 ### The `switch` Statement
 
-<img src="../assets/_ch6SwitchCase.png" alt="Image description"
+<img src="./assets/_ch6SwitchCase.png" alt="Image description"
 style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
 <br>
 
@@ -2285,7 +2284,7 @@ void functionName(parameterList)
 }
 ```
 
-<img src="../assets/_ch7FunctionReturn.png" alt="Image description"
+<img src="./assets/_ch7FunctionReturn.png" alt="Image description"
 style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
 <br>
 
@@ -2341,7 +2340,7 @@ just seen, catches many errors that are much more difficult to catch during runt
 
 ### Passing function arguments
 
-<img src="../assets/_ch7PassByValue.png" alt="Image description"
+<img src="./assets/_ch7PassByValue.png" alt="Image description"
 style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
 <br>
 
@@ -2429,7 +2428,7 @@ void show_array(const double ar[], int n);
 Remember that adding one to a pointer, including an array name, actually adds a value equal to the size, in bytes, of the
 type to which the pointer points
 
-<img src="../assets/_ch7PassArray.png" alt="Image description"
+<img src="./assets/_ch7PassArray.png" alt="Image description"
 style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
 <br>
 
@@ -2466,7 +2465,7 @@ whereas a function that omits `const` in the prototype can accept only non-`cons
 
 </details><br>
 
-<img src="../assets/_ch7PointersConst.png" alt="Image description"
+<img src="./assets/_ch7PointersConst.png" alt="Image description"
 style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
 <br>
 
@@ -2796,7 +2795,7 @@ p_fun (*pd)[3] = &pa; // pd points to an array of 3 function pointers
 
 ### Inline functions
 
-<img src="../assets/_ch8Inline.png" alt="Image description"
+<img src="./assets/_ch8Inline.png" alt="Image description"
 style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
 <br>
 
@@ -2873,7 +2872,7 @@ rodent = rat; // No, you can't do this.
     [](../programs/secref.cpp)
     <!--/codeinclude-->
 
-<img src="../assets/_ch8PassingReference.png" alt="Image description"
+<img src="./assets/_ch8PassingReference.png" alt="Image description"
 style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
 <br>
 
@@ -3704,7 +3703,7 @@ Link it `g++ .\Notes\C++PrimerPlus\programs\file1.cpp .\Notes\C++PrimerPlus\prog
     [](../programs/file2.cpp)
     <!--/codeinclude-->
 
-<img src="../assets/_ch9CompileMultipleFiles.png" alt="Image description"
+<img src="./assets/_ch9CompileMultipleFiles.png" alt="Image description"
 style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
 <br>
 
@@ -3849,7 +3848,7 @@ present as long as the program executes. Also if you don’t explicitly initiali
 the compiler sets it to 0. Static arrays and structures have all the bits of each element
 or member set to 0 by default.
 
-<img src="../assets/_ch9VariableStorage.png" alt="Image description"
+<img src="./assets/_ch9VariableStorage.png" alt="Image description"
 style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
 <br>
 
@@ -3900,7 +3899,7 @@ extern int blem; // blem defined elsewhere
 extern char gr = 'z'; // definition because initialized
 ```
 
-<img src="../assets/_ch9Extern.png" alt="Image description"
+<img src="./assets/_ch9Extern.png" alt="Image description"
 style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
 <br>
 
@@ -4466,7 +4465,7 @@ make it inline.To do so, you just use the inline qualifier
 
 ---
 
--- 001 png 
+-- 001 png
 
 <details><summary>
 The Client/Server model
@@ -4587,8 +4586,6 @@ shares = shares;
     [](../programs/usestock1.cpp)
     <!--/codeinclude-->
 
-    
-
 <details><summary>
 Note
 </summary>
@@ -4693,9 +4690,8 @@ Stock stocks[STKS] = {
 };
 ```
 
-<img src="../assets/_ch9ObjectProblem.png" alt="Image description"
+<img src="./assets/_ch9ObjectProblem.png" alt="Image description"
 style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
-
 
 ### Abstract Data Types
 

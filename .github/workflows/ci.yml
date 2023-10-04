@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master 
-      - main
 permissions:
   contents: write
 jobs:
@@ -26,4 +25,4 @@ jobs:
       - run: pip install mkdocs-glightbox
       - run: pip install pillow cairosvg
       - run: pip install mkdocs-print-site-plugin
-      - run: mkdocs gh-deploy --remote-branch master
+      - run: mkdocs gh-deploy --force
