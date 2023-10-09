@@ -43,14 +43,14 @@ privacy,a fictitious name and address).
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch2_1.cpp)
+    [](../exercises/chapter2/ch2_1.cpp)
     <!--/codeinclude-->
 
 2 - Write a C++ program that asks for a distance in furlongs and converts it to yards.
 (One furlong is 220 yards.)
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch2_2.cpp)
+    [](../exercises/chapter2/ch2_2.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -69,7 +69,7 @@ ing function, also called twice, should produce the remaining output.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch2_3.cpp)
+    [](../exercises/chapter2/ch2_3.cpp)
     <!--/codeinclude-->
 
 4 -
@@ -83,7 +83,7 @@ Your age in months is 384.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch2_4.cpp)
+    [](../exercises/chapter2/ch2_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -102,7 +102,7 @@ For reference,here is the formula for making the conversion:
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch2_5.cpp)
+    [](../exercises/chapter2/ch2_5.cpp)
     <!--/codeinclude-->
 6 -
 Write a program that has `main()` call a user-defined function that takes
@@ -127,7 +127,7 @@ light travels in a year (about 10 trillion kilometers or 6 trillion miles).
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch2_6.cpp)
+    [](../exercises/chapter2/ch2_6.cpp)
     <!--/codeinclude-->
 
 7 -
@@ -144,7 +144,7 @@ Time: 9:28
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch2_7.cpp)
+    [](../exercises/chapter2/ch2_7.cpp)
     <!--/codeinclude-->
 
 ## Chapter 3 Programming Exercises
@@ -157,7 +157,7 @@ Also use a const symbolic constant to represent the conversion factor.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch3_1.cpp)
+    [](../exercises/chapter3/exercise_ch3_1.cpp)
     <!--/codeinclude-->
 2 -
 Write a short program that asks for your
@@ -172,7 +172,7 @@ various conversion factors.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch3_2.cpp)
+    [](../exercises/chapter3/exercise_ch3_2.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -192,7 +192,7 @@ Finally, enter the seconds of arc: 19
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch3_3.cpp)
+    [](../exercises/chapter3/exercise_ch3_3.cpp)
     <!--/codeinclude-->
 
 4 -
@@ -210,7 +210,7 @@ Enter the number of seconds: 31600000
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch3_4.cpp)
+    [](../exercises/chapter3/exercise_ch3_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -230,7 +230,7 @@ You can use the Internet to get more recent figures.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch3_5.cpp)
+    [](../exercises/chapter3/exercise_ch3_5.cpp)
     <!--/codeinclude-->
 
 6 -
@@ -242,7 +242,7 @@ in liters per 100 kilometers.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch3_6.cpp)
+    [](../exercises/chapter3/exercise_ch3_6.cpp)
     <!--/codeinclude-->
 
 7 -
@@ -256,7 +256,7 @@ Thus, 19 mpg is about 12.4 l/100 km, and 27 mpg is about 8.7 l/100 km.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch3_7.cpp)
+    [](../exercises/chapter3/exercise_ch3_7.cpp)
     <!--/codeinclude-->
 
 ## Chapter 4 Programming Exercises
@@ -284,7 +284,7 @@ about the gap between a D and an F.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch3_7.cpp)
+    [](../exercises/chapter3/exercise_ch3_7.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -292,7 +292,7 @@ Rewrite Listing 4.4, using the C++ string class instead of char arrays.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch4_2.cpp)
+    [](../exercises/chapter4/ch4_2.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -309,7 +309,7 @@ Here’s the information in a single string: Fleming, Flip
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch4_3.cpp)
+    [](../exercises/chapter4/ch4_3.cpp)
     <!--/codeinclude-->
 
 4 -
@@ -326,7 +326,7 @@ Here’s the information in a single string: Fleming, Flip
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch4_4.cpp)
+    [](../exercises/chapter4/ch4_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -340,7 +340,7 @@ Finally, the program should display the contents of the snack variable.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch4_5.cpp)
+    [](../exercises/chapter4/ch4_5.cpp)
     <!--/codeinclude-->
 
 6 -
@@ -351,7 +351,7 @@ displays the contents of each structure.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch4_6.cpp)
+    [](../exercises/chapter4/ch4_6.cpp)
     <!--/codeinclude-->
 
 7 -
@@ -369,7 +369,7 @@ that information. Use cin (or its methods) and cout.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch4_7.cpp)
+    [](../exercises/chapter4/ch4_7.cpp)
     <!--/codeinclude-->
 
 8 -
@@ -379,7 +379,7 @@ diameter before it requests the pizza company name.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch4_8.cpp)
+    [](../exercises/chapter4/ch4_8.cpp)
     <!--/codeinclude-->
 
 9 -
@@ -388,7 +388,7 @@ structures, use new to allocate the array dynamically.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch4_9.cpp)
+    [](../exercises/chapter4/ch4_9.cpp)
     <!--/codeinclude-->
 
 10 -
@@ -398,7 +398,7 @@ Use an array object to hold the data. (Use a built-in array if array is not avai
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch4_10.cpp)
+    [](../exercises/chapter4/ch4_10.cpp)
     <!--/codeinclude-->
 
 ## Chapter 5 Programming Exercises
@@ -412,7 +412,7 @@ from 2 through 9 is 44.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch5_1.cpp)
+    [](../exercises/chapter5/ch5_1.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -421,7 +421,7 @@ long double instead of long long. Find the value of 100!
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch5_2.cpp)
+    [](../exercises/chapter5/ch5_2.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -431,7 +431,7 @@ terminate when the user enters 0.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch5_3.cpp)
+    [](../exercises/chapter5/ch5_3.cpp)
     <!--/codeinclude-->
 
 4 -
@@ -456,7 +456,7 @@ displays the value of both investments at that time.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch5_4.cpp)
+    [](../exercises/chapter5/ch5_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -469,7 +469,7 @@ and report the total sales for the year.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch5_5.cpp)
+    [](../exercises/chapter5/ch5_5.cpp)
     <!--/codeinclude-->
 
 6 -
@@ -479,7 +479,7 @@ combined years.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch5_6.cpp)
+    [](../exercises/chapter5/ch5_6.cpp)
     <!--/codeinclude-->
 
 7 -
@@ -508,7 +508,7 @@ Here is your collection:
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch5_7.cpp)
+    [](../exercises/chapter5/ch5_7.cpp)
     <!--/codeinclude-->
 
 8 -
@@ -528,7 +528,7 @@ make the comparison test.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch5_8.cpp)
+    [](../exercises/chapter5/ch5_8.cpp)
     <!--/codeinclude-->
 
 9 -
@@ -538,7 +538,7 @@ header file and use a relational operator to make the comparison test.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch5_9.cpp)
+    [](../exercises/chapter5/ch5_9.cpp)
     <!--/codeinclude-->
 
 10 -
@@ -560,7 +560,7 @@ Enter number of rows: 5
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch5_10.cpp)
+    [](../exercises/chapter5/ch5_10.cpp)
     <!--/codeinclude-->
 
 ## Chapter 6 Programming Exercises
@@ -571,7 +571,7 @@ converting each uppercase character to lowercase, and vice versa. (Don’t forge
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch6_1.cpp)
+    [](../exercises/chapter6/ch6_1.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -582,7 +582,7 @@ report how many numbers in the array are larger than the average.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch6_2.cpp)
+    [](../exercises/chapter6/ch6_2.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -605,7 +605,7 @@ A maple is a tree.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch6_3.cpp)
+    [](../exercises/chapter6/ch6_3.cpp)
     <!--/codeinclude-->
 
 4 -
@@ -662,7 +662,7 @@ Bye!
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch6_4.cpp)
+    [](../exercises/chapter6/ch6_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -682,7 +682,7 @@ The loop should terminate when the user enters a negative number or non-numeric 
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch6_5.cpp)
+    [](../exercises/chapter6/ch6_5.cpp)
     <!--/codeinclude-->
 
 6 -
@@ -702,7 +702,7 @@ the program need do no sorting.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch6_6.cpp)
+    [](../exercises/chapter6/ch6_6.cpp)
     <!--/codeinclude-->
 
 7 -
@@ -725,7 +725,7 @@ quietly across 15 meters of lawn. q
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch6_7.cpp)
+    [](../exercises/chapter6/ch6_7.cpp)
     <!--/codeinclude-->
 
 8 -
@@ -734,7 +734,7 @@ end of the file, and reports the number of characters in the file.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch6_8.cpp)
+    [](../exercises/chapter6/ch6_8.cpp)
     <!--/codeinclude-->
 
 9 -
@@ -758,7 +758,7 @@ Rich Raptor
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch6_9.cpp)
+    [](../exercises/chapter6/ch6_9.cpp)
     <!--/codeinclude-->
 
 ## Chapter 7 Programming Exercises
@@ -772,7 +772,7 @@ $$HarmonicMean = 2.0 × x × y / (x + y)$$
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch7_1.cpp)
+    [](../exercises/chapter7/ch7_1.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -784,7 +784,7 @@ three separate array-processing functions
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch7_2.cpp)
+    [](../exercises/chapter7/ch7_2.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -809,7 +809,7 @@ value of each member.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch7_3.cpp)
+    [](../exercises/chapter7/ch7_3.cpp)
     <!--/codeinclude-->
 
 4 -
@@ -826,7 +826,7 @@ Modify Listing 7.4 to calculate the probability of winning this kind of lottery.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch7_4.cpp)
+    [](../exercises/chapter7/ch7_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -838,7 +838,7 @@ program reports the factorial
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch7_5.cpp)
+    [](../exercises/chapter7/ch7_5.cpp)
     <!--/codeinclude-->
 
 6 -
@@ -860,7 +860,7 @@ show the array.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch7_6.cpp)
+    [](../exercises/chapter7/ch7_6.cpp)
     <!--/codeinclude-->
 
 7 -
@@ -872,7 +872,7 @@ argument to identify the end of the data.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch7_7.cpp)
+    [](../exercises/chapter7/ch7_7.cpp)
     <!--/codeinclude-->
 
 8 -
@@ -888,7 +888,7 @@ array class.)
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch7_8.cpp)
+    [](../exercises/chapter7/ch7_8.cpp)
     <!--/codeinclude-->
 
 9 -
@@ -954,7 +954,7 @@ int main()
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch7_9.cpp)
+    [](../exercises/chapter7/ch7_9.cpp)
     <!--/codeinclude-->
 
 10 -
@@ -996,7 +996,7 @@ function names as addresses.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch7_10.cpp)
+    [](../exercises/chapter7/ch7_10.cpp)
     <!--/codeinclude-->
 
 ## Chapter 8: Programming Exercises
@@ -1013,7 +1013,7 @@ function in a simple program that demonstrates how the function works.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch8_1.cpp)
+    [](../exercises/chapter8/ch8_1.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -1029,7 +1029,7 @@ argument and displays the contents of the structure. Use `const` where appropria
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch8_2.cpp)
+    [](../exercises/chapter8/ch8_2.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -1049,7 +1049,7 @@ Bye.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch8_3.cpp)
+    [](../exercises/chapter8/ch8_3.cpp)
     <!--/codeinclude-->
 
 4 -
@@ -1094,7 +1094,7 @@ header filenames and delete the `using` directive, depending on your compiler.)
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch8_4.cpp)
+    [](../exercises/chapter8/ch8_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -1106,7 +1106,7 @@ double values.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch8_5.cpp)
+    [](../exercises/chapter8/ch8_5.cpp)
     <!--/codeinclude-->
 
 6 -
@@ -1122,7 +1122,7 @@ the specialization with an array of five string pointers.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch8_6.cpp)
+    [](../exercises/chapter8/ch8_6.cpp)
     <!--/codeinclude-->
 
 7 -
@@ -1132,7 +1132,7 @@ now should report the total number of things and the sum of all the debts
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch8_7.cpp)
+    [](../exercises/chapter8/ch8_7.cpp)
     <!--/codeinclude-->
 
 ## Chapter 9: Programming Exercises
@@ -1194,21 +1194,21 @@ structures and terminate when the array is full or the user enters an empty stri
 for the golfer’s name. The `main()` function should use only the prototyped functions
 to access the golf structures.
 
-(compile: `g++ exercise_ch9_1_golf.cpp exercise_ch9_1_main.cpp`)
+(compile: `g++ ch9_1_golf.cpp ch9_1_main.cpp`)
 
 ??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/exercise_ch9_1_golf.cpp)
+    [](../exercises/chapter9/ch9_1_golf.cpp)
     <!--/codeinclude-->
 
 ??? note "Code - headers"
     <!--codeinclude-->
-    [](../exercises/exercise_ch9_1_golf.h)
+    [](../exercises/chapter9/ch9_1_golf.h)
     <!--/codeinclude-->
 
 ??? note "Code - program"
     <!--codeinclude-->
-    [](../exercises/exercise_ch9_1_main.cpp)
+    [](../exercises/chapter9/ch9_1_main.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -1218,7 +1218,7 @@ the input string to "" to check for an empty line.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch9_2.cpp)
+    [](../exercises/chapter9/ch9_2.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -1235,12 +1235,12 @@ struct chaff
 Write a program that uses placement new to place an array of two such structures in
 a buffer. Then assign values to the structure members (remembering to use
 strcpy() for the char array) and use a loop to display the contents. Option 1 is to
-use a static array, like that in Listing 9.10 ([newplace.cpp](./programs/newplace.cpp)), for the buffer. Option 2 is to use regular
+use a static array, like that in Listing 9.10 [newplace.cpp](../programs/newplace.cpp), for the buffer. Option 2 is to use regular
 new to allocate the buffer.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch9_3.cpp)
+    [](../exercises/chapter9/ch9_3.cpp)
     <!--/codeinclude-->
 
 4-
@@ -1281,17 +1281,17 @@ showSales().
 
 ??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/exercise_ch9_4_sales.cpp)
+    [](../exercises/chapter9/ch9_4_sales.cpp)
     <!--/codeinclude-->
 
 ??? note "Code - headers"
     <!--codeinclude-->
-    [](../exercises/exercise_ch9_4_sales.h)
+    [](../exercises/chapter9/ch9_4_sales.h)
     <!--/codeinclude-->
 
 ??? note "Code - program"
     <!--codeinclude-->
-    [](../exercises/exercise_ch9_4.cpp)
+    [](../exercises/chapter9/ch9_4.cpp)
     <!--/codeinclude-->
 
 ## Chapter 10: Programming Exercises
@@ -1302,17 +1302,17 @@ and write a short program that illustrates all the features.
 
 ??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_1.h)
+    [](../exercises/chapter10/ch10_1.h)
     <!--/codeinclude-->
 
 ??? note "Code - methods"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_1.cpp)
+    [](../exercises/chapter10/ch10_1.cpp)
     <!--/codeinclude-->
 
 ??? note "Code - program"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_1_main.cpp)
+    [](../exercises/chapter10/ch10_1_main.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -1354,17 +1354,17 @@ one.FormalShow();
 
 ??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_2.h)
+    [](../exercises/chapter10/ch10_2.h)
     <!--/codeinclude-->
 
 ??? note "Code - methods"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_2.cpp)
+    [](../exercises/chapter10/ch10_2.cpp)
     <!--/codeinclude-->
 
 ??? note "Code - program"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_2_main.cpp)
+    [](../exercises/chapter10/ch10_2_main.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -1376,21 +1376,40 @@ Retain the interactive version of setgolf() but implement it by using the constr
 the constructor to create a temporary object, and assign the temporary object to the
 invoking object, which is <code>*this</code>.)
 
-??? note "Code"
+??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_3.cpp)
+    [](../exercises/chapter10/ch10_3_golf.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_3_golf.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_3_main.cpp)
     <!--/codeinclude-->
 
 4 -
-Do Programming Exercise 4 from Chapter 9 but convert the Sales structure and
-its associated functions to a class and its methods. Replace the setSales(Sales &,
-double [], int) function with a constructor. Implement the interactive
-setSales(Sales &) method by using the constructor. Keep the class within the
-namespace SALES.
+Do Programming Exercise 4 from Chapter 9 but convert the <code>Sales</code> structure and
+its associated functions to a class and its methods. Replace the <code>setSales(Sales &, double [], int)</code>
+function with a constructor. Implement the interactive <code>setSales(Sales &)</code> method by using the constructor.
+Keep the class within the namespace <code>SALES</code>.
 
-??? note "Code"
+??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_4.cpp)
+    [](../exercises/chapter10/ch10_4_sales.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_4_sales.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -1398,21 +1417,34 @@ Consider the following structure declaration:
 
 ```cpp
 struct customer {
-char fullname[35];
-double payment;
+    char fullname[35];
+    double payment;
 };
 ```
 
 Write a program that adds and removes customer structures from a stack, represented
 by a Stack class declaration. Each time a customer is removed, his or her
 payment should be added to a running total, and the running total should be
-reported. Note: You should be able to use the Stack class unaltered; just change the
+reported.
+
+Note: You should be able to use the Stack class unaltered; just change the
 typedef declaration so that Item is type customer instead of unsigned long.
 
-??? note "Code"
+??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_5.cpp)
+    [](../exercises/chapter10/ch10_5_buisness.h)
     <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_5_buisness.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_5.cpp)
+    <!--/codeinclude-->
+
 
 6 -
 Here’s a class declaration:
@@ -1438,7 +1470,7 @@ Create member function definitions and a program that exercises the class.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_6.cpp)
+    [](../exercises/chapter10/ch10_6.cpp)
     <!--/codeinclude-->
 
 7 -
@@ -1461,7 +1493,7 @@ Write a short program that demonstrates all the features of the Plorg class.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_7.cpp)
+    [](../exercises/chapter10/ch10_7.cpp)
     <!--/codeinclude-->
 
 8 -
@@ -1497,5 +1529,5 @@ this function to each item in the list.You can use the <code>Stack</code> class 
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/exercise_ch10_8.cpp)
+    [](../exercises/chapter10/ch10_8.cpp)
     <!--/codeinclude-->
