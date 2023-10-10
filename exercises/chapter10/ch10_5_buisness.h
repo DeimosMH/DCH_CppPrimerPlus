@@ -2,7 +2,7 @@
 #ifndef STACK_H_
 #define STACK_H_
 
-struct customer {
+struct Customer {
     char fullname[35];
     double payment;
 };
@@ -15,7 +15,7 @@ private:
         MAX = 10
     };               // constant specific to class
 
-    customer Client[MAX];   // holds stack structures
+    Customer Client[MAX];   // holds stack structures
     int top;                // index for top stack item
     
 public:
@@ -23,8 +23,8 @@ public:
     bool isempty() const;
     bool isfull() const;
     // push() returns false if stack already is full, true otherwise
-    bool push(const customer &item); // add item to stack
+    bool push(const Customer &item); // add item to stack
     // pop() returns false if stack already is empty, true otherwise
-    bool pop(customer &item); // pop top into item
+    bool pop(Customer &item); // pop top into item
 };
 #endif

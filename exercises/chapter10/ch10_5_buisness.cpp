@@ -16,7 +16,7 @@ bool Stack::isfull() const
     return top == MAX;
 }
 
-bool Stack::push(const customer &item)
+bool Stack::push(const Customer &item)
 {
     if (top < MAX)
     {
@@ -27,7 +27,7 @@ bool Stack::push(const customer &item)
         return false;
 }
 
-bool Stack::pop(customer &item)
+bool Stack::pop(Customer &item)
 {
     if (top > 0)
     {

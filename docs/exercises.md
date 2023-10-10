@@ -157,7 +157,7 @@ Also use a const symbolic constant to represent the conversion factor.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/chapter3/exercise_ch3_1.cpp)
+    [](../exercises/chapter3/ch3_1.cpp)
     <!--/codeinclude-->
 2 -
 Write a short program that asks for your
@@ -172,7 +172,7 @@ various conversion factors.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/chapter3/exercise_ch3_2.cpp)
+    [](../exercises/chapter3/ch3_2.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -192,7 +192,7 @@ Finally, enter the seconds of arc: 19
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/chapter3/exercise_ch3_3.cpp)
+    [](../exercises/chapter3/ch3_3.cpp)
     <!--/codeinclude-->
 
 4 -
@@ -210,7 +210,7 @@ Enter the number of seconds: 31600000
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/chapter3/exercise_ch3_4.cpp)
+    [](../exercises/chapter3/ch3_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -230,7 +230,7 @@ You can use the Internet to get more recent figures.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/chapter3/exercise_ch3_5.cpp)
+    [](../exercises/chapter3/ch3_5.cpp)
     <!--/codeinclude-->
 
 6 -
@@ -242,7 +242,7 @@ in liters per 100 kilometers.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/chapter3/exercise_ch3_6.cpp)
+    [](../exercises/chapter3/ch3_6.cpp)
     <!--/codeinclude-->
 
 7 -
@@ -256,7 +256,7 @@ Thus, 19 mpg is about 12.4 l/100 km, and 27 mpg is about 8.7 l/100 km.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/chapter3/exercise_ch3_7.cpp)
+    [](../exercises/chapter3/ch3_7.cpp)
     <!--/codeinclude-->
 
 ## Chapter 4 Programming Exercises
@@ -284,7 +284,7 @@ about the gap between a D and an F.
 
 ??? note "Code"
     <!--codeinclude-->
-    [](../exercises/chapter3/exercise_ch3_7.cpp)
+    [](../exercises/chapter3/ch3_7.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -1445,7 +1445,6 @@ typedef declaration so that Item is type customer instead of unsigned long.
     [](../exercises/chapter10/ch10_5.cpp)
     <!--/codeinclude-->
 
-
 6 -
 Here’s a class declaration:
 
@@ -1467,6 +1466,16 @@ public:
 ```
 
 Create member function definitions and a program that exercises the class.
+
+??? note "Code - prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_6_move.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_6_move.cpp)
+    <!--/codeinclude-->
 
 ??? note "Code"
     <!--codeinclude-->
