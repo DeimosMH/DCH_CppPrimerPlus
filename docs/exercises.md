@@ -1497,8 +1497,18 @@ The default plorg has the name "Plorga".
 ```
 
 Write a Plorg class declaration (including data members and member function prototypes)
-that represents a plorg.Write the function definitions for the member functions.
+that represents a plorg. Write the function definitions for the member functions.
 Write a short program that demonstrates all the features of the Plorg class.
+
+??? note "Code - prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_7_plorg.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_7_plorg.cpp)
+    <!--/codeinclude-->
 
 ??? note "Code"
     <!--codeinclude-->
@@ -1516,9 +1526,9 @@ You can describe a simple list as follows:
 - You can visit each item in the list and perform some action on it.
 
 As you can see, this list really is simple; it doesn’t allow insertion or deletion, for example. <br>
-Design a List class to represent this abstract type.You should provide a <code>list.h</code>
+Design a List class to represent this abstract type. You should provide a <code>list.h</code>
 header file with the class declaration and a <code>list.cpp</code> file with the class method
-implementations.You should also create a short program that utilizes your design.<br>
+implementations. You should also create a short program that utilizes your design.<br>
 
 The main reason for keeping the list specification simple is to simplify this programming
 exercise.You can implement the list as an array or, if you’re familiar with
@@ -1535,6 +1545,16 @@ void visit(void (*pf)(Item &));
 Here <code>pf</code> points to a function (not a member function) that takes a reference to <code>Item</code>
 argument, where <code>Item</code> is the type for items in the list.The <code>visit()</code> function applies
 this function to each item in the list.You can use the <code>Stack</code> class as a general guide.
+
+??? note "Code - prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_8_list.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_8_list.cpp)
+    <!--/codeinclude-->
 
 ??? note "Code"
     <!--codeinclude-->
