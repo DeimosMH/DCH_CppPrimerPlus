@@ -1,41 +1,41 @@
 # Exercises
 
 <button id="toggle-admonitions" class="md-button">Collapse All/Expand All Code</button>
-<button id="collapse-all-code" class="md-button">Collapse All</button>
 
 <script>
-document.getElementById('toggle-admonitions').addEventListener('click', function(event) {
-  event.preventDefault();
-  var admonitions = document.querySelectorAll('.note');
-  var anyOpen = false;
-  admonitions.forEach(function(admonition) {
-    if (admonition.hasAttribute('open')) {
-      admonition.removeAttribute('open');
-    } else {
-      admonition.setAttribute('open', '');
-      anyOpen = true;
-    }
-  });
-  var button = document.getElementById('toggle-admonitions');
-  if (anyOpen) {
-    button.textContent = 'Toggle - Collapse All';
-  } else {
-    button.textContent = 'Toggle - Expand All';
-  }
-});
+  document.getElementById('toggle-admonitions').addEventListener('click', function (event) {
 
-document.getElementById('collapse-all-code').addEventListener('click', function(event) {
-  event.preventDefault();
-  var admonitions = document.querySelectorAll('.note');
-    admonitions.forEach(function(admonition) {
-        if (admonition.hasAttribute('open')) {
-        admonition.removeAttribute('open');
+    event.preventDefault();
+    var admonitions = document.querySelectorAll('details');
+    var anyOpen = false;
+
+    var button = document.getElementById('toggle-admonitions');
+    admonitions.forEach(function (admonition) {
+      var admonitions = document.querySelectorAll('details');
+      admonitions.forEach(function (admonition) {
+        if (button.textContent == 'Collapse All') {
+          if (admonition.hasAttribute('open')) {
+            admonition.removeAttribute('open');
+          }
         }
+        else {
+          admonition.setAttribute('open', '');
+          anyOpen = true;
+        }
+      });
     });
-});
+
+    if (anyOpen) {
+      button.textContent = 'Collapse All';
+    } else {
+      button.textContent = 'Expand All';
+    }
+
+  });
+
 </script>
 
-## Chapter 2 Programming Exercises
+## Chapter 2
 
 1 -
 Write a C++ program that displays your name and address (or if you value your
@@ -147,7 +147,7 @@ Time: 9:28
     [](../exercises/chapter2/ch2_7.cpp)
     <!--/codeinclude-->
 
-## Chapter 3 Programming Exercises
+## Chapter 3
 
 1 -
 Write a short program that asks
@@ -259,7 +259,7 @@ Thus, 19 mpg is about 12.4 l/100 km, and 27 mpg is about 8.7 l/100 km.
     [](../exercises/chapter3/ch3_7.cpp)
     <!--/codeinclude-->
 
-## Chapter 4 Programming Exercises
+## Chapter 4
 
 1 -
 Write a C++ program that requests and displays
@@ -401,7 +401,7 @@ Use an array object to hold the data. (Use a built-in array if array is not avai
     [](../exercises/chapter4/ch4_10.cpp)
     <!--/codeinclude-->
 
-## Chapter 5 Programming Exercises
+## Chapter 5
 
 1 -
 Write a program that requests the user to enter two integers.The program should
@@ -563,7 +563,7 @@ Enter number of rows: 5
     [](../exercises/chapter5/ch5_10.cpp)
     <!--/codeinclude-->
 
-## Chapter 6 Programming Exercises
+## Chapter 6
 
 1 -
 Write a program that reads keyboard input to the @ symbol and that echoes the input except for digits,
@@ -761,7 +761,7 @@ Rich Raptor
     [](../exercises/chapter6/ch6_9.cpp)
     <!--/codeinclude-->
 
-## Chapter 7 Programming Exercises
+## Chapter 7
 
 1 -
 Write a program that repeatedly asks the user to enter pairs of numbers until at least one of the pair is 0.
@@ -999,7 +999,7 @@ function names as addresses.
     [](../exercises/chapter7/ch7_10.cpp)
     <!--/codeinclude-->
 
-## Chapter 8: Programming Exercises
+## Chapter 8:
 
 1 -
 Write a function that normally takes one argument, the address of a string, and
@@ -1135,7 +1135,7 @@ now should report the total number of things and the sum of all the debts
     [](../exercises/chapter8/ch8_7.cpp)
     <!--/codeinclude-->
 
-## Chapter 9: Programming Exercises
+## Chapter 9:
 
 1 -
 Here is a header file:
@@ -1294,7 +1294,7 @@ showSales().
     [](../exercises/chapter9/ch9_4.cpp)
     <!--/codeinclude-->
 
-## Chapter 10: Programming Exercises
+## Chapter 10:
 
 1 -
 Provide method definitions for the class described in Chapter Review Question 5

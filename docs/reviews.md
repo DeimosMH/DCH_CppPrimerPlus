@@ -1,38 +1,36 @@
 # Reviews
 
 <button id="toggle-admonitions" class="md-button">Collapse All/Expand All Code</button>
-<button id="collapse-all-code" class="md-button">Collapse All</button>
 
 <script>
-document.getElementById('toggle-admonitions').addEventListener('click', function(event) {
-  event.preventDefault();
-  var admonitions = document.querySelectorAll('details');
-  var anyOpen = false;
-  admonitions.forEach(function(admonition) {
-    if (admonition.hasAttribute('open')) {
-      admonition.removeAttribute('open');
+  document.getElementById('toggle-admonitions').addEventListener('click', function (event) {
+    event.preventDefault();
+    var admonitions = document.querySelectorAll('details');
+    var anyOpen = false;
+
+    var button = document.getElementById('toggle-admonitions');
+    admonitions.forEach(function (admonition) {
+      var admonitions = document.querySelectorAll('details');
+      admonitions.forEach(function (admonition) {
+        if (button.textContent == 'Collapse All') {
+          if (admonition.hasAttribute('open')) {
+            admonition.removeAttribute('open');
+          }
+        }
+        else {
+          admonition.setAttribute('open', '');
+          anyOpen = true;
+        }
+      });
+    });
+
+    if (anyOpen) {
+      button.textContent = 'Collapse All';
     } else {
-      admonition.setAttribute('open', '');
-      anyOpen = true;
+      button.textContent = 'Expand All';
     }
   });
-  var button = document.getElementById('toggle-admonitions');
-  if (anyOpen) {
-    button.textContent = 'Toggle - Collapse All';
-  } else {
-    button.textContent = 'Toggle - Expand All';
-  }
-});
 
-document.getElementById('collapse-all-code').addEventListener('click', function(event) {
-  event.preventDefault();
-  var admonitions = document.querySelectorAll('details');
-    admonitions.forEach(function(admonition) {
-        if (admonition.hasAttribute('open')) {
-        admonition.removeAttribute('open');
-        }
-    });
-});
 </script>
 
 ## Chapter 2
@@ -2199,7 +2197,10 @@ object itself.
 ## Chapter 11
 
 <details><summary>
-2. What is a class?</br></br>
+1. Use a member function to overload the multiplication operator for the Stonewt
+class; have the operator multiply the data members by a type double value. Note
+that this will require carryover for the stone–pound representation.That is, twice 10
+stone 8 pounds is 21 stone 2 pounds.</br></br>
 
 </summary>
 
@@ -2208,7 +2209,7 @@ object itself.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-3. What is a class?</br></br>
+2. What are the differences between a friend function and a member function?</br></br>
 
 </summary>
 
@@ -2217,7 +2218,7 @@ object itself.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-4. What is a class?</br></br>
+3. Does a nonmember function have to be a friend to access a class’s members?</br></br>
 
 </summary>
 
@@ -2226,7 +2227,8 @@ object itself.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-5. What is a class?</br></br>
+4. Use a friend function to overload the multiplication operator for the Stonewt class;
+have the operator multiply the double value by the Stone value.</br></br>
 
 </summary>
 
@@ -2234,16 +2236,7 @@ object itself.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-7. What is a class?</br></br>
+5. Which operators cannot be overloaded?</br></br>
 
 </summary>
 
@@ -2252,7 +2245,7 @@ object itself.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-8. What is a class?</br></br>
+6. What restriction applies to overloading the following operators? =, (), [], and -></br></br>
 
 </summary>
 
@@ -2261,7 +2254,8 @@ object itself.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-1. What is a class?</br></br>
+7. Define a conversion function for the Vector class that converts a Vector object to
+a type double value that represents the vector’s magnitude.</br></br>
 
 </summary>
 
