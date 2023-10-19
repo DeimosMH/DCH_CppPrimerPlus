@@ -4,6 +4,7 @@
 
 <script>
   document.getElementById('toggle-admonitions').addEventListener('click', function (event) {
+
     event.preventDefault();
     var admonitions = document.querySelectorAll('details');
     var anyOpen = false;
@@ -29,6 +30,7 @@
     } else {
       button.textContent = 'Expand All';
     }
+
   });
 
 </script>
@@ -36,18 +38,20 @@
 ## Chapter 2
 
 <details><summary>
-1. What are the modules of C++ programs called?
+01. What are the modules of C++ programs called?
 </summary>
 They are called functions
 </details>
 
 <details><summary>
-2. What does the following preprocessor directive do?
+02. What does the following preprocessor directive do?
 
 <pre>
+
 ```cpp
 cpp #include <iostream>
 ```
+
 </pre>
 
 </summary>
@@ -56,12 +60,14 @@ directive before final compilation.
 </details>
 
 <details><summary>
-3. What does the following statement do?
+03. What does the following statement do?
 
 <pre>
+
 ```cpp
 using namespace std;
 ```
+
 </pre>
 
 </summary>
@@ -69,7 +75,7 @@ It makes definitions made in the std namespace available to a program.
 </details>
 
 <details><summary>
-4. What statement would you use to print the phrase “Hello, world” and then
+04. What statement would you use to print the phrase “Hello, world” and then
 start a new line?
 </summary>
 
@@ -86,7 +92,7 @@ cout << "Hello, world" << endl;
 </details>
 
 <details><summary>
-5. What statement would you use to create an integer variable with the name
+05. What statement would you use to create an integer variable with the name
 cheeses ?
 </summary>
 
@@ -97,7 +103,7 @@ int cheeses;
 </details>
 
 <details><summary>
-6. What statement would you use to assign the value 32 to the variable cheeses?
+06. What statement would you use to assign the value 32 to the variable cheeses?
 </summary>
 
 ```cpp
@@ -107,8 +113,8 @@ cheeses = 32;
 </details>
 
 <details><summary>
-7. What statement would you use to read a value from keyboard input into the<br>
-&emsp;variable cheeses ?
+07. What statement would you use to read a value from keyboard input into the<br>
+&emsp; variable cheeses ?
 </summary>
 
 ```cpp
@@ -118,9 +124,10 @@ cin >> cheeses;
 </details>
 
 <details><summary>
-8. What statement would you use to print “We have X varieties of cheese,”<br>
-&emsp;where the current value of the cheeses variable replaces X ?
-    </summary>
+08. What statement would you use to print “We have X varieties of cheese,”<br>
+&emsp; where the current value of the cheeses variable replaces X ?
+
+</summary>
 
 ```cpp
 cout << "We have " << cheeses << " varieties of cheese\n";
@@ -129,7 +136,7 @@ cout << "We have " << cheeses << " varieties of cheese\n";
 </details>
 
 <details><summary>
-9. What do the following function prototypes tell you about the functions?
+09. What do the following function prototypes tell you about the functions?
 
 ```cpp
 int prune(void);
@@ -163,14 +170,17 @@ You don’t have to use return in a function when the function has the return ty
 11. Suppose your main() function has the following line:
 
 <pre>
+
 ```cpp
 cout << “Please enter your PIN: “;
 ```
+
 </pre>
 
 And suppose the compiler complains that cout is an unknown identifier.
 What is the likely cause of this complaint, and what are three ways to fix the problem?
-    </summary>
+
+</summary>
 
 <b>Lack of caller for std library.<b>
 
@@ -195,7 +205,7 @@ for only <code>cout</code> or call library with <code>std::cout</code> instead o
 ## Chapter 3
 
 <details><summary>
-1. Why does C++ have more than one integer type?
+01. Why does C++ have more than one integer type?
 </summary>
 
 Having more than one integer type lets you choose the type that is best suited to
@@ -206,11 +216,12 @@ particular calculation.
 </details>
 
 <details><summary>
-2. Declare variables matching the following descriptions:<br>
+02. Declare variables matching the following descriptions:<br>
 &nbsp&nbsp&nbsp&nbsp&nbsp a. A short integer with the value 80<br>
-&nbsp&nbsp&nbsp&nbsp&nbsp b. An unsigned int integer with the value 42,110<br>
-&nbsp&nbsp&nbsp&nbsp&nbsp c. An integer with the value 3,000,000,000
-    </summary>
+&nbsp&nbsp&nbsp&nbsp&nbsp b. An unsigned int integer with the value 42, 110<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp c. An integer with the value 3, 000, 000, 000
+
+</summary>
 
 ```cpp
 short rbis = 80; // or short int rbis = 80;
@@ -228,23 +239,25 @@ long long ants {3000000000};
 </details>
 
 <details><summary>
-3. What safeguards does C++ provide to keep you from exceeding the limits of an
+03. What safeguards does C++ provide to keep you from exceeding the limits of an
 integer type?
-    </summary>
 
-C++ provides no automatic safeguards to keep you from exceeding integer limits;
-you can use the climits header file to determine what the limits are.
+</summary>
+
+C++ provides no automatic safeguards to keep you from exceeding integer limits; 
+you can use the <code>climits</code> header file to determine what the limits are.
 </details>
 
 <details><summary>
-4. What is the distinction between 33L and 33?
-    </summary>
+04. What is the distinction between <code>33L</code> and <code>33</code>?
 
-The constant 33L is type long, whereas the constant 33 is type int.
+</summary>
+
+The constant <code>33L</code> is type long, whereas the constant <code>33</code> is type <code>int</code>.
 </details>
 
 <details><summary>
-5. Consider the two C++ statements that follow:
+05. Consider the two C++ statements that follow:
 
 ```cpp
 char grade = 65;
@@ -252,46 +265,49 @@ char grade = 'A';
 ```
 
 Are they equivalent?
-    </summary>
+
+</summary>
 
 The two statements are not really equivalent, although they have the same effect
-on some systems. Most importantly, the first statement assigns the letter `A`
-to grade only on a system using the `ASCII` code, while the second statement
-also works for other codes. Second, `65` is a type int constant, whereas `'A'`
+on some systems. Most importantly, the first statement assigns the letter <code>A</code>
+to grade only on a system using the <code>ASCII</code> code, while the second statement
+also works for other codes. Second, <code>65</code> is a type int constant, whereas <code>'A'</code>
 is a type char constant.
 </details>
 
 <details><summary>
-6. How could you use C++ to find out which character the code 88 represents?
+06. How could you use C++ to find out which character the code 88 represents?
 Come up with at least two ways.
-    </summary>
+
+</summary>
 
 Here are four ways:
 
 ```cpp
 char c = 88;
-cout << c << endl; // char type prints as character
-cout.put(char(88)); // put() prints char as character
-cout << char(88) << endl; // new-style type cast value to char
-cout << (char)88 << endl; // old-style type cast value to char
+cout << c << endl;              // char type prints as character
+cout.put(char(88));             // put() prints char as character
+cout << char(88) << endl;       // new-style type cast value to char
+cout << (char)88 << endl;       // old-style type cast value to char
 ```
 
 </details>
 
 <details><summary>
-7. Assigning a `long` value to a `float` can result in a rounding error.
-What about assigning `long` to `double`? `long long` to `double`?
-    </summary>
+07. Assigning a <code>long</code> value to a <code>float</code> can result in a rounding error.
+What about assigning <code>long</code> to <code>double</code> ? <code>long long</code> to <code>double</code> ?
 
-The answer depends on how large the two types are. If `long` is 4 bytes,
-there is no loss. That’s because the largest `long` value would be about
-2 billion, which is 10 digits. Because `double` provides at least 13 significant
-figures, no rounding would be needed. The `long long` type, on the other hand,
-can reach 19 digits, which exceeds the 13 significant figures guaranteed for `double`.
+</summary>
+
+The answer depends on how large the two types are. If <code>long</code> is 4 bytes,
+there is no loss. That’s because the largest <code>long</code> value would be about
+2 billion, which is 10 digits. Because <code>double</code> provides at least 13 significant
+figures, no rounding would be needed. The <code>long long</code> type, on the other hand,
+can reach 19 digits, which exceeds the 13 significant figures guaranteed for <code>double</code> .
 </details>
 
 <details><summary>
-8. Evaluate the following expressions as C++ would:
+08. Evaluate the following expressions as C++ would:
 
 ```cpp
 a. 8 * 9 + 2 
@@ -314,9 +330,9 @@ e. 15 % 4 is 3
 </details>
 
 <details><summary>
-9.  Suppose `x1` and `x2` are two type `double` variables that you want to
-add as `integers` and assign to an `integer` variable. Construct a C++ statement
-for doing so. What if you want to add them as type `double` and then convert to `int`?
+09.  Suppose <code>x1</code> and <code>x2</code> are two type <code>double</code> variables that you want to
+add as <code>integers</code> and assign to an <code>integer</code> variable. Construct a C++ statement
+for doing so. What if you want to add them as type <code>double</code> and then convert to <code>int</code> ?
 
 </summary>
 
@@ -340,11 +356,15 @@ int pos = int(x1 + x2);
 10.  What is the variable type for each of the following declarations?
 
 ```cpp
-a. `auto cars = 15;` 
+a. `auto cars = 15;`
+
 b. `auto iou = 150.37f;`
-c. `auto level = 'B';` 
-d. `auto crat = U'/U00002155';` 
-e. `auto fract = 8.25f/2.5;` 
+c. `auto level = 'B';`
+
+d. `auto crat = U'/U00002155';`
+
+e. `auto fract = 8.25f/2.5;`
+
 ```
 
 </summary>
@@ -362,7 +382,7 @@ e. double
 ## Chapter 4
 
 <details><summary>
-1. How would you declare each of the following?
+01. How would you declare each of the following?
 
 ```cpp
 a. actors is an array of 30 char.
@@ -383,9 +403,10 @@ long double dipsea[64];
 </details>
 
 <details><summary>
-2. Do Chapter Review Question 1 and use the array template class instead of
+02. Do Chapter Review Question 1 and use the array template class instead of
 built-in arrays.
-    </summary>
+
+</summary>
 
 ```cpp
 array<char, 30> actors;
@@ -397,9 +418,10 @@ array<long double, 64> dipsea;
 </details>
 
 <details><summary>
-3. Declare an array of five ints and initialize it to the first five odd
+03. Declare an array of five ints and initialize it to the first five odd
 positive integers
-    </summary>
+
+</summary>
 
 ```cpp
 int oddly[5] = {1, 3, 5, 7, 9};
@@ -409,9 +431,10 @@ array<int, 5> at {1, 3, 5, 7, 9}; // also correct
 </details>
 
 <details><summary>
-4. Write a statement that assigns the sum of the first and last elements of the
+04. Write a statement that assigns the sum of the first and last elements of the
 array in Question 3 to the variable even.
-    </summary>
+
+</summary>
 
 ```cpp
 int even = array[0] + array[4]; 
@@ -420,9 +443,10 @@ int even = array[0] + array[4];
 </details>
 
 <details><summary>
-5. Write a statement that displays the value of the second element in the float
+05. Write a statement that displays the value of the second element in the float
 array ideas.
-    </summary>
+
+</summary>
 
 ```cpp
 std::cout << ideas[1];
@@ -431,8 +455,9 @@ std::cout << ideas[1];
 </details>
 
 <details><summary>
-6. Declare an array of char and initialize it to the string "cheeseburger".
-    </summary>
+06. Declare an array of char and initialize it to the string "cheeseburger".
+
+</summary>
 
 ```cpp
 char food[] {"cheeseburger"};
@@ -443,8 +468,9 @@ char lunch[13] = "cheeseburger"; // number of characters + 1
 </details>
 
 <details><summary>
-7. Declare a string object and initialize it to the string "Waldorf Salad".
-    </summary>
+07. Declare a string object and initialize it to the string "Waldorf Salad".
+
+</summary>
 
 ```cpp
 std::string obj = "Waldorf Salad";
@@ -453,9 +479,10 @@ std::string obj = "Waldorf Salad";
 </details>
 
 <details><summary>
-8. Devise a structure declaration that describes a fish.The structure should
+08. Devise a structure declaration that describes a fish. The structure should
 include the kind, the weight in whole ounces, and the length in fractional inches.
-    </summary>
+
+</summary>
 
 ```cpp
 struct fish {
@@ -468,8 +495,9 @@ struct fish {
 </details>
 
 <details><summary>
-9. Declare a variable of the type defined in Question 8 and initialize it.
-    </summary>
+09. Declare a variable of the type defined in Question 8 and initialize it.
+
+</summary>
 
 ```cpp
 fish petes =
@@ -479,18 +507,22 @@ fish petes =
     26.25
 };
 
-// fish flounder; //??
-// flounder.kind = "fishy";
-// flounder.weight = 21;
-// flounder.length = 21;
+// OR
+
+fish flounder;
+flounder.kind = "fishy";
+flounder.weight = 21;
+flounder.length = 21;
 ```
 
 </details>
 
 <details><summary>
-10.  Use enum to define a type called Response with the possible values Yes,
-No, and Maybe.<br> Yes should be 1, No should be 0, and Maybe should be 2.
-    </summary>
+10.  Use enum to define a type called Response with the possible values <code>Yes</code>,
+<code>No</code>, and <code>Maybe</code>.<br> <code>Yes</code> should be <code>1</code>, <code>No</code>
+should be <code>0</code>, and <code>Maybe</code> should be <code>2</code>.
+
+</summary>
 
 ```cpp
 enum response {No, Yes, Maybe};
@@ -501,7 +533,8 @@ enum response {No, Yes, Maybe};
 <details><summary>
 11.  Suppose ted is a double variable.
 Declare a pointer that points to ted and use the pointer to display ted’s value.
-    </summary>
+
+</summary>
 
 ```cpp
 double *ptrTed = &ted;
@@ -514,23 +547,26 @@ std::cout << *ptrTed;
 12.  Suppose treacle is an array of 10 floats. Declare a pointer that points
 to the first element of treacle and use the pointer to display the first and
 last elements of the array.
-    </summary>
 
-</details>
+</summary>
 
 ```cpp
 float *ptrTreacle = treacle; // or = &treacle[0]
 cout << pf[0] << " " << pf[9] << "\n";
+
 std::cout << ptrTreacle[0] << "last" << ptrTreacle[9];
 // or use:
-// std::cout << *(ptrTreacle + 1) << "last" << *(ptrTreacle + 9);
+std::cout << *(ptrTreacle + 1) << "last" << *(ptrTreacle + 9);
 ```
+
+</details>
 
 <details><summary>
 13. Write a code fragment that asks the user to enter a positive integer and
 then creates a dynamic array of that many ints.
-Do this by using new, then again using a vector object.
-    </summary>
+Do this by using <code>new</code>, then again using a <code>vector</code> object.
+
+</summary>
 
 ```cpp
 unsigned int iUsr {};
@@ -552,10 +588,11 @@ cout << (int *) “Home of the jolly bytes”;
 
 </summary>
 
-//Yes
-//Start of memory of this Literal
-Yes, it is valid.The expression "Home of the jolly bytes" is a string constant;
-hence it evaluates as the address of the beginning of the string.The cout object
+//Yes</br>
+//Start of memory of this Literal</br></br>
+
+Yes, it is valid. The expression "Home of the jolly bytes" is a string constant;
+hence it evaluates as the address of the beginning of the string. The cout object
 interprets the address of a char as an invitation to print a string, but the type cast
 (int *) converts the address to type pointer-to-int, which is then printed as an
 address. In short, the statement prints the address of the string, assuming the int
@@ -564,8 +601,9 @@ type is wide enough to hold an address.
 
 <details><summary>
 15. Write a code fragment that dynamically allocates a structure of the type
-described in Question 8 and then reads a value for the `kind` member of the structure.
-    </summary>
+described in Question 8 and then reads a value for the <code>kind</code> member of the structure.
+
+</summary>
 
 ```cpp
 struct fish
@@ -586,28 +624,30 @@ int main(){
 </details>
 
 <details><summary>
-16. Listing 4.6 illustrates a problem created by following numeric input with
+16. Listing 4.6 (numstr.cpp) illustrates a problem created by following numeric input with
 line-oriented string input. How would replacing:
 
 ```cpp
 // this:
 cin.getline(address,80);
+
 // with this:
 cin >> address;
+
 // affect the working of this program?
 ```
 
 </summary>
 
-//cin >> address will read from user only to the space. Data after space will be in the queue;
-Using cin >> address causes a program to skip over whitespace until it finds nonwhitespace.
-It then reads characters until it encounters whitespace again.Thus, it
+<code>cin >> address</code> will read from user only to the space. Data after space will be in the queue;
+Using <code>cin >> address</code> causes a program to skip over whitespace until it finds non-whitespace.
+It then reads characters until it encounters whitespace again. Thus, it
 will skip over the newline following the numeric input, avoiding that problem. On
 the other hand, it will read just a single word, not an entire line.
 </details>
 
 <details><summary>
-17. Declare a vector object of 10 string objects and an array object of 10 string objects.
+17. Declare a vector object of 10 string objects and an array object of 10 string objects.</br>
 Show the necessary header files and don’t use using. Do use a const for the number of strings.
 </summary>
 
@@ -616,11 +656,16 @@ Show the necessary header files and don’t use using. Do use a const for the nu
 #include <vector>
 #include <array>
 
-// vector<string> vSth(10);
-// array<string, 10> aSth;
+// Like this
+vector<string> vSth(10);
+array<string, 10> aSth;
 
+
+// Solution in a book
 const int Str_num {10}; // or = 10
-...
+
+... 
+
 std::vector<std::string> vstr(Str_num);
 std::array<std::string, Str_num> astr;
 ```
@@ -630,14 +675,16 @@ std::array<std::string, Str_num> astr;
 ## Chapter 5
 
 <details><summary>
-1. What’s the difference between an entry-condition loop and an exit-condition loop?
+01. What’s the difference between an entry-condition loop and an exit-condition loop?
 Which kind is each of the C++ loops?
-    </summary>
+
+</summary>
+
 // entry-condition loop - check condition before entering the loop <br>
 // exit-condition loop -  check condition at the end of loop, making at least 1 loop<br><br>
 
 An entry-condition loop evaluates a test expression before entering the body of the
-loop. If the condition is initially false, the loop never executes its body.An exitcondition
+loop. If the condition is initially false, the loop never executes its body. An exitcondition
 loop evaluates a test expression after processing the body of the loop.
 Thus, the loop body is executed once, even if the test expression is initially false.
 The for and while loops are entry-condition loops, and the do while loop is an
@@ -645,7 +692,7 @@ exit-condition loop
 </details>
 
 <details><summary>
-2. What would the following code fragment print if it were part of a valid program?
+02. What would the following code fragment print if it were part of a valid program?
 
 ```cpp
 int i;
@@ -655,14 +702,18 @@ for (i = 0; i < 5; i++)
 ```
 
 </summary>
-01234
+It would print the following:</br></br>
 
-Note that cout << endl; is not part of the loop body (because there are no
+```sh
+01234
+```
+
+Note that <code>cout << endl;</code> is not part of the loop body (because there are no
 braces).
 </details>
 
 <details><summary>
-3. What would the following code fragment print if it were part of a valid program?
+03. What would the following code fragment print if it were part of a valid program?
 
 ```cpp
 int j;
@@ -672,13 +723,17 @@ cout << endl << j << endl;
 ```
 
 </summary>
-It would print the following:<br>
-0369<br>
-12<br>
+It would print the following:
+
+```sh
+0369
+12
+```
+
 </details>
 
 <details><summary>
-4. What would the following code fragment print if it were part of a valid program?
+04. What would the following code fragment print if it were part of a valid program?
 
 ```cpp
 int j = 5;
@@ -687,13 +742,17 @@ while ( ++j < 9)
 ```
 
 </summary>
-It would print the following:<br>
-6<br>
+It would print the following:
+
+```sh
+6
 8
+```
+
 </details>
 
 <details><summary>
-5. What would the following code fragment print if it were part of a valid program?
+05. What would the following code fragment print if it were part of a valid program?
 
 ```cpp
 int k = 8;
@@ -703,15 +762,21 @@ while (k++ < 5);
 ```
 
 </summary>
-It would print the following:<br>
+It would print the following:
+
+```sh
 k = 8
+```
+
 </details>
 
 <details><summary>
-6. Write a `for` loop that prints the values 1 2 4 8 16 32 64 by increasing the value of
+06. Write a <code>for</code> loop that prints the values <code>1 2 4 8 16 32 64</code> by increasing the value of
 a counting variable by a factor of two in each cycle.
-    </summary>
-It’s simplest to use the *= operator:<br>
+
+</summary>
+
+It’s simplest to use the <code>*=</code> operator:<br>
 
 ```cpp
 for(int i {}; i < 65; i *= 2)
@@ -721,16 +786,18 @@ for(int i {}; i < 65; i *= 2)
 </details>
 
 <details><summary>
-7. How do you make a loop body include more than one statement?
-    </summary>
-//add curly braces {} <br>
+07. How do you make a loop body include more than one statement?
+
+</summary>
+
+//add curly braces <code>{}</code> <br>
 
 You enclose the statements within paired braces to form a single compound statement,
 or block.
 </details>
 
 <details><summary>
-8. Is the following statement valid? If not, why not? If so, what does it do?
+08. Is the following statement valid? If not, why not? If so, what does it do?
 
 ```cpp
 int x = (1,024);
@@ -747,10 +814,10 @@ y = 1,024;
 //1st is valid, but 1 will be assigned to x due to precedence and first value will do nothing <br>
 //in 2nd 1 will be assigned to y, and 024 will do nothing, but confuse. <br><br>
 
-Yes, the first statement is valid.The expression 1,024 consists of two expressions—1
-and 024—joined by a comma operator.The value is the value of the right-hand
-expression.This is 024, which is octal for 20, so the declaration assigns the value 20
-to x.The second statement is also valid. However, operator precedence causes it to
+Yes, the first statement is valid. The expression 1, 024 consists of two expressions — 1
+and 024 — joined by a comma operator. The value is the value of the right-hand
+expression. This is 024, which is octal for 20, so the declaration assigns the value 20
+to x. The second statement is also valid. However, operator precedence causes it to
 be evaluated as follows:
 
 ```cpp
@@ -758,25 +825,28 @@ be evaluated as follows:
 ```
 
 That is, the left expression sets y to 1, and the value of the entire expression, which
-isn’t used, is `024`, or `20`.
+isn’t used, is <code>024</code> , or <code>20</code> .
 
 </details>
 
 <details><summary>
-9. How does cin >> ch differ from cin.get(ch) and ch=cin.get() in how it views
+09. How does <code>cin >> ch</code> differ from <code>cin.get(ch)</code> and <code>ch=cin.get()</code> in how it views
 input?
-    </summary>
-//cin>>ch will omit spaces, cin.get(ch) will return bool true, false if EOF,
-ch=cin.get() will assign int value and EOF if EOF <br><br>
 
-The `cin >> ch` form skips over spaces, newlines, and tabs when it encounters them.
+</summary>
+// My answer</br>
+<code>cin>>ch</code> will omit spaces, <code>cin.get(ch)</code> will return <code>bool</code> true, false if EOF,
+<code>ch=cin.get()</code> will assign <code>int</code> value and EOF if EOF <br><br>
+
+// Answer in the book</br>
+The <code>cin >> ch</code> form skips over spaces, newlines, and tabs when it encounters them.
 The other two forms read those characters
 </details>
 
 ## Chapter 6
 
 <details><summary>
-1. Consider the following two code fragments for counting spaces and newlines
+01. Consider the following two code fragments for counting spaces and newlines
 
 ```cpp
 // Version 1
@@ -799,18 +869,20 @@ while (cin.get(ch)) // quit on eof
 
 What advantages, if any, does the second form have over the first?
 </summary>
-// Because version 1 checks every times both conditions, thus it's less efficient.<br>
-// Version 2 checks 2 condition only if first is not true.<br><br>
+// My answer</br>
+Because version 1 checks every times both conditions, thus it's less efficient.<br>
+Version 2 checks 2 condition only if first is not true.<br><br>
 
+// Answer in the book</br>
 Both versions give the same answers, but the if else version is more efficient.
-Consider what happens, for example, when ch is a space.Version 1, after incrementing
-spaces, tests whether the character is a newline.This wastes time because the
+Consider what happens, for example, when ch is a space. Version 1, after incrementing
+spaces, tests whether the character is a newline. This wastes time because the
 program has already established that ch is a space and hence could not be a newline.
 Version 2, in the same situation, skips the newline test.
 </details>
 
 <details><summary>
-2. In Listing 6.2, what is the effect of replacing ++ch with ch+1?
+02. In Listing 6.2, what is the effect of replacing <code>++ch</code> with <code>ch+1</code>?
 
 ```cpp
 Listing 6.2 ifelse.cpp
@@ -837,16 +909,18 @@ Listing 6.2 ifelse.cpp
 
 </summary>
 
-// The `char` is promoted to `int`, and display numbers
+// My answer</br>
+The <code>char</code> is promoted to <code>int</code> , and display numbers</br></br>
 
-Both `++ch` and `ch + 1` have the same numerical value. But `++ch` is type char and
-prints as a character, while `ch + 1`, because it adds a `char` to an `int`,
-is type `int` and prints as a number.
+// Answer in the book</br>
+Both <code>++ch</code> and <code>ch + 1</code> have the same numerical value. But <code>++ch</code> is type char and
+prints as a character, while <code>ch + 1</code> , because it adds a <code>char</code> to an <code>int</code> ,
+is type <code>int</code> and prints as a number.
 
 </details>
 
 <details><summary>
-3. Carefully consider the following program:
+03. Carefully consider the following program:
 
 ```cpp
 #include <iostream>
@@ -877,15 +951,24 @@ Send $10 or $20 now!
 ```
 
 What is the output? (Recall that input is buffered.)
-    </summary>
 
-// Program print after every read character `$` and if in input is `$`, the while loop will end.
+</summary>
+
+// My answer</br>
+
+```sh
+// Program print after every read character `$` and if in input is `$` , the while loop will end.
 // `Hi!`
-// `H$i$!$`
-// `$Send $10 or $20 now!`
-// `S$e$n$d$ $ct1 = 8, ct2 = 8` // `$` is added even newline, and `ct` is added with it, I didn't include that
 
-Because the program uses `ch = '$'` instead of `ch == '$'`, the combined input and
+// `H$i$!$`
+
+// `$Send $10 or $20 now!`
+
+// `S$e$n$d$ $ct1 = 8, ct2 = 8` // `$` is added even newline, and `ct` is added with it, I didn't include that
+```
+
+// Answer in the book</br>
+Because the program uses <code>ch = `$` </code> instead of <code>ch == `$`</code> , the combined input and
 output looks like this:
 
 ```sh
@@ -895,13 +978,13 @@ $Send $10 or $20 now!
 S$e$n$d$ $ct1 = 9, ct2 = 9
 ```
 
-Each character is converted to the `$` character before being printed the second
-time.Also the value of the expression `ch = $` is the code for the `$` character, hence
-nonzero, hence `true`; so `ct2` is incremented each time.
+Each character is converted to the <code>$</code> character before being printed the second
+time. Also the value of the expression <code>ch = $</code> is the code for the <code>$</code> character, hence
+nonzero, hence <code>true</code> ; so <code>ct2</code> is incremented each time.
 </details>
 
 <details><summary>
-4. Construct logical expressions to represent the following conditions:
+04. Construct logical expressions to represent the following conditions:
 
 ```cpp
     a. weight is greater than or equal to 115 but less than 125.
@@ -932,21 +1015,24 @@ isalpha(ch)                                             //f
 </details>
 
 <details><summary>
-5. In English, the statement “I will not not speak” means the same as
-“I will speak.” In C++, is !!x the same as x?
-    </summary>
+05. In English, the statement “I will not not speak” means the same as
+“I will speak.” In C++, is <code>!!x</code> the same as <code>x</code>?
 
-// No. Return from `!!x` is boolean/int, while `x` have defined type by programmer
+</summary>
+//My answer</br>
+No. Return from `!!x` is boolean/int, while `x` have defined type by programmer</br></br>
 
+// Answer in the book</br>
 Not necessarily. For example, if `x` is 10, then `!x` is 0 and `!!x` is 1.
-However, if `x` is a `bool` variable, then `!!x` is `x`.
+However, if `x` is a `bool` variable, then `!!x` is `x` .
 </details>
 
 <details><summary>
-6. Construct a conditional expression that is equal to the absolute value of a variable.
+06. Construct a conditional expression that is equal to the absolute value of a variable.
 That is, if a variable x is positive, the value of the expression is just x,
 but if x is negative, the value of the expression is -x, which is positive.
-    </summary>
+
+</summary>
 
 ```cpp
 // x > 0 ? x : -x
@@ -959,7 +1045,7 @@ but if x is negative, the value of the expression is -x, which is positive.
 </details>
 
 <details><summary>
-7. Rewrite the following fragment using switch:
+07. Rewrite the following fragment using switch:
 
 ```cpp
 if (ch == 'A')
@@ -995,9 +1081,9 @@ switch (ch)
 </details>
 
 <details><summary>
-8. In Listing 6.10, what advantage would there be in using character labels,
+08. In Listing 6.10, what advantage would there be in using character labels,
 such as a and c, instead of numbers for the menu choices and switch cases?
-(Hint:Think about what happens if the user types q in either case and what
+(Hint: Think about what happens if the user types q in either case and what
 happens if the user types 5 in either case.)
 
 ```cpp
@@ -1059,7 +1145,7 @@ void comfort()
 ```
 
 </summary>
-// Character labels would be more resistant to invalid input (characters promoted to int instead numbers);<br>
+// Character labels would be more resistant to invalid input (characters promoted to int instead numbers); <br>
 // It would also not go into infinite loop due to buffered characters from user input <br> <br>
 
 If you use integer labels and the user types a noninteger such as q, the program
@@ -1069,7 +1155,7 @@ Then the default part of the switch can suggest entering another character.
 </details>
 
 <details><summary>
-9. Consider the following code fragment:
+09. Consider the following code fragment:
 
 ```cpp
 int line = 0;
@@ -1085,6 +1171,7 @@ while (cin.get(ch))
 ```
 
 Rewrite this code without using break or continue.
+
     </summary>
 
 ```cpp
@@ -1103,11 +1190,14 @@ while (cin.get(ch) && ch != 'Q')
 
 <!-- -------------------------------------------- -->
 <details><summary>
-1. What are the three steps in using a function?
+01. What are the three steps in using a function?
 </summary>
+
+```sh
 // Definition
 // Prototype
 // Caller
+```
 
 The three steps are defining the function, providing a prototype, and calling the function.
 
@@ -1115,15 +1205,15 @@ The three steps are defining the function, providing a prototype, and calling th
 
 <!-- -------------------------------------------- -->
 <details><summary>
-2. Construct function prototypes that match the following descriptions:
+02. Construct function prototypes that match the following descriptions:</br></br>
 
-- `igor()` takes no arguments and has no return value.
-- `tofu()` takes an int argument and returns a float.
-- `mpg()` takes two type double arguments and returns a double.
-- `summation()` takes the name of a long array and an array size as values and returns a long value.
-- `doctor()` takes a string argument (the string is not to be modified) and returns a double value.
-- `ofcourse()` takes a boss structure as an argument and returns nothing.
-- `plot()` takes a pointer to a map structure as an argument and returns a string.
+- <code>igor()</code> takes no arguments and has no return value.</br>
+- <code>tofu()</code> takes an int argument and returns a float.</br>
+- <code>mpg()</code> takes two type double arguments and returns a double.</br>
+- <code>summation()</code> takes the name of a long array and an array size as values and returns a long value.</br>
+- <code>doctor()</code> takes a string argument (the string is not to be modified) and returns a double value.</br>
+- <code>ofcourse()</code> takes a boss structure as an argument and returns nothing.</br>
+- <code>plot()</code> takes a pointer to a map structure as an argument and returns a string.</br>
 
 </summary>
 
@@ -1141,7 +1231,7 @@ char * plot(map *pmap);
 
 <!-- -------------------------------------------- -->
 <details><summary>
-3. Write a function that takes three arguments: the name of an int array, the array
+03. Write a function that takes three arguments: the name of an int array, the array
 size, and an int value. Have the function set each element of the array to the int
 value.
 </summary>
@@ -1158,8 +1248,8 @@ void set_array(int arr[], int size, int value)
 
 <!-- -------------------------------------------- -->
 <details><summary>
-4. Write a function that takes three arguments: a pointer to the first element of a
-range in an array, a pointer to the element following the end of a range in an array,
+04. Write a function that takes three arguments: a pointer to the first element of a
+range in an array, a pointer to the element following the end of a range in an array, 
 and an int value. Have the function set each element of the array to the int value.
 </summary>
 
@@ -1184,7 +1274,7 @@ void set_array(int * begin, int * end, int value)
 
 <!-- -------------------------------------------- -->
 <details><summary>
-5. Write a function that takes a double array name and an array size as arguments and
+05. Write a function that takes a double array name and an array size as arguments and
 returns the largest value in that array. Note that this function shouldn’t alter the
 contents of the array.
 </summary>
@@ -1223,7 +1313,7 @@ double biggest (const double foot[], int size)
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. Why don’t you use the const qualifier for function arguments that are one of the fundamental types?
+06. Why don’t you use the const qualifier for function arguments that are one of the fundamental types?
 </summary>
 You use the const qualifier with pointers to protect the original pointed-to data from being altered.
 When a program passes a fundamental type such as an int or a double, it passes it by value so that the function
@@ -1232,7 +1322,7 @@ works with a copy. Thus, the original data is already protected.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-7. What are the three forms a C-style string can take in a C++ program?
+07. What are the three forms a C-style string can take in a C++ program?
 </summary>
 
 ```cpp
@@ -1241,13 +1331,13 @@ char str[];
 char *ptr = &str;
 ```
 
-A string can be stored in a `char array`, it can be represented by a string constant in double quotation marks, and it can
+A string can be stored in a <code>char array</code> , it can be represented by a string constant in double quotation marks, and it can
 be represented by a pointer pointing to the first character of a string.
 </details>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-8. Write a function that has this prototype:
+08. Write a function that has this prototype:
 
 ```cpp
 int replace(char * str, char c1, char c2);
@@ -1278,12 +1368,12 @@ return count;
 
 <!-- -------------------------------------------- -->
 <details><summary>
-9. What does the expression *"pizza" mean? What about "taco"[2]?
+09. What does the expression <code>*"pizza"</code> mean? What about <code>"taco"[2]</code>?
 </summary>
 
-Because C++ interprets `"pizza"` as the address of its first element, applying the `*` operator yields the value of that
-first element, which is the character `p`. Because C++ interprets `"taco"` as the address of its first element, it interprets
-`"taco"[2]` as the value of the element two positions down the line that is, as the character `c`. In other words, the string
+Because C++ interprets <code>"pizza"</code> as the address of its first element, applying the <code>*</code> operator yields the value of that
+first element, which is the character <code>p</code>. Because C++ interprets <code>"taco"</code> as the address of its first element, it interprets
+<code>"taco"[2]</code> as the value of the element two positions down the line that is, as the character <code>c</code> . In other words, the string
 constant acts the same as an array name
 </details>
 
@@ -1295,7 +1385,7 @@ How would you pass its address? What are the trade-offs of the two approaches?
 </summary>
 
 ```sh
-// my answer
+// My answer
 By value: fun(glitz)
 - it copies everything from glitz to local structure - less efficient
 
@@ -1304,7 +1394,8 @@ By address: fun(*glitz)
 - less understandable, use indirect membership operator (->)
 ```
 
-To pass it by value, you just pass the structure name `glitz`. To pass its address, you use the address operator `&glitz`.
+// Answer in the book</br>
+To pass it by value, you just pass the structure name <code>glitz</code> . To pass its address, you use the address operator <code>&glitz</code>.
 Passing by the value automatically protects the original data, but it takes time and memory.
 Passing by address saves time and memory but doesn’t protect the original data unless you use the const modifier for the
 function parameter. Also passing by value means you can use ordinary structure member notation, but passing a pointer
@@ -1313,7 +1404,7 @@ means you have to remember to use the indirect membership operator.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-11. The function `judge()` has a type `int` return value. As an argument, it takes the
+11. The function <code>judge()</code> has a type <code>int</code> return value. As an argument, it takes the
 address of a function. The function whose address is passed, in turn, takes a pointer
 to a const char as an argument and returns an int. Write the function prototype.
 
@@ -1336,14 +1427,14 @@ struct applicant {
 };
 ```
 
-- Write a function that takes an applicant structure as an argument and displays its contents.
+- Write a function that takes an applicant structure as an argument and displays its contents.</br>
 - Write a function that takes the address of an applicant structure as an argument and displays the contents of the
 pointed-to structure
 
 </summary>
 
+// My answer</br>
 ```cpp
-// my answer
 fnTemp(applicant)(
     std::cout << applicant.name << "  " << applicant.credit_ratings;
 )
@@ -1353,7 +1444,9 @@ fnTemp(*applicant)(
 )
 ```
 
-a. Note that if ap is an applicant structure, then ap.credit_ratings is an array name and ap.credit_ratings[i]
+// Answer in the book</br>
+
+a. Note that if <code>ap</code> is an applicant structure, then <code>ap.credit_ratings</code> is an array name and <code>ap.credit_ratings[i]</code>
 is an array element.
 
 ```cpp
@@ -1365,8 +1458,8 @@ void display(applicant ap)
 }
 ```
 
-b. Note that if pa is a pointer to an applicant structure, then `pa->credit_ratings` is an array name and
-`pa->credit_ratings[i]` is an array element.
+b. Note that if pa is a pointer to an applicant structure, then <code>pa->credit_ratings</code> is an array name and
+<code>pa->credit_ratings[i]</code> is an array element.
 
 ```cpp
 void show(const applicant * pa)
@@ -1381,17 +1474,17 @@ void show(const applicant * pa)
 
 <!-- -------------------------------------------- -->
 <details><summary>
-13. Suppose the functions `f1()` and `f2()` have the following prototypes:
+13. Suppose the functions <code>f1()</code> and <code>f2()</code> have the following prototypes:
 
 ```cpp
 void f1(applicant * a);
 const char * f2(const applicant * a1, const applicant * a2);
 ```
 
-Declare `p1` as a pointer that points to `f1` and `p2` as a pointer to `f2`.
-Declare `ap` as an array of five pointers of the same type as `p1`,
-and declare `pa` as a pointer to an array of ten pointers of the same type as `p2`.
-Use `typedef` as an aid.
+Declare <code>p1</code> as a pointer that points to <code>f1</code> and <code>p2</code> as a pointer to <code>f2</code> .
+Declare <code>ap</code> as an array of five pointers of the same type as <code>p1</code> , 
+and declare <code>pa</code> as a pointer to an array of ten pointers of the same type as <code>p2</code> .
+Use <code>typedef</code> as an aid.
 
 </summary>
 
@@ -1410,25 +1503,25 @@ p_f2 (*pa)[10];
 
 <!-- -------------------------------------------- -->
 <details><summary>
-1. What kinds of functions are good candidates for inline status?
+01. What kinds of functions are good candidates for inline status?
 </summary>
-// Short ones.
-// The ones, that are not repeatable
+// Short ones.</br>
+// The ones, that are not repeatable</br></br>
 
-Short, nonrecursive functions that can fit in one line of code are good candidates for `inline status`.
+Short, nonrecursive functions that can fit in one line of code are good candidates for <code>inline status</code> .
 </details>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-2. Suppose the song() function has this prototype:
+02. Suppose the <code>song()</code> function has this prototype:
 
 ```cpp
 void song(const char * name, int times);
 ```
 
-- How would you modify the prototype so that the default value for `times` is `1`?
-- What changes would you make in the function definition?
-- Can you provide a default value of `"O, My Papa"` for name?
+a. How would you modify the prototype so that the default value for <code>times</code> is <code>1</code>?</br>
+b. What changes would you make in the function definition?</br>
+c. Can you provide a default value of <code>"O, My Papa"</code> for name?
 
 </summary>
 
@@ -1438,7 +1531,7 @@ a.
 void song(const char * name, int times = 1);
 ```
 
-b. None. Only prototypes contain the default value information.
+b. None. Only prototypes contain the default value information.</br>
 
 c. Yes, provided that you retain the default value for times:
 
@@ -1450,12 +1543,12 @@ void song(char * name = "O, My Papa", int times = 1);
 
 <!-- -------------------------------------------- -->
 <details><summary>
-3. Write overloaded versions of iquote(), a function that displays its argument
-enclosed in double quotation marks. Write three versions: one for an `int` argument,
-one for a `double` argument, and one for a `string` argument.
+03. Write overloaded versions of <code>iquote()</code>, a function that displays its argument
+enclosed in double quotation marks. Write three versions: one for an <code>int</code> argument,
+one for a <code>double</code> argument, and one for a <code>string</code> argument.
 </summary>
 
-You can use either the string "\"" or the character '"' to print a quotation mark.
+You can use either the string <code>"\""</code> or the character <code>"</code> to print a quotation mark.
 The following functions show both methods:
 
 ```cpp
@@ -1477,7 +1570,7 @@ void iquote(const char * str){
 
 <!-- -------------------------------------------- -->
 <details><summary>
-4. The following is a structure template:
+04. The following is a structure template:
 
 ```cpp
 struct box
@@ -1490,10 +1583,10 @@ struct box
 };
 ```
 
-- Write a function that has a reference to a `box` structure as its formal argument
-and displays the value of each member.
-- Write a function that has a reference to a `box` structure as its formal argument
-and sets the `volume` member to the product of the other three dimensions.
+a. Write a function that has a reference to a <code>box</code> structure as its formal argument
+and displays the value of each member.</br>
+b. Write a function that has a reference to a <code>box</code> structure as its formal argument
+and sets the <code>volume</code> member to the product of the other three dimensions.
 
 </summary>
 
@@ -1523,15 +1616,15 @@ void set_volume(box & crate)
 
 <!-- -------------------------------------------- -->
 <details><summary>
-5. What changes would need be made to Listing 7.15 (arrobj) so that the functions `fill()`
-and `show()` use reference parameters?
+05. What changes would need be made to Listing 7.15 (arrobj) so that the functions <code>fill()</code>
+and <code>show()</code> use reference parameters?
 </summary>
 
-Note that `show()` should use const to protect the object from being modified.
-Next, within `main()`, change the `fill()` call to this:
+Note that <code>show()</code> should use const to protect the object from being modified.
+Next, within <code>main()</code> , change the <code>fill()</code> call to this:
 
-Note that `(*pa)[i]` gets changed to the simpler `pa[i]`.
-Finally, the only change to `show()` is to the function header.
+Note that <code>(*pa)[i]</code> gets changed to the simpler <code>pa[i]</code> .
+Finally, the only change to <code>show()</code> is to the function header.
 
 ```cpp
 // arrobj.cpp -- functions with array objects (C++11)
@@ -1585,22 +1678,22 @@ void show(const std::array<double, Seasons> &da)
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. The following are some desired effects. Indicate whether each can be accomplished
+06. The following are some desired effects. Indicate whether each can be accomplished
 with default arguments, function overloading, both, or neither. Provide
-appropriate prototypes.
+appropriate prototypes.</br>
 
-- `mass(density, volume)` returns the mass of an object having a density of
-`density` and a volume of `volume`, whereas `mass(density)` returns the mass
-having a density of `density` and a volume of 1.0 cubic meters. All quantities
-are type `double`.
-- repeat(10, "I'm OK") displays the indicated string 10 times, and
-repeat("But you're kind of stupid") displays the indicated string 5
-times.
-- average(3,6) returns the int average of two int arguments, and
-average(3.0, 6.0) returns the double average of two double values.
-- mangle("I'm glad to meet you") returns the character I or a pointer to
+a. <code>mass(density, volume)</code> returns the mass of an object having a density of
+<code>density</code> and a volume of <code>volume</code> , whereas<code>mass(density)</code> returns the mass
+having a density of<code>density</code> and a <code>volume</code> of 1.0 cubic meters. All quantities
+are type<code>double</code>.</br>
+b. <code>repeat(10, "I'm OK")</code> displays the indicated string 10 times, and
+<code>repeat("But you're kind of stupid")</code> displays the indicated string 5
+times.</br>
+c. <code>average(3, 6)</code> returns the int average of two int arguments, and
+<code>average(3.0, 6.0)</code> returns the double average of two double values.</br>
+d. <code>mangle("I'm glad to meet you")</code> returns the character I or a pointer to
 the string "I'm mad to gleet you", depending on whether you assign the
-return value to a char variable or to a char* variable.
+return value to a char variable or to a char* variable.</br>
 
 </summary>
 
@@ -1618,6 +1711,7 @@ double average(double numA, double numB);
 ```
 
 ```cpp
+// Answer in the book
 // a. This can be done by using a default value for the second argument:
 double mass(double d, double v = 1.0);
 It can also be done by using function overloading:
@@ -1640,7 +1734,7 @@ double average(double x, double y);
 
 <!-- -------------------------------------------- -->
 <details><summary>
-7. Write a function template that returns the larger of its two arguments.
+07. Write a function template that returns the larger of its two arguments.
 </summary>
 
 ```cpp
@@ -1663,7 +1757,7 @@ T max(T t1, T t2) // or T max(const T & t1, const T & t2)
 
 <!-- -------------------------------------------- -->
 <details><summary>
-8. Given the template of Chapter Review Question 7 and the box structure of Chapter
+08. Given the template of Chapter Review Question 7 and the box structure of Chapter
 Review Question 4, provide a template specialization that takes two box arguments
 and returns the one with the larger volume.
 </summary>
@@ -1679,7 +1773,7 @@ template<> box max(box b1, box b2)
 
 <!-- -------------------------------------------- -->
 <details><summary>
-9. What types are assigned to v1, v2, v3, v4, and v5 in the following code (assuming
+09. What types are assigned to v1, v2, v3, v4, and v5 in the following code (assuming
 the code is part of a complete program)?
 
 ```cpp
@@ -1695,48 +1789,52 @@ decltype (2.0 * m) v5;
 ```
 
 </summary>
+
+```sh
 v1 = float
 v2 = float &
 v3 = float
 v4 = int
 v5 = double (The literal 2.0 is type double)
+```
+
 </details>
 
 ## Chapter 9
 
 <!-- -------------------------------------------- -->
 <details><summary>
-1. What storage scheme would you use for the following situations?</br></br>
+01. What storage scheme would you use for the following situations?</br></br>
 
-a. `homer` is a formal argument (parameter) to a function.
-b. The `secret` variable is to be shared by two files.
-c. The `topsecret` variable is to be shared by the functions in one file but hidden
-from other files.
-d. `beencalled` keeps track of how many times the function containing it has
-been called.
+a. <code>homer</code> is a formal argument (parameter) to a function.</br>
+b. The <code>secret</code> variable is to be shared by two files.</br>
+c. The <code>topsecret</code> variable is to be shared by the functions in one file but hidden
+from other files.</br>
+d. <code>beencalled</code> keeps track of how many times the function containing it has
+been called.</br>
 
 </summary>
 
-a. `homer` is automatically an automatic variable.
-b. `secret` should be defined as an external variable in one file and declared using extern in the second file.
-c. `topsecret` could be defined as a static variable with internal linkage by prefacing the external definition with the
-keyword static. Or it could be defined in an unnamed namespace.
-d. `beencalled` should be defined as a local static variable by prefacing a declaration in the function with the
-keyword static.
+a. <code>homer</code> is automatically an automatic variable.</br>
+b. <code>secret</code> should be defined as an external variable in one file and declared using extern in the second file.</br>
+c. <code>topsecret</code> could be defined as a static variable with internal linkage by prefacing the external definition with the
+keyword static. Or it could be defined in an unnamed namespace.</br>
+d. <code>beencalled</code> should be defined as a local static variable by prefacing a declaration in the function with the
+keyword static.</br>
 
 </details>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-2. Describe the differences between a `using` declaration and a `using` directive
+02. Describe the differences between a <code>using</code> declaration and a <code>using</code> directive
 </summary>
 
-//Declaration will only allow to use one declared thing from namespace.
-//Directive will allow to use all things declared namespace.
+//Declaration will only allow to use one declared thing from namespace.</br>
+//Directive will allow to use all things declared namespace.</br></br>
 
 A using declaration makes available a single name from a namespace, and it has the
 scope corresponding to the declarative region in which the using declaration
-occurs.A using directive makes available all the names in a namespace.When you
+occurs. A using directive makes available all the names in a namespace. When you
 use a using directive, it is as if you have declared the names in the smallest declarative
 region containing both the using declaration and the namespace itself.
 
@@ -1744,7 +1842,7 @@ region containing both the using declaration and the namespace itself.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-3. Rewrite the following so that it doesn’t use using declarations or using directives:
+03. Rewrite the following so that it doesn’t use using declarations or using directives:
 
 ```cpp
 #include <iostream>
@@ -1790,7 +1888,7 @@ int main()
 
 <!-- -------------------------------------------- -->
 <details><summary>
-4. Rewrite the following so that it uses using declarations instead of the using directive:
+04. Rewrite the following so that it uses using declarations instead of the using directive:
 
 ```cpp
 #include <iostream>
@@ -1840,20 +1938,20 @@ int main()
 
 <!-- -------------------------------------------- -->
 <details><summary>
-5. Suppose you want the average(3,6) function to return an int average of the two
+05. Suppose you want the <code>average(3,6)</code> function to return an int average of the two
 int arguments when it is called in one file, and you want it to return a double
 average of the two int arguments when it is called in a second file in the same program.
 How could you set this up?
 </summary>
 
 You could have separate static function definitions in each file. Or each file could
-define the appropriate `average()` function in an unnamed namespace.
+define the appropriate <code>average()</code> function in an unnamed namespace.
 
 </details>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. What will the following two-file program display?
+06. What will the following two-file program display?
 
 ```cpp
 // file1.cpp
@@ -1910,7 +2008,7 @@ another(): 10, -4
 
 <!-- -------------------------------------------- -->
 <details><summary>
-7. What will the following program display?
+07. What will the following program display?
 
 ```cpp
 #include <iostream>
@@ -1967,11 +2065,11 @@ void other()
 
 <!-- -------------------------------------------- -->
 <details><summary>
-1. What is a class?</br></br>
+01. What is a class?</br></br>
 
 </summary>
 
-Schema for creating object.
+Schema for creating object.</br></br>
 
 A class is a definition of a user-defined type. A class declaration specifies how data is
 to be stored, and it specifies the methods (class member functions) that can be used
@@ -1982,16 +2080,16 @@ to access and manipulate that data.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-2. How does a class accomplish abstraction, encapsulation, and data hiding?</br></br>
+02. How does a class accomplish abstraction, encapsulation, and data hiding?</br></br>
 
 </summary>
 
-by division of methods and variables by `public` and `private`
+by division of methods and variables by <code>public</code> and <code>private</code></br></br>
 
 A class represents the operations you can perform on a class object with a public
-interface of class methods; this is abstraction.The class can use private visibility (the
+interface of class methods; this is abstraction.</br> The class can use private visibility (the
 default) for data members, meaning that the data can be accessed only through the
-member functions; this is data hiding. Details of the implementation, such as data
+member functions; this is data hiding.</br> Details of the implementation, such as data
 representation and method code, are hidden; this is encapsulation.
 
 </details>
@@ -1999,16 +2097,16 @@ representation and method code, are hidden; this is encapsulation.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-3. What is the relationship between an object and a class?</br></br>
+03. What is the relationship between an object and a class?</br></br>
 
 </summary>
 
 Class is used for creating object and defining its behaviour.
-We can use object on operate on it in accordance to the methods defined in class.  
+We can use object on operate on it in accordance to the methods defined in class.</br></br>
 
-A class defines a type, including how it can be used.An object is a variable or
+A class defines a type, including how it can be used. An object is a variable or
 another data object, such as that produced by new, which is created and used
-according to the class definition.The relationship between a class and an object is
+according to the class definition. The relationship between a class and an object is
 the same as that between a standard type and a variable of that type
 
 </details>
@@ -2016,11 +2114,11 @@ the same as that between a standard type and a variable of that type
 <!-- -------------------------------------------- -->
 
 <details><summary>
-4. In what way, aside from being functions, are class function members different from class data members?</br></br>
+04. In what way, aside from being functions, are class function members different from class data members?</br></br>
 
 </summary>
 
-Class functions are used with objects and part of the processed data can be encapsulated.
+Class functions are used with objects and part of the processed data can be encapsulated.</br></br>
 
 If you create several objects of a given class, each object comes with storage for its
 own set of data. But all the objects use the one set of member functions. (Typically,
@@ -2032,13 +2130,13 @@ of class requirements.)
 <!-- -------------------------------------------- -->
 
 <details><summary>
-5. Define a class to represent a bank account.
+05. Define a class to represent a bank account.
 Data members should include the depositor’s name, the account number (use a string), and the balance. Member functions should allow the following:
 
-- Creating an object and initializing it.
-- Displaying the depositor’s name, account number, and balance
-- Depositing an amount of money given by an argument
-- Withdrawing an amount of money given by an argument
+- Creating an object and initializing it.</br>
+- Displaying the depositor’s name, account number, and balance</br>
+- Depositing an amount of money given by an argument</br>
+- Withdrawing an amount of money given by an argument</br>
 
 Just show the class declaration, not the method implementations. (Programming Exercise 1 provides you with an opportunity to write the implementation.)
 </br></br>
@@ -2068,12 +2166,12 @@ BankAccount(const char * client, const char * num, double bal = 0.0);
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. When are class constructors called? When are class destructors called?</br></br>
+06. When are class constructors called? When are class destructors called?</br></br>
 
 </summary>
 
 constructors are called when object is created and during initialization.
-destructors are called when object is deleted or on the end of the program.
+destructors are called when object is deleted or on the end of the program.</br></br>
 
 A class constructor is called when you create an object of that class or when you
 explicitly call the constructor. A class destructor is called when the object expires.
@@ -2083,7 +2181,7 @@ explicitly call the constructor. A class destructor is called when the object ex
 <!-- -------------------------------------------- -->
 
 <details><summary>
-7. Provide code for a constructor for the bank account class from Chapter Review Question 5.</br></br>
+07. Provide code for a constructor for the bank account class from Chapter Review Question 5.</br></br>
 
 </summary>
 
@@ -2121,11 +2219,11 @@ Keep in mind that default arguments go in the prototype, not in the function def
 <!-- -------------------------------------------- -->
 
 <details><summary>
-8. What is a default constructor? What is the advantage of having one?</br></br>
+08. What is a default constructor? What is the advantage of having one?</br></br>
 
 </summary>
 
-It initializes class without any arguments.
+It initializes class without any arguments.</br></br>
 
 A default constructor either has no arguments or has defaults for all the arguments.
 Having a default constructor enables you to declare objects without initializing
@@ -2137,7 +2235,7 @@ declare arrays.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-9. Modify the Stock class definition (the version in stock20.h) so that it has member
+09. Modify the Stock class definition (the version in stock20.h) so that it has member
     functions that return the values of the individual data members. Note: A member
     that returns the company name should not provide a weapon for altering the array.
     That is, it can’t simply return a string reference. It could return a const reference.</br></br>
@@ -2172,22 +2270,21 @@ public:
 const string & co_name() const { return company; }
 };
 
-
 ```
 
 </details>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-10. What are this and *this?</br></br>
+10. What are <code>this</code> and <code>*this</code>?</br></br>
 
 </summary>
 
-this  - pointer to current object
-*this - dereferention of object (object itself)
+<code>this</code>  - pointer to current object</br>
+<code>*this</code> - dereferention of object (object itself)</br></br>
 
-The this pointer is available to class methods. It points to the object used to
-invoke the method. Thus, this is the address of the object, and *this represents the
+The <code>this</code> pointer is available to class methods. It points to the object used to
+invoke the method. Thus, this is the address of the object, and <code>*this</code> represents the
 object itself.
 
 </details>
@@ -2197,9 +2294,9 @@ object itself.
 ## Chapter 11
 
 <details><summary>
-1. Use a member function to overload the multiplication operator for the Stonewt
+01. Use a member function to overload the multiplication operator for the Stonewt
 class; have the operator multiply the data members by a type double value. Note
-that this will require carryover for the stone–pound representation.That is, twice 10
+that this will require carryover for the stone–pound representation. That is, twice 10
 stone 8 pounds is 21 stone 2 pounds.</br></br>
 
 </summary>
@@ -2209,7 +2306,7 @@ stone 8 pounds is 21 stone 2 pounds.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-2. What are the differences between a friend function and a member function?</br></br>
+02. What are the differences between a friend function and a member function?</br></br>
 
 </summary>
 
@@ -2218,7 +2315,7 @@ stone 8 pounds is 21 stone 2 pounds.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-3. Does a nonmember function have to be a friend to access a class’s members?</br></br>
+03. Does a nonmember function have to be a friend to access a class’s members?</br></br>
 
 </summary>
 
@@ -2227,7 +2324,7 @@ stone 8 pounds is 21 stone 2 pounds.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-4. Use a friend function to overload the multiplication operator for the Stonewt class;
+04. Use a friend function to overload the multiplication operator for the Stonewt class;
 have the operator multiply the double value by the Stone value.</br></br>
 
 </summary>
@@ -2236,7 +2333,7 @@ have the operator multiply the double value by the Stone value.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-5. Which operators cannot be overloaded?</br></br>
+05. Which operators cannot be overloaded?</br></br>
 
 </summary>
 
@@ -2245,7 +2342,7 @@ have the operator multiply the double value by the Stone value.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-6. What restriction applies to overloading the following operators? =, (), [], and -></br></br>
+06. What restriction applies to overloading the following operators? =, (), [], and -></br></br>
 
 </summary>
 
@@ -2254,7 +2351,7 @@ have the operator multiply the double value by the Stone value.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-7. Define a conversion function for the Vector class that converts a Vector object to
+07. Define a conversion function for the Vector class that converts a Vector object to
 a type double value that represents the vector’s magnitude.</br></br>
 
 </summary>
@@ -2267,7 +2364,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-1. What is a class?</br></br>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2276,7 +2373,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-2. What is a class?</br></br>
+02. What is a class?</br></br>
 
 </summary>
 
@@ -2285,7 +2382,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-3. What is a class?</br></br>
+03. What is a class?</br></br>
 
 </summary>
 
@@ -2294,7 +2391,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-4. What is a class?</br></br>
+04. What is a class?</br></br>
 
 </summary>
 
@@ -2303,7 +2400,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-5. What is a class?</br></br>
+05. What is a class?</br></br>
 
 </summary>
 
@@ -2311,16 +2408,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-7. What is a class?</br></br>
+06. What is a class?</br></br>
 
 </summary>
 
@@ -2329,7 +2417,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-8. What is a class?</br></br>
+07. What is a class?</br></br>
 
 </summary>
 
@@ -2338,7 +2426,16 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-1. What is a class?</br></br>
+08. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2350,7 +2447,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-1. What is a class?</br></br>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2359,7 +2456,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-2. What is a class?</br></br>
+02. What is a class?</br></br>
 
 </summary>
 
@@ -2368,7 +2465,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-3. What is a class?</br></br>
+03. What is a class?</br></br>
 
 </summary>
 
@@ -2377,7 +2474,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-4. What is a class?</br></br>
+04. What is a class?</br></br>
 
 </summary>
 
@@ -2386,7 +2483,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-5. What is a class?</br></br>
+05. What is a class?</br></br>
 
 </summary>
 
@@ -2394,16 +2491,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-7. What is a class?</br></br>
+06. What is a class?</br></br>
 
 </summary>
 
@@ -2412,7 +2500,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-8. What is a class?</br></br>
+07. What is a class?</br></br>
 
 </summary>
 
@@ -2421,7 +2509,16 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-1. What is a class?</br></br>
+08. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2433,7 +2530,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-1. What is a class?</br></br>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2442,7 +2539,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-2. What is a class?</br></br>
+02. What is a class?</br></br>
 
 </summary>
 
@@ -2451,7 +2548,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-3. What is a class?</br></br>
+03. What is a class?</br></br>
 
 </summary>
 
@@ -2460,7 +2557,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-4. What is a class?</br></br>
+04. What is a class?</br></br>
 
 </summary>
 
@@ -2469,7 +2566,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-5. What is a class?</br></br>
+05. What is a class?</br></br>
 
 </summary>
 
@@ -2477,16 +2574,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-7. What is a class?</br></br>
+06. What is a class?</br></br>
 
 </summary>
 
@@ -2495,7 +2583,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-8. What is a class?</br></br>
+07. What is a class?</br></br>
 
 </summary>
 
@@ -2504,7 +2592,16 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-1. What is a class?</br></br>
+08. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2516,7 +2613,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-1. What is a class?</br></br>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2525,7 +2622,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-2. What is a class?</br></br>
+02. What is a class?</br></br>
 
 </summary>
 
@@ -2534,7 +2631,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-3. What is a class?</br></br>
+03. What is a class?</br></br>
 
 </summary>
 
@@ -2543,7 +2640,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-4. What is a class?</br></br>
+04. What is a class?</br></br>
 
 </summary>
 
@@ -2552,7 +2649,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-5. What is a class?</br></br>
+05. What is a class?</br></br>
 
 </summary>
 
@@ -2560,16 +2657,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-7. What is a class?</br></br>
+06. What is a class?</br></br>
 
 </summary>
 
@@ -2578,7 +2666,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-8. What is a class?</br></br>
+07. What is a class?</br></br>
 
 </summary>
 
@@ -2587,7 +2675,16 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-1. What is a class?</br></br>
+08. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2599,7 +2696,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-1. What is a class?</br></br>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2608,7 +2705,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-2. What is a class?</br></br>
+02. What is a class?</br></br>
 
 </summary>
 
@@ -2617,7 +2714,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-3. What is a class?</br></br>
+03. What is a class?</br></br>
 
 </summary>
 
@@ -2626,7 +2723,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-4. What is a class?</br></br>
+04. What is a class?</br></br>
 
 </summary>
 
@@ -2635,7 +2732,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-5. What is a class?</br></br>
+05. What is a class?</br></br>
 
 </summary>
 
@@ -2643,16 +2740,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-7. What is a class?</br></br>
+06. What is a class?</br></br>
 
 </summary>
 
@@ -2661,7 +2749,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-8. What is a class?</br></br>
+07. What is a class?</br></br>
 
 </summary>
 
@@ -2670,7 +2758,16 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-1. What is a class?</br></br>
+08. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2682,7 +2779,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-1. What is a class?</br></br>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2691,7 +2788,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-2. What is a class?</br></br>
+02. What is a class?</br></br>
 
 </summary>
 
@@ -2700,7 +2797,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-3. What is a class?</br></br>
+03. What is a class?</br></br>
 
 </summary>
 
@@ -2709,7 +2806,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-4. What is a class?</br></br>
+04. What is a class?</br></br>
 
 </summary>
 
@@ -2718,7 +2815,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-5. What is a class?</br></br>
+05. What is a class?</br></br>
 
 </summary>
 
@@ -2726,16 +2823,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-7. What is a class?</br></br>
+06. What is a class?</br></br>
 
 </summary>
 
@@ -2744,7 +2832,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-8. What is a class?</br></br>
+07. What is a class?</br></br>
 
 </summary>
 
@@ -2753,7 +2841,16 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-1. What is a class?</br></br>
+08. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2765,7 +2862,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-1. What is a class?</br></br>
+01. What is a class?</br></br>
 
 </summary>
 
@@ -2774,7 +2871,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-2. What is a class?</br></br>
+02. What is a class?</br></br>
 
 </summary>
 
@@ -2783,7 +2880,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-3. What is a class?</br></br>
+03. What is a class?</br></br>
 
 </summary>
 
@@ -2792,7 +2889,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-4. What is a class?</br></br>
+04. What is a class?</br></br>
 
 </summary>
 
@@ -2801,7 +2898,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-5. What is a class?</br></br>
+05. What is a class?</br></br>
 
 </summary>
 
@@ -2809,16 +2906,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 
 <!-- -------------------------------------------- -->
 <details><summary>
-6. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-7. What is a class?</br></br>
+06. What is a class?</br></br>
 
 </summary>
 
@@ -2827,7 +2915,7 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-8. What is a class?</br></br>
+07. What is a class?</br></br>
 
 </summary>
 
@@ -2836,7 +2924,16 @@ a type double value that represents the vector’s magnitude.</br></br>
 <!-- -------------------------------------------- -->
 
 <details><summary>
-1. What is a class?</br></br>
+08. What is a class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+01. What is a class?</br></br>
 
 </summary>
 
