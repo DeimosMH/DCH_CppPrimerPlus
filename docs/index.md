@@ -42,10 +42,10 @@ window.onload = function() {
     padding: 15px;
 }
 
-@media screen and (max-width: 600px) {
-    .md-main .toc_custom_sec {
-        display: none;
-    }
+@media screen and (max-aspect-ratio: 16/9) {
+  .md-main .toc_custom_sec {
+    display: none;
+  }
 }
 </style>
 
