@@ -2294,12 +2294,53 @@ object itself.
 ## Chapter 11
 
 <details><summary>
-01. Use a member function to overload the multiplication operator for the Stonewt
-class; have the operator multiply the data members by a type double value. Note
-that this will require carryover for the stone–pound representation. That is, twice 10
+01. Use a member function to overload the multiplication operator for the <code>Stonewt</code>
+class;</br> have the operator multiply the data members by a type double value.</br> Note
+that this will require carry over for the stone–pound representation. That is, twice 10
 stone 8 pounds is 21 stone 2 pounds.</br></br>
 
 </summary>
+
+// My answer
+
+```cpp
+class Stonewt{
+    private:
+        enum{Pds_to_stn = 14};
+        int stone;
+        double fracPound;
+        double pound;
+    public:
+        // code ...
+        Stonewt operator*(double mt){
+                        
+            stone     *= (int)mt;
+            fracPound += (int)mt % Pds_to_stn + mt - int(mt);
+
+            pound     *= mt;
+            stone     += (int)pound % Pds_to_stn;
+            pound     -= int(pound);
+
+            return dm;
+        }
+}
+```
+
+// Answer in the book</br>
+
+Here’s a prototype for the class definition file and a function definition for the
+methods file:
+
+```cpp
+// prototype
+Stonewt operator*(double mult);
+
+// definition — let constructor do the work
+Stonewt Stonewt::operator*(double mult)
+{
+    return Stonewt(mult * pounds);
+}
+```
 
 </details>
 
@@ -2310,6 +2351,18 @@ stone 8 pounds is 21 stone 2 pounds.</br></br>
 
 </summary>
 
+// My answer</br>
+Friend functions have access to private data of inherited class.</br></br>
+
+// Answer in the book</br>
+A member function is part of a class definition and is invoked by a particular
+object.The member function can access members of the invoking object implicitly,
+without using the membership operator. A friend function is not part of a class, so
+it’s called as a straight function call. It can’t access class members implicitly, so it
+must use the membership operator applied to an object passed as an argument.
+Compare, for instance, the answer to Review Question 1 with the answer to
+Review Question 4.
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -2318,6 +2371,15 @@ stone 8 pounds is 21 stone 2 pounds.</br></br>
 03. Does a nonmember function have to be a friend to access a class’s members?</br></br>
 
 </summary>
+
+// My answer</br>
+For the direct access to the private members - Yes</br>
+For the direct access to the public members - No</br>
+For indirect access - via public methods - No</br></br>
+
+// Answer in the book</br>
+It must be a friend to access private members, but it doesn’t have to be a friend to
+access public members.
 
 </details>
 
@@ -2329,6 +2391,52 @@ have the operator multiply the double value by the Stone value.</br></br>
 
 </summary>
 
+// My answer
+
+```cpp
+class Stonewt{
+    private:
+        enum{Pds_to_stn = 14};
+        int stone;
+        double fracPound;
+        double pound;
+    public:
+        // code ...
+        friend Stonewt operator*(double mt, Stonewt &dm){
+            Stone tmp;
+            
+            tmp.stone = dm.stone;
+            tmp.fracPound = dm.fracPound;
+            tmp.pound = dm.pound;
+            
+            tmp.stone     *= (int)mt;
+            tmp.fracPound += (int)mt % Pds_to_stn + mt - int(mt);
+
+            tmp.pound     *= mt;
+            tmp.stone     += (int)dm.pound % Pds_to_stn;
+            tmp.pound     -= int(dm.pound);
+
+            return tmp;
+        }
+}
+```
+
+// Answer in the book </br>
+
+Here’s a prototype for the class definition file and a function definition for the
+methods file:
+
+```cpp
+// prototype
+friend Stonewt operator*(double mult, const Stonewt & s);
+
+// definition — let constructor do the work
+Stonewt operator*(double mult, const Stonewt & s)
+{
+    return Stonewt(mult * s.pounds);
+}
+```
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -2337,14 +2445,27 @@ have the operator multiply the double value by the Stone value.</br></br>
 
 </summary>
 
+The following five operators cannot be overloaded:
+
+```cpp
+sizeof
+.
+.*
+::
+? :
+```
+
 </details>
 
 <!-- -------------------------------------------- -->
 
 <details><summary>
-06. What restriction applies to overloading the following operators? =, (), [], and -></br></br>
+06. What restriction applies to overloading the following operators? <code>=</code>, <code>()</code>, <code>[]</code>, and <code>-></code></br></br>
 
 </summary>
+
+These operations cannot overload basic functions they currently perform,
+thus they need to be defined by using a member function.
 
 </details>
 
@@ -2355,6 +2476,38 @@ have the operator multiply the double value by the Stone value.</br></br>
 a type double value that represents the vector’s magnitude.</br></br>
 
 </summary>
+
+// My answer - it should be by simple context.. again
+
+```cpp
+class Vector{
+    private:
+        double x;
+        double y;
+    public:
+        // code ...
+        // option 1
+        double conv(Vector vc) const{
+            return sqrt(vc.x * vc.x + vc.y * vc.y);
+        }
+        // option 2
+        operator double(){
+            return sqrt(vc.x * vc.x + vc.y * vc.y);
+        }
+}
+```
+
+// Answer in the book</br>
+
+Here are a possible prototype and definition:
+
+```cpp
+// prototype and inline definition
+operator double () {return mag;}
+```
+
+Note, however, that it makes better sense to use the <code>magval()</code> method than to
+define this conversion function.
 
 </details>
 
