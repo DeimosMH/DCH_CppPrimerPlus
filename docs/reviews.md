@@ -244,7 +244,7 @@ integer type?
 
 </summary>
 
-C++ provides no automatic safeguards to keep you from exceeding integer limits; 
+C++ provides no automatic safeguards to keep you from exceeding integer limits;
 you can use the <code>climits</code> header file to determine what the limits are.
 </details>
 
@@ -1172,7 +1172,7 @@ while (cin.get(ch))
 
 Rewrite this code without using break or continue.
 
-    </summary>
+</summary>
 
 ```cpp
 int line = 0;
@@ -1249,7 +1249,7 @@ void set_array(int arr[], int size, int value)
 <!-- -------------------------------------------- -->
 <details><summary>
 04. Write a function that takes three arguments: a pointer to the first element of a
-range in an array, a pointer to the element following the end of a range in an array, 
+range in an array, a pointer to the element following the end of a range in an array,
 and an int value. Have the function set each element of the array to the int value.
 </summary>
 
@@ -1434,6 +1434,7 @@ pointed-to structure
 </summary>
 
 // My answer</br>
+
 ```cpp
 fnTemp(applicant)(
     std::cout << applicant.name << "  " << applicant.credit_ratings;
@@ -1482,7 +1483,7 @@ const char * f2(const applicant * a1, const applicant * a2);
 ```
 
 Declare <code>p1</code> as a pointer that points to <code>f1</code> and <code>p2</code> as a pointer to <code>f2</code> .
-Declare <code>ap</code> as an array of five pointers of the same type as <code>p1</code> , 
+Declare <code>ap</code> as an array of five pointers of the same type as <code>p1</code> ,
 and declare <code>pa</code> as a pointer to an array of ten pointers of the same type as <code>p2</code> .
 Use <code>typedef</code> as an aid.
 
@@ -2352,7 +2353,7 @@ Stonewt Stonewt::operator*(double mult)
 </summary>
 
 // My answer</br>
-Friend functions have access to private data of inherited class.</br></br>
+Friend functions have access to private data of a class (ivoked object).</br></br>
 
 // Answer in the book</br>
 A member function is part of a class definition and is invoked by a particular
@@ -2517,7 +2518,43 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-01. What is a class?</br></br>
+01.Suppose a String class has the following private members:
+
+```cpp
+class String
+{
+    private:
+    char * str; // points to string allocated by new
+    int len; // holds length of string
+    //...
+};
+```
+
+a. What’s wrong with this default constructor?
+
+```cpp
+String::String() {}
+```
+
+b. What’s wrong with this constructor?
+
+```cpp
+String::String(const char * s)
+{
+    str = s;
+    len = strlen(s);
+}
+```
+
+c. What’s wrong with this constructor?
+
+```cpp
+String::String(const char * s)
+{
+    strcpy(str, s);
+    len = strlen(s);
+}
+```
 
 </summary>
 
@@ -2526,7 +2563,8 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-02. What is a class?</br></br>
+02. Name three problems that may arise if you define a class in which a pointer member
+is initialized by using new. Indicate how they can be remedied.</br></br>
 
 </summary>
 
@@ -2535,7 +2573,8 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-03. What is a class?</br></br>
+03. What class methods does the compiler generate automatically if you don’t provide
+them explicitly? Describe how these implicitly generated functions behave.</br></br>
 
 </summary>
 
@@ -2544,7 +2583,34 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-04. What is a class?</br></br>
+04. Identify and correct the errors in the following class declaration:
+
+```cpp
+class nifty
+{
+    // data
+    char personality[];
+    int talents;
+    // methods
+    nifty();
+    nifty(char *s);
+    ostream &operator<<(ostream &os, nifty &n);
+} nifty : nifty()
+{
+    personality = NULL;
+    talents = 0;
+}
+nifty : nifty(char *s)
+{
+    personality = new char[strlen(s)];
+    personality = s;
+    talents = 0;
+}
+ostream &nifty : operator<<(ostream & os, nifty & n)
+{
+    os << n;
+}
+```
 
 </summary>
 
@@ -2555,40 +2621,38 @@ define this conversion function.
 <details><summary>
 05. What is a class?</br></br>
 
-</summary>
+Consider the following class declaration:
 
-</details>
+```cpp
+class Golfer
+{
+private:
+    char *fullname; // points to string containing golfer's name
+    int games;      // holds number of golf games played
+    int *scores;    // points to first element of array of golf scores
+public:
+    Golfer();
+    Golfer(const char *name, int g = 0);
+    // creates empty dynamic array of g elements if g > 0
+    Golfer(const Golfer &g);
+    ~Golfer();
+};
+```
 
-<!-- -------------------------------------------- -->
-<details><summary>
-06. What is a class?</br></br>
+a. What class methods would be invoked by each of the following statements ? Golfer nancy; // #1
 
-</summary>
+```cpp
+Golfer lulu(“Little Lulu”);                                                               // #2
+Golfer roy(“Roy Hobbs”, 12);                                                              // #3
+Golfer *par = new Golfer;                                                                 // #4
+Golfer next = lulu;                                                                       // #5
+Golfer hazzard = “Weed Thwacker”;                                                         // #6
+*par = nancy;                                                                             // #7
+nancy = “Nancy Putter”;                                                                   // #8
+```
 
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-07. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-08. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-01. What is a class?</br></br>
+b. Clearly, the class requires several more methods to make it useful.What additional
+    method does it require to protect against data corruption?
 
 </summary>
 
@@ -2600,7 +2664,7 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-01. What is a class?</br></br>
+01. What does a derived class inherit from a base class?</br></br>
 
 </summary>
 
@@ -2609,7 +2673,7 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-02. What is a class?</br></br>
+02. What doesn’t a derived class inherit from a base class?</br></br>
 
 </summary>
 
@@ -2618,7 +2682,9 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-03. What is a class?</br></br>
+03. Suppose the return type for the <code>baseDMA::operator=()</code> function were defined as
+<code>void</code> instead of <code>baseDMA &</code>. What effect, if any, would that have? What if the return
+type were <code>baseDMA</code> instead of <code>baseDMA &</code>?</br></br>
 
 </summary>
 
@@ -2627,7 +2693,8 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-04. What is a class?</br></br>
+04. In what order are class constructors and class destructors called when a derivedclass
+object is created and deleted?</br></br>
 
 </summary>
 
@@ -2636,7 +2703,8 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-05. What is a class?</br></br>
+05. If a derived class doesn’t add any data members to the base class, does the derived
+class require constructors?</br></br>
 
 </summary>
 
@@ -2644,16 +2712,8 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-06. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-07. What is a class?</br></br>
+06. Suppose a base class and a derived class both define a method with the same name
+and a derived-class object invokes the method.What method is called?</br></br>
 
 </summary>
 
@@ -2662,7 +2722,7 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-08. What is a class?</br></br>
+07. When should a derived class define an assignment operator?</br></br>
 
 </summary>
 
@@ -2671,7 +2731,98 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-01. What is a class?</br></br>
+08. Can you assign the address of an object of a derived class to a pointer to the base
+class? Can you assign the address of an object of a base class to a pointer to the
+derived class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+09. Can you assign an object of a derived class to an object of the base class? Can you
+assign an object of a base class to an object of the derived class?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+10. Suppose you define a function that takes a reference to a base-class object as an
+argument.Why can this function also use a derived-class object as an argument?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+11. Suppose you define a function that takes a base-class object as an argument (that is,
+the function passes a base-class object by value).Why can this function also use a
+derived-class object as an argument?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+12. Why is it usually better to pass objects by reference than by value?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+13. Suppose <code>Corporation</code> is a base class and <code>PublicCorporation</code> is a derived class. Also
+suppose that each class defines a <code>head()</code> member function, that <code>ph</code> is a pointer to
+the <code>Corporation</code> type, and that <code>ph</code> is assigned the address of a <code>PublicCorporation</code>
+object. How is <code>ph->head()</code> interpreted if the base class defines <code>head()</code> as a
+
+a. Regular nonvirtual method</br>
+b. Virtual method</br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+14. What’s wrong, if anything, with the following code?
+
+```cpp
+class Kitchen
+{
+private:
+    double kit_sq_ft;
+
+public:
+    Kitchen() { kit_sq_ft = 0.0; }
+    virtual double area() const { return kit_sq_ft * kit_sq_ft; }
+};
+class House : public Kitchen
+{
+private:
+    double all_sq_ft;
+
+public:
+    House() { all_sq_ft += kit_sq_ft; }
+    double area(const char *s) const
+    {
+        cout << s;
+        return all_sq_ft;
+    }
+};
+```
 
 </summary>
 
@@ -2683,7 +2834,10 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-01. What is a class?</br></br>
+01. For each of the following sets of classes, indicate whether public or private derivation
+is more appropriate for Column B:
+
+![table](assets/rev_14_1.png)
 
 </summary>
 
@@ -2692,7 +2846,33 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-02. What is a class?</br></br>
+02. Suppose you have the following definitions:
+
+```cpp
+class Frabjous
+{
+private:
+    char fab[20];
+
+public:
+    Frabjous(const char *s = "C++") : fab(s) {}
+    virtual void tell() { cout << fab; }
+};
+class Gloam
+{
+private:
+    int glip;
+    Frabjous fb;
+
+public:
+    Gloam(int g = 0, const char *s = "C++");
+    Gloam(int g, const Frabjous &f);
+    void tell();
+};
+```
+
+Given that the <code>Gloam</code> version of <code>tell()</code> should display the values of <code>glip</code> and <code>fb</code>,
+provide definitions for the three <code>Gloam</code> methods.
 
 </summary>
 
@@ -2701,7 +2881,32 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-03. What is a class?</br></br>
+03. Suppose you have the following definitions:
+
+```cpp
+class Frabjous
+{
+private:
+    char fab[20];
+
+public:
+    Frabjous(const char *s = "C++") : fab(s) {}
+    virtual void tell() { cout << fab; }
+};
+class Gloam : private Frabjous
+{
+private:
+    int glip;
+
+public:
+    Gloam(int g = 0, const char *s = "C++");
+    Gloam(int g, const Frabjous &f);
+    void tell();
+};
+```
+
+Given that the <code>Gloam</code> version of <code>tell()</code> should display the values of <code>glip</code> and <code>fab</code>,
+provide definitions for the three <code>Gloam</code> methods.
 
 </summary>
 
@@ -2710,7 +2915,15 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-04. What is a class?</br></br>
+04. Suppose you have the following definition, based on the <code>Stack</code> template of Listing
+14.13 and the <code>Worker</code> class of Listing 14.10:
+
+```cpp
+Stack<Worker *> sw;
+```
+
+Write out the class declaration that will be generated. Just do the class declaration,
+not the non-inline class methods.
 
 </summary>
 
@@ -2719,7 +2932,13 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-05. What is a class?</br></br>
+05. Use the template definitions in this chapter to define the following:
+
+- An array of <code>string</code> objects
+- A stack of arrays of <code>double</code>
+- An array of stacks of pointers to <code>Worker</code> objects
+
+How many template class definitions are produced in Listing 14.18?
 
 </summary>
 
@@ -2727,46 +2946,62 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-06. What is a class?</br></br>
+06. Describe the differences between virtual and nonvirtual base classes.</br></br>
 
 </summary>
 
 </details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-07. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-08. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-01. What is a class?</br></br>
-
-</summary>
-
-</details>
-
 <!-- -------------------------------------------- -->
 
 ## Chapter 15
 
 <!-- -------------------------------------------- -->
 <details><summary>
-01. What is a class?</br></br>
+01. What’s wrong with the following attempts at establishing friends?
+
+a.
+
+```cpp
+class snap
+{
+    friend clasp;
+    ...
+};
+class clasp
+{
+    ...
+};
+```
+
+b.
+
+```cpp
+class cuff
+{
+public:
+    void snip(muff &){...}...
+};
+class muff
+{
+    friend void cuff::snip(muff &);
+    ...
+};
+```
+
+c.
+
+```cpp
+class muff
+{
+    friend void cuff::snip(muff &);
+    ...
+};
+class cuff
+{
+public:
+    void snip(muff &){...}...
+};
+```
 
 </summary>
 
@@ -2775,7 +3010,9 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-02. What is a class?</br></br>
+02. You’ve seen how to create mutual class friends. Can you create a more restricted
+form of friendship in which only some members of Class B are friends to Class A
+and some members of A are friends to B? Explain.</br></br>
 
 </summary>
 
@@ -2784,7 +3021,23 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-03. What is a class?</br></br>
+03. What problems might the following nested class declaration have?
+
+```cpp
+class Ribs
+{
+private:
+    class Sauce
+    {
+        int soy;
+        int sugar;
+
+    public:
+        Sauce(int s1, int s2) : soy(s1), sugar(s2) {}
+    };
+    ...
+};
+```
 
 </summary>
 
@@ -2793,7 +3046,7 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-04. What is a class?</br></br>
+04. How does <code>throw</code> differ from <code>return</code>?</br></br>
 
 </summary>
 
@@ -2802,7 +3055,8 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-05. What is a class?</br></br>
+05. Suppose you have a hierarchy of exception classes that are derived from a base
+exception class. In what order should you place <code>catch</code> blocks?</br></br>
 
 </summary>
 
@@ -2810,25 +3064,19 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-06. What is a class?</br></br>
+06. Consider the <code>Grand</code>, <code>Superb</code>, and <code>Magnificent</code> classes defined in this chapter. Suppose
+<code>pg</code> is a type <code>Grand * pointer</code> that is assigned the address of an object of one of
+these three classes and that <code>ps</code> is a type <code>Superb *</code> pointer.What is the difference in
+how the following two code samples behave?
 
-</summary>
+```cpp
+if (ps = dynamic_cast<Superb *>(pg))
+    ps->say(); // sample #1
 
-</details>
+if (typeid(*pg) == typeid(Superb))
+    (Superb *) pg)->say(); // sample #2
 
-<!-- -------------------------------------------- -->
-
-<details><summary>
-07. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-08. What is a class?</br></br>
+```
 
 </summary>
 
@@ -2837,7 +3085,7 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-01. What is a class?</br></br>
+07. How is the <code>static_cast</code> operator different from the <code>dynamic_cast</code> operator?</br></br>
 
 </summary>
 
@@ -2849,7 +3097,37 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-01. What is a class?</br></br>
+01. Consider the following class declaration:
+
+```cpp
+class RQ1
+{
+private:
+    char *st; // points to C-style string
+public:
+    RQ1()
+    {
+        st = new char[1];
+        strcpy(st, "");
+    }
+    RQ1(const char *s)
+    {
+        st = new char[strlen(s) + 1];
+        strcpy(st, s);
+    }
+    RQ1(const RQ1 &rq)
+    {
+        st = new char[strlen(rq.st) + 1];
+        strcpy(st, rq.st);
+    }
+    ~RQ1(){delete[] st};
+    RQ &operator=(const RQ &rq);
+    // more stuff
+};
+```
+
+Convert this to a declaration that uses a <code>string</code> object instead.What methods no
+longer need explicit definitions?
 
 </summary>
 
@@ -2858,7 +3136,8 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-02. What is a class?</br></br>
+02. Name at least two advantages <code>string</code> objects have over C-style strings in terms
+of ease-of-use.</br></br>
 
 </summary>
 
@@ -2867,7 +3146,8 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-03. What is a class?</br></br>
+03. Write a function that takes a reference to a <code>string</code> object as an argument and that
+converts the <code>string</code> object to all uppercase.</br></br>
 
 </summary>
 
@@ -2876,7 +3156,16 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-04. What is a class?</br></br>
+04. Which of the following are not examples of correct usage (conceptually or syntactically)
+of <code>auto_ptr</code>? (Assume that the needed header files have been included.)
+
+```cpp
+auto_ptr<int> pia(new int[20]);
+auto_ptr<string>(new string);
+int rigue = 7;
+auto_ptr<int> pr(&rigue);
+auto_ptr dbl(new double);
+```
 
 </summary>
 
@@ -2885,7 +3174,8 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-05. What is a class?</br></br>
+05. If you could make the mechanical equivalent of a stack that held golf clubs instead
+of numbers, why would it (conceptually) be a bad golf bag?</br></br>
 
 </summary>
 
@@ -2893,16 +3183,8 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-06. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-07. What is a class?</br></br>
+06. Why would a <code>set</code> container be a poor choice for storing a hole-by-hole record of
+your golf scores?</br></br>
 
 </summary>
 
@@ -2911,7 +3193,8 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-08. What is a class?</br></br>
+07. Because a pointer is an iterator, why didn’t the STL designers simply use pointers
+instead of iterators?</br></br>
 
 </summary>
 
@@ -2920,7 +3203,43 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-01. What is a class?</br></br>
+08. Why didn’t the STL designers simply define a base iterator class, use inheritance to
+derive classes for the other iterator types, and express the algorithms in terms of
+those iterator classes?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+09. Give at least three examples of convenience advantages that a <code>vector</code> object has
+over an ordinary array.</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+10. If Listing 16.9 were implemented with <code>list</code> instead of vector, what parts of the
+program would become invalid? Could the invalid part be fixed easily? If so, how?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+11. Consider the <code>TooBig</code> functor in Listing 16.15.What does the following code do,
+and what values get assigned to bo?
+
+```cpp
+bool bo = TooBig<int>(10)(15);
+```
 
 </summary>
 
@@ -2932,7 +3251,7 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-01. What is a class?</br></br>
+01. What role does the <code>iostream</code> file play in C++ I/O?</br></br>
 
 </summary>
 
@@ -2941,7 +3260,7 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-02. What is a class?</br></br>
+02. Why does typing a number such as 121 as input require a program to make a conversion?</br></br>
 
 </summary>
 
@@ -2950,7 +3269,7 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-03. What is a class?</br></br>
+03. What’s the difference between the standard output and the standard error?</br></br>
 
 </summary>
 
@@ -2959,7 +3278,8 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-04. What is a class?</br></br>
+04. Why is cout able to display various C++ types without being provided explicit
+instructions for each type?</br></br>
 
 </summary>
 
@@ -2968,7 +3288,7 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-05. What is a class?</br></br>
+05. What feature of the output method definitions allows you to concatenate output?</br></br>
 
 </summary>
 
@@ -2976,16 +3296,9 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-06. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-07. What is a class?</br></br>
+06. Write a program that requests an integer and then displays it in decimal, octal, and
+hexadecimal forms. Display each form on the same line, in fields that are 15 characters
+wide, and use the C++ number base prefixes.</br></br>
 
 </summary>
 
@@ -2994,7 +3307,18 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-08. What is a class?</br></br>
+07. Write a program that requests the following information and that formats it as
+shown:
+
+```sh
+Enter your name: Billy Gruff
+Enter your hourly wages: 12
+Enter number of hours worked: 7.5
+First format:
+Billy Gruff: $ 12.00: 7.5
+Second format:
+Billy Gruff : $12.00 :7.5
+```
 
 </summary>
 
@@ -3003,7 +3327,58 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-01. What is a class?</br></br>
+08. Consider the following program:
+
+```cpp
+// rq17-8.cpp
+#include <iostream>
+int main()
+{
+    using namespace std;
+    char ch;
+    int ct1 = 0;
+    cin >> ch;
+    while (ch != 'q')
+    {
+        ct1++;
+        cin >> ch;
+    }
+    int ct2 = 0;
+    cin.get(ch);
+    while (ch != 'q')
+    {
+        ct2++;
+        cin.get(ch);
+    }
+    cout << "ct1 = " << ct1 << "; ct2 = " << ct2 << "\n";
+    return 0;
+}
+```
+
+What does it print, given the following input:
+
+```sh
+I see a q<Enter>
+I see a q<Enter>
+```
+
+Here <code><Enter></code> signifies pressing the Enter key.
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+09. Both of the following statements read and discard characters up to and including the
+end of a line. In what way does the behavior of one differ from that of the other?
+
+```cpp
+while (cin.get() != '\n')
+    continue;
+cin.ignore(80, '\n');
+```
 
 </summary>
 
@@ -3015,7 +3390,30 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-01. What is a class?</br></br>
+01. Rewrite the following code using braced initialization list syntax; the rewrite
+should dispense with using the array ar:
+
+```cpp
+class Z200
+{
+private:
+    int j;
+    char ch;
+    double z;
+
+public:
+    Z200(int jv, char chv, zv) : j(jv), ch(chv), z(zv){}...
+};
+
+double x = 8.8;
+std::string s = "What a bracing effect!";
+int k(99);
+Z200 zip(200, 'Z', 0.675);
+std::vector<int> ai(5);
+int ar[5] = {3, 9, 4, 7, 1};
+for (auto pt = ai.begin(), int i = 0; pt != ai.end(); ++pt, ++i)
+    *pt = ai[i];
+```
 
 </summary>
 
@@ -3024,7 +3422,31 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-02. What is a class?</br></br>
+02. For the following short program, which function calls are errors and why? For the
+valid calls, what does the reference argument refer to?
+
+```cpp
+#include <iostream>
+using namespace std;
+double up(double x) { return 2.0 * x; }
+void r1(const double &rx) { cout << rx << endl; }
+void r2(double &rx) { cout << rx << endl; }
+void r3(double &&rx) { cout << rx << endl; }
+int main()
+{
+    double w = 10.0;
+    r1(w);
+    r1(w + 1);
+    r1(up(w));
+    r2(w);
+    r2(w + 1);
+    r2(up(w));
+    r3(w);
+    r3(w + 1);
+    r3(up(w));
+    return 0;
+}
+```
 
 </summary>
 
@@ -3033,7 +3455,67 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-03. What is a class?</br></br>
+03.
+
+a. What does the following short program display and why?
+
+```cpp
+#include <iostream>
+using namespace std;
+
+double up(double x) { return 2.0 * x; }
+void r1(const double &rx) { cout << “const double & rx\n”; }
+void r1(double &rx) { cout << “double & rx\n”; }
+
+int main()
+{
+    double w = 10.0;
+    r1(w);
+    r1(w + 1);
+    r1(up(w));
+    return 0;
+}
+```
+
+b. What does the following short program display and why?
+
+```cpp
+#include <iostream>
+using namespace std;
+
+double up(double x) { return 2.0 * x; }
+void r1(double &rx) { cout << "double & rx\n"; }
+void r1(double &&rx) { cout << "double && rx\n"; }
+
+int main()
+{
+    double w = 10.0;
+    r1(w);
+    r1(w + 1);
+    r1(up(w));
+    return 0;
+}
+```
+
+c. What does the following short program display and why?
+
+```cpp
+#include <iostream>
+using namespace std;
+
+double up(double x) { return 2.0 * x; }
+void r1(const double &rx) { cout << "const double & rx\n"; }
+void r1(double &&rx) { cout << "double && rx\n"; }
+
+int main()
+{
+    double w = 10.0;
+    r1(w);
+    r1(w + 1);
+    r1(up(w));
+    return 0;
+}
+```
 
 </summary>
 
@@ -3042,7 +3524,8 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-04. What is a class?</br></br>
+04. Which member functions are special member functions, and what makes them
+special?</br></br>
 
 </summary>
 
@@ -3051,7 +3534,20 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-05. What is a class?</br></br>
+05. Suppose the Fizzle class has only the data members shown:
+
+```cpp
+class Fizzle
+{
+private:
+    double bubbles[4000];
+    ...
+};
+```
+
+Why would this class not be a good candidate for a user-defined move constructor?
+What change in approach to storing the 4000 double values would make the class a
+good candidate for a move function?
 
 </summary>
 
@@ -3059,7 +3555,22 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-06. What is a class?</br></br>
+06. Revise the following short program so that it uses a lambda expression instead of
+<code>f1()</code>. Don’t change <code>show2()</code>.
+
+```cpp
+#include <iostream>
+
+template <typename T>
+    void show2(double x, T &fp) { std::cout << x << " -> " << fp(x) << '\n'; }
+double f1(double x) { return 1.8 * x + 32; }
+
+int main()
+{
+    show2(18.0, f1);
+    return 0;
+}
+```
 
 </summary>
 
@@ -3068,25 +3579,45 @@ define this conversion function.
 <!-- -------------------------------------------- -->
 
 <details><summary>
-07. What is a class?</br></br>
+07. Revise the following short and ugly program so that it uses a lambda expression
+instead of the <code>Adder</code> functor. Don’t change <code>sum()</code>.
 
-</summary>
+```cpp
+#include <iostream>
+#include <array>
 
-</details>
+const int Size = 5;
+template <typename T>
+void sum(std::array<double, Size> a, T &fp);
 
-<!-- -------------------------------------------- -->
+class Adder
+{
+    double tot;
 
-<details><summary>
-08. What is a class?</br></br>
-
-</summary>
-
-</details>
-
-<!-- -------------------------------------------- -->
-
-<details><summary>
-01. What is a class?</br></br>
+public:
+    Adder(double q = 0) : tot(q) {}
+    void operator()(double w) { tot += w; }
+    double tot_v() const { return tot; };
+};
+int main()
+{
+    double total = 0.0;
+    Adder ad(total);
+    std::array<double, Size> temp_c = {32.1, 34.3, 37.8, 35.2, 34.7};
+    sum(temp_c, ad);
+    total = ad.tot_v();
+    std::cout << "total: " << ad.tot_v() << '\n';
+    return 0;
+}
+template <typename T>
+void sum(std::array<double, Size> a, T &fp)
+{
+    for (auto pt = a.begin(); pt != a.end(); ++pt)
+    {
+        fp(*pt);
+    }
+}
+```
 
 </summary>
 
