@@ -694,10 +694,10 @@ allocated array of structures. Each structure should have two members:
 a character array (or else a `string` object) to store the name and a `double`
 member to hold the amount of the contribution.After reading all the data,
 the program should display the names and amounts donated for all donors
-who contributed $10,000 or more.This list should be headed by the label
+who contributed $10,000 or more. This list should be headed by the label
 Grand Patrons.After that, the program should list the remaining donors.
 That list should be headed Patrons. If there are no donors in one of the categories,
-the program should print the word “none.”Aside from displaying two categories,
+the program should print the word “none”. Aside from displaying two categories,
 the program need do no sorting.
 
 ??? note "Code"
@@ -738,7 +738,7 @@ end of the file, and reports the number of characters in the file.
     <!--/codeinclude-->
 
 9 -
-Do Programming Exercise 6 but modify it to get information from a file.The first
+Do Programming Exercise 6 but modify it to get information from a file. The first
 item in the file should be the number of contributors, and the rest of the file
 should consist of pairs of lines, with the first line of each pair being a
 contributor’s name and the second line being a contribution.
@@ -1564,7 +1564,7 @@ this function to each item in the list.You can use the <code>Stack</code> class 
 ## Chapter 11
 
 1 -
-Modify Listing 11.15 so that it writes the successive locations of the random walker
+Modify Listing 11.15 (randwalk.cpp) so that it writes the successive locations of the random walker
 into a file. Label each position with the step number.Also have the program write
 the initial conditions (target distance and step size) and the summarized results to
 the file.The file contents might look like this:
@@ -1584,14 +1584,19 @@ or
 Average outward distance per step = 3.97081
 ```
 
-??? note "Code (compile with ch11_1vect.h)"
+??? note "Program"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_1.cpp)
     <!--/codeinclude-->
 
-??? note "vect.h"
+??? note "Prototypes"
     <!--codeinclude-->
-    [](../exercises/chapter11/ch11_1_vect.h.cpp)
+    [](../exercises/chapter11/ch11_1_vect.h)
+    <!--/codeinclude-->
+
+??? note "Methods"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_1_vect.cpp)
     <!--/codeinclude-->
 
 2 -
