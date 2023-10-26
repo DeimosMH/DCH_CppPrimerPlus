@@ -1584,9 +1584,14 @@ or
 Average outward distance per step = 3.97081
 ```
 
-??? note " "
+??? note "Code (compile with ch11_1vect.h)"
     <!--codeinclude-->
-    [](../exercises/chapter11/)
+    [](../exercises/chapter11/ch11_1.cpp)
+    <!--/codeinclude-->
+
+??? note "vect.h"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_1_vect.h.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -1595,13 +1600,23 @@ so that the magnitude and angle are no longer stored as data components. Instead
 they should be calculated on demand when the <code>magval()</code> and <code>angval()</code> methods
 are called.You should leave the public interface unchanged (the same public methods
 with the same arguments) but alter the private section, including some of the
-private method and the method implementations.Test the modified version with
+private method and the method implementations. Test the modified version with
 Listing 11.15, which should be left unchanged because the public interface of the
 <code>Vector</code> class is unchanged.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    [](../exercises/chapter11/)
+    [](../exercises/chapter11/ch11_2.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - prototypes [Test with ch11_2_base.cpp]"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_2_walk.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_2_walk.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -1609,18 +1624,28 @@ Modify Listing 11.15 so that instead of reporting the results of a single trial 
 particular target/step combination, it reports the highest, lowest, and average number
 of steps for N trials, where N is an integer entered by the user.
 
-??? note " "
+??? note "Code"
     <!--codeinclude-->
-    [](../exercises/chapter11/)
+    [](../exercises/chapter11/ch11_3.cpp)
     <!--/codeinclude-->
 
 4 -
 Rewrite the final <code>Time</code> class example (Listings 11.10, 11.11, and 11.12) so that all
 the overloaded operators are implemented using friend functions.
 
-??? note " "
+??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/chapter11/)
+    [](../exercises/chapter11/ch11_4_time.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_4_time.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -1631,7 +1656,7 @@ or floating-point pounds form. Overload the <code><<</code> operator to replace 
 multiplication operators so that one can add, subtract, and multiply <code>Stonewt</code> values.
 Test your class with a short program that uses all the class methods and friends.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
     [](../exercises/chapter11/)
     <!--/codeinclude-->
@@ -1646,9 +1671,14 @@ report the smallest element, the largest element, and how many elements are grea
 or equal to 11 stone. (The simplest approach is to create a <code>Stonewt</code> object initialized
 to 11 stone and to compare the other objects with that object.)
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    [](../exercises/chapter11/)
+    [](../exercises/chapter11/ch11_6_stn.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_6_stn.h)
     <!--/codeinclude-->
 
 7 -
