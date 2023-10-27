@@ -1,6 +1,5 @@
 // vect.cpp -- methods for the Vector class
-#include <cmath>
-#include "ch11_1_vect.h" // includes <iostream>
+#include "ch11_2_vect.h" // includes <iostream>
 
 using std::atan;
 using std::atan2;
@@ -17,35 +16,37 @@ namespace VECTOR
     // should be about 57.2957795130823
     // private methods
     // calculates magnitude from x and y
-    void Vector::set_mag()
-    {
-        mag = sqrt(x * x + y * y);
-    }
+    // void Vector::set_mag()
+    // {
+    //     mag = sqrt(x * x + y * y);
+    // }
 
-    void Vector::set_ang()
-    {
-        if (x == 0.0 && y == 0.0)
-            ang = 0.0;
-        else
-            ang = atan2(y, x);
-    }
+    // void Vector::set_ang()
+    // {
+    //     if (x == 0.0 && y == 0.0)
+    //         ang = 0.0;
+    //     else
+    //         ang = atan2(y, x);
+    // }
+
+     
 
     // set x from polar coordinate
     void Vector::set_x()
     {
-        x = mag * cos(ang);
+        x = sqrt(x * x + y * y) * cos((x == 0.0 && y == 0.0) ? (0.0) : atan2(y, x));
     }
 
     // set y from polar coordinate
     void Vector::set_y()
     {
-        y = mag * sin(ang);
+        y = sqrt(x * x + y * y) * sin((x == 0.0 && y == 0.0) ? (0.0) : atan2(y, x));
     }
 
     // public methods
     Vector::Vector() // default constructor
     {
-        x = y = mag = ang = 0.0;
+        x = y = 0.0;
         mode = RECT;
     }
 
@@ -58,13 +59,17 @@ namespace VECTOR
         {
             x = n1;
             y = n2;
-            set_mag();
-            set_ang();
+            // set_mag();
+            // set_ang();
         }
         else if (form == POL)
         {
-            mag = n1;
-            ang = n2 / Rad_to_deg;
+            // sqrt(x * x + y * y) = n1;
+            // (x == 0.0 && y == 0.0) ? (0.0) : atan2(y, x) = n2 / Rad_to_deg;
+            
+            x = n1 * cos(n2 / Rad_to_deg);
+            y = n1 * sin(n2 / Rad_to_deg);
+            
             set_x();
             set_y();
         }
@@ -72,7 +77,7 @@ namespace VECTOR
         {
             cout << "Incorrect 3rd argument to Vector() -- ";
             cout << "vector set to 0\n";
-            x = y = mag = ang = 0.0;
+            x = y = 0.0;
             mode = RECT;
         }
     }
@@ -87,13 +92,30 @@ namespace VECTOR
         {
             x = n1;
             y = n2;
-            set_mag();
-            set_ang();
+            // set_mag();
+            // set_ang();
         }
         else if (form == POL)
         {
-            mag = n1;
-            ang = n2 / Rad_to_deg;
+            // sqrt(x * x + y * y) = n1;
+            // (x == 0.0 && y == 0.0) ? (0.0) : atan2(y, x) = n2 / Rad_to_deg;
+            
+            //
+            //Both options are essentially doing the same thing, which is converting
+            //the angle from degrees to radians and then using it in the cosine function. The difference is just in the way they are written.
+            
+            // 1.
+            // double theta = n2 * (3.14159265 / Rad_to_deg);
+            // x = n1 * cos(theta);
+            // y = n1 * sin(theta);
+
+            // 2. 
+            // x = n1 * cos(n2 / Rad_to_deg);
+            // y = n1 * sin(n2 / Rad_to_deg);
+
+            x = n1 * cos(n2 / Rad_to_deg);
+            y = n1 * sin(n2 / Rad_to_deg);
+
             set_x();
             set_y();
         }
@@ -101,7 +123,7 @@ namespace VECTOR
         {
             cout << "Incorrect 3rd argument to Vector() -- ";
             cout << "vector set to 0\n";
-            x = y = mag = ang = 0.0;
+            x = y = 0.0;
             mode = RECT;
         }
     }
@@ -160,8 +182,8 @@ namespace VECTOR
             os << "(x,y) = (" << v.x << ", " << v.y << ")";
         else if (v.mode == Vector::POL)
         {
-            os << "(m,a) = (" << v.mag << ", "
-               << v.ang * Rad_to_deg << ")";
+            os << "(m,a) = (" << sqrt(v.x * v.x + v.y * v.y) << ", "
+               << ((v.x == 0.0 && v.y == 0.0) ? (0.0) : atan2(v.y, v.x)) * Rad_to_deg << ")";
         }
         else
             os << "Vector object mode is invalid";
