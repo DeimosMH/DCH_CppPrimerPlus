@@ -4870,7 +4870,344 @@ Practical example - class for calculating time with `+` operator:
 | `\|\|` | `++` | `--` | `,` | `->*` | `->` |
 | `()` | `[]` | `new` | `delete` | `new`[] | `delete[]` |
 
-### Friends (578)
+### Friends
+
+Friends come in three varieties:
+
+- Friend functions
+- Friend classes
+- Friend member functions
+
+Overloading a binary operator (operator with two arguments) for a `class` generates
+a need for `friends`. Multiplying a `Time` object by a real number provides just such a situation.
+
+In `Time` class example, overloaded multiplication operator is different
+from the other two overloaded operators, it combines two different types -
+`addition` and `subtraction` operators each combine two `Time` values, but the `multiplication`
+operator combines a `Time` value with a `double` value. This restricts how the operator
+can be used. Remember, the left operand is the invoking object.That is,
+
+```cpp
+A = B * 2.75;
+
+//Translates to member function call:
+A = B.operator*(2.75);
+```
+
+```cpp
+A = 2.75 * B; // cannot correspond to a member function
+
+// nonmember funtion call from above
+A = operator*(2.75, B);
+
+// Would be handled by function with prototype
+Time operator*(double m, const Time & t);
+```
+
+#### Create Friend
+
+```cpp
+// Prototype in class declaration
+friend Time operator*(double m, const Time & t); // goes in class declaration
+
+// definition
+Time operator*(double m, const Time & t) // friend not used in definition
+{
+    Time result;
+    long totalminutes = t.hours * mult * 60 +t. minutes * mult;
+    result.hours = totalminutes / 60;
+    result.minutes = totalminutes % 60;
+    return result;
+}
+
+//...
+// It will make statement like below work
+A = 2.75 * B; // A = operator*(2.75, B);
+```
+
+??? note
+    At first glance, it might seem that friends violate the OOP principle of data hiding because
+    the friend mechanism allows nonmember functions to access private data. However, that’s
+    an overly narrow view. Instead, you should think of friend functions as part of an extended
+    interface for a class. For example, from a conceptual point of view, multiplying a `double` by a
+    `Time` value is pretty much the same as multiplying a `Time` value by a double. That the first
+    requires a friend function whereas the second can be done with a member function is the
+    result of C++ syntax, not of a deep conceptual difference. By using both a friend function
+    and a class method, you can express either operation with the same user interface. Also
+    keep in mind that only a class declaration can decide which functions are friends, so the
+    class declaration still controls which functions access private data. In short, class methods
+    and friends are simply two different mechanisms for expressing a class interface.
+
+You can write this particular friend function as a non-friend by altering the
+definition so that it switches which value comes first in the multiplication
+
+```cpp
+Time operator*(double m, const Time & t)
+{
+    return t * m; // use t.operator*(m)
+}
+```
+
+#### Overload `<<` Operator
+
+```cpp
+cout << trip; // Time member comes first (left to right) like with * overload
+```
+
+Definition
+
+```cpp
+void operator<<(ostream & os, const Time & t)
+{
+    os << t.hours << " hours, " << t.minutes << " minutes";
+}
+```
+
+The function access individual members of the `Time` object but only uses the `ostream` object as a whole.
+Because `operator<<()` accesses `private Time` object members directly, it has to be a friend to the `Time` class</br>
+
+But the implementation doesn’t allow you to combine the redefined `<<` operator with
+the ones cout normally uses:
+
+```cpp
+cout << "Trip time: " << trip << " (Tuesday)\n"; // can't do
+// --- 
+cout << x << y;     // The compiler reads such code
+(cout << x) << y;   // As if it were this
+// --- 
+```
+
+Thus expression `cout << x` satisfies requirement because `cout` is an `ostream` object.
+But the output statement also requires that the whole expression `(cout << x)` be a type
+`ostream` object because that expression is to the left of `<< y`.
+
+```cpp
+ostream & operator<<(ostream & os, const Time & t)
+{
+    os << t.hours << " hours, " << t.minutes << " minutes";
+    return os;
+}
+```
+
+this version of `operator<<()` also can be used for file output
+
+```cpp
+ofstream fout;
+fout.open("savetime.txt");
+Time trip(12, 40);
+// --- 
+fout << trip;           // this statement 
+operator<<(fout, trip); // becomes this 
+// ---
+```
+
+Program mytime changed for class definition as modified to include the two friend functions
+`operator*()` and `operator<<()`.
+
+??? example "mytime2.h - Prototypes"
+    <!--codeinclude-->
+    [](../programs/mytime2.h)
+    <!--/codeinclude-->
+
+??? example "mytime2.cpp - Methods"
+    <!--codeinclude-->
+    [](../programs/mytime2.cpp)
+    <!--/codeinclude-->
+
+??? example "usetime2.cpp - Program"
+    <!--codeinclude-->
+    [](../programs/usetime2.cpp)
+    <!--/codeinclude-->
+
+A nonmember version of an overloaded operator function requires as many formal parameters
+as the operator has operands. A member version of the same operator requires one
+fewer parameter because one operand is passed implicitly as the invoking object.
+
+```cpp
+Time operator+(const Time & t) const; // member version
+// nonmember version
+friend Time operator+(const Time & t1, const Time & t2);
+```
+
+### Vector class - abstract data type, overloading and friend functions
+
+<details><summary>
+Vectors - phisics and math basics
+</summary>
+
+Say you’re a worker bee and have discovered a marvelous nectar cache. You rush back to
+the hive and announce that you’ve found nectar 120 yards away. “Not enough information,”
+buzz the other bees. “You have to tell us the direction, too!” You answer, “It’s 30 degrees
+north of the sun direction.” Knowing both the distance (magnitude) and the direction, the
+other bees rush to the sweet site. Bees know vectors.</br></br>
+
+Many quantities involve both a magnitude and a direction. The effect of a push, for example,
+depends on both its strength and direction. Moving an object on a computer screen involves
+a distance and a direction. You can describe such things by using vectors. For example, you
+can describe moving (displacing) an object onscreen with a vector, which you can visualize
+as an arrow drawn from the starting position to the final position. The length of the vector is
+its magnitude, and that describes how far the point has been displaced. The orientation of
+the arrow describes the direction (see figure below). A vector representing such a change in
+position is called a displacement vector.
+
+<img src="./assets/_ch11VectorDisplacement.png" alt="Vector Displacement"
+style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
+<br>
+
+Now say you’re Lhanappa, the great mammoth hunter. Scouts report a mammoth herd 14.1
+kilometers to the northwest. But because of a southeast wind, you don’t want to approach
+from the southeast. So you go 10 kilometers west and then 10 kilometers north, approaching
+the herd from the south. You know these two displacement vectors bring you to the
+same location as the single 14.1-kilometer vector pointing northwest. Lhanappa, the great
+mammoth hunter, also knows how to add vectors.
+
+Adding two vectors has a simple geometric interpretation. First, draw one vector. Then draw
+the second vector, starting from the arrow end of the first vector. Finally, draw a vector from
+the starting point of the first vector to the endpoint of the second vector. This third vector
+represents the sum of the first two (see figure below). Note that the length of the sum can
+be less than the sum of the individual lengths.
+
+<img src="./assets/_ch11VectorAdding.png" alt="Vector Adding"
+style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
+<br>
+
+</details><br>
+
+- You can describe a vector by its `magnitude (length)` and `direction (an angle)`.
+- You can represent a vector by its `x` and `y` components.
+
+<img src="./assets/_ch11VectorDisplay.png" alt="Vector Display"
+style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
+<br>
+
+`Vector Class` on a `Random Walk Algorithm` example
+
+??? example "vect.h - Prototypes"
+    <!--codeinclude-->
+    [](../programs/vect.h)
+    <!--/codeinclude-->
+
+??? example "vect.cpp - Methods"
+    <!--codeinclude-->
+    [](../programs/vect.cpp)
+    <!--/codeinclude-->
+
+??? example "randwalk.cpp - Program"
+    <!--codeinclude-->
+    [](../programs/randwalk.cpp)
+    <!--/codeinclude-->
+
+### Automatic Conversions and Type Casts for Classes
+
+Conversions for its built-in types - the following statements all generate numeric type conversions
+
+```cpp
+long count = 8; // int value 8 converted to type long
+double time = 11; // int value 11 converted to type double
+int side = 3.33; // double value 3.33 converted to type int 3
+```
+
+The C++ language does not automatically convert types that are not compatible (left side is a pointer type, whereas the right side is a number)
+
+```cpp
+int * p = 10; // type clash
+```
+
+When automatic conversions fail, you may use a type cast:
+
+```cpp
+int * p = (int *) 10; // ok, p and (int *) 10 both pointers
+```
+
+Example for classes
+
+```cpp
+Stonewt myCat; // create a Stonewt object
+myCat = 19.6; // not valid if Stonewt(double) is declared as explicit
+mycat = Stonewt(19.6); // ok, an explicit conversion
+mycat = (Stonewt) 19.6; // ok, old form for explicit typecast
+```
+
+Conversions for Stone classes program examples</br>
+(Conversion of number to Stone object)
+
+??? example "stonewt.h - Prototypes"
+    <!--codeinclude-->
+    [](../programs/stonewt.h)
+    <!--/codeinclude-->
+
+??? example "stonewt.cpp - Methods"
+    <!--codeinclude-->
+    [](../programs/stonewt.cpp)
+    <!--/codeinclude-->
+
+??? example "stone.cpp - Program"
+    <!--codeinclude-->
+    [](../programs/stone.cpp)
+    <!--/codeinclude-->
+
+### Conversion Functions
+
+(Conversion of Stone object to number)
+
+??? example "stonewt1.h - Prototypes"
+    <!--codeinclude-->
+    [](../programs/stonewt1.h)
+    <!--/codeinclude-->
+
+??? example "stonewt1.cpp - Methods"
+    <!--codeinclude-->
+    [](../programs/stonewt1.cpp)
+    <!--/codeinclude-->
+
+??? example "stone1.cpp - Program"
+    <!--codeinclude-->
+    [](../programs/stone1.cpp)
+    <!--/codeinclude-->
+
+`Conversion functions` are user-defined type casts, and you can use them the way you
+would use a type cast. For example, if you define a `Stonewt-to-double` conversion function,
+you can use the following conversions:
+
+```cpp
+Stonewt wolfe(285.7);
+double host = double (wolfe); // syntax #1
+double thinker = (double) wolfe; // syntax #2
+
+Stonewt wells(20, 3);
+double star = wells; // implicit use of conversion function
+```
+
+Note the following points:
+
+- The `conversion function` must be a `class` method.
+- The `conversion function` must not specify a `return` type.
+- The `conversion function` must have `no arguments`.
+
+You should use implicit conversion functions with care. Often a function that can only be
+invoked explicitly is the best choice.
+
+C++ provides the following type conversions for classes:
+
+- A class constructor that has but a single argument serves as an instruction for converting
+a value of the argument type to the class type. For example, the `Stonewt` class
+constructor with a type int argument is invoked automatically when you assign a
+type int value to a `Stonewt` object. However, using explicit in the constructor
+declaration eliminates implicit conversions and allows only explicit conversions.
+- A special class member operator function called a `conversion function` serves as an
+instruction for converting a class object to some other type. The `conversion function`
+is a class member, has no declared return type, has no arguments, and is called
+operator `typeName()`, where typeName is the type to which the object is to be
+converted.This `conversion function` is invoked automatically when you assign a
+class object to a variable of that type or use the type cast operator to that type.
+
+Friend functions
+
+```cpp
+total = jennySt.operator+(kennyD); // member function
+// or else
+total = operator+(jennySt, kennyD); // friend function
+```
 
 <!--
 ```sh
