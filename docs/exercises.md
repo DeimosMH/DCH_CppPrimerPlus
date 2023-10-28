@@ -1196,7 +1196,7 @@ to access the golf structures.
 
 (compile: `g++ ch9_1_golf.cpp ch9_1_main.cpp`)
 
-??? note "Code - prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter9/ch9_1_golf.cpp)
     <!--/codeinclude-->
@@ -1206,7 +1206,7 @@ to access the golf structures.
     [](../exercises/chapter9/ch9_1_golf.h)
     <!--/codeinclude-->
 
-??? note "Code - program"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter9/ch9_1_main.cpp)
     <!--/codeinclude-->
@@ -1279,7 +1279,7 @@ and the non-interactive version of setSales() to provide values for the second
 structure. It should display the contents of both structures by using
 showSales().
 
-??? note "Code - prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter9/ch9_4_sales.cpp)
     <!--/codeinclude-->
@@ -1289,7 +1289,7 @@ showSales().
     [](../exercises/chapter9/ch9_4_sales.h)
     <!--/codeinclude-->
 
-??? note "Code - program"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter9/ch9_4.cpp)
     <!--/codeinclude-->
@@ -1300,17 +1300,17 @@ showSales().
 Provide method definitions for the class described in Chapter Review Question 5
 and write a short program that illustrates all the features.
 
-??? note "Code - prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_1.h)
     <!--/codeinclude-->
 
-??? note "Code - methods"
+??? note "Code - Methods"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_1.cpp)
     <!--/codeinclude-->
 
-??? note "Code - program"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_1_main.cpp)
     <!--/codeinclude-->
@@ -1352,17 +1352,17 @@ one.FormalShow();
 // etc. for two and three
 ```
 
-??? note "Code - prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_2.h)
     <!--/codeinclude-->
 
-??? note "Code - methods"
+??? note "Code - Methods"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_2.cpp)
     <!--/codeinclude-->
 
-??? note "Code - program"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_2_main.cpp)
     <!--/codeinclude-->
@@ -1376,17 +1376,17 @@ Retain the interactive version of setgolf() but implement it by using the constr
 the constructor to create a temporary object, and assign the temporary object to the
 invoking object, which is <code>*this</code>.)
 
-??? note "Code - prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_3_golf.h)
     <!--/codeinclude-->
 
-??? note "Code - methods"
+??? note "Code - Methods"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_3_golf.cpp)
     <!--/codeinclude-->
 
-??? note "Code - program"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_3_main.cpp)
     <!--/codeinclude-->
@@ -1397,17 +1397,17 @@ its associated functions to a class and its methods. Replace the <code>setSales(
 function with a constructor. Implement the interactive <code>setSales(Sales &)</code> method by using the constructor.
 Keep the class within the namespace <code>SALES</code>.
 
-??? note "Code - prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_4_sales.h)
     <!--/codeinclude-->
 
-??? note "Code - methods"
+??? note "Code - Methods"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_4_sales.cpp)
     <!--/codeinclude-->
 
-??? note "Code - program"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_4.cpp)
     <!--/codeinclude-->
@@ -1430,17 +1430,17 @@ reported.
 Note: You should be able to use the Stack class unaltered; just change the
 typedef declaration so that Item is type customer instead of unsigned long.
 
-??? note "Code - prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_5_buisness.h)
     <!--/codeinclude-->
 
-??? note "Code - methods"
+??? note "Code - Methods"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_5_buisness.cpp)
     <!--/codeinclude-->
 
-??? note "Code - program"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_5.cpp)
     <!--/codeinclude-->
@@ -1467,12 +1467,12 @@ public:
 
 Create member function definitions and a program that exercises the class.
 
-??? note "Code - prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_6_move.h)
     <!--/codeinclude-->
 
-??? note "Code - methods"
+??? note "Code - Methods"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_6_move.cpp)
     <!--/codeinclude-->
@@ -1500,12 +1500,12 @@ Write a Plorg class declaration (including data members and member function prot
 that represents a plorg. Write the function definitions for the member functions.
 Write a short program that demonstrates all the features of the Plorg class.
 
-??? note "Code - prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_7_plorg.h)
     <!--/codeinclude-->
 
-??? note "Code - methods"
+??? note "Code - Methods"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_7_plorg.cpp)
     <!--/codeinclude-->
@@ -1546,19 +1546,19 @@ Here <code>pf</code> points to a function (not a member function) that takes a r
 argument, where <code>Item</code> is the type for items in the list.The <code>visit()</code> function applies
 this function to each item in the list.You can use the <code>Stack</code> class as a general guide.
 
-??? note "Code - prototypes"
+??? note "Code - Program"
+    <!--codeinclude-->
+    [](../exercises/chapter10/ch10_8.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_8_list.h)
     <!--/codeinclude-->
 
-??? note "Code - methods"
+??? note "Code - Methods"
     <!--codeinclude-->
     [](../exercises/chapter10/ch10_8_list.cpp)
-    <!--/codeinclude-->
-
-??? note "Code"
-    <!--codeinclude-->
-    [](../exercises/chapter10/ch10_8.cpp)
     <!--/codeinclude-->
 
 ## Chapter 11
@@ -1584,17 +1584,17 @@ or
 Average outward distance per step = 3.97081
 ```
 
-??? note "Program"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_1.cpp)
     <!--/codeinclude-->
 
-??? note "Prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_1_vect.h)
     <!--/codeinclude-->
 
-??? note "Methods"
+??? note "Code - Methods"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_1_vect.cpp)
     <!--/codeinclude-->
@@ -1606,10 +1606,10 @@ they should be calculated on demand when the <code>magval()</code> and <code>ang
 are called. You should leave the public interface unchanged (the same public methods
 with the same arguments) but alter the private section, including some of the
 private method and the method implementations. Test the modified version with
-Listing 11.15, which should be left unchanged because the public interface of the
+Listing 11.15 (randwalk.cpp), which should be left unchanged because the public interface of the
 <code>Vector</code> class is unchanged.
 
-??? note "Code - program"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_2.cpp)
     <!--/codeinclude-->
@@ -1619,38 +1619,48 @@ Listing 11.15, which should be left unchanged because the public interface of th
     [](../exercises/chapter11/ch11_2_vect.h)
     <!--/codeinclude-->
 
-??? note "Code - methods"
+??? note "Code - Methods"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_2_vect.cpp)
     <!--/codeinclude-->
 
 3 -
-Modify Listing 11.15 so that instead of reporting the results of a single trial for a
+Modify Listing 11.15 (randwalk.cpp) so that instead of reporting the results of a single trial for a
 particular target/step combination, it reports the highest, lowest, and average number
 of steps for N trials, where N is an integer entered by the user.
 
-??? note "Code"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_3.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - Prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_3_vect.h)
+    <!--/codeinclude-->
+
+??? note "Code - Methods"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_3_vect.cpp)
     <!--/codeinclude-->
 
 4 -
 Rewrite the final <code>Time</code> class example (Listings 11.10, 11.11, and 11.12) so that all
 the overloaded operators are implemented using friend functions.
 
-??? note "Code - prototypes"
+??? note "Code - Program"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_4.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_4_time.h)
     <!--/codeinclude-->
 
-??? note "Code - methods"
+??? note "Code - Methods"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_4_time.cpp)
-    <!--/codeinclude-->
-
-??? note "Code - program"
-    <!--codeinclude-->
-    [](../exercises/chapter11/ch11_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -1661,7 +1671,7 @@ or floating-point pounds form. Overload the <code><<</code> operator to replace 
 multiplication operators so that one can add, subtract, and multiply <code>Stonewt</code> values.
 Test your class with a short program that uses all the class methods and friends.
 
-??? note "Code - program"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter11/)
     <!--/codeinclude-->
@@ -1676,12 +1686,12 @@ report the smallest element, the largest element, and how many elements are grea
 or equal to 11 stone. (The simplest approach is to create a <code>Stonewt</code> object initialized
 to 11 stone and to compare the other objects with that object.)
 
-??? note "Code - program"
+??? note "Code - Program"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_6_stn.cpp)
     <!--/codeinclude-->
 
-??? note "Code - prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_6_stn.h)
     <!--/codeinclude-->

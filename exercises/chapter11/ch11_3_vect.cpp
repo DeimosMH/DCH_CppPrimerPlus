@@ -1,6 +1,7 @@
 // vect.cpp -- methods for the Vector class
 #include <cmath>
-#include "vect.h" // includes <iostream>
+#include "ch11_3_vect.h" // includes <iostream>
+
 using std::atan;
 using std::atan2;
 using std::cos;
@@ -104,13 +105,16 @@ namespace VECTOR
             mode = RECT;
         }
     }
+
     Vector::~Vector() // destructor
     {
     }
+
     void Vector::polar_mode() // set to polar mode
     {
         mode = POL;
     }
+
     void Vector::rect_mode() // set to rectangular mode
     {
         mode = RECT;
