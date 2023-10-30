@@ -1645,7 +1645,7 @@ of steps for N trials, where N is an integer entered by the user.
     <!--/codeinclude-->
 
 4 -
-Rewrite the final <code>Time</code> class example (Listings 11.10, 11.11, and 11.12) so that all
+Rewrite the final <code>Time</code> class example (`mytime2.h`, `mytime2.cpp`, and `usetime2.cpp`) so that all
 the overloaded operators are implemented using friend functions.
 
 ??? note "Code - Program"
@@ -1664,7 +1664,7 @@ the overloaded operators are implemented using friend functions.
     <!--/codeinclude-->
 
 5 -
-Rewrite the <code>Stonewt</code> class (Listings 11.16 and 11.17) so that it has a state member
+Rewrite the <code>Stonewt</code> class (`stonewt.h` and `stonewt.cpp`) so that it has a <code>state member</code>
 that governs whether the object is interpreted in stone form, integer pounds form,
 or floating-point pounds form. Overload the <code><<</code> operator to replace the
 <code>show_stn()</code> and <code>show_lbs()</code> methods. Overload the addition, subtraction, and
@@ -1673,11 +1673,21 @@ Test your class with a short program that uses all the class methods and friends
 
 ??? note "Code - Program"
     <!--codeinclude-->
-    [](../exercises/chapter11/)
+    [](../exercises/chapter11/ch11_5.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - Prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_5_stone.h)
+    <!--/codeinclude-->
+
+??? note "Code - Methods"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_5_stone.cpp)
     <!--/codeinclude-->
 
 6 -
-Rewrite the <code>Stonewt</code> class (Listings 11.16 and 11.17) so that it overloads all six
+Rewrite the <code>Stonewt</code> class (`stonewt.h` and `stonewt.cpp`) so that it overloads all six
 relational operators. The operators should compare the pounds members and return
 a type <code>bool</code> value. Write a program that declares an array of six <code>Stonewt</code> objects and
 initializes the first three objects in the array declaration. Then it should use a loop

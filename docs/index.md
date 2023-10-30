@@ -5097,6 +5097,13 @@ style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8p
     [](../programs/randwalk.cpp)
     <!--/codeinclude-->
 
+`State Member` - in the example above the `Vector` class stores both the rectangular coordinates and the polar coordinates for a
+vector. It uses a member called mode to control which form the constructor, the `reset()`
+method, and the overloaded `operator<<()` function use, with the enumerations `RECT`
+representing the rectangular mode (the default) and POL the polar mode
+Such a member
+is termed a state member because it describes the state an object is in.
+
 ### Automatic Conversions and Type Casts for Classes
 
 Conversions for its built-in types - the following statements all generate numeric type conversions
@@ -5209,6 +5216,25 @@ total = jennySt.operator+(kennyD); // member function
 total = operator+(jennySt, kennyD); // friend function
 ```
 
+## Chapter 12: Classes and Dynamic Memory Allocation
+
+<details><summary>
+List of what you will learn
+</summary>
+
+```cpp
+- Using dynamic memory allocation for class members
+- Implicit and explicit copy constructors
+- Implicit and explicit overloaded assignment operators
+- What you must do if you use new in a constructor
+- Using static class members
+- Using placement new with objects
+- Using pointers to objects
+- Implementing a queue abstract data type (ADT)
+```
+
+</details>
+
 <!--
 ```sh
 ./programs/
@@ -5249,3 +5275,4 @@ Notes\C++PrimerPlus\exercises\
 ### Programming Exercises
 
  [1.](../exercises/exercise_ch4_1.cpp) -->
+
