@@ -2842,6 +2842,13 @@ p_fun (*pd)[3] = &pa; // pd points to an array of 3 function pointers
 
 ### Inline functions
 
+`Inline` keyword tells the compiler to consider function for `inlining`. If the function is small and called frequently, inlining it can lead to
+performance improvements because the overhead of a function call is avoided.
+
+`Inlining` - mean that the code of the function is inserted at the point where the function is called, instead of performing a regular function call.
+This can potentially improve performance by avoiding the overhead of a function call, but it might increase the size of the binary file because the
+function's code could be inserted in multiple places
+
 <img src="./assets/_ch8Inline.png" alt="Image description"
 style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
 <br>

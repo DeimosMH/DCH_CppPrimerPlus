@@ -1688,7 +1688,7 @@ Test your class with a short program that uses all the class methods and friends
 
 6 -
 Rewrite the <code>Stonewt</code> class (`stonewt.h` and `stonewt.cpp`) so that it overloads all six
-relational operators. The operators should compare the pounds members and return
+relational operators (>, >=, ==, <=, <, and != ). The operators should compare the pounds members and return
 a type <code>bool</code> value. Write a program that declares an array of six <code>Stonewt</code> objects and
 initializes the first three objects in the array declaration. Then it should use a loop
 to read in values used to set the remaining three array elements. Then it should
@@ -1698,25 +1698,30 @@ to 11 stone and to compare the other objects with that object.)
 
 ??? note "Code - Program"
     <!--codeinclude-->
-    [](../exercises/chapter11/ch11_6_stn.cpp)
+    [](../exercises/chapter11/ch11_6.cpp)
     <!--/codeinclude-->
 
 ??? note "Code - Prototypes"
     <!--codeinclude-->
-    [](../exercises/chapter11/ch11_6_stn.h)
+    [](../exercises/chapter11/ch11_6_stone.h)
+    <!--/codeinclude-->
+
+??? note "Code - Methods"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_6_stone.cpp)
     <!--/codeinclude-->
 
 7 -
-A complex number has two parts: a real part and an imaginary part. One way to
-write an imaginary number is this: (3.0, 4.0). Here 3.0 is the real part and 4.0 is
-the imaginary part. Suppose a = (A,Bi) and c = (C,Di). Here are some complex
+A complex number has two parts: a `real part` and an `imaginary part`. One way to
+write an imaginary number is this: `(3.0, 4.0)`. Here 3.0 is the real part and 4.0 is
+the `imaginary part`. Suppose `a = (A,Bi)` and `c = (C,Di)`. Here are some complex
 operations:
 
-- Addition: a + c = (A + C, (B + D)i)
-- Subtraction: a - c = (A - C, (B - D)i)
-- Multiplication: a × c = (A × C - B×D, (A×D + B×C)i)
-- Multiplication: (x a real number): x × c = (x×C,x×Di)
-- Conjugation: ~a = (A, - Bi)
+- Addition: `a + c = (A + C, (B + D)i)`
+- Subtraction: `a - c = (A - C, (B - D)i)`
+- Multiplication: `a × c = (A × C - B×D, (A×D + B×C)i)`
+- Multiplication: `(x a real number): x × c = (x×C,x×Di)`
+- Conjugation: `~a = (A, - Bi)`
 
 Define a complex class so that the following program can use it with correct
 results:
@@ -1769,9 +1774,19 @@ real: q
 Done!
 ```
 
-??? note " "
+??? note "Code - Program"
     <!--codeinclude-->
-    [](../exercises/chapter11/)
+    [](../exercises/chapter11/ch11_7.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - Prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_7_complex.h)
+    <!--/codeinclude-->
+
+??? note "Code - Methods"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_7_complex.cpp)
     <!--/codeinclude-->
 
 Note that <code>cin >> c</code>, through overloading, now prompts for real and imaginary parts.
