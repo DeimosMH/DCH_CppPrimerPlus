@@ -1235,7 +1235,14 @@ struct chaff
 Write a program that uses placement new to place an array of two such structures in
 a buffer. Then assign values to the structure members (remembering to use
 strcpy() for the char array) and use a loop to display the contents. Option 1 is to
-use a static array, like that in Listing 9.10 [newplace.cpp](../programs/newplace.cpp), for the buffer. Option 2 is to use regular
+use a static array, like that in:
+
+??? note "Listing 9.10:"
+    <!--codeinclude-->
+    [newplace.cpp](../programs/newplace.cpp)
+    <!--/codeinclude-->
+
+, for the buffer. Option 2 is to use regular
 new to allocate the buffer.
 
 ??? note "Code"
@@ -1818,7 +1825,7 @@ member functions.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter12/)
+    <!-- [](../exercises/chapter12/) -->
     <!--/codeinclude-->
 
 2 -
@@ -1837,7 +1844,7 @@ Test your work in the following program:
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter12/)
+    <!-- [](../exercises/chapter12/) -->
     <!--/codeinclude-->
 
 ```cpp
@@ -1912,7 +1919,7 @@ overloaded <code>operator<<()</code> definition. Test the new definition program
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter12/)
+    <!-- [](../exercises/chapter12/) -->
     <!--/codeinclude-->
 
 4 -
@@ -1956,7 +1963,7 @@ assignment operator.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter12/)
+    <!-- [](../exercises/chapter12/) -->
     <!--/codeinclude-->
 
 5 -
@@ -1967,7 +1974,7 @@ minute. (Use at least a 100-hour trial period.)
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter12/)
+    <!-- [](../exercises/chapter12/) -->
     <!--/codeinclude-->
 
 6 -
@@ -1982,7 +1989,7 @@ wait maximum.)
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter12/)
+    <!-- [](../exercises/chapter12/) -->
     <!--/codeinclude-->
 
 ## Chapter 13
@@ -2049,7 +2056,7 @@ void Bravo(const Cd &disk)
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter13/)
+    <!-- [](../exercises/chapter13/) -->
     <!--/codeinclude-->
 
 2 -
@@ -2058,7 +2065,7 @@ arrays for the various strings tracked by the two classes.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter13/)
+    <!-- [](../exercises/chapter13/) -->
     <!--/codeinclude-->
 
 3 -
@@ -2070,7 +2077,7 @@ to make runtime decisions as to what types of objects are created.Add virtual
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter13/)
+    <!-- [](../exercises/chapter13/) -->
     <!--/codeinclude-->
 
 4 -
@@ -2148,7 +2155,7 @@ d. Your fourth task is to provide definitions for the <code>VintagePort</code> m
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter13/)
+    <!-- [](../exercises/chapter13/) -->
     <!--/codeinclude-->
 
 ## Chapter 14
@@ -2258,7 +2265,7 @@ Bye
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter14/)
+    <!-- [](../exercises/chapter14/) -->
     <!--/codeinclude-->
 
 2 -
@@ -2276,7 +2283,7 @@ Exercise 1.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter14/)
+    <!-- [](../exercises/chapter14/) -->
     <!--/codeinclude-->
 
 3 -
@@ -2286,7 +2293,7 @@ Listing 14.12.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter14/)
+    <!-- [](../exercises/chapter14/) -->
     <!--/codeinclude-->
 
 4 -
@@ -2310,7 +2317,7 @@ program similar to that in Listing 14.12.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter14/)
+    <!-- [](../exercises/chapter14/) -->
     <!--/codeinclude-->
 
 5 -
@@ -2454,7 +2461,7 @@ for (int i = 0; i < 4; i++)
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter14/)
+    <!-- [](../exercises/chapter14/) -->
     <!--/codeinclude-->
 
 ## Chapter 15
@@ -2472,7 +2479,7 @@ Write a short program that tests these new features.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter15/)
+    <!-- [](../exercises/chapter15/) -->
     <!--/codeinclude-->
 
 2 -
@@ -2483,7 +2490,7 @@ objects need not hold the bad values; they should just support the <code>what()<
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter15/)
+    <!-- [](../exercises/chapter15/) -->
     <!--/codeinclude-->
 
 3 -
@@ -2496,7 +2503,7 @@ loop to terminate.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter15/)
+    <!-- [](../exercises/chapter15/) -->
     <!--/codeinclude-->
 
 4 -
@@ -2507,7 +2514,7 @@ invoking <code>label_val()</code> only when appropriate.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter15/)
+    <!-- [](../exercises/chapter15/) -->
     <!--/codeinclude-->
 
 ## Chapter 16
@@ -2523,7 +2530,7 @@ to scan the list of string methods in Appendix F for methods to simplify the tas
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter16/)
+    <!-- [](../exercises/chapter16/) -->
     <!--/codeinclude-->
 
 2 -
@@ -2536,7 +2543,7 @@ although not necessary.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter16/)
+    <!-- [](../exercises/chapter16/) -->
     <!--/codeinclude-->
 
 3 -
@@ -2550,7 +2557,7 @@ words separated by spaces, tabs, or new lines
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter16/)
+    <!-- [](../exercises/chapter16/) -->
     <!--/codeinclude-->
 
 4 -
@@ -2568,7 +2575,7 @@ it returns the end of the resulting range.) Test the function in a short program
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter16/)
+    <!-- [](../exercises/chapter16/) -->
     <!--/codeinclude-->
 
 5 -
@@ -2585,7 +2592,7 @@ instantiation.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter16/)
+    <!-- [](../exercises/chapter16/) -->
     <!--/codeinclude-->
 
 6 -
@@ -2594,7 +2601,7 @@ instead of the <code>Queue</code> class described in Chapter 12.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter16/)
+    <!-- [](../exercises/chapter16/) -->
     <!--/codeinclude-->
 
 7 -
@@ -2619,7 +2626,7 @@ that lets you test the function.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter16/)
+    <!-- [](../exercises/chapter16/) -->
     <!--/codeinclude-->
 
 8 -
@@ -2635,7 +2642,7 @@ displays the contents of this container.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter16/)
+    <!-- [](../exercises/chapter16/) -->
     <!--/codeinclude-->
 
 9 -
@@ -2679,7 +2686,7 @@ as large an array as possible to get meaningful readings.You might try, for exam
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter16/)
+    <!-- [](../exercises/chapter16/) -->
     <!--/codeinclude-->
 
 10 -
@@ -2703,7 +2710,7 @@ reversed order.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter16/)
+    <!-- [](../exercises/chapter16/) -->
     <!--/codeinclude-->
 
 ## Chapter 17
@@ -2714,7 +2721,7 @@ that leaves the `$` in the input stream.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter17/)
+    <!-- [](../exercises/chapter17/) -->
     <!--/codeinclude-->
 
 2 -
@@ -2723,7 +2730,7 @@ to a file named on the command line.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter17/)
+    <!-- [](../exercises/chapter17/) -->
     <!--/codeinclude-->
 
 3 -
@@ -2732,7 +2739,7 @@ from the command line. Have the program report if it cannot open a file.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter17/)
+    <!-- [](../exercises/chapter17/) -->
     <!--/codeinclude-->
 
 4 -
@@ -2765,7 +2772,7 @@ stones
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter17/)
+    <!-- [](../exercises/chapter17/) -->
     <!--/codeinclude-->
 
 5 -
@@ -2784,7 +2791,7 @@ matnpat.dat, one friend per line.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter17/)
+    <!-- [](../exercises/chapter17/) -->
     <!--/codeinclude-->
 
 6 -
@@ -2875,7 +2882,7 @@ pc[i++]->getall();
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter17/)
+    <!-- [](../exercises/chapter17/) -->
     <!--/codeinclude-->
 
 7 -
@@ -2946,7 +2953,7 @@ get data into the string rather than read directly into it.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter17/)
+    <!-- [](../exercises/chapter17/) -->
     <!--/codeinclude-->
 
 ## Chapter 18
@@ -2977,7 +2984,7 @@ the function return type.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter18/)
+    <!-- [](../exercises/chapter18/) -->
     <!--/codeinclude-->
 
 2 -
@@ -3017,7 +3024,7 @@ various methods verbose so that you can see when they are used.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter18/)
+    <!-- [](../exercises/chapter18/) -->
     <!--/codeinclude-->
 
 3 -
@@ -3027,7 +3034,7 @@ returns the sum as a <code>long double</code> value
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter18/)
+    <!-- [](../exercises/chapter18/) -->
     <!--/codeinclude-->
 
 4 -
@@ -3037,5 +3044,5 @@ expressions.
 
 ??? note " "
     <!--codeinclude-->
-    [](../exercises/chapter18/)
+    <!-- [](../exercises/chapter18/) -->
     <!--/codeinclude-->

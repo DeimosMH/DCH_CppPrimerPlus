@@ -200,9 +200,14 @@ x = sqrt(6.25)        -->    function call                 -->    |code for sqrt
 
 Argument `6.25` is ***passed*** to a function sqrt
 
-***[function prototype](..\programs\function_prototype.cpp)*** - is for function as variable declaration for variables
+***function prototype*** - is for function as variable declaration for variables
 decribe the function interface and needs to be before function definition;
  if you use it you will need to provide prototype in source code or with #include
+
+??? example "function prototype"
+    <!--codeinclude-->
+    [](../programs/function_prototype.cpp)
+    <!--/codeinclude-->
 
 ***function definition*** - code for function workings
 
@@ -292,7 +297,6 @@ Data
 produce a value (addition operator `+` adds two values)
   - *sizeof* - return size in bytes of a tupe or variable
   - *climits* - header file - contain information about integer type limits,
-  check [limits.cpp](../programs/limits.cpp)
 
 ??? example "limits.cpp"
     <!--codeinclude-->
@@ -497,7 +501,13 @@ Use suffixes for declaration
 #### Plus and Cons of Floating-Point values
 
 `-` operations usually are *slightly slower* than integer operations
-`-` you can *lose precision* and values: example [fltadd.cpp](..\programs\fltadd.cpp)
+`-` you can *lose precision* and values:
+
+??? example "example: fltadd.cpp"
+    <!--codeinclude-->
+    [](..\programs\fltadd.cpp)
+    <!--/codeinclude-->
+
 `+` represent *values betwewen integers*
 `+` can represent a much *greater range of values*, because of the scaling factor
 
@@ -509,7 +519,11 @@ Use suffixes for declaration
   
 `%` - modulo works only with integers and produces remainder of dividing first
 value by second. `19 % 6` is `1`, because 6 goes into 19 three times, with
-remainder of 1. Practical example: [modulus.cpp](..\programs\modulus.cpp)
+
+??? example "remainder of 1. Practical example: modulus.cpp"
+    <!--codeinclude-->
+    [modulus.cpp](..\programs\modulus.cpp)
+    <!--/codeinclude-->
 
 `precedence rules` - When more than one operator can be applied to the same
 operand, C++ uses`precedence rules` to decide which operator is used first.
