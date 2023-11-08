@@ -4811,6 +4811,7 @@ In this chapter you’ll learn about the following:
  - Automatic conversions and type casts for classes
  - Class conversion functions
 ```
+
 </details>
 
 ### Operator Overloading
@@ -5256,11 +5257,425 @@ List of what you will learn
 
 </details>
 
-<!--
+### Dynamic Memory and Classes
+
+<img src="./assets/_ch12StaticMemberClass.png" alt="Image description"
+style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
+
+??? example "strngbad.h - Prototypes - flawed string class definition"
+    <!--codeinclude-->
+    [](../programs/strngbad.h)
+    <!--/codeinclude-->
+
+??? example "strngbad.cpp - Methods"
+    <!--codeinclude-->
+    [](../programs/strngbad.cpp)
+    <!--/codeinclude-->
+
+??? example "vegnews.cpp - Program"
+    <!--codeinclude-->
+    [](../programs/vegnews.cpp)
+    <!--/codeinclude-->
+
+The class definition declares and defines two constructors,
+but the program uses three constructors.
+Consider this line:
+
+```cpp
+StringBad sailor = sports;
+StringBad sailor = StringBad(sports);   //<- how compiler see it /constructor using sports
+StringBad(const StringBad &);           // matching constructor could have this prototype:
+//compiler automatically generates this constructor (called a copy constructor),
+//which is Special Member Function
+```
+
+#### Default *Copy Constructor*
+
+Automatically generated *copy constructor* make `shallow copy` (called `memberwise copying`) of the object - thus the problem.
+`memberwise copying` - does not copy the string; it copies the pointer to a string (member-by-member, that is by value - pointer value is address).
+You can solve this type of problems in the class design by making a `deep copy`.
+Memberwise copying schema is presented on the image below
+
+<img src="./assets/_ch12DefaultCopyConstructor.png" alt="Image description"
+style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
+
+Compiler uses a *copy constructor* whenever a program generates copies of an object
+Compiler might generate a temporary `Vector` object to hold an intermediate result when adding three `Vector` objects.
+
+In `vegnews.cpp` program invokes a *copy constructor* `callme2(headline2);`
+
+The program uses a *copy constructor* to initialize `sb`, the formal `StringBad`-type
+parameter for the `callme2()` function.
+
+#### Default *Assignment Constructor*
+
+```cpp
+Class_name & Class_name::operator=(const Class_name &);
+```
+
+That is, it takes and returns a reference to an object of the class. For example, here’s the
+prototype for the `StringBad` class:
+
+```cpp
+StringBad & StringBad::operator=(const StringBad &);
+```
+
+```cpp
+StringBad metoo = knot; // use copy constructor, possibly assignment, too
+```
+
+Like a *copy constructor*, an implicit implementation of an assignment operator performs
+a member-to-member (`memberwise copying`) copy. If a member is itself an object of some class, the program
+uses the *assignment operator* defined for that class to do the copying for that
+particular member. *Static* data members are unaffected.
+
+Thus again, the address was copied instead of value.
+
+??? danger "Necessary thing to do if `new` is used in class
+    If a class contains members that are pointers initialized by new, you should define a copy
+    constructor that copies the pointed-to data instead of copying the pointers themselves. This
+    is termed deep copying. The alternative form of copying (memberwise, or shallow, copying)
+    just copies pointer values. A shallow copy is just that—the shallow “scraping off” of pointer
+    information for copying, rather than the deeper “mining” required to copy the constructs
+    referred to by the pointers.
+
+### `Special Member Functions`
+
+C++ automatically provides the following member functions:
+
+- `Default constructor` if you define no constructors
+- `Default destructor` if you don’t define one
+- `Copy constructor` if you don’t define one
+- `Assignment operator` if you don’t define one
+- `Address operator` if you don’t define one
+
+C++11 provides two more special member functions—the `move constructor` and the
+`move assignment operator`
+
+### Solve problem - Defining an Explicit Copy Constructor
+
+Explicit Copy Constructor with a `deep copy` - eg. duplication of the string and
+assigning the address of the duplicate to the `str` member.
+
+In short:
+
+- `deep copy` - Copy the member data to the new location
+- `membership copy` - Copy the location of the member data
+
+```cpp
+StringBad::StringBad(const StringBad & st)
+{
+    num_strings++;                  // handle static member update
+    len = st.len;                   // same length
+    str = new char [len + 1];       // allot space
+    std::strcpy(str, st.str);       // copy string to new location
+    cout << num_strings << ": \"" << str
+    << "\" object created\n";       // For Your Information
+}
+```
+
+<img src="./assets/_ch12DeepCopyExample.png" alt="Image description"
+style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
+
+### Solve problem - Overloading an Assignment Operator
+
+```cpp
+StringBad & StringBad::operator=(const StringBad & st)
+{
+    if (this == &st)                // object assigned to itself
+        return *this;               // all done
+
+    // If you don’t first apply the delete operator, the previous `string` will remain in memory.
+    // Because the program no longer has a pointer to the old string, that memory will be wasted.
+    delete [] str;                  // free old string 
+    len = st.len;
+    str = new char [len + 1];       // get space for new string
+    std::strcpy(str, st.str);       // copy the string
+    return *this;                   // return reference to invoking object
+}
+```
+
+Implementation is *similar* to that of the *copy constructor*, but there are some differences:
+
+- Because the target object may already refer to previously allocated data, the function
+should use `delete []` to free former obligations.
+- The function should protect against assigning an object to itself; otherwise, the freeing
+of memory described previously could erase the object’s contents before they
+are reassigned.
+- The function returns a reference to the invoking object.
+
+??? note "C++11 Null Pointer"
+    In C++98, the literal `0` has two meanings—it can be the numeric value `0`, and it can be the
+    `null pointer` — thus making it difficult for the reader and compiler to distinguish between the
+    two. Sometimes programmers use `(void *) 0` to identify the pointer version. (The null
+    pointer itself may have a nonzero internal representation.) Other programmers use `NULL`, a
+    C macro defined to represent the null pointer. However, this proved to be an incomplete solution.
+    C++11 provides a better solution by introducing a new keyword, nullptr, to denote
+    the null pointer. You still can use `0` as before—otherwise an enormous amount of existing
+    code would be invalidated—but henceforth the recommendation is to use `nullptr` instead:
+    `str = nullptr; // C++11 null pointer notation`
+
+### Improved `String` Class from `StringBad`
+
+With bracket notation and added few operators.
+
+??? example "string1.h - Prototypes"
+    <!--codeinclude-->
+    [](../programs/string1.h)
+    <!--/codeinclude-->
+
+??? example "string1.cpp - Methods"
+    <!--codeinclude-->
+    [](../programs/string1.cpp)
+    <!--/codeinclude-->
+
+??? example "sayings1.cpp - Program"
+    <!--codeinclude-->
+    [](../programs/sayings1.cpp)
+    <!--/codeinclude-->
+
+??? note "Older versions of `get(char *, int)`"
+    Older versions of <code>get(char *, int)</code> don’t evaluate to false upon reading an empty line.
+    For those versions, however, the first character in the string is a null character if an empty
+    line is entered. This example uses the following code:
+    <code>
+    if (!cin || temp[0] == '\0') // empty line?
+    break; // i not incremented
+    </code>
+    If the implementation follows the current C++ Standard, the first test in the if statement
+    detects an empty line, whereas the second test detects the empty line for older implementations
+
+### When Using `new` in Constructors
+
+In particular, you should do the following:
+
+- If you use `new` to initialize a pointer member in a constructor, you should use
+`delete` in the destructor.
+- The uses of `new` and `delete` should be compatible. You should pair `new` with `delete`
+and `new []` with `delete []`.
+- If there are multiple constructors, all should use `new` the same way—either all with
+brackets or all without brackets. There’s only one destructor, so all constructors have
+to be compatible with that destructor. However, it is permissible to initialize a
+pointer with `new` in one constructor and with the null pointer (`0`, or, with C++11,
+`nullptr`) in another constructor because it’s okay to apply the `delete` operation
+(with or without brackets) to the null pointer.
+
+??? note "NULL or 0 or nullptr?"
+    Historically, the null pointer can be represented by `0` or by `NULL`, a symbolic constant defined
+    as `0` in several header files. C programmers often use `NULL` instead of `0` as a visual
+    reminder that the value is a pointer value, just as they use `'\0'` instead of `0` for the null
+    character as a visual reminder that this value is a character. The C++ tradition, however, has
+    favored a simple `0` instead of the equivalent `NULL`. And, as mentioned earlier, C++11 offers
+    the `nullptr` keyword as a better alternative.
+
+- You should define a copy constructor that initializes one object to another by doing
+deep copying. Typically, the constructor should emulate the following example:
+
+    ```cpp
+    String::String(const String & st)
+    {
+        num_strings++;                  // handle static member update if necessary
+        len = st.len;                   // same length as copied string
+        str = new char [len + 1];       // allot space
+        std::strcpy(str, st.str);       // copy string to new location
+    }
+    ```
+
+    In particular, the copy constructor should allocate space to hold the copied data, and
+    it should copy the data, not just the address of the data.Also it should update any
+    static class members whose value would be affected by the process.
+
+- You should define an assignment operator that copies one object to another by
+doing deep copying. Typically, the class method should emulate the following
+example:
+
+    ```cpp
+    String & String::operator=(const String & st)
+    {
+        if (this == &st) // object assigned to itself
+        return *this; // all done
+        delete [] str; // free old string
+        len = st.len;
+        str = new char [len + 1]; // get space for new string
+        std::strcpy(str, st.str); // copy the string
+        return *this; // return reference to invoking object
+    }
+    ```
+
+    In particular, the method should check for self-assignment; it should free memory formerly
+    pointed to by the member pointer; it should copy the data, not just the address of
+    the data; and it should return a reference to the invoking object.
+
+#### Do's and Don'ts
+
+Constructor:
+
+```cpp
+String::String()
+{
+    str = "default string"; // oops, no new []
+    len = std::strlen(str);
+}
+
+String::String(const char * s)
+{
+    len = std::strlen(s);
+    str = new char; // oops, no []
+    std::strcpy(str, s); // oops, no room
+}
+
+String::String(const String & st)
+{
+    len = st.len;
+    str = new char[len + 1]; // good, allocate space
+    std::strcpy(str, st.str); // good, copy value
+}
+```
+
+The result of applying `delete` to a pointer not initialized by `new` is undefined, but it is probably bad
+Any of the following would be okay:
+
+```cpp
+String::String()
+{
+    len = 0;
+    str = new char[1]; // uses new with []
+    str[0] = '\0';
+}
+
+String::String()
+{
+    len = 0;
+    str = 0; // or, with C++11, str = nullptr;
+}
+
+String::String()
+{
+    static const char * s = "C++"; // initialized just once
+    len = std::strlen(s);
+    str = new char[len + 1]; // uses new with []
+    std::strcpy(str, s);
+}
+```
+
+*Destructor* that doesn’t work correctly with the previous *constructors*:
+
+```cpp
+String::~String()
+{
+    delete str; // oops, should be delete [] str;
+}
+```
+
+### Returning objects
+
+- Reference to a `const` Object - efficient, but with restrictions
+
+??? note "Example"
+    If a function *returns* an *object* that is *passed* to it, either by
+    *object invocation* or as a *method argument*, you can increase the efficiency of the method
+    by having it return a `reference`.
+
+    ```cpp
+    // version 1
+    Vector Max(const Vector & v1, const Vector & v2)
+    {
+        if (v1.magval() > v2.magval())
+            return v1;
+        else
+            return v2;
+    }
+
+    // version 2
+    const Vector & Max(const Vector & v1, const Vector & v2)
+    {
+        if (v1.magval() > v2.magval())
+            return v1;
+        else
+            return v2;
+    }
+    ```
+
+- Reference to a Non-`const` Object - eg. overloading assignment operator (*efficiency*) and the `<<` operator (*necessity*)
+
+??? note "Example"
+
+    ```cpp
+    // The return value of operator=() is used for chained assignment:
+    String s1("Good stuff");
+    String s2, s3;
+    s3 = s2 = s1
+    // The return value of operator<<() is used for chained output:
+    String s1("Good stuff");
+    cout << s1 << "is coming!";
+    ```
+
+- Object return
+If its *local* to called *function*, it shouldn't be returned by *reference* (local data is automatically destroyed)
+In this case return an `object`
+
+??? note "Example"
+
+    ```cpp
+    Vector Vector::operator+(const Vector & b) const
+    {
+        return Vector(x + b.x, y + b.y);
+    }
+    ```
+
+- `const` Object return
+
+`Vector::operator+()` allows you to use:
+
+```cpp
+net = force1 + force2;                              // 1: three Vector objects
+force1 + force2 = net;                              // 2: dyslectic programming
+cout << (force1 + force2 = net).magval() << endl;   // 3: demented programming
+```
+
+If `Vector::operator+()` is declared to have return type `const Vector`, then Statement 1 is
+still allowed but Statements 2 and 3 become invalid.
+
+### `Pointers` to `Objects`
+
+??? example "sayings2.cpp"
+    <!--codeinclude-->
+    [](../programs/sayings2.cpp)
+    <!--/codeinclude-->
+
+??? note "Object Initialization with `new`"
+    In general, if Class_name is a class and if value is of type Type_name, the statement
+
+    ```cpp
+        Class_name * pclass = new Class_name(value);
+    ```
+
+    invokes this constructor:
+
+    ```cpp
+        Class_name(Type_name);
+    ```
+
+    There may be trivial conversions, such as to this:
+
+    ```cpp
+        Class_name(const Type_name &);
+    ```
+
+    Also the usual conversions invoked by prototype matching, such as from int to double,
+    takes place as long as there is no ambiguity. An initialization in the following form invokes
+    the default constructor:
+
+    ```cpp
+        Class_name * ptr = new Class_name;
+    ```
+
+
+
+<!--    
 ```sh
 ./programs/
 
-[str 563] (ch 11) -> [str 621] Summary 
 [str 627] ch 12 - dynamic memory -> [699] Summary
 [str 707] ch 13 - class inheritance -> [778] Summary
 
@@ -5296,4 +5711,3 @@ Notes\C++PrimerPlus\exercises\
 ### Programming Exercises
 
  [1.](../exercises/exercise_ch4_1.cpp) -->
-
