@@ -5638,9 +5638,29 @@ still allowed but Statements 2 and 3 become invalid.
 
 ### `Pointers` to `Objects`
 
+Creating object using keyword `new`
+
+<img src="./assets/_ch12ObjCreate.png" alt="Image description"
+style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
+
+Using pointers with objects
+
+<img src="./assets/_ch12ObjUse.png" alt="Image description"
+style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
+
 ??? example "sayings2.cpp"
     <!--codeinclude-->
     [](../programs/sayings2.cpp)
+    <!--/codeinclude-->
+
+??? example "placenew1.cpp"
+    <!--codeinclude-->
+    [](../programs/placenew1.cpp)
+    <!--/codeinclude-->
+
+??? example "placenew2.cpp (fixed placenew1)"
+    <!--codeinclude-->
+    [](../programs/placenew2.cpp)
     <!--/codeinclude-->
 
 ??? note "Object Initialization with `new`"
@@ -5670,6 +5690,103 @@ still allowed but Statements 2 and 3 become invalid.
         Class_name * ptr = new Class_name;
     ```
 
+### Overload `<<` Operator
+
+Define a friend operator function in form:
+
+```cpp
+ostream & operator<<(ostream & os, const c_name & obj)
+{
+    os << ... ; // display object contents
+    return os;
+}
+```
+
+### Queue Simulation
+
+Problem: Client (Bank) want estimates of how long customers will have to wait in line
+
+A queue is an abstract data type (ADT) and is a FIFO (first in, first out)
+structure.
+
+- A queue holds an ordered sequence of items.
+- A queue has a limit on the number of items it can hold.
+- You should be able to create an empty queue.
+- You should be able to check whether a queue is empty.
+- You should be able to check whether a queue is full.
+- You should be able to add an item to the end of a queue.
+- You should be able to remove an item from the front of a queue.
+- You should be able to determine the number of items in the queue.
+
+For implementation of queue simulation, `linked list` was used, which consist of `sequence of nodes`,
+which is represented by structure:
+
+```cpp
+struct Node
+{
+    Item item; // data stored in the node
+    struct Node * next; // pointer to next node
+};
+```
+
+<img src="./assets/_ch12LinkedList.png" alt="Image description"
+style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
+
+#### `member initializer list`
+
+Problem: `const int qsize` need to be initialized
+
+```cpp
+Queue::Queue(int qs)
+{
+    front = rear = NULL;
+    items = 0;
+    qsize = qs; // not acceptable!
+}
+```
+
+Solution:
+
+```cpp
+// initializer-list syntax
+// 
+// Data members are initialized in the order in which they appear in the class declaration,
+// not in the order in which initializers are listed.
+Queue::Queue(int qs) : qsize(qs) // initialize qsize to qs (via member initializer list)
+{
+    front = rear = NULL;
+    items = 0;
+}
+
+Queue::Queue(int qs) : qsize(qs), front(NULL), rear(NULL), items(0) // Also acceptanble
+{
+}
+
+// C++ 11 Member In-Class Initialization
+class Classy
+{
+    int mem1 = 10; // in-class initialization
+    const int mem2 = 20; // in-class initialization
+    ...
+}
+```
+
+Simulation program and class implementation:
+
+??? example "queue.h - Prototypes"
+    <!--codeinclude-->
+    [](../programs/queue.h)
+    <!--/codeinclude-->
+
+??? example "queue.cpp - Methods"
+    <!--codeinclude-->
+    [](../programs/queue.cpp)
+    <!--/codeinclude-->
+
+??? example "bank.cpp - Program"
+    <!--codeinclude-->
+    [](../programs/bank.cpp)
+    <!--/codeinclude-->
 
 
 <!--    

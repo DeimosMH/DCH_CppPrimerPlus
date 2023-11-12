@@ -82,3 +82,7 @@ performance improvements because the overhead of a function call is avoided.
 `Inlining` - mean that the code of the function is inserted at the point where the function is called, instead of performing a regular function call.
 This can potentially improve performance by avoiding the overhead of a function call, but it might increase the size of the binary file because the
 function's code could be inserted in multiple places
+
+## Classes
+
+- when `designing` a `class`, you need to develop a `public interface` and a `private implementation`.
