@@ -2518,7 +2518,7 @@ define this conversion function.
 
 <!-- -------------------------------------------- -->
 <details><summary>
-01.Suppose a String class has the following private members:
+01. Suppose a String class has the following private members:
 
 ```cpp
 class String
@@ -2558,15 +2558,46 @@ String::String(const char * s)
 
 </summary>
 
+a. Constructor won't initialize data for proper use of object</br>
+b. It is so called `shallow copy` for str. It will copy only pointer `s` to string, thus two objects will point into the same string</br>
+c. `s` is `const` and is put into function
+
+// Answer in the book</br>
+
+a. The syntax is fine, but this constructor leaves the `str` pointer uninitialized.
+The constructor should either set the pointer to NULL or use `new []` to initialize
+the pointer.
+b. This constructor does not create a new string; it merely copies the address of
+the old string. It should use `new []` and `strcpy()`.
+c. It copies the string without allocating the space to store it. It should use new
+`char[len + 1]` to allocate the proper amount of memory.
+
 </details>
 
 <!-- -------------------------------------------- -->
 
 <details><summary>
 02. Name three problems that may arise if you define a class in which a pointer member
-is initialized by using new. Indicate how they can be remedied.</br></br>
+is initialized by using <code>new</code>. Indicate how they can be remedied.</br></br>
 
 </summary>
+
+// Answer in the book</br>
+
+First, when an object of that type expires, the data pointed to by the object’s member
+pointer remains in memory, using space and remaining inaccessible because the
+pointer has been lost. That can be fixed by having the class destructor delete memory
+allocated by `new` in the constructor functions.</br>
+
+Second, after the destructor deletes such memory, it might end up trying to delete it twice if a program initializes
+one such object to another.That’s because the default initialization of one
+object to another copies pointer values but does not copy the pointed-to data, and
+this produces two pointers to the same data.The solution is to define a class copy
+constructor that causes initialization to copy the pointed-to data.</br>
+
+Third, assigning one object to another can produce the same situation of two pointers pointing to
+the same data. The solution is to overload the assignment operator so that it copies
+the data, not the pointers.</br>
 
 </details>
 
@@ -2577,6 +2608,20 @@ is initialized by using new. Indicate how they can be remedied.</br></br>
 them explicitly? Describe how these implicitly generated functions behave.</br></br>
 
 </summary>
+
+// Answer in the book</br>
+
+- A default constructor if you define no constructors
+- A copy constructor if you don’t define one
+- An assignment operator if you don’t define one
+- A default destructor if you don’t define one
+- An address operator if you don’t define one
+
+The default constructor does nothing, but it allows you to declare arrays and uninitialized
+objects. The default copy constructor and the default assignment operator
+use memberwise assignment.The default destructor does nothing.The implicit
+address operator returns the address of the invoking object (that is, the value of the
+`this` pointer).
 
 </details>
 
@@ -2595,17 +2640,21 @@ class nifty
     nifty();
     nifty(char *s);
     ostream &operator<<(ostream &os, nifty &n);
-} nifty : nifty()
+} 
+
+nifty : nifty()
 {
     personality = NULL;
     talents = 0;
 }
+
 nifty : nifty(char *s)
 {
     personality = new char[strlen(s)];
     personality = s;
     talents = 0;
 }
+
 ostream &nifty : operator<<(ostream & os, nifty & n)
 {
     os << n;
@@ -2614,14 +2663,105 @@ ostream &nifty : operator<<(ostream & os, nifty & n)
 
 </summary>
 
+
+```cpp
+class nifty
+{
+    // data
+    char personality[];
+    int talents;
+    // methods
+    nifty();
+    nifty(char *s);
+    ostream &operator<<(ostream &os, nifty &n);
+
+    // Lack of destructor, when new is used
+    ~nifty();
+
+    // Lack of assignment operator - shallow copy error
+    nifty &operator=(nifty n);
+} 
+
+nifty : nifty()
+{
+    personality = NULL;
+    talents = 0;
+}
+
+nifty : nifty(char *s)
+{
+    personality = new char[strlen(s)];
+    // personality = s; // pointer assigned - shallow copy
+    strcpy(personality, s);
+    talents = 0;
+}
+
+ostream &nifty : operator<<(ostream & os, nifty & n)
+{
+    os << n;
+}
+
+~nifty : nifty(){
+    delete personality;
+}
+
+nifty &operator=(nifty n){
+    if(personality != NULL)
+        delete personality;
+    personality = new char[strlen(n.personality)];
+    strcpy(personality, n.personality);
+    talents = n.talents;
+}
+
+```
+
+// Answer in the book</br>
+
+The personality member should be declared either as a character array or as a
+pointer-to-char. Or you could make it a String object or a string object. The
+declaration fails to make the methods public. Then there are several small errors.
+Here is a possible solution, with changes (other than deletions) in boldface:
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+class nifty
+{
+private:                  // optional
+    char personality[40]; // provide array size
+    int talents;
+
+public: // needed
+    // methods
+    nifty();
+    nifty(const char *s);
+    friend ostream &operator<<(ostream &os, const nifty &n);
+}; // note closing semicolon
+nifty::nifty()
+{
+    personality[0] = '\0';
+    talents = 0;
+}
+nifty::nifty(const char *s)
+{
+    strcpy(personality, s);
+    talents = 0;
+}
+ostream &operator<<(ostream &os, const nifty &n)
+{
+    os << n.personality << '\n';
+    os << n.talent << '\n';
+    return os;
+}
+```
+
 </details>
 
 <!-- -------------------------------------------- -->
 
 <details><summary>
-05. What is a class?</br></br>
-
-Consider the following class declaration:
+05. Consider the following class declaration:</br></br>
 
 ```cpp
 class Golfer
@@ -2639,22 +2779,64 @@ public:
 };
 ```
 
-a. What class methods would be invoked by each of the following statements ? Golfer nancy; // #1
+a. What class methods would be invoked by each of the following statements ?
 
 ```cpp
-Golfer lulu(“Little Lulu”);                                                               // #2
-Golfer roy(“Roy Hobbs”, 12);                                                              // #3
-Golfer *par = new Golfer;                                                                 // #4
-Golfer next = lulu;                                                                       // #5
-Golfer hazzard = “Weed Thwacker”;                                                         // #6
-*par = nancy;                                                                             // #7
-nancy = “Nancy Putter”;                                                                   // #8
+Golfer nancy;                    // #1
+Golfer lulu(“Little Lulu”);      // #2
+Golfer roy(“Roy Hobbs”, 12);     // #3
+Golfer *par = new Golfer;        // #4
+Golfer next = lulu;              // #5
+Golfer hazzard = “Weed Thwacker”;// #6
+*par = nancy;                    // #7 
+nancy = “Nancy Putter”;          // #8
 ```
 
-b. Clearly, the class requires several more methods to make it useful.What additional
+b. Clearly, the class requires several more methods to make it useful. What additional
     method does it require to protect against data corruption?
 
 </summary>
+
+a.
+
+```cpp
+Golfer nancy;                    // #1 Golfer()
+Golfer lulu(“Little Lulu”);      // #2 Golfer(const char *name, int g = 0);
+Golfer roy(“Roy Hobbs”, 12);     // #3 Golfer(const char *name, int g = 0);
+Golfer *par = new Golfer;        // #4 Golfer operator=(Golfer *n);
+Golfer next = lulu;              // #5 Golfer operator=(Golfer n); // wrong
+Golfer hazzard = “Weed Thwacker”;// #6 Golfer operator=(String n); // wrong
+*par = nancy;                    // #7 Golfer *operator=(Golfer n); 
+nancy = “Nancy Putter”;          // #8 Golfer operator=(String n); // wrong
+```
+
+b.
+
+```cpp
+Golfer &operator=(const Golfer &);
+```
+
+// Answer in the book</br>
+
+a.
+
+```cpp
+Golfer nancy; // default constructor
+Golfer lulu("Little Lulu"); // Golfer(const char * name, int g)
+Golfer roy("Roy Hobbs", 12); // Golfer(const char * name, int g)
+Golfer * par = new Golfer; // default constructor
+Golfer next = lulu; // Golfer(const Golfer &g)
+Golfer hazard = "Weed Thwacker"; // Golfer(const char * name, int g)
+*par = nancy; // default assignment operator
+nancy = "Nancy Putter";// Golfer(const char * name, int g), then
+// the default assignment operator
+```
+
+Note that some compilers additionally call the default assignment operator
+for Statements 5 and 6.
+
+b. The class should define an assignment operator that copies data rather than
+addresses.
 
 </details>
 

@@ -1142,6 +1142,10 @@ than this is 128, so the upper end of the range is 127.)
 **address operator**, represented by `&` to a variable to get its location;
 if `home` is a variable, `&home` is its address
 
+The implicit `address operator` returns the address of the invoking object (that is, the
+value of the `this` pointer). That’s fine for our purposes, and we won’t discuss this member
+function further.
+
 ??? example "address.cpp"
     <!--codeinclude-->
     [](../programs/address.cpp)
