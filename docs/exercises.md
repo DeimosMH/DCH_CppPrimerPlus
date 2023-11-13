@@ -1869,19 +1869,29 @@ Bye
 ```
 
 3 -
-Rewrite the <code>Stock</code> class, as described in Listings 10.7 and 10.8 in Chapter 10 so
+Rewrite the <code>Stock</code> class, as described in Listings 10.7 (stock20.h) and 10.8 (stock20.cpp) in Chapter 10 so
 that it uses dynamically allocated memory directly instead of using <code>string</code> class
-objects to hold the stock names.Also replace the <code>show()</code> member function with an
+objects to hold the stock names. Also replace the <code>show()</code> member function with an
 overloaded <code>operator<<()</code> definition. Test the new definition program in Listing
-10.9.
+10.9 (usestok2.cpp).
 
-??? note " "
+??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/chapter12/)
+    [](../exercises/chapter12/ch12_3_stock.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_3_stock.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_3.cpp)
     <!--/codeinclude-->
 
 4 -
-Consider the following variation of the <code>Stack</code> class defined in Listing 10.10:
+Consider the following variation of the <code>Stack</code> class defined in Listing 10.10 (stack.h):
 
 ```cpp
 // stack.h -- class declaration for the stack ADT
@@ -1919,35 +1929,55 @@ the stack items. Rewrite the methods to fit this new representation and write a
 program that demonstrates all the methods, including the copy constructor and
 assignment operator.
 
-??? note " "
+??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/chapter12/)
+    [](../exercises/chapter12/ch12_4_stack.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_4_stack.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_4.cpp)
     <!--/codeinclude-->
 
 5 -
 The Bank of Heather has performed a study showing that ATM customers won’t
-wait more than one minute in line. Using the simulation from Listing 12.10, find a
+wait more than one minute in line. Using the simulation from Listing 12.10 (queue.h), find a
 value for number of customers per hour that leads to an average wait time of one
 minute. (Use at least a 100-hour trial period.)
 
-??? note " "
+??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/chapter12/)
+    [](../exercises/chapter12/ch12_5_queue.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_5_queue.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_5.cpp)
     <!--/codeinclude-->
 
 6 -
 The Bank of Heather would like to know what would happen if it added a second
-ATM. Modify the simulation in this chapter so that it has two queues.Assume that
+ATM. Modify the simulation in this chapter so that it has two queues. Assume that
 a customer will join the first queue if it has fewer people in it than the second
-queue and that the customer will join the second queue otherwise.Again, find a
+queue and that the customer will join the second queue otherwise. Again, find a
 value for number of customers per hour that leads to an average wait time of one
 minute. (Note:This is a nonlinear problem in that doubling the number of ATMs
 doesn’t double the number of customers who can be handled per hour with a oneminute
 wait maximum.)
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    [](../exercises/chapter12/)
+    [](../exercises/chapter12/ch12_6.cpp)
     <!--/codeinclude-->
 
 ## Chapter 13
