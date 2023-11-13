@@ -1591,17 +1591,17 @@ or
 Average outward distance per step = 3.97081
 ```
 
-??? note "Code - Program"
+??? note "Program"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_1.cpp)
     <!--/codeinclude-->
 
-??? note "Code - Prototypes"
+??? note "Prototypes"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_1_vect.h)
     <!--/codeinclude-->
 
-??? note "Code - Methods"
+??? note "Methods"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_1_vect.cpp)
     <!--/codeinclude-->
@@ -1613,10 +1613,10 @@ they should be calculated on demand when the <code>magval()</code> and <code>ang
 are called. You should leave the public interface unchanged (the same public methods
 with the same arguments) but alter the private section, including some of the
 private method and the method implementations. Test the modified version with
-Listing 11.15 (randwalk.cpp), which should be left unchanged because the public interface of the
+Listing 11.15, which should be left unchanged because the public interface of the
 <code>Vector</code> class is unchanged.
 
-??? note "Code - Program"
+??? note "Code - program"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_2.cpp)
     <!--/codeinclude-->
@@ -1626,7 +1626,7 @@ Listing 11.15 (randwalk.cpp), which should be left unchanged because the public 
     [](../exercises/chapter11/ch11_2_vect.h)
     <!--/codeinclude-->
 
-??? note "Code - Methods"
+??? note "Code - methods"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_2_vect.cpp)
     <!--/codeinclude-->
@@ -1636,38 +1636,28 @@ Modify Listing 11.15 (randwalk.cpp) so that instead of reporting the results of 
 particular target/step combination, it reports the highest, lowest, and average number
 of steps for N trials, where N is an integer entered by the user.
 
-??? note "Code - Program"
+??? note "Code"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_3.cpp)
-    <!--/codeinclude-->
-
-??? note "Code - Prototypes"
-    <!--codeinclude-->
-    [](../exercises/chapter11/ch11_3_vect.h)
-    <!--/codeinclude-->
-
-??? note "Code - Methods"
-    <!--codeinclude-->
-    [](../exercises/chapter11/ch11_3_vect.cpp)
     <!--/codeinclude-->
 
 4 -
 Rewrite the final <code>Time</code> class example (`mytime2.h`, `mytime2.cpp`, and `usetime2.cpp`) so that all
 the overloaded operators are implemented using friend functions.
 
-??? note "Code - Program"
-    <!--codeinclude-->
-    [](../exercises/chapter11/ch11_4.cpp)
-    <!--/codeinclude-->
-
-??? note "Code - Prototypes"
+??? note "Code - prototypes"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_4_time.h)
     <!--/codeinclude-->
 
-??? note "Code - Methods"
+??? note "Code - methods"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_4_time.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -1678,7 +1668,7 @@ or floating-point pounds form. Overload the <code><<</code> operator to replace 
 multiplication operators so that one can add, subtract, and multiply <code>Stonewt</code> values.
 Test your class with a short program that uses all the class methods and friends.
 
-??? note "Code - Program"
+??? note "Code - program"
     <!--codeinclude-->
     [](../exercises/chapter11/ch11_5.cpp)
     <!--/codeinclude-->
@@ -1703,19 +1693,14 @@ report the smallest element, the largest element, and how many elements are grea
 or equal to 11 stone. (The simplest approach is to create a <code>Stonewt</code> object initialized
 to 11 stone and to compare the other objects with that object.)
 
-??? note "Code - Program"
+??? note "Code - program"
     <!--codeinclude-->
-    [](../exercises/chapter11/ch11_6.cpp)
+    [](../exercises/chapter11/ch11_6_stn.cpp)
     <!--/codeinclude-->
 
-??? note "Code - Prototypes"
+??? note "Code - prototypes"
     <!--codeinclude-->
-    [](../exercises/chapter11/ch11_6_stone.h)
-    <!--/codeinclude-->
-
-??? note "Code - Methods"
-    <!--codeinclude-->
-    [](../exercises/chapter11/ch11_6_stone.cpp)
+    [](../exercises/chapter11/ch11_6_stn.h)
     <!--/codeinclude-->
 
 7 -
@@ -1911,19 +1896,29 @@ Bye
 ```
 
 3 -
-Rewrite the <code>Stock</code> class, as described in Listings 10.7 and 10.8 in Chapter 10 so
+Rewrite the <code>Stock</code> class, as described in Listings 10.7 (stock20.h) and 10.8 (stock20.cpp) in Chapter 10 so
 that it uses dynamically allocated memory directly instead of using <code>string</code> class
-objects to hold the stock names.Also replace the <code>show()</code> member function with an
+objects to hold the stock names. Also replace the <code>show()</code> member function with an
 overloaded <code>operator<<()</code> definition. Test the new definition program in Listing
-10.9.
+10.9 (usestok2.cpp).
 
-??? note " "
+??? note "Code - prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter12/) -->
+    [](../exercises/chapter12/ch12_3_stock.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_3_stock.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_3.cpp)
     <!--/codeinclude-->
 
 4 -
-Consider the following variation of the <code>Stack</code> class defined in Listing 10.10:
+Consider the following variation of the <code>Stack</code> class defined in Listing 10.10 (stack.h):
 
 ```cpp
 // stack.h -- class declaration for the stack ADT
@@ -1961,35 +1956,55 @@ the stack items. Rewrite the methods to fit this new representation and write a
 program that demonstrates all the methods, including the copy constructor and
 assignment operator.
 
-??? note " "
+??? note "Code - prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter12/) -->
+    [](../exercises/chapter12/ch12_4_stack.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_4_stack.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_4.cpp)
     <!--/codeinclude-->
 
 5 -
 The Bank of Heather has performed a study showing that ATM customers won’t
-wait more than one minute in line. Using the simulation from Listing 12.10, find a
+wait more than one minute in line. Using the simulation from Listing 12.10 (queue.h), find a
 value for number of customers per hour that leads to an average wait time of one
 minute. (Use at least a 100-hour trial period.)
 
-??? note " "
+??? note "Code - prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter12/) -->
+    [](../exercises/chapter12/ch12_5_queue.h)
+    <!--/codeinclude-->
+
+??? note "Code - methods"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_5_queue.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_5.cpp)
     <!--/codeinclude-->
 
 6 -
 The Bank of Heather would like to know what would happen if it added a second
-ATM. Modify the simulation in this chapter so that it has two queues.Assume that
+ATM. Modify the simulation in this chapter so that it has two queues. Assume that
 a customer will join the first queue if it has fewer people in it than the second
-queue and that the customer will join the second queue otherwise.Again, find a
+queue and that the customer will join the second queue otherwise. Again, find a
 value for number of customers per hour that leads to an average wait time of one
 minute. (Note:This is a nonlinear problem in that doubling the number of ATMs
 doesn’t double the number of customers who can be handled per hour with a oneminute
 wait maximum.)
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter12/) -->
+    [](../exercises/chapter12/ch12_6.cpp)
     <!--/codeinclude-->
 
 ## Chapter 13
