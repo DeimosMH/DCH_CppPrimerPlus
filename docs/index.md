@@ -4815,6 +4815,87 @@ In this chapter you’ll learn about the following:
  - Automatic conversions and type casts for classes
  - Class conversion functions
 ```
+</details>
+
+### Operator Overloading
+
+To overload an operator, you use a special function form called an operator function. An
+operator function has the following form, where `<sbl>` is the symbol for the operator being
+overloaded:
+
+```cpp
+operator<sbl>(argument-list)
+// For example, operator+() overloads the + operator
+
+// To overload the + operator so that it adds
+// sales figures of one salesperson object to another -> if `district2``, `sid`, and `sara` are
+// all objects of the `Salesperson` class, you can write this equation:
+district2 = sid + sara;
+
+// The compiler, recognizing the operands as belonging to the Salesperson class,
+// replaces the operator with the corresponding operator function:
+district2 = sid.operator+(sara);
+```
+
+??? note
+    Don’t return a reference to a local variable or another temporary object. When the function
+    terminates and the local variable or temporary object disappears, the reference becomes a
+    reference to non-existent data.
+
+Practical example - class for calculating time with `+` operator:
+
+??? example "mytime.h - Prototypes"
+    <!--codeinclude-->
+    [](../programs/mytime.h)
+    <!--/codeinclude-->
+
+??? example "mytime.cpp - Methods"
+    <!--codeinclude-->
+    [](../programs/mytime.cpp)
+    <!--/codeinclude-->
+
+??? example "usetime.cpp - Program"
+    <!--codeinclude-->
+    [](../programs/usetime.cpp)
+    <!--/codeinclude-->
+
+#### Overloading restrictions
+
+- Overloaded operator must have at least one operand that is a user-defined type (Prevents overloading for standard types)
+- You can’t use an operator in a manner that violates the syntax rules for the original operator (eg. use `%` with only single operand)
+- You can’t create new operator symbols
+- You cannot overload the following operators:
+
+|Operator|Description|
+|---|---|
+| `sizeof` | The sizeof operator |
+| `.` | The membership operator |
+| `.*` | The pointer-to-member operator|
+| `::` | The scope-resolution operator |
+| `?:` | The conditional operator |
+| `typeid` | An RTTI operator |
+| `const_cast` | A type cast operator |
+| `dynamic_cast` | A type cast operator |
+| `reinterpret_cast` | A type cast operator |
+| `static_cast` | A type cast operator |
+| `=` | Assignment operator |
+| `()` | Function call operator |
+| `[]` | Subscripting operator |
+| `->` | Class member access by pointer operator |
+
+#### Operators That Can Be Overloaded
+
+|||||||
+|---|---|---|---|---|---|
+| `+` | `-` | `*` | `/` | `%` | `^` |
+| `&` | `\|` | `~` | `!` | `=` | `<` |
+| `>` | `+=` | `-=` | `*=` | `/=` | `%=` |
+| `^=` | `&=` | `\|=` | `<<` | `>>` | `>>=` |
+| `<<=` | `==` | `!=` | `<=` | `>=` | `&&` |
+| `\|\|` | `++` | `--` | `,` | `->*` | `->` |
+| `()` | `[]` | `new` | `delete` | `new`[] | `delete[]` |
+
+### Friends (578)
 
 </details>
 
