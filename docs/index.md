@@ -503,9 +503,9 @@ Use suffixes for declaration
 `-` operations usually are *slightly slower* than integer operations
 `-` you can *lose precision* and values:
 
-??? example "example: fltadd.cpp"
+??? example "fltadd.cpp"
     <!--codeinclude-->
-    [](..\programs\fltadd.cpp)
+    [](../programs/fltadd.cpp)
     <!--/codeinclude-->
 
 `+` represent *values betwewen integers*
@@ -522,7 +522,7 @@ value by second. `19 % 6` is `1`, because 6 goes into 19 three times, with
 
 ??? example "remainder of 1. Practical example: modulus.cpp"
     <!--codeinclude-->
-    [modulus.cpp](..\programs\modulus.cpp)
+    [modulus.cpp](../programs/modulus.cpp)
     <!--/codeinclude-->
 
 `precedence rules` - When more than one operator can be applied to the same
