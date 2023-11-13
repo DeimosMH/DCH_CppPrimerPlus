@@ -1820,12 +1820,21 @@ public:
 };
 ```
 
-Provide the implementation for this class and write a short program that uses all the
-member functions.
+Provide the implementation for this class and write a short program that uses all the member functions.
 
-??? note " "
+??? note "Code - Program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter12/) -->
+    [](../exercises/chapter12/ch12_1.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - Prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_1_cow.h)
+    <!--/codeinclude-->
+
+??? note "Code - Methods"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_1_cow.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -1833,19 +1842,28 @@ Enhance the <code>String</code> class declaration (that is, upgrade <code>string
 doing the following:
     a. Overload the <code>+</code> operator to allow you to join two strings into one.
     b. Provide a <code>stringlow()</code> member function that converts all alphabetic characters
-    in a string to lowercase. (Don’t forget the cctype family of character
-    functions.)
-    c. Provide a <code>stringup()</code> member function that converts all alphabetic characters
-    in a string to uppercase.
-    d. Provide a member function that takes a <code>char</code> argument and returns the number
-    of times the character appears in the string.
+    in a string to lowercase. (Don’t forget the cctype family of character functions.)
+    c. Provide a <code>stringup()</code> member function that converts all alphabetic characters in a string to uppercase.
+    d. Provide a member function that takes a <code>char</code> argument and returns the number of times the character appears in the string.
 
 Test your work in the following program:
 
-??? note " "
+??? note "Code - Program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter12/) -->
+    [](../exercises/chapter12/ch12_2.cpp)
     <!--/codeinclude-->
+
+??? note "Code - Prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_2_str.h)
+    <!--/codeinclude-->
+
+??? note "Code - Methods"
+    <!--codeinclude-->
+    [](../exercises/chapter12/ch12_2_str.cpp)
+    <!--/codeinclude-->
+
+Test your work in the following program:
 
 ```cpp
 // pe12_2.cpp
