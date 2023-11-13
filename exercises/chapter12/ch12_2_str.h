@@ -20,15 +20,16 @@ public:
     String(const String &); // copy constructor
     ~String();              // destructor
     int length() const { return len; }
-    void stringlow();       // b)
-    void stringup();        // c)
-    int has(const char s);// d)
+    void stringlow();      // b)
+    void stringup();       // c)
+    int has(const char s); // d)
 
     // overloaded operator methods
     String &operator=(const String &);
     String &operator=(const char *);
-    String operator+(const String &); // a)
-    String operator+(const char &); // a) const char [12] + String
+    String operator+(const String &);  // a)
+    String operator+(const char &cstr); // a) const char [12] + String
+
     char &operator[](int i);
     const char &operator[](int i) const;
 
@@ -38,8 +39,17 @@ public:
     friend bool operator==(const String &st, const String &st2);
     friend ostream &operator<<(ostream &os, const String &st);
     friend istream &operator>>(istream &is, String &st);
-    friend ostream &operator+(ostream &os, String &st); // a)
-    friend ostream &operator+(String &st, ostream &os); // a)
+    friend ostream &operator+(String &st, ostream os) { return os + st; }
+    friend ostream &operator+(ostream &os, String &st)
+    {
+        os << st.str;
+        return os;
+    };
+    friend String operator+(const char cstr[], const String &st)
+    {
+        String tmp(cstr);
+        return tmp + st;
+    };
 
     // static function
     static int HowMany();

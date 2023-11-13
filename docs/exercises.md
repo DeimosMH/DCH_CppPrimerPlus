@@ -1693,16 +1693,20 @@ report the smallest element, the largest element, and how many elements are grea
 or equal to 11 stone. (The simplest approach is to create a <code>Stonewt</code> object initialized
 to 11 stone and to compare the other objects with that object.)
 
-??? note "Code - program"
+??? note "Code - Program"
     <!--codeinclude-->
-    [](../exercises/chapter11/ch11_6_stn.cpp)
+    [](../exercises/chapter11/ch11_6.cpp)
     <!--/codeinclude-->
 
-??? note "Code - prototypes"
+??? note "Code - Prototypes"
     <!--codeinclude-->
-    [](../exercises/chapter11/ch11_6_stn.h)
+    [](../exercises/chapter11/ch11_6_stone.h)
     <!--/codeinclude-->
 
+??? note "Code - Methods"
+    <!--codeinclude-->
+    [](../exercises/chapter11/ch11_6_stone.cpp)
+    <!--/codeinclude-->
 7 -
 A complex number has two parts: a `real part` and an `imaginary part`. One way to
 write an imaginary number is this: `(3.0, 4.0)`. Here 3.0 is the real part and 4.0 is

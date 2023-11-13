@@ -41,6 +41,7 @@ String::String(const String &st)
 String::~String() // necessary destructor
 {
     --num_strings; // required
+    cout << "deleted : " << str << "\n";
     delete[] str;  // required
 }
 
@@ -100,6 +101,12 @@ String String::operator+(const String &st)
     return temp;
 }
 
+String String::operator+(const char &cstr)
+{
+    String tmp{str};
+    return *this + tmp;
+}
+
 // read-write char access for non-const String
 char &String::operator[](int i)
 {
@@ -145,14 +152,4 @@ istream &operator>>(istream &is, String &st)
     while (is && is.get() != '\n')
         continue;
     return is;
-}
-
-ostream &operator+(ostream &os, String &st)
-{
-    os << st.str;
-    return os;
-}
-
-ostream &operator+(String &st, ostream &os){
-    return os + st;    
 }
