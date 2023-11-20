@@ -4,26 +4,33 @@
 #include "ch13_3_dma.h"
 #include <cstring>
 
-// baseDMA methods
-baseDMA::baseDMA(const char *l, int r)
+// absDMA methods
+void absDMA::View()
+{
+    std::cout << "Label: "  << label  << std::endl;
+    std::cout << "Rating: " << rating << std::endl;
+}
+
+absDMA::absDMA(const char *l, int r)
 {
     label = new char[std::strlen(l) + 1];
     std::strcpy(label, l);
     rating = r;
 }
 
-baseDMA::baseDMA(const baseDMA &rs)
+absDMA::absDMA(const absDMA &ab)
 {
-    label = new char[std::strlen(rs.label) + 1];
-    std::strcpy(label, rs.label);
-    rating = rs.rating;
+    label = new char[std::strlen(ab.label) + 1];
+    std::strcpy(label, ab.label);
+    rating = ab.rating;
 }
 
-baseDMA::~baseDMA()
+absDMA::~absDMA()
 {
     delete[] label;
 }
 
+// baseDMA methods
 baseDMA &baseDMA::operator=(const baseDMA &rs)
 {
     if (this == &rs)

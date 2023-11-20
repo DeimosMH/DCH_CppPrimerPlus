@@ -2150,8 +2150,8 @@ arrays for the various strings tracked by the two classes.
 3 -
 Revise the <code>baseDMA-lacksDMA-hasDMA</code> class hierarchy so that all three classes are
 derived from an ABC. Test the result with a program similar to the one in Listing
-13.10.That is, it should feature an array of pointers to the ABC and allow the user
-to make runtime decisions as to what types of objects are created.Add virtual
+13.10. That is, it should feature an array of pointers to the ABC and allow the user
+to make runtime decisions as to what types of objects are created. Add virtual
 <code>View()</code> methods to the class definitions to handle displaying the data.
 
 ??? note "Code - classes prototypes"

@@ -4,18 +4,25 @@
 #include <iostream>
 
 // ABC class
-
-// Base Class Using DMA
-class baseDMA
+class absDMA
 {
-private:
+protected:
     char *label;
     int rating;
 
 public:
-    baseDMA(const char *l = "null", int r = 0);
-    baseDMA(const baseDMA &rs);
-    virtual ~baseDMA();
+    absDMA(const char *l = "null", int r = 0);
+    absDMA(const absDMA &ab);
+    virtual void View() = 0; // pure virtual function
+    virtual ~absDMA();
+};
+
+// Base Class Using DMA
+class baseDMA : absDMA
+{
+public:
+    baseDMA(const char *l = "null", int r = 0) : absDMA(l, r) {};
+    baseDMA(const baseDMA &rs) : absDMA(rs) {};
     baseDMA &operator=(const baseDMA &rs);
     friend std::ostream &operator<<(std::ostream &os,
                                     const baseDMA &rs);
