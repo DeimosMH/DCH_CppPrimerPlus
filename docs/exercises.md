@@ -2054,9 +2054,9 @@ public:
 ```
 
 Derive a <code>Classic</code> class that adds an array of <code>char</code> members that will hold a string
-identifying the primary work on the CD. If the base class requires that any functions
-be virtual, modify the base-class declaration to make it so. If a declared
-method is not needed, remove it from the definition.Test your product with the
+identifying the primary work on the `CD`. If the base class requires that any functions
+be `virtual`, modify the base-class declaration to make it so. If a declared
+method is not needed, remove it from the definition. Test your product with the
 following program:
 
 ```cpp
@@ -2083,7 +2083,9 @@ int main()
     cout << "Testing assignment: ";
     Classic copy;
     copy = c2;
-    copy.Report() return 0;
+    copy.Report();
+    
+    return 0;
 }
 void Bravo(const Cd &disk)
 {
@@ -2091,30 +2093,80 @@ void Bravo(const Cd &disk)
 }
 ```
 
-??? note " "
+??? note "Code - CD `base` class prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter13/) -->
+    [](../exercises/chapter13/ch13_1_cd.h)
+    <!--/codeinclude-->
+
+??? note "Code - CD methods"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_1_cd.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - Classic `derived` class prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_1_classic.h)
+    <!--/codeinclude-->
+
+??? note "Code - Classic methods"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_1_classic.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_1.cpp)
     <!--/codeinclude-->
 
 2 -
 Do Programming Exercise 1 but use dynamic memory allocation instead of fixedsize
 arrays for the various strings tracked by the two classes.
 
-??? note " "
+??? note "Code - CD `base` class prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter13/) -->
+    [](../exercises/chapter13/ch13_2_cd.h)
+    <!--/codeinclude-->
+
+??? note "Code - CD methods"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_2_cd.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - Classic `derived` class prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_2_classic.h)
+    <!--/codeinclude-->
+
+??? note "Code - Classic methods"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_2_classic.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_2.cpp)
     <!--/codeinclude-->
 
 3 -
 Revise the <code>baseDMA-lacksDMA-hasDMA</code> class hierarchy so that all three classes are
-derived from an ABC.Test the result with a program similar to the one in Listing
+derived from an ABC. Test the result with a program similar to the one in Listing
 13.10.That is, it should feature an array of pointers to the ABC and allow the user
 to make runtime decisions as to what types of objects are created.Add virtual
 <code>View()</code> methods to the class definitions to handle displaying the data.
 
-??? note " "
+??? note "Code - classes prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter13/) -->
+    [](../exercises/chapter13/ch13_3_dma.h)
+    <!--/codeinclude-->
+
+??? note "Code - classes methods"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_3_dma.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_3.cpp)
     <!--/codeinclude-->
 
 4 -

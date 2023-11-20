@@ -86,3 +86,11 @@ function's code could be inserted in multiple places
 ## Classes
 
 - when `designing` a `class`, you need to develop a `public interface` and a `private implementation`.
+
+### Is-a Relationship Considerations (Public Inheritance) - str. 772 "C++ Prime Plus"
+
+"You should be guided by the `is-a` relationship. If your proposed derived class is not a particular
+kind of the base class, you shouldn’t use public derivation. For example, you
+shouldn’t derive a `Programmer` class from a `Brain` class. If you want to represent the belief
+that a programmer has a brain, you should use a `Brain` class object as a member of the
+`Programmer` class."
