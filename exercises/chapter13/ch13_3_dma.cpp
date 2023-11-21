@@ -1,20 +1,26 @@
-
-
 // dma.cpp --dma class methods
 #include "ch13_3_dma.h"
-#include <cstring>
 
 // absDMA methods
 void absDMA::View()
 {
-    std::cout << "Label: "  << label  << std::endl;
+    std::cout << "Label:  "  << label  << std::endl;
     std::cout << "Rating: " << rating << std::endl;
+}
+
+absDMA::absDMA(const std::string &l, int r)
+{
+    label = new char[l.length() + 1];
+    l.copy(label, l.length());
+    label[l.length()] = '\0';
+    rating = r;
 }
 
 absDMA::absDMA(const char *l, int r)
 {
     label = new char[std::strlen(l) + 1];
     std::strcpy(label, l);
+    label[std::strlen(l)] = '\0';
     rating = r;
 }
 
@@ -22,6 +28,7 @@ absDMA::absDMA(const absDMA &ab)
 {
     label = new char[std::strlen(ab.label) + 1];
     std::strcpy(label, ab.label);
+    label[std::strlen(ab.label)] = '\0';
     rating = ab.rating;
 }
 
@@ -50,11 +57,25 @@ std::ostream &operator<<(std::ostream &os, const baseDMA &rs)
 }
 
 // lacksDMA methods
+void lacksDMA::View()
+{
+    std::cout << "Label:  " << label  << std::endl;
+    std::cout << "Rating: " << rating << std::endl;
+    std::cout << "Color:  " << color  << std::endl;
+}
+
+lacksDMA::lacksDMA(const std::string &c, const std::string &l, int r)
+    : baseDMA(l, r)
+{
+    c.copy(color, c.length());
+    color[c.length()] = '\0';
+}
+
 lacksDMA::lacksDMA(const char *c, const char *l, int r)
     : baseDMA(l, r)
 {
-    std::strncpy(color, c, 39);
-    color[39] = '\0';
+    std::strncpy(color, c, COL_LEN - 1);
+    color[COL_LEN - 1] = '\0';
 }
 
 lacksDMA::lacksDMA(const char *c, const baseDMA &rs)
@@ -72,11 +93,27 @@ std::ostream &operator<<(std::ostream &os, const lacksDMA &ls)
 }
 
 // hasDMA methods
+void hasDMA::View()
+{
+    std::cout << "Label:  " << label  << std::endl;
+    std::cout << "Rating: " << rating << std::endl;
+    std::cout << "Style:  " << style  << std::endl;
+}
+
+hasDMA::hasDMA(const std::string &s, const std::string &l, int r)
+    : baseDMA(l, r)
+{
+    style = new char[s.length() + 1];
+    s.copy(style, s.length());
+    style[s.length()] = '\0';
+}
+
 hasDMA::hasDMA(const char *s, const char *l, int r)
     : baseDMA(l, r)
 {
     style = new char[std::strlen(s) + 1];
     std::strcpy(style, s);
+    style[std::strlen(s)] = '\0';
 }
 
 hasDMA::hasDMA(const char *s, const baseDMA &rs)
