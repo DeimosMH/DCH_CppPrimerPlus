@@ -6,7 +6,7 @@
 #include <cstring>
 #include <string>
 
-// ABC class
+// ABC (Abstract Base Class) class
 class absDMA
 {
 protected:

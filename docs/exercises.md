@@ -2150,7 +2150,7 @@ arrays for the various strings tracked by the two classes.
 3 -
 Revise the <code>baseDMA-lacksDMA-hasDMA</code> class hierarchy so that all three classes are
 derived from an ABC. Test the result with a program similar to the one in Listing
-13.10. That is, it should feature an array of pointers to the ABC and allow the user
+13.10 (usebrass2.cpp). That is, it should feature an array of pointers to the ABC and allow the user
 to make runtime decisions as to what types of objects are created. Add virtual
 <code>View()</code> methods to the class definitions to handle displaying the data.
 
@@ -2170,8 +2170,8 @@ to make runtime decisions as to what types of objects are created. Add virtual
     <!--/codeinclude-->
 
 4 -
-The Benevolent Order of Programmers maintains a collection of bottled port.To
-describe it, the BOP Portmaster has devised a <code>Port</code> class, as declared here:
+The Benevolent Order of Programmers maintains a collection of bottled port.
+To describe it, the BOP Portmaster has devised a <code>Port</code> class, as declared here:
 
 ```cpp
 #include <iostream>
@@ -2234,17 +2234,36 @@ public:
 ```
 
 You get the job of completing the VintagePort work.
-a. Your first task is to re-create the <code>Port</code> method definitions because the former
-Portmaster immolated his upon being relieved.
-b. Your second task is to explain why certain methods are redefined and others
-are not.
-c. Your third task is to explain why <code>operator=()</code> and <code>operator<<()</code> are not
-virtual.
-d. Your fourth task is to provide definitions for the <code>VintagePort</code> methods.
 
-??? note " "
+A. Your first task is to re-create the <code>Port</code> method definitions because the former
+Portmaster immolated his upon being relieved.
+B. Your second task is to explain why certain methods are redefined and others are not.
+C. Your third task is to explain why <code>operator=()</code> and <code>operator<<()</code> are not virtual.
+D. Your fourth task is to provide definitions for the <code>VintagePort</code> methods.
+
+??? note "Code - class prototypes - Port"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter13/) -->
+    [](../exercises/chapter13/ch13_4_port.h)
+    <!--/codeinclude-->
+
+??? note "Code - class methods - Port"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_4_port.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - class prototypes - VintagePort"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_4_vport.h)
+    <!--/codeinclude-->
+
+??? note "Code - class methods - VintagePort"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_4_vport.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter13/ch13_4.cpp)
     <!--/codeinclude-->
 
 ## Chapter 14
@@ -2280,7 +2299,7 @@ Wine(const char * l, int y);
 
 The <code>Wine</code> class should have a method <code>GetBottles()</code> that, given a <code>Wine</code> object with
 <code>y</code> years, prompts the user to enter the corresponding number of vintage years and
-bottle counts.A method <code>Label()</code> should return a reference to the wine name.
+bottle counts. A method <code>Label()</code> should return a reference to the wine name.
 A method <code>sum()</code> should return the total number of bottles in the second
 <code>valarray<int></code> object in the <code>Pair</code> object.
 

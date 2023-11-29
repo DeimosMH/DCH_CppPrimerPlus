@@ -1,4 +1,4 @@
-// usebrass2.cpp -- polymorphic example
+// usebrass2.cpp -- polymorphic example - modified for exercise
 // compile with brass.cpp
 #include <iostream>
 #include <string>

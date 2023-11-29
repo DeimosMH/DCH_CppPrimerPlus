@@ -28,7 +28,7 @@ absDMA::absDMA(const absDMA &ab)
 {
     label = new char[std::strlen(ab.label) + 1];
     std::strcpy(label, ab.label);
-    label[std::strlen(ab.label)] = '\0';
+    label[std::strlen(ab.label)] = '\0'; // without it, there will be printed trash at the end 
     rating = ab.rating;
 }
 
@@ -143,6 +143,8 @@ hasDMA &hasDMA::operator=(const hasDMA &hs)
     delete[] style;         // prepare for new style
     style = new char[std::strlen(hs.style) + 1];
     std::strcpy(style, hs.style);
+    style[std::strlen(hs.style)] = '\0';
+
     return *this;
 }
 
