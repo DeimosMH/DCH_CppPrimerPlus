@@ -2850,6 +2850,16 @@ addresses.
 
 </summary>
 
+All public and protected methods and variables.
+
+// Answer in the book</br>
+
+The public members of the base class become public members of the derived class.
+The protected members of the base class become protected members of the derived
+class.The private members of the base class are inherited but cannot be accessed
+directly. The answer to Review Question 2 provides the exceptions to these general
+rules.
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -2859,26 +2869,57 @@ addresses.
 
 </summary>
 
+The constructor methods are not inherited, the destructor is not inherited, the
+assignment operator is not inherited, and friends are not inherited.
+
 </details>
 
 <!-- -------------------------------------------- -->
 
 <details><summary>
 03. Suppose the return type for the <code>baseDMA::operator=()</code> function were defined as
-<code>void</code> instead of <code>baseDMA &</code>. What effect, if any, would that have? What if the return
+<code>void</code> instead of <code>baseDMA &</code>.
+</br>What effect, if any, would that have? What if the return
 type were <code>baseDMA</code> instead of <code>baseDMA &</code>?</br></br>
 
 </summary>
+
+`void` - returns nothing instead of reference to `baseDMA`, that is you would not be able to return `baseDMA` object and its data via `=` so the chain assignment wont work, only single assignment</br>
+Returning object, not reference to it, makes execution slower due to necessity of copying everything to return it, instead of pointing to memory with already created object.
+
+// Answer in the book</br>
+
+If the return type were void, you would still be able to use single assignment but
+not chain assignment:
+
+```cpp
+baseDMA magazine("Pandering to Glitz", 1);
+baseDMA gift1, gift2, gift3;
+gift1 = magazine; // ok
+gift 2 = gift3 = gift1; // no longer valid
+```
+
+If the method returned an object instead of a reference, the method execution
+would be slowed a bit because the return statement would involve copying the
+object.
 
 </details>
 
 <!-- -------------------------------------------- -->
 
 <details><summary>
-04. In what order are class constructors and class destructors called when a derivedclass
+04. In what order are class constructors and class destructors called when a derived class
 object is created and deleted?</br></br>
 
 </summary>
+
+In reverse order to invoking constructors.
+In case of constructor with inheritance - it would be base class invoked via member initializator list `:`, constructed in order from left to right (in case of many classes).
+
+// Answer in the book</br>
+
+Constructors are called in the order of derivation, with the most ancestral constructor
+called first. Destructors are called in the opposite order.
 
 </details>
 
@@ -2890,14 +2931,30 @@ class require constructors?</br></br>
 
 </summary>
 
+Yes, and it need to invoke base class constructor.
+
+// Answer in the book</br>
+
+Yes, every class requires its own constructors. If the derived class adds no new members,
+the constructor can have an empty body, but it must exist.
+
 </details>
 
 <!-- -------------------------------------------- -->
 <details><summary>
 06. Suppose a base class and a derived class both define a method with the same name
-and a derived-class object invokes the method.What method is called?</br></br>
+and a derived-class object invokes the method. What method is called?</br></br>
 
 </summary>
+
+Method in derived class.
+
+// Answer in the book</br>
+
+Only the derived-class method is called. It supersedes the base-class definition.A
+base-class method is called only if the derived class does not redefine the method or
+if you use the scope-resolution operator. However, you really should declare as virtual
+any functions that will be redefined
 
 </details>
 
@@ -2908,16 +2965,36 @@ and a derived-class object invokes the method.What method is called?</br></br>
 
 </summary>
 
+When it need to perform deep copy - that is, if it have dynamically allocated data.
+
+// Answer in the book</br>
+
+The derived class should define an assignment operator if the derived-class constructors
+use the `new` or `new []` operator to initialize pointers that are members of
+that class. More generally, the derived class should define an assignment operator if
+the default assignment is incorrect for derived-class members.
+
 </details>
 
 <!-- -------------------------------------------- -->
 
 <details><summary>
 08. Can you assign the address of an object of a derived class to a pointer to the base
-class? Can you assign the address of an object of a base class to a pointer to the
+class?</br> Can you assign the address of an object of a base class to a pointer to the
 derived class?</br></br>
 
 </summary>
+
+Yes to both.
+Pointer of derived class to base class is called upcasting.
+Pointer of base class to derived class is called downcasting.
+
+// Answer in the book</br>
+
+Yes, you can assign the address of an object of a derived class to a pointer to the
+base class. You can assign the address of a base-class object to a pointer to a derived
+class (downcasting) only by making an explicit type cast, and it is not necessarily
+safe to use such a pointer.
 
 </details>
 
@@ -2929,15 +3006,35 @@ assign an object of a base class to an object of the derived class?</br></br>
 
 </summary>
 
+If you will make methods that will handle this - yes.
+
+// Answer in the book</br>
+
+Yes, you can assign an object of a derived class to an object of the base class. Any
+data members that are new to the derived type are not passed to the base type,
+however. The program uses the base-class assignment operator. Assignment in the
+opposite direction (base to derived) is possible only if the derived class defines a
+`conversion operator`, which is a constructor that has a reference to the base type
+as its sole argument, or else defines an assignment operator with a base-class
+parameter.
+
 </details>
 
 <!-- -------------------------------------------- -->
 
 <details><summary>
 10. Suppose you define a function that takes a reference to a base-class object as an
-argument.Why can this function also use a derived-class object as an argument?</br></br>
+argument. Why can this function also use a derived-class object as an argument?</br></br>
 
 </summary>
+
+Because it is inherited.
+Derived class object holds base class object.  
+
+// Answer in the book</br>
+
+It can do so because C++ allows a reference to a base type to refer to any type
+derived from that base.
 
 </details>
 
@@ -2945,10 +3042,22 @@ argument.Why can this function also use a derived-class object as an argument?</
 
 <details><summary>
 11. Suppose you define a function that takes a base-class object as an argument (that is,
-the function passes a base-class object by value).Why can this function also use a
+the function passes a base-class object by value). Why can this function also use a
 derived-class object as an argument?</br></br>
 
 </summary>
+
+Because it is inherited.
+Derived class object holds base class object.  
+
+// Answer in the book</br>
+
+Passing an object by value invokes the copy constructor. Because the formal argument
+is a base-class object, the base-class copy constructor is invoked.The copy
+constructor has as its argument a reference to the base class, and this reference can
+refer to the derived object passed as an argument.The net result is that a new baseclass
+object whose members correspond to the base class portion of the derived
+object is produced
 
 </details>
 
@@ -2959,6 +3068,16 @@ derived-class object as an argument?</br></br>
 
 </summary>
 
+Because passing by value makes copy of an object, when reference is the address of the original object. 
+
+// Answer in the book</br>
+
+Passing an object by reference instead of by value enables the function to avail itself
+of virtual functions. Also passing an object by reference instead of by value may use
+less memory and time, particularly for large objects. The main advantage of passing
+by value is that it protects the original data, but you can accomplish the same end
+by passing the reference as a `const` type.
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -2967,12 +3086,20 @@ derived-class object as an argument?</br></br>
 13. Suppose <code>Corporation</code> is a base class and <code>PublicCorporation</code> is a derived class. Also
 suppose that each class defines a <code>head()</code> member function, that <code>ph</code> is a pointer to
 the <code>Corporation</code> type, and that <code>ph</code> is assigned the address of a <code>PublicCorporation</code>
-object. How is <code>ph->head()</code> interpreted if the base class defines <code>head()</code> as a
-
-a. Regular nonvirtual method</br>
-b. Virtual method</br>
+object. How is <code>ph->head()</code> interpreted if the base class defines <code>head()</code> as a</br>
+&emsp;a. Regular nonvirtual method</br>
+&emsp;b. Virtual method</br></br>
 
 </summary>
+
+- via regular method - the `PublicCorporation->head()` will be invoked
+- via virtual method - the `Corporation->head()` will be invoked
+
+// Answer in the book</br>
+
+If `head()` is a regular method, then `ph->head()` invokes `Corporation::head()`. If
+`head()` is a virtual function, then `ph->head()` invokes
+`PublicCorporation::head()`.
 
 </details>
 
@@ -2991,6 +3118,7 @@ public:
     Kitchen() { kit_sq_ft = 0.0; }
     virtual double area() const { return kit_sq_ft * kit_sq_ft; }
 };
+
 class House : public Kitchen
 {
 private:
@@ -3008,6 +3136,16 @@ public:
 
 </summary>
 
+Why `House` inherits `Kitchen`, instead containing it (it is has-a model) or via private deriviation(chapter 14)?  
+The keyword `virtual` in derived class `area` constructor don't need to be used, because base class function is overridden in a derived class via declared function as virtual in the base class.
+`Kitchen` and `House` constructors don't allow any input that assigns value to private values, which mean the `kit_sq_ft` and `all_sq_ft` will always be `0.0`.
+
+// Answer in the book</br>
+
+First, the situation does not fit the is-a model, so public inheritance is not appropriate.
+Second, the definition of `area()` in `House` hides the `Kitchen` version of `area()`
+because the two methods have different signatures.
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -3019,9 +3157,27 @@ public:
 01. For each of the following sets of classes, indicate whether public or private derivation
 is more appropriate for Column B:
 
-![table](assets/rev_14_1.png)
+|Lp|A|B|
+|---|---|---|
+|1|class Bear|class PolarBear|
+|2|class Kitchen|class Home|
+|3|class Person|class Programmer|
+|4|class Person|class HorseAndJockey|
+|5|class Person, class Automobile|class Driver|
 
 </summary>
+
+// Answer in the book</br>
+
+1. Public; a polar bear is a kind of bear
+2. Private; a home has a kitchen
+3. Public; a programmer is a kind of
+person
+4. Private; a horse and jockey team
+contains a person
+5. Person public because a driver is a person;
+Automobile private because a
+driver has an automobile
 
 </details>
 
@@ -3040,6 +3196,7 @@ public:
     Frabjous(const char *s = "C++") : fab(s) {}
     virtual void tell() { cout << fab; }
 };
+
 class Gloam
 {
 private:
@@ -3053,10 +3210,42 @@ public:
 };
 ```
 
-Given that the <code>Gloam</code> version of <code>tell()</code> should display the values of <code>glip</code> and <code>fb</code>,
-provide definitions for the three <code>Gloam</code> methods.
+Given that the <code>Gloam</code> version of <code>tell()</code> should display the values of <code>glip</code> and <code>fb</code>, provide definitions for the three <code>Gloam</code> methods.
 
 </summary>
+
+```cpp
+Gloam::Gloam(int g, const char *s)
+{
+    glip = g;
+    strcpy(fb.fab, s); 
+}
+
+Gloam::Gloam(int g, const Frabjous &f)
+{
+    glip = g;
+    strcpy(fb.fab, f.fab);     
+}
+
+void Gloam::tell()
+{
+    cout << glip;
+    cout << fb.fab;
+}
+```
+
+// Answer in the book</br>
+
+```cpp
+Gloam::Gloam(int g, const char * s) : glip(g), fb(s) { }
+Gloam::Gloam(int g, const Frabjous & fr) : glip(g), fb(fr) { }
+// note: the above uses the default Frabjous copy constructor
+void Gloam::tell()
+{
+    fb.tell();
+    cout << glip << endl;
+}
+```
 
 </details>
 
@@ -3075,6 +3264,7 @@ public:
     Frabjous(const char *s = "C++") : fab(s) {}
     virtual void tell() { cout << fab; }
 };
+
 class Gloam : private Frabjous
 {
 private:
@@ -3092,13 +3282,54 @@ provide definitions for the three <code>Gloam</code> methods.
 
 </summary>
 
+
+```cpp
+// Gloam::Gloam(int g, const char *s) // wrong 
+// {
+//     glip = g;
+//     this(s); // Error: this is a pointer, not a function - this keyword is a pointer to the current object, and it cannot be used to call constructor
+// }
+
+// Gloam::Gloam(int g, const Frabjous &f) // wrong
+// {
+//     glip = g;
+//     this(f); // Error: this is a pointer, not a function
+// }
+
+Gloam::Gloam(int g, const char * s)
+           : glip(g), Frabjous(s) { }
+Gloam::Gloam(int g, const Frabjous & fr)
+           : glip(g), Frabjous(fr) { }
+
+void Gloam::tell()
+{
+    cout << glip;
+    Frabjous::tell();
+}
+```
+
+// Answer in the book</br>
+
+```cpp
+Gloam::Gloam(int g, const char * s)
+            : glip(g), Frabjous(s) { }
+Gloam::Gloam(int g, const Frabjous & fr)
+            : glip(g), Frabjous(fr) { }
+// note: the above uses the default Frabjous copy constructor
+void Gloam::tell()
+{
+    Frabjous::tell();
+    cout << glip << endl;
+}
+```
+
 </details>
 
 <!-- -------------------------------------------- -->
 
 <details><summary>
 04. Suppose you have the following definition, based on the <code>Stack</code> template of Listing
-14.13 and the <code>Worker</code> class of Listing 14.10:
+14.13 (stacktp.h) and the <code>Worker</code> class of Listing 14.10 (workermi.h):
 
 ```cpp
 Stack<Worker *> sw;
@@ -3108,6 +3339,44 @@ Write out the class declaration that will be generated. Just do the class declar
 not the non-inline class methods.
 
 </summary>
+
+```cpp
+template <class Worker *>
+class Stack
+{
+private:
+    enum
+    {
+        MAX = 10
+    };               // constant specific to class
+    Worker * items[MAX]; // holds stack items
+    int top;         // index for top stack item
+public:
+    Stack();
+    bool isempty();
+    bool isfull();
+    bool push(const Worker &item); // add item to stack
+    bool pop(Worker &item);        // pop top into item
+};
+```
+
+// Answer in the book</br>
+
+```cpp
+class Stack<Worker *>
+{
+private:
+    enum {MAX = 10}; // constant specific to class
+    Worker * items[MAX]; // holds stack items
+    int top; // index for top stack item
+public:
+    Stack();
+    Boolean isempty();
+    Boolean isfull();
+    Boolean push(const Worker * & item); // add item to stack
+    Boolean pop(Worker * & item); // pop top into item
+};
+```
 
 </details>
 
@@ -3120,9 +3389,28 @@ not the non-inline class methods.
 - A stack of arrays of <code>double</code>
 - An array of stacks of pointers to <code>Worker</code> objects
 
-How many template class definitions are produced in Listing 14.18?
+How many template class definitions are produced in Listing 14.18 (twod.cpp)?
 
 </summary>
+
+```cpp
+vector<std::string> one;
+Stack<vector<double>> two;
+vector<Stack<* Worker>> three;
+```
+
+In `twop.cpp` 4 template class definitions are produced  
+
+// Answer in the book</br>
+
+```cpp
+ArrayTP<string> sa;
+StackTP< ArrayTP<double> > stck_arr_db;
+ArrayTP< StackTP<Worker *> > arr_stk_wpr;
+```
+
+Listing 14.18 generates four templates: `ArrayTP<int, 10>`, `ArrayTP<double, 10>`,
+`ArrayTP<int,5>`, and `Array< ArrayTP<int,5>, 10>`.
 
 </details>
 
@@ -3131,6 +3419,14 @@ How many template class definitions are produced in Listing 14.18?
 06. Describe the differences between virtual and nonvirtual base classes.</br></br>
 
 </summary>
+
+In case of upcasting, the base class methods for nonvirtual base class will not be invoked, which can result in errors
+
+// Answer in the book</br>
+
+If two lines of inheritance for a class share a common ancestor, the class winds up
+having two copies of the ancestor’s members. Making the ancestor class a virtual
+base class to its immediate descendants solves that problem.
 
 </details>
 <!-- -------------------------------------------- -->

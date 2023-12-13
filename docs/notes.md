@@ -94,3 +94,7 @@ kind of the base class, you shouldn’t use public derivation. For example, you
 shouldn’t derive a `Programmer` class from a `Brain` class. If you want to represent the belief
 that a programmer has a brain, you should use a `Brain` class object as a member of the
 `Programmer` class."
+
+### Inheritance
+
+- "Private inheritance limits the use of base-class methods to within derived-class methods" page 800.
