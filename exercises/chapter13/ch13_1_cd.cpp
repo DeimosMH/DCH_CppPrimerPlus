@@ -1,6 +1,6 @@
 #include "ch13_1_cd.h"
 
-Cd::Cd(const char *s1,const char *s2, int n, double x)
+Cd::Cd(const char *s1, const char *s2, int n, double x)
 {
     strcpy(performers, s1);
     strcpy(label, s2);
@@ -8,7 +8,8 @@ Cd::Cd(const char *s1,const char *s2, int n, double x)
     playtime = x;
 }
 
-Cd::Cd(const Cd &d){
+Cd::Cd(const Cd &d)
+{
     strcpy(performers, d.performers);
     strcpy(label, d.label);
     selections = d.selections;
@@ -25,17 +26,15 @@ Cd::Cd()
 
 void Cd::Report() const
 {
-    std::cout <<
-        "\n Performance by: " << performers <<
-        "\n Album: " << label <<
-        "\n Number of selections: " << selections << 
-        "\n Playtime: " << playtime <<
-        "\n";
+    std::cout << "\n Performance by: " << performers
+              << "\n Album: " << label
+              << "\n Number of selections: " << selections
+              << "\n Playtime: " << playtime << "\n";
 }
 
 Cd &Cd::operator=(const Cd &d)
 {
-    if(this == &d)
+    if (this == &d)
         return *this;
     strcpy(performers, d.performers);
     strcpy(label, d.label);

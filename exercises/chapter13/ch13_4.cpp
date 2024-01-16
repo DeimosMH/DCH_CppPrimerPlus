@@ -27,7 +27,7 @@ int main(){
         tmp_style = new char[30];
         cin.getline(tmp_style, 30);
 
-        cout << "Enter number of bottles in " << tmp_brand << " port:";
+        cout << "Enter number of bottles in " << tmp_brand << " port: ";
         while (!(cin >> bottles))
         {
             cin.clear();    // reset input

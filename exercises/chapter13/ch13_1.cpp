@@ -33,6 +33,7 @@ int main()
     }
     return 0;
 }
+
 void Bravo(const Cd &disk)
 {
     disk.Report();

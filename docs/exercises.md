@@ -2371,10 +2371,26 @@ Total bottles for Gushing Grape Red: 180
 Bye
 ```
 
-??? note " "
+??? note "Code - classes prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter14/) -->
+    [](../exercises/chapter14/ch14_1_pair.h)
     <!--/codeinclude-->
+
+??? note "Code - classes prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_1_wine.h)
+    <!--/codeinclude-->
+
+??? note "Code - classes methods"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_1_wine.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_1.cpp)
+    <!--/codeinclude-->
+
 
 2 -
 This exercise is the same as Programming Exercise 1, except that you should use private
