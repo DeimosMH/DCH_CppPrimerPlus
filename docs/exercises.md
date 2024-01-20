@@ -2373,11 +2373,6 @@ Bye
 
 ??? note "Code - classes prototypes"
     <!--codeinclude-->
-    [](../exercises/chapter14/ch14_1_pair.h)
-    <!--/codeinclude-->
-
-??? note "Code - classes prototypes"
-    <!--codeinclude-->
     [](../exercises/chapter14/ch14_1_wine.h)
     <!--/codeinclude-->
 
@@ -2394,7 +2389,7 @@ Bye
 
 2 -
 This exercise is the same as Programming Exercise 1, except that you should use private
-inheritance instead of containment. Again, a few typedefs might prove handy.
+inheritance instead of containment. Again, a few <code>typedefs<code> might prove handy.
 Also you might contemplate the meaning of statements such as the following:
 
 ```cpp
@@ -2405,20 +2400,64 @@ cout << (const string &)(*this);
 The class should work with the same test program as shown in Programming
 Exercise 1.
 
-??? note " "
+??? note "Code - classes prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter14/) -->
+    [](../exercises/chapter14/ch14_2_wine.h)
+    <!--/codeinclude-->
+
+??? note "Code - classes methods"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_2_wine.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_2.cpp)
     <!--/codeinclude-->
 
 3 -
 Define a <code>QueueTp</code> template. Test it by creating a queue of pointers-to-Worker (as
-defined in Listing 14.10) and using the queue in a program similar to that in
-Listing 14.12.
+defined in Listing 14.10 <workermi.h>) and using the queue in a program similar to that in
+Listing 14.12 <workmi.cpp>.
 
-??? note " "
+??? note "Code - classes prototypes of listing 14.10"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter14/) -->
+    [](../exercises/chapter14/ch14_3_listing.h)
     <!--/codeinclude-->
+
+??? note "Code - classes methods of listing 14.10"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_3_listing.cpp)
+    <!--/codeinclude-->
+
+Methods like below will only work in the same place as prototypes
+
+```cpp
+template <typename T>
+bool QueueTp<T>::method(){}
+```
+
+For template methods in files outside of a header, you need to use `template <>` with specified data recovered via `T`;
+
+```cpp
+template <>
+QueueTp<Worker*>::Method(){}
+``` 
+
+??? note "Code - classes prototypes and methods"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_3_wk.h)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_3.cpp)
+    <!--/codeinclude-->
+
+Compile using:
+```sh
+g++ ch14_3.cpp ch14_3_listing.cpp 
+```
 
 4 -
 A <code>Person</code> class holds the first name and the last name of a person. In addition to its

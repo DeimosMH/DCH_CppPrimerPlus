@@ -5,13 +5,11 @@
 #ifndef _WINE_H_
 #define _WINE_H_
 
-class Wine
+typedef  std::valarray<int> ArrayInt;
+typedef  std::pair<ArrayInt, ArrayInt> PairArray;
+
+class Wine : private std::string, private PairArray
 {
-private:
-    typedef std::valarray<int> ArrayInt;
-    typedef std::pair<ArrayInt, ArrayInt> PairArray;
-    std::string s_Name;
-    PairArray pa_Data; // Pair <vintage years, bootles>
 public:
     // default constructor
     Wine();
@@ -27,7 +25,7 @@ public:
     void GetBottles();
     void Show();
 
-    const std::string &Label();
+    const std::string &Label() const;
     int sum(); 
 };
 

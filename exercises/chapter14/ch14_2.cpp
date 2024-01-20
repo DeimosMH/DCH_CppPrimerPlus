@@ -1,6 +1,6 @@
 // pe14-1.cpp -- using Wine class with containment
 #include <iostream>
-#include "ch14_1_wine.h"
+#include "ch14_2_wine.h"
 
 int main(void)
 {
