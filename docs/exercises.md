@@ -2478,9 +2478,19 @@ and a <code>Cdraw()</code> member that returns the next card drawn. It has an ap
 methods (such as methods for setting object values) and test them in a simple
 program similar to that in Listing 14.12.
 
-??? note " "
+??? note "Code - classes prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter14/) -->
+    [](../exercises/chapter14/ch14_4_ppl.h)
+    <!--/codeinclude-->
+
+??? note "Code - classes methods"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_4_ppl.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -2490,6 +2500,7 @@ Here are some class declarations:
 // emp.h -- header file for abstr_emp class and children
 #include <iostream>
 #include <string>
+
 class abstr_emp
 {
 private:
@@ -2517,6 +2528,7 @@ public:
     virtual void ShowAll() const;
     virtual void SetAll();
 };
+
 class manager : virtual public abstr_emp
 {
 private:
@@ -2533,6 +2545,7 @@ public:
     virtual void ShowAll() const;
     virtual void SetAll();
 };
+
 class fink : virtual public abstr_emp
 {
 private:
@@ -2609,12 +2622,15 @@ int main(void)
 }
 ```
 
-Why is no assignment operator defined?
-Why are <code>ShowAll()</code> and <code>SetAll()</code> virtual?
-Why is <code>abstr_emp</code> a virtual base class?
-Why does the <code>highfink</code> class have no data section?
-Why is only one version of <code>operator<<()</code> needed?
-What would happen if the end of the program were replaced with this code?
+
+<details><summary>
+
+1. Why is no assignment operator defined?
+2. Why are <code>ShowAll()</code> and <code>SetAll()</code> virtual?
+3. Why is <code>abstr_emp</code> a virtual base class?
+4. Why does the <code>highfink</code> class have no data section?
+5. Why is only one version of <code>operator<<()</code> needed?
+6. What would happen if the end of the program were replaced with this code?
 
 ```cpp
 abstr_emp tri[4] = {em, fi, hf, hf2};
@@ -2622,9 +2638,39 @@ for (int i = 0; i < 4; i++)
     tri[i].ShowAll();
 ```
 
-??? note " "
+</br></br>
+
+</summary>
+
+1. There is no allocation of data directly in class, thus deep copy is not necessary 
+2. Method can be overridden in a derived class, enabling runtime polymorphism. 
+"When you refer to a derived class object using a pointer or a reference to the base class, you can call a virtual function for that object and execute the derived class’s version of the method."
+3. Because one of the methods (in this case destructor) is a pure virtual function.
+4. All necessary data is stored in objects of a 2 base classes, highfink only extend functional part of inherited classes and don't have new data
+5. Because it is publicly inherited, thus can be used in any class that inherits it
+6. You cannot declare ABC type of class directly.
+
+</details>
+
+```cpp
+abstr_emp tri[4] = {em, fi, hf, hf2};
+for (int i = 0; i < 4; i++)
+    tri[i].ShowAll();
+```
+
+??? note "Code - classes prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter14/) -->
+    [](../exercises/chapter14/ch14_5_abstr.h)
+    <!--/codeinclude-->
+
+??? note "Code - classes methods"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_5_abstr.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter14/ch14_5.cpp)
     <!--/codeinclude-->
 
 ## Chapter 15
