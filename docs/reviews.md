@@ -3483,6 +3483,48 @@ public:
 
 </summary>
 
+// Answer in the book</br>
+
+a.The friend declaration should be as follows :
+
+```cpp
+friend class clasp;
+```
+
+b.This needs a forward declaration so that the compiler can interpret void snip(muff &) :
+
+```cpp
+class muff; // forward declaration
+class cuff
+{
+public:
+    void snip(muff &){...}...
+};
+class muff
+{
+    friend void cuff::snip(muff &);
+    ...
+};
+```
+
+c. First, the cuff class declaration should precede the muff class so that the compiler can understand the term cuff::snip().
+Second, the compiler needs a forward declaration of muff so that it can understand snip(muff &) : 
+
+```cpp
+class muff; // forward declaration
+class cuff
+{
+public:
+    void snip(muff &){...}
+    ...
+};
+class muff
+{
+    friend void cuff::snip(muff &);
+    ...
+};
+```
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -3493,6 +3535,30 @@ form of friendship in which only some members of Class B are friends to Class A
 and some members of A are friends to B? Explain.</br></br>
 
 </summary>
+
+With forward declaration:
+
+```cpp
+class A; // forward declaration
+
+class B{
+        friend void sync(A &cA, B &cB);
+}
+
+class A{
+        friend void sync(A &cA, B &cB);
+}
+
+// only protected & public members are shared - there is no more restrictive way
+```
+
+// Answer in the book</br>
+
+No. For Class A to have a friend that’s a member function of Class B, the B declaration
+must precede the A declaration. A forward declaration is not enough because it
+would tell A that B is a class, but it wouldn’t reveal the names of the class members.
+Similarly, if B has a friend that’s a member function of A, the complete A declaration
+must precede the B declaration.These two requirements are mutually exclusive.
 
 </details>
 
@@ -3519,6 +3585,14 @@ private:
 
 </summary>
 
+The public interface of nested Sauce class will only be visible (will have a scope of) Ribs class.
+
+// Answer in the book</br>
+
+The only access to a class is through its public interface, which means the only
+thing you can do with a Sauce object is call the constructor to create one. The
+other members (soy and sugar) are private by default.
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -3527,6 +3601,22 @@ private:
 04. How does <code>throw</code> differ from <code>return</code>?</br></br>
 
 </summary>
+
+
+`throw()` will get directly into main - it is faster 
+`throw(fun)` can jump into desired function  
+
+
+// Answer in the book</br>
+
+
+Suppose the function f1() calls the function f2(). A return statement in f2()
+causes program execution to resume at the next statement following the f2() function
+call in function f1(). A throw statement causes the program to back up
+through the current sequence of function calls until it finds a try block that
+directly or indirectly contains the call to f2(). This might be in f1() or in a function
+that called f1(), and so on. Once there, execution goes to the next matching
+catch block, not to the first statement after the function call.
 
 </details>
 
@@ -3537,6 +3627,11 @@ private:
 exception class. In what order should you place <code>catch</code> blocks?</br></br>
 
 </summary>
+
+// Answer in the book</br>
+
+You should arrange the catch blocks in order, from most derived class to least
+derived.
 
 </details>
 
@@ -3552,11 +3647,21 @@ if (ps = dynamic_cast<Superb *>(pg))
     ps->say(); // sample #1
 
 if (typeid(*pg) == typeid(Superb))
-    (Superb *) pg)->say(); // sample #2
+    (Superb *) pg->say(); // sample #2
 
 ```
 
 </summary>
+
+sample1 - if with dynamic cast - will assign any class as long as it is safe
+sample2 - if with typeid - will only check if pg is the exact pointer of Superb class  
+
+// Answer in the book</br>
+
+For Sample #1, the if condition is true if pg points to a Superb object or to an
+object of any class descended from Superb. In particular, it is also true if pg points
+to a Magnificent object. In Sample #2, the if condition is true only for a Superb
+object, not for objects derived from Superb.
 
 </details>
 
@@ -3566,6 +3671,16 @@ if (typeid(*pg) == typeid(Superb))
 07. How is the <code>static_cast</code> operator different from the <code>dynamic_cast</code> operator?</br></br>
 
 </summary>
+
+static_cast is only valid when compiler can convert type name into the same type expression has, 
+while dynamic_cast can assigning into expression is safe (upcasting)
+
+// Answer in the book</br>
+
+The dynamic_cast operator only allows upcasting in a class hierarchy, whereas a
+static_cast operator allows both upcasting and downcasting.The static_cast
+operator also allows conversions from enumeration types to integer types, and vice
+versa, and between various numeric types.
 
 </details>
 

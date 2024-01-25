@@ -2686,9 +2686,19 @@ Modify the <code>Tv</code> and <code>Remote</code> classes as follows:
 
 Write a short program that tests these new features.
 
-??? note " "
+??? note "Code - classes prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter15/) -->
+    [](../exercises/chapter15/ch15_1_tv.h)
+    <!--/codeinclude-->
+
+??? note "Code - classes methods"
+    <!--codeinclude-->
+    [](../exercises/chapter15/ch15_1_tv.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter15/ch15_1.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -2697,9 +2707,19 @@ Modify Listing 15.11 so that the two exception types are classes derived from th
 method report the function name and the nature of the problem.The exception
 objects need not hold the bad values; they should just support the <code>what()</code> method.
 
-??? note " "
+??? note "Code - classes prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter15/) -->
+    [](../exercises/chapter15/ch15_2_tv.h)
+    <!--/codeinclude-->
+
+??? note "Code - classes methods"
+    <!--codeinclude-->
+    [](../exercises/chapter15/ch15_2_tv.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter15/ch15_2.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -2710,9 +2730,19 @@ as well as the function name, and a single <code>catch</code> block that catches
 exemption should be used for both exceptions, with either exception causing the
 loop to terminate.
 
-??? note " "
+??? note "Code - classes prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter15/) -->
+    [](../exercises/chapter15/ch15_3_tv.h)
+    <!--/codeinclude-->
+
+??? note "Code - classes methods"
+    <!--codeinclude-->
+    [](../exercises/chapter15/ch15_3_tv.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter15/ch15_3.cpp)
     <!--/codeinclude-->
 
 4 -
@@ -2721,9 +2751,19 @@ exception leads to the <code>label_val()</code> method being invoked. Modify the
 that it uses a single <code>catch</code> block after each <code>try</code> block and uses RTTI to handle
 invoking <code>label_val()</code> only when appropriate.
 
-??? note " "
+??? note "Code - classes prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter15/) -->
+    [](../exercises/chapter15/ch15_4_tv.h)
+    <!--/codeinclude-->
+
+??? note "Code - classes methods"
+    <!--codeinclude-->
+    [](../exercises/chapter15/ch15_4_tv.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter15/ch15_4.cpp)
     <!--/codeinclude-->
 
 ## Chapter 16
