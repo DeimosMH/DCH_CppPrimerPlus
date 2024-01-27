@@ -2702,20 +2702,10 @@ Write a short program that tests these new features.
     <!--/codeinclude-->
 
 2 -
-Modify Listing 15.11 so that the two exception types are classes derived from the
+Modify Listing 15.11 (error4.cpp) so that the two exception types are classes derived from the
 <code>logic_error</code> class provided by the <code><stdexcept></code> header file. Have each <code>what()</code>
 method report the function name and the nature of the problem.The exception
 objects need not hold the bad values; they should just support the <code>what()</code> method.
-
-??? note "Code - classes prototypes"
-    <!--codeinclude-->
-    [](../exercises/chapter15/ch15_2_tv.h)
-    <!--/codeinclude-->
-
-??? note "Code - classes methods"
-    <!--codeinclude-->
-    [](../exercises/chapter15/ch15_2_tv.cpp)
-    <!--/codeinclude-->
 
 ??? note "Code - program"
     <!--codeinclude-->
@@ -2730,35 +2720,25 @@ as well as the function name, and a single <code>catch</code> block that catches
 exemption should be used for both exceptions, with either exception causing the
 loop to terminate.
 
-??? note "Code - classes prototypes"
-    <!--codeinclude-->
-    [](../exercises/chapter15/ch15_3_tv.h)
-    <!--/codeinclude-->
-
-??? note "Code - classes methods"
-    <!--codeinclude-->
-    [](../exercises/chapter15/ch15_3_tv.cpp)
-    <!--/codeinclude-->
-
 ??? note "Code - program"
     <!--codeinclude-->
     [](../exercises/chapter15/ch15_3.cpp)
     <!--/codeinclude-->
 
 4 -
-Listing 15.16 uses two <code>catch</code> blocks after each <code>try</code> block so that the nbad_index
+Listing 15.16 (use_sales.cpp) uses two <code>catch</code> blocks after each <code>try</code> block so that the <code>nbad_index</code>
 exception leads to the <code>label_val()</code> method being invoked. Modify the program so
 that it uses a single <code>catch</code> block after each <code>try</code> block and uses RTTI to handle
 invoking <code>label_val()</code> only when appropriate.
 
 ??? note "Code - classes prototypes"
     <!--codeinclude-->
-    [](../exercises/chapter15/ch15_4_tv.h)
+    [](../exercises/chapter15/ch15_4_sales.h)
     <!--/codeinclude-->
 
 ??? note "Code - classes methods"
     <!--codeinclude-->
-    [](../exercises/chapter15/ch15_4_tv.cpp)
+    [](../exercises/chapter15/ch15_4_sales.cpp)
     <!--/codeinclude-->
 
 ??? note "Code - program"
