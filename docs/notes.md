@@ -99,4 +99,19 @@ that a programmer has a brain, you should use a `Brain` class object as a member
 
 - "Private inheritance limits the use of base-class methods to within derived-class methods" page 800.
 
-### asdf - clear for gh action 
+### STL Iterators
+
+Constant-time complexity operations:
+
+Optional Sequence Requirements:
+
+|Expression| Return Type| Meaning| Container|
+|---|---|---|---|
+|a.front()| T&| *a.begin()| vector, list, deque|
+|a.back()| T&| *--a.end()| vector, list, deque|
+|a.push_front(t)| void| a.insert(a.begin(), t)| list, deque|
+|a.push_back(t)| void| a.insert(a.end(), t)| vector, list, deque|
+|a.pop_front(t)| void| a.erase(a.begin())| list, deque|
+|a.pop_back(t)| void| a.erase(--a.end())| vector, list, deque|
+|a[n]| T&| *(a.begin() + n)| vector, deque|
+|a.at(n)| T&| *(a.begin() + n)| vector, deque|
