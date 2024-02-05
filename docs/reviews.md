@@ -3719,10 +3719,53 @@ public:
 };
 ```
 
-Convert this to a declaration that uses a <code>string</code> object instead.What methods no
-longer need explicit definitions?
+Convert this to a declaration that uses a <code>string</code> object instead.</br>
+What methods no longer need explicit definitions?
 
 </summary>
+
+
+```cpp
+class RQ1
+{
+private:
+    std::string st;
+public:
+    RQ1()
+    {
+        st = "";
+    }
+    RQ1(const char *s)
+    {
+        strcpy(st, s);
+    }
+    ~RQ1(){};
+    RQ &operator=(const RQ &rq);
+    // more stuff
+};
+```
+
+delete, (const RQ1 &rq)
+
+// Answer in the book</br>
+
+```cpp
+#include <string>
+using namespace std;
+class RQ1
+{
+private:
+    string st; // a string object
+public:
+    RQ1() : st("") {}
+    RQ1(const char *s) : st(s) {}
+    ~RQ1(){};
+    // more stuff
+};
+```
+
+The explicit copy constructor, destructor, and assignment operator are no longer
+needed because the <code>string</code> object provides its own memory management.
 
 </details>
 
@@ -3734,6 +3777,15 @@ of ease-of-use.</br></br>
 
 </summary>
 
+- string obj is an object, thus use destructor - for c-style you need to remember yourself to deallocate data
+- string obj can be used with STL
+
+// Answer in the book</br>
+
+You can assign one string object to another. A string object provides its own
+memory management so that you normally don’t have to worry about a string
+exceeding the capacity of its holder
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -3743,6 +3795,26 @@ of ease-of-use.</br></br>
 converts the <code>string</code> object to all uppercase.</br></br>
 
 </summary>
+
+```cpp
+void fun(string &st)
+{
+    st.toupper();
+}
+```
+
+// Answer in the book</br>
+
+```cpp
+#include <string>
+#include <cctype>
+using namespace std;
+void ToUpper(string &str)
+{
+    for (int i = 0; i < str.size(); i++)
+        str[i] = toupper(str[i]);
+}
+```
 
 </details>
 
@@ -3762,6 +3834,21 @@ auto_ptr dbl(new double);
 
 </summary>
 
+`auto_ptr<int> pia(new int[20]);` - table cannot be assigned to auto_ptr
+`auto_ptr<string>(new string);` - name?
+`auto_ptr<int> pr(&rigue);` - reference to automatic value // runtime error
+`auto_ptr dbl(new double);` - lack of data type in <> // compile error
+
+// Answer in the book</br>
+
+```cpp
+auto_ptr<int> pia= new int[20]; // wrong, use with new, not new[]
+auto_ptr<string>(new string); // wrong, no name for pointer
+int rigue = 7;
+auto_ptr<int>(&rigue); // wrong, memory not allocated by new
+auto_ptr dbl (new double); // wrong, omits <double>
+```
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -3772,6 +3859,13 @@ of numbers, why would it (conceptually) be a bad golf bag?</br></br>
 
 </summary>
 
+Because you will need to get/open all golf before correct one.
+
+// Answer in the book</br>
+
+The LIFO aspect of a stack means you might have to remove a lot of clubs before
+reaching the one you need
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -3780,6 +3874,13 @@ of numbers, why would it (conceptually) be a bad golf bag?</br></br>
 your golf scores?</br></br>
 
 </summary>
+
+Because it can store only unique values.
+
+// Answer in the book</br>
+
+The set will store just one copy of each value, so, say, five scores of 5 would be
+stored as a single 5.
 
 </details>
 
@@ -3790,6 +3891,12 @@ your golf scores?</br></br>
 instead of iterators?</br></br>
 
 </summary>
+
+// Answer in the book</br>
+
+Using iterators allows you to use objects with a pointer-like interface to move
+through data that is organized in some fashion other than an array (for example,
+data in a doubly linked list).
 
 </details>
 
@@ -3802,6 +3909,12 @@ those iterator classes?</br></br>
 
 </summary>
 
+// Answer in the book</br>
+
+The STL approach allows STL functions to be used with ordinary pointers to
+ordinary arrays as well as with iterators to STL container classes, thus increasing
+generality.
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -3812,6 +3925,16 @@ over an ordinary array.</br></br>
 
 </summary>
 
+- Dynamic and simple data allocation - .pushback(data)
+- Use of STL: .size(), .sort() 
+- It uses destructor
+
+// Answer in the book</br>
+
+You can assign one vector object to another. A vector manages its own memory,
+so you can insert items into a vector and have it resize itself automatically. By using
+the `at()` method, you can get automatic bounds checking.
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -3820,21 +3943,146 @@ over an ordinary array.</br></br>
 10. If Listing 16.9 were implemented with <code>list</code> instead of vector, what parts of the
 program would become invalid? Could the invalid part be fixed easily? If so, how?</br></br>
 
+
+```cpp 
+
+// vect3.cpp -- using STL functions
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+struct Review
+{
+    std::string title;
+    int rating;
+};
+
+bool operator<(const Review &r1, const Review &r2);
+bool worseThan(const Review &r1, const Review &r2);
+bool FillReview(Review &rr);
+void ShowReview(const Review &rr);
+
+int main()
+{
+    using namespace std;
+    vector<Review> books;
+    Review temp;
+    while (FillReview(temp))
+        books.push_back(temp);
+    if (books.size() > 0)
+    {
+        cout << "Thank you. You entered the following "
+             << books.size() << " ratings:\n"
+             << "Rating\tBook\n";
+        for_each(books.begin(), books.end(), ShowReview);
+        sort(books.begin(), books.end());
+        cout << "Sorted by title:\nRating\tBook\n";
+        for_each(books.begin(), books.end(), ShowReview);
+        sort(books.begin(), books.end(), worseThan);
+        cout << "Sorted by rating:\nRating\tBook\n";
+        for_each(books.begin(), books.end(), ShowReview);
+        random_shuffle(books.begin(), books.end());
+        cout << "After shuffling:\nRating\tBook\n";
+        for_each(books.begin(), books.end(), ShowReview);
+    }
+    else
+        cout << "No entries. ";
+    cout << "Bye.\n";
+    return 0;
+}
+
+bool operator<(const Review &r1, const Review &r2)
+{
+    if (r1.title < r2.title)
+        return true;
+    else if (r1.title == r2.title && r1.rating < r2.rating)
+        return true;
+    else
+        return false;
+}
+
+bool worseThan(const Review &r1, const Review &r2)
+{
+    if (r1.rating < r2.rating)
+        return true;
+    else
+        return false;
+}
+
+bool FillReview(Review &rr)
+{
+    std::cout << "Enter book title (quit to quit): ";
+    std::getline(std::cin, rr.title);
+    if (rr.title == "quit")
+        return false;
+    std::cout << "Enter book rating: ";
+    std::cin >> rr.rating;
+    if (!std::cin)
+        return false;
+    // get rid of rest of input line
+    while (std::cin.get() != '\n')
+        continue;
+    return true;
+}
+
+void ShowReview(const Review &rr)
+{
+    std::cout << rr.rating << "\t" << rr.title << std::endl;
+}
+```
+
 </summary>
+
+Declaration 
+
+// Answer in the book</br>
+
+The two `sort()` functions and the `random_shuffle()` function require a random
+access iterator, whereas a list object just has a bidirectional iterator.You can use
+the list template class `sort()` member functions (see Appendix G,“The STL
+Methods and Functions”) instead of the general-purpose functions to do the sorting,
+but there is no member function equivalent to `random_shuffle()`. However,
+you could copy the list to a `vector`, shuffle the vector, and copy the results back to
+the list.
 
 </details>
 
 <!-- -------------------------------------------- -->
 
 <details><summary>
-11. Consider the <code>TooBig</code> functor in Listing 16.15.What does the following code do,
-and what values get assigned to bo?
+11. Consider the <code>TooBig</code> functor in Listing 16.15.
+What does the following code do, and what values get assigned to bo?
+
+```cpp
+// Listing 16.15 Too Big
+template <class T> // functor class defines operator()()
+class TooBig
+{
+private:
+    T cutoff;
+
+public:
+    TooBig(const T &t) : cutoff(t) {}
+    bool operator()(const T &v) { return v > cutoff; }
+};
+```
+
 
 ```cpp
 bool bo = TooBig<int>(10)(15);
 ```
 
 </summary>
+
+used in functions/methods via operator overloading().
+Returns bool 10>15;
+
+// Answer in the AI</br>
+
+The given code snippet creates an instance of the `TooBig` functor with the template parameter `int`, and the cutoff value set to `10`. Then it calls the `operator()` function with the argument `15`.
+
+The `TooBig` functor checks if the passed argument (`15`) is greater than the cutoff value (`10`). Since `15` is indeed greater than `10`, the function returns `true`. Therefore, the `boolean` variable `bo` is assigned the value `true`.
 
 </details>
 
