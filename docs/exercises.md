@@ -2757,26 +2757,26 @@ don’t worry about complications such as capitalization, spaces, and punctuatio
 That is, this simple version should reject “Otto” and “Madam, I’m Adam.” Feel free
 to scan the list of string methods in Appendix F for methods to simplify the task.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter16/) -->
+    [](../exercises/chapter16/ch16_1.cpp)
     <!--/codeinclude-->
 
 2 -
 Do the same problem as given in Programming Exercise 1 but do worry about
-complications such as capitalization, spaces, and punctuation.That is,“Madam, I’m
+complications such as capitalization, spaces, and punctuation. That is,“Madam, I’m
 Adam” should test as a palindrome. For example, the testing function could reduce
 the string to “madamimadam” and then test whether the reverse is the same. Don’t
 forget the useful <code>cctype</code> library. You might find an STL function or two useful
 although not necessary.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter16/) -->
+    [](../exercises/chapter16/ch16_2.cpp)
     <!--/codeinclude-->
 
 3 -
-Redo Listing 16.3 so that it gets it words from a file. One approach is to use a
+Redo Listing 16.3 (hangman.cpp) so that it gets it words from a file. One approach is to use a
 <code>vector<string></code> object instead of an array of string. Then you can use
 push_back() to copy how ever many words are in your data file into the
 <code>vector<string></code> object and use the <code>size()</code> member to determine the length of
@@ -2784,9 +2784,14 @@ the word list. Because the program should read one word at a time from the file,
 you should use the <code>>></code> operator rather than <code>getline()</code>. The file itself should contain
 words separated by spaces, tabs, or new lines
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter16/) -->
+    [](../exercises/chapter16/ch16_3.cpp)
+    <!--/codeinclude-->
+
+??? note "File"
+    <!--codeinclude-->
+    [](../exercises/chapter16/ch16_3_words.txt)
     <!--/codeinclude-->
 
 4 -
@@ -2825,12 +2830,22 @@ instantiation.
     <!--/codeinclude-->
 
 6 -
-Redo the example shown in Listing 12.12, using the STL <code>queue</code> template class
+Redo the example shown in Listing 12.12 (bank.cpp), using the STL <code>queue</code> template class
 instead of the <code>Queue</code> class described in Chapter 12.
 
-??? note " "
+??? note "Code - classes prototypes"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter16/) -->
+    [](../exercises/chapter16/ch16_6_q.h)
+    <!--/codeinclude-->
+
+??? note "Code - classes methods"
+    <!--codeinclude-->
+    [](../exercises/chapter16/ch16_6_q.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - program"
+    <!--codeinclude-->
+    [](../exercises/chapter16/ch16_6.cpp)
     <!--/codeinclude-->
 
 7 -
@@ -2859,7 +2874,7 @@ that lets you test the function.
     <!--/codeinclude-->
 
 8 -
-Mat and Pat want to invite their friends to a party.They ask you to write a program
+Mat and Pat want to invite their friends to a party. They ask you to write a program
 that does the following:
 
 - Allows Mat to enter a list of his friends’ names.The names are stored in a
@@ -2890,8 +2905,8 @@ then time how long it takes to sort <code>li</code> using the list <code>sort()<
 d. Reset <code>li</code> to the unsorted contents of <code>vi0</code>. Time the combined operation of
 copying <code>li</code> to <code>vi</code>, sorting <code>vi</code>, and copying the result back to <code>li</code>.
 
-To time these operations, you can use <code>clock()</code> from the <code>ctime</code> library. As in Listing
-5.14, you can use this statement to start the first timing:
+To time these operations, you can use <code>clock()</code> from the <code>ctime</code> library.
+As in Listing 5.14 (waiting.cpp), you can use this statement to start the first timing:
 
 ```cpp
 clock_t start = clock();
@@ -2913,9 +2928,9 @@ for the measurement.With today’s speedy computers, you probably will need to u
 as large an array as possible to get meaningful readings.You might try, for example,
 100,000 elements, 1,000,000 elements, and 10,000,000 elements.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter16/) -->
+    [](../exercises/chapter16/ch16_9.cpp)
     <!--/codeinclude-->
 
 10 -
@@ -2937,9 +2952,9 @@ Repeat the process to get vectors of <code>shared_ptrs</code> sorted by <code>ra
 Note that <code>rbegin()</code> and <code>rend()</code> save you the trouble of also creating vectors of
 reversed order.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter16/) -->
+    [](../exercises/chapter16/ch16_10.cpp)
     <!--/codeinclude-->
 
 ## Chapter 17
