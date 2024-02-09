@@ -2802,14 +2802,14 @@ int reduce(long ar[], int n);
 ```
 
 The actual arguments should be the name of an array and the number of elements
-in the array.The function should sort an array, remove duplicate values, and return a
-value equal to the number of elements in the reduced array.Write the function
+in the array. The function should sort an array, remove duplicate values, and return a
+value equal to the number of elements in the reduced array. Write the function
 using STL functions. (If you decide to use the general <code>unique()</code> function, note that
 it returns the end of the resulting range.) Test the function in a short program.
 
 ??? note " "
     <!--codeinclude-->
-    <!-- [](../exercises/chapter16/) -->
+    [](../exercises/chapter16/ch16_4.cpp)
     <!--/codeinclude-->
 
 5 -
@@ -2826,7 +2826,7 @@ instantiation.
 
 ??? note " "
     <!--codeinclude-->
-    <!-- [](../exercises/chapter16/) -->
+    [](../exercises/chapter16/ch16_5.cpp)
     <!--/codeinclude-->
 
 6 -

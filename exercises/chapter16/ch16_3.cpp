@@ -12,6 +12,44 @@
 
 using std::string;
 
+// Method 2
+// Loop to extract words using find and substr
+void fnReadFileIS(std::vector<std::string> &wordList, string &strTemp)
+{
+    int pos{};
+    int prev_pos{};
+    while ((pos = strTemp.find(',', pos)) != std::string::npos)
+    {
+        // Extract word from previous position up to current position
+        std::string word = strTemp.substr(prev_pos, pos - prev_pos);
+        // Skip empty words due to leading comma
+        if (!word.empty())
+        {
+            wordList.push_back(word);
+        }
+        // Update position to skip comma
+        prev_pos = ++pos;
+    }
+}
+
+// Method 1
+// Use istringstream -> #include <sstream>
+void fnReadFileSB(std::vector<std::string> &wordList, string &strTemp)
+{
+    std::string word;
+    std::istringstream iss(strTemp);
+
+    // Extract words using getline with ',' as delimiter
+    while (std::getline(iss, word, ','))
+    {
+        // Skip empty words due to trailing comma
+        if (!word.empty())
+        {
+            wordList.push_back(word);
+        }
+    }
+}
+
 int main()
 {
     using std::cin;
@@ -46,39 +84,8 @@ int main()
         strTemp.erase(std::remove(strTemp.begin(), strTemp.end(), ' '), strTemp.end());
         if (strTemp.find(',') != std::string::npos)
         {
-            // Method 1 
-            // Use istringstream -> #include <sstream> 
-            /*
-            std::string word;
-            std::istringstream iss(strTemp);
-
-            // Extract words using getline with ',' as delimiter
-            while (std::getline(iss, word, ','))
-            {
-                // Skip empty words due to trailing comma
-                if (!word.empty())
-                {
-                    wordList.push_back(word);
-                }
-            }
-            */
-
-            // Method 2
-            // Loop to extract words using find and substr
-            int pos{};
-            int prev_pos{};
-            while ((pos = strTemp.find(',', pos)) != std::string::npos)
-            {
-                // Extract word from previous position up to current position
-                std::string word = strTemp.substr(prev_pos, pos - prev_pos);
-                // Skip empty words due to leading comma
-                if (!word.empty())
-                {
-                    wordList.push_back(word);
-                }
-                // Update position to skip comma
-                prev_pos = ++pos;
-            }
+            fnReadFileSB(wordList, strTemp);
+            // fnReadFileIS(wordList, strTemp);
         }
         else
         {
