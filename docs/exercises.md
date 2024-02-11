@@ -2833,27 +2833,17 @@ instantiation.
 Redo the example shown in Listing 12.12 (bank.cpp), using the STL <code>queue</code> template class
 instead of the <code>Queue</code> class described in Chapter 12.
 
-??? note "Code - classes prototypes"
-    <!--codeinclude-->
-    [](../exercises/chapter16/ch16_6_q.h)
-    <!--/codeinclude-->
-
-??? note "Code - classes methods"
-    <!--codeinclude-->
-    [](../exercises/chapter16/ch16_6_q.cpp)
-    <!--/codeinclude-->
-
 ??? note "Code - program"
     <!--codeinclude-->
     [](../exercises/chapter16/ch16_6.cpp)
     <!--/codeinclude-->
 
 7 -
-A common game is the lottery card.The card has numbered spots of which a certain
-number are selected at random.Write a <code>Lotto()</code> function that takes two arguments.
+A common game is the lottery card. The card has numbered spots of which a certain
+number are selected at random. Write a <code>Lotto()</code> function that takes two arguments.
 The first should be the number of spots on a lottery card, and the second
-should be the number of spots selected at random.The function should return a
-<code>vector<int></code> object that contains, in sorted order, the numbers selected at random.
+should be the number of spots selected at random. The function should return a
+<code>vector< int ></code> object that contains, in sorted order, the numbers selected at random.
 For example, you could use the function as follows:
 
 ```cpp
@@ -2865,28 +2855,24 @@ This would assign to <code>winners</code> a vector that contains six numbers sel
 from the range 1 through 51. Note that simply using <code>rand()</code> doesn’t quite do the
 job because it may produce duplicate values. Suggestion: Have the function create a
 vector that contains all the possible values, use <code>random_shuffle()</code>, and then use the
-beginning of the shuffled vector to obtain the values.Also write a short program
+beginning of the shuffled vector to obtain the values. Also write a short program
 that lets you test the function.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter16/) -->
+    [](../exercises/chapter16/ch16_7.cpp)
     <!--/codeinclude-->
 
 8 -
-Mat and Pat want to invite their friends to a party. They ask you to write a program
-that does the following:
+Mat and Pat want to invite their friends to a party. They ask you to write a program that does the following:
 
-- Allows Mat to enter a list of his friends’ names.The names are stored in a
-container and then displayed in sorted order.
-- Allows Pat to enter a list of her friends’ names.The names are stored in a second
-container and then displayed in sorted order.
-- Creates a third container that merges the two lists, eliminates duplicates, and
-displays the contents of this container.
+- Allows Mat to enter a list of his friends’ names. The names are stored in a container and then displayed in sorted order.
+- Allows Pat to enter a list of her friends’ names. The names are stored in a second container and then displayed in sorted order.
+- Creates a third container that merges the two lists, eliminates duplicates, and displays the contents of this container.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter16/) -->
+    [](../exercises/chapter16/ch16_8.cpp)
     <!--/codeinclude-->
 
 9 -
