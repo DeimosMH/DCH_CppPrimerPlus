@@ -2877,14 +2877,14 @@ Mat and Pat want to invite their friends to a party. They ask you to write a pro
 
 9 -
 Compared to an array, a linked list features easier addition and removal of elements
-but is slower to sort.This raises a possibility: Perhaps it might be faster to copy a list
+but is slower to sort. This raises a possibility: Perhaps it might be faster to copy a list
 to an array, sort the array, and copy the sorted result back to the list than to simply
 use the list algorithm for sorting. (But it also could use more memory.) Test the
 speed hypothesis with the following approach:
 
 a. Create a large <code>vector<int></code> object vi0, using <code>rand()</code> to provide initial
 values.
-b. Create a second <code>vector<int></code> object <code>vi</code> and a <code>list<int></code> object li of the
+b. Create a second <code>vector< int ></code> object <code>vi</code> and a <code>list< int ></code> object li of the
 same size as the original and initialize them to values in the original vector.
 c. Time how long the program takes to sort <code>vi</code> using the STL <code>sort()</code> algorithm,
 then time how long it takes to sort <code>li</code> using the list <code>sort()</code> method.
