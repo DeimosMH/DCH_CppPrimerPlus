@@ -28,6 +28,7 @@ int main()
     while (true)
     {
         std::shared_ptr<Review> temp(new Review());
+        //  std::shared_ptr<Review> sp = std::make_shared<Review>(); // also valid, good practice C++ 11
         if (!FillReview(temp))
         {
             break;

@@ -2923,14 +2923,14 @@ as large an array as possible to get meaningful readings.You might try, for exam
 Modify Listing 16.9 (vect3.cpp) as follows:
 
 a. Add a <code>price</code> member to the <code>Review</code> structure.
-b. Instead of using a vector of Review objects to hold the input, use a vector
-of <code>shared_ptr<Review></code> objects. Remember that a <code>shared_ptr</code> has to be
+b. Instead of using a vector of Review objects to hold the input, use a <code>vector</code>
+of <code>shared_ptr< Review ></code> objects. Remember that a <code>shared_ptr</code> has to be
 initialized with a pointer returned by <code>new</code>.
 c. Follow the input stage with a loop that allows the user the following options
 for displaying books: in original order, in alphabetical order, in order of
 increasing ratings, in order of decreasing ratings, in order of increasing price,
 in order of decreasing price, and quitting.</br>
-Here’s one possible approach.After getting the initial input, create another vector of
+Here’s one possible approach. After getting the initial input, create another vector of
 <code>shared_ptrs</code> initialized to the original array. Define an <code>operator<()</code> function that
 compares pointed-to structures and use it to sort the second vector so that the
 <code>shared_ptrs</code> are in the order of the book names stored in the pointed-to objects.
