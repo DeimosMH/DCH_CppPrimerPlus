@@ -1,5915 +1,4467 @@
-# C++ Primer Plus
+# Reviews
 
-Personal notes / Summary
-
-<head>
-    <link rel="canonical" href="https://deimosmh.github.io/DCH_CppPrimerPlus/" />
-</head>
+<button id="toggle-admonitions" class="md-button">Collapse All/Expand All Code</button>
 
 <script>
-window.onload = function() {
-    function createTOC() {
-        var headings = document.querySelectorAll('h2');
-        var toc = document.createElement('ul');
-        toc.classList.add('toc_custom_sec'); // Add the class here
-        headings.forEach(function(heading, index) {
-            var li = document.createElement('li');
-            var a = document.createElement('a');
-            a.href = '#' + heading.id;
-            a.textContent = heading.textContent;
-            li.appendChild(a);
-            toc.appendChild(li);
-        });
-        return toc;
+  document.getElementById('toggle-admonitions').addEventListener('click', function (event) {
+
+    event.preventDefault();
+    var admonitions = document.querySelectorAll('details');
+    var anyOpen = false;
+
+    var button = document.getElementById('toggle-admonitions');
+    admonitions.forEach(function (admonition) {
+      var admonitions = document.querySelectorAll('details');
+      admonitions.forEach(function (admonition) {
+        if (button.textContent == 'Collapse All') {
+          if (admonition.hasAttribute('open')) {
+            admonition.removeAttribute('open');
+          }
+        }
+        else {
+          admonition.setAttribute('open', '');
+          anyOpen = true;
+        }
+      });
+    });
+
+    if (anyOpen) {
+      button.textContent = 'Collapse All';
+    } else {
+      button.textContent = 'Expand All';
     }
 
-    function insertTOC() {
-        var main = document.querySelector('.md-main');
-        var toc = createTOC();
-        main.insertBefore(toc, main.firstChild);
-    }
+  });
 
-    insertTOC();
-}
 </script>
 
-<style>
-.md-main .toc_custom_sec {
-    position: fixed;
-    top: 100px;
-    left: 10px;
-    background-color: transparent;
-    padding: 15px;
-}
-
-@media screen and (max-aspect-ratio: 16/9) {
-  .md-main .toc_custom_sec {
-    display: none;
-  }
-}
-</style>
-
-## Chapter 1: Getting Started
-
-Computer language deal with 2 concepts: DATA (information) & ALGORITHMS (methods)
-
-C++ joins three programming categories:
-
-- *C*   - Procedural language
-- *C++* - Object-oriented language, represented by: class enhancements
-- *C++* - Generic programming (eg. write function for a generic (unspecified) type
-once and use it for variety of actual types)
-
-**Object-Oriented Programming (OOP):**
-
-- *Class* - Defines what data is used to represent object and what operations
-can be performed on it; data form; [name, date, ...]
-- *Object* - data structure; [David, 19.01.2000, ...]
-
-Bottom-up programming - going from lower level (eg. classes) to higher
-(eg. program design) OOP facilitates creating reusable code with:
-
-- *Information hiding* - safeguard from improper access
-- *Polymorphism* - allows creating multiple definitions for operators and functions
-- *Inheritance* - allows deriving new classes from old ones
-
-**Mechanics of creating a Program:**
-
-1. Write and save program: source code ``code.cpp``
-2. Compile the source code: translation to machine language ``gcc ./code.cpp``
-3. Link with additional code: libraries, functions; The output is executable code
-
-**Common phrases:**
-
-- *Compile* - Compile code in the file you are currently in
-- *Build/Make* - Compile code for all source code files in the project
-- *Build All* - Compile all source code files from scratch
-- *Link* - Combine compiled source code with necessary library code
-- *Run/Execute* - Run the program ./prog or exe
-- *Debug* - Run program with option of going  through step-by-step
-
-## Chapter 2: Setting Out to C++
+## Chapter 2
 
 <details><summary>
-List of what you will learn
+01. What are the modules of C++ programs called?
 </summary>
-
-```cpp
-    1. Creation and format of C++ program </br>
-    2. The #include directive </br>
-    3. The main() function </br>
-    4. Using cout object for output </br>
-    5. Using cin object for input</br>
-    6. How/when use endl</br>
-    7. Placing comments in C++ program </br>
-    8. Declaring and using variables and functions</br>
-```
-
-</details> <br>
-
-***C++ is:***
-
-- `case sensitive` - it distinguish uppercase from lowercase characters
-- `spelling sensitive` - kout or coot instead of `cout` will give you error
-
-***Construction of C++ program:***
-C++ program is constructed from functions "C++ building blocks".
-Typical program is organized to major tasks with separated functions to handle
-those tasks. Below is simple function named `main()`:
-
-```cpp
-// myfirst.cpp -- displays a message
-#include <iostream>                          // a PREPROCESSOR directive
-int main()                                   // function header
-{                                            // start of function body
-    using namespace std;                     // make definitions visible
-    cout << "Come up and C++ me some time."; // message
-    cout << endl;                            // start a new line
-    cout << "You won’t regret it!" << endl;  // more output
-    return 0;                                // terminate main()
-} // end of function body
-```
-
-The fundamental structure of program (listing) above is:
-
-```cpp
-int main()
-{
-    statements
-    return 0;
-}
-```
-
-It have two parts: function header `int main()` and function body enclosed in brackets.
-
-C++ uses `preprocerssor` - Program, that process a source file before the main
-compilation takes place; directives whose names begins with `#`. Program above
-uses `#include` directive (thus they are named include files - they are included
-in other files/included at the beggining) of `iostream` file that is responsible
-with communication with external world (input/output).
-
-- `using namespace std` - use all namespace directives from std library `std::`
-- `using std::cout` - use only one `std::` qualifier
-- `cout` - predefined object that knows how to display variety of things
-- ***Operator Overloading*** - the same operator with different meanings,
-eg.: "`<<`" is insertion operator and bitwise left-shift operator.
-The meaning is defined by context.
-- `endl` - Moves screen coursor to the new line; equvalent to newline
-character "`\n`" from C, but `endl` guarantees that output will be `flushed`.
-Special notations (to `cout`) like this are called `manipulators`
-- ***tokens*** - indivisible elements in a line of code, eg.: `int`
-
----
-
-***Statements***
-
-To store information on a computer you need:
-
-- identify storage location
-- identify how much storage information requires
-- ***C++ program*** - collection of functions.
-- ***Function*** - collection of statements.
-- `=` - assignment operator from right to left (assign value to a storage location).
-- `<<` - insertion operator - defined in *ostream* class
-- ``>>`` - extraction operator - defined in *istream* class
-
-```cpp
-/* 
-- declaration statement 
-- definition - variable is declared and it causes compiler to allocate memory space
- for variable. Declaration don't need to be the definition (something is declared
- but it don't need to have allocated space)
- */
-int x;  
-
-x = 10; // - assignement statement - provide/assign value to variable/storage location
-x = x - 1 // - arithmetic expression 
-```
-
----
-
-*class* - data type that user defines
-*to define class* - describe what **information** it can represent and what **action**
- you can perform on data or in other words
-
-```cpp
-x = sqrt(6.25)        -->    function call                 -->    |code for sqrt|
-                                                                        ▼
-|assign return to x|  <--    return to calling function    <--    | sqrt return |
-```
-
-Argument `6.25` is ***passed*** to a function sqrt
-
-***function prototype*** - is for function as variable declaration for variables
-decribe the function interface and needs to be before function definition;
- if you use it you will need to provide prototype in source code or with #include
-
-??? example "function prototype"
-    <!--codeinclude-->
-    [](../programs/function_prototype.cpp)
-    <!--/codeinclude-->
-
-***function definition*** - code for function workings
-
-***keyword*** - vocabulary of a computer language: *int, void, return, double,
-etc..* - the list of them is in appendix "C++ Reserved Words"; functions and
-object names are not keywords
-
-```cpp
-//function prototype; initial double is type of returned value from sqrt; 
-//double in sqrt(double) is passed argument for sqrt 
-double sqrt(double);  
-```
-
-***exit values*** - (tested) return values of executed program. default convention:
-0 - program ran successfully; >0 - error/problem
-
-- Declaration statement — A declaration statement announces the name and the
-  type of a variable used in a function.
-- Assignment statement — An assignment statement uses the assignment operator (=)
-  to assign a value to a variable.
-- Message statement — A message statement sends a message to an object, initiating
-  some sort of action.
-- Function call — A function call activates a function.When the called function ter-
-  minates, the program returns to the statement in the calling function immediately
-  following the function call.
-- Function prototype — A function prototype declares the return type for a function,
-  along with the number and type of arguments the function expects.
-- Return statement — A return statement sends a value from a called function back
-  to the calling function.
-
----
-
-## Chapter 3: Dealing with Data
-
-<details><summary>
-List of what you will learn
-</summary>
-
-```sh
-- Rules for naming C++ variables
-- C++’s built-in integer types: unsigned long, long, unsigned int, int, unsigned
-short, short, char, unsigned char, signed char, bool
-- C++11’s additions: unsigned long long and long long
-- The climits file, which represents system limits for various integer types
-- Numeric literals (constants) of various integer types
-- Using the const qualifier to create symbolic constants
-- C++’s built-in floating-point types: float, double, and long double
-- The cfloat file, which represents system limits for various floating-point types
-- Numeric literals of various floating-point types
-- C++’s arithmetic operators
-- Automatic type conversions
-- Forced type conversions (type casts)
-```
-
-</details><br>
-
-**Build-in C++ data types**:
-
-- fundamental types - integers and floating point numbers
-- compound types - arrays, strings, pointers and structures, explained in Chapter 4
-
-**To store item of information on a computer you need to track**:
-
-- Where the information is stored
-- What value is kept there
-- What kind of information is stored
-
-**C++ naming rules**:
-
-- Only characters you can use in names are: alphabetic characters,
-numeric digits and underscore character
-- The first character in a name cannot be a nu,eric digit
-- Uppercase characters are considered distinct from lowercase characters
-- You can't use C++ keyword for a name
-- Names beginning with two underscore characters or with an underscore character
-followed by an uppercase letter are reseved for use by implementatio
-(the compiler and the resources it uses).
-- Names beggining with single underscore character are reserved for use a
-global identifiers bt the implementation
-- C++ places no limits on the length of a name, and all characters in a name are
-significant (but some platforms can have their own length limits).
-
-Data
-
-- *width* - term for the amount of memory used to hold variable
-- *operator* - build in language element that operates on one or more items to
-produce a value (addition operator `+` adds two values)
-  - *sizeof* - return size in bytes of a tupe or variable
-  - *climits* - header file - contain information about integer type limits,
-
-??? example "limits.cpp"
-    <!--codeinclude-->
-    [](../programs/limits.cpp)
-    <!--/codeinclude-->
-
-### Initialization
-
-Combines assignment with declaration, for example:
-
-```cpp
-int i_sth = INT_MAX; 
-int owls = 101; // traditional C initialization, sets owls to 101
-int wrens(432); // alternative C++ syntax, set wrens to 432
-```
-
-Not initialized variables are **indeterminate** - value is what was previously
-in memory, assigned to the newly declared variable;
-
-**C++11 initialization:**
-
-- using a braced initializer `{}`
-- braces can be left empty, in which case the variable is initialized to 0
-- it can be used with or without the = sign
-- it provides better protection against type conversion errors
-(more on end of this chapter)
-  
-```cpp
-int emus{7};        // set emus to 5
-int rheas = {12};   // set rheas to 12
-int rocs = {};      // set rocs to 0
-int psychics{};     // set psychics to
-```
-
----
-
-Exceeding max value (range of data type) will make value assign the lowest value
-possible (like odometer).  
-
-Amount of allocated memory for `int` (and thus max range/value) can differ from
-devices and compilers, but is *natural* (computer handles it most efficiently);
-`long` type is more reliable (32bit), but worse in other aspects.
-
-### Literals
-
-Constant values that are assigned to the constant variables.
-
-#### Integer literals
-
-- *042* - octal value - base 8
-- *42* - decimal value, base 10  
-- *0x42* - hexadecimal value - base 16
-
-Example in hexoctl.cpp
-
-??? example "hexoct1.cpp"
-    <!--codeinclude-->
-    [](../programs/hexoct1.cpp)
-    <!--/codeinclude-->
-
-You can `cout` manipulators `dec`, `oct`, `hex` for changing numer base.
-Example in hexoct2.cpp
-
-??? example "hexoct2.cpp"
-    <!--codeinclude-->
-    [](../programs/hexoct2.cpp)
-    <!--/codeinclude-->
-
-#### Character literals
-
-**Suffix** for constant:
-
-`l`, `L` - 32bit long constant
-`u`, `U` - unsigned int constant
-`ul` (any combination of letters) - unsigned long constant
-`ll`, `LL` - C++11 long long constant
-`ULL` - C++11 unsigned long long constant
-
-| data    | Stored as  |
-|---------|------------|
-| `1500`  | 16bit int  |
-| `1500L` | 32bit long |
-
-Characters set, like **ASCII** defines which number defines character.
-Thus `char` is `int` data type value and operations on it like on ints can be performed.
-Printed characters are processed through `cout`.
-
-Using single quotation marks, eg. `'A'` for character display is better, because
-it doesn't assume particular code.
-
-Escape codes represent characters, that you cannot input from keyboard notrmally:
-
-??? note "Table of escape codes"
-    | Character Name | ASCII Symbol | C++ Code | ASCII Decimal Code  | ASCII Hex Code |
-    | -------------- | ------------ | -------- | ------------------- | -------------- |
-    | Newline        | NL (LF)      | `\n`     | 10                  | `0xA`          |
-    | Horizontal tab | HT           | `\t`     | 9                   | `0x9`          |
-    | Vertical tab   | VT           | `\v`     | 11                  | `0xB`          |
-    | Backspace      | BS           | `\b`     | 8                   | `0x8`          |
-    | Carriage return | CR          | `\r`     | 13                  | `0xD`          |
-    | Alert          | BEL          | `\a`     | 7                   | `0x7`          |
-    | Backslash      | \            | `\\`     | 92                  | `0x5C`         |
-    | Question mark  | ?            | `\\?`    | 63                  | `0x3F`         |
-    | Single quote   | ’            | `\\'`    | 39                  | `0x27`         |
-    | Double quote   | ”            | `\\"`    | 34                  | `0x22`         |
-
-??? example "Example of use: bondini.cpp"
-    <!--codeinclude-->
-    [](../programs/bondini.cpp)
-    <!--/codeinclude-->
-
-**Universal Character Names** - used for international characters like French vowel.
-It starts with `\u` ot `\U`, eg.: ``` cout << "g\u00E2teau. ``` - **ISO 10646**
-
-`wchar_t` - wide character set - for characters that don't fit within 8-bit bute
-(eg.: Japanese kanji system). It is 16-bit or larger. `wchar_t` can vary from
-one implementation to another.
-
-#### C++11 types
-
-- `char16_t` - unsigned 16-bits, use `u` prefix for `char16_t`, eg.: `u"good"` or `u'R'`
-- `char32_t` - unsigned 32-bits, use `U` prefix for `char32_t`
-
-### Member function (OOP)
-
-Eg. `cout.put()`, belongs to a class and describes a method for manipulating
-class data. `put()` is a class member function. `.` is **membersip operator**.
-You can use member function only with particular object in that class (in this
-case `ostream`), such as `cout` class object in this case.
-
-In short: class - `ostream`, class object - `cout`, function name (member function) - `put()`
-
-`cout.put()` is alternative for using `<<` operator to display character.
-
-### *bool* type
-
-C++ interprets nonzero values as *true* and zeros values as *false*
-You can use `bool` type to reprsent those values:
-
-```cpp
-bool read = true; 
-```
-
-The literals true and false can be converted to type int by promotion, with
-*true* converting to 1 and *false* to 0 and vice-versa:
-
-```cpp
-int ans = true;         // ans assigned 1
-int promise = false;    // promise assigned 0
-bool is_tru = -500;     // any non-zero will be converted to true 
-```
-
-### *const* qualifier
-
-- if attempted to change, compilator will give error
-- if value is not provided during declaration, it will be unspecified, that you
-cannot modify
-- you can use *scoping rules* (chapter 9) to limit it to particular function or
-files (advantage over *#define*, second advantage is you can use const with
-elaborate types, such as *arrays* or *structures*)
-
-Example of use:
-`const int Months = 12;`
-
-### Floating-Point Numbers
-
-There is two ways of writing floating-point numbers:
-
-- standard, decimal-point notation, eg.: `12.34`
-- representing floating-point values is called E notation, eg.:
-`-3.45E6` *= -3.4* 10^6* (where `6` - exponent, `3.45` - mantissa).
-
-#### Floating-Point Types
-
-All three can be the same size. Typically, float is 32 bits, double is 64 bits,
-and long double is 80, 96, or 128 bits, and range in exponents for all three types
-is at least *–37 to +37*. You can look in the `cfloat` or `float.h` header files to
-find the limits for your system.
-
-The program *floatnum.cpp* display limiitations of floating-point numbers precision
-and previews an *ostream* method called `setf()` from Chapter 17. This call forces
-output to stay in ***fixed-point notation*** so that you can better see the precision.
-
-??? example "floatnum.cpp"
-    <!--codeinclude-->
-    [](../programs/floatnum.cpp)
-    <!--/codeinclude-->
-
-#### Floating-Point Constants
-
-Use suffixes for declaration
-`f` or `F` - float constant, eg.: `1.234f`
-`l` or `L` - long double
-
-```cpp
-1.234f // a float constant
-2.45E20F // a float constant
-2.345324E28 // a double constant
-2.2L // a long double constant
-```
-
-#### Plus and Cons of Floating-Point values
-
-`-` operations usually are *slightly slower* than integer operations
-`-` you can *lose precision* and values:
-
-??? example "fltadd.cpp"
-    <!--codeinclude-->
-    [](../programs/fltadd.cpp)
-    <!--/codeinclude-->
-
-`+` represent *values betwewen integers*
-`+` can represent a much *greater range of values*, because of the scaling factor
-
-### C++ Arithmetic Operators
-
-- *operators*: `+`, `-`, `*`, `%`, `/`, `*`
-- *operands* - two values used for calculation via *operators*
-- *expression* - combined operator with operands
-  
-`%` - modulo works only with integers and produces remainder of dividing first
-value by second. `19 % 6` is `1`, because 6 goes into 19 three times, with
-
-??? example "remainder of 1. Practical example: modulus.cpp"
-    <!--codeinclude-->
-    [modulus.cpp](../programs/modulus.cpp)
-    <!--/codeinclude-->
-
-`precedence rules` - When more than one operator can be applied to the same
-operand, C++ uses`precedence rules` to decide which operator is used first.
-
-`int flyingpigs = 3 + 4 * 5; // 35 or 23?`
-The arithmetic operators follow the usual algebraic precedence, with multiplication,
-division, and the taking of the modulus done before addition and subtraction.
-
-Appendix D,“Operator Precedence,” - The `/` and `*` operators have the same precedence.
-`float logs = 120 / 4 * 5; // 150 or 6?`
-
-When two operators have the same precedence, C++ looks at whether the operators
-have a `left-to-right associativity` or a `right-to-left associativity`.
-
-Appendix D shows that multiplication and division associate left-to-right.
-
-### Conversion
-
-- truncation - discarding fractional part in `int`, when converting from
-floating-point to int value (eg.: `int g(1.123)`)
-
-C++11 - doesn't permit *narrowing* - variable may not be able to represent the
-assigned value:
-
-```cpp
-const int code = 66;
-int x = 66;
-char c1 {31325}; // narrowing, not allowed
-char c2 = {66}; // allowed because char can hold 66
-char c3 {code}; // ditto
-char c4 = {x}; // not allowed, x is not constant
-x = 31325;
-char c5 = x; // allowed by this form of initialization
-```
-
-- integral promotion - automatic conversion evaluates expressions, C++
-converts `bool`, `char`, `unsigned char`, `signed char`, and `short` values to `int`, eg.:
-
-```cpp
-short chickens = 20; // line 1
-short ducks = 35; // line 2
-short fowl = chickens + ducks; // line 3
-```
-
-For `fowl`, `chickens` and `ducks` got converted (promoted) to `int` for
-calculation and then result got converted back to `short`. This is because `int`
-is the computer most *natural type*
-
-**Type cast conversion**
-Is explicit form of conversion
-
-```cpp
-(long) thorn // returns a type long conversion of thorn
-long (thorn) // returns a type long conversion of thorn
-```
-
-The type cast doesn’t alter the thorn variable itself; instead, it creates
-new value of the indicated type, which you can then use in an expression, as
-in the following:
-
-```cpp
-cout << int('Q'); // displays the integer code for 'Q'
-```
-
-### Static type cast conversion
-
-In c++ of the four, the static_cast<> operator, can be used for converting values
-from one numeric type to another. For example, using it to convert thorn to a
-type long value looks like this:
-
-```cpp
-static_cast<long> (thorn)
-```
-
-??? example "typecast.cpp"
-    <!--codeinclude-->
-    [](../programs/typecast.cpp)
-    <!--/codeinclude-->
-
-**`auto` in C++11**
-
-Just use `auto` instead of the type name in an initializing declaration, and the
-compiler assigns the variable the same type as that of the initializer:
-
-```cpp
-auto n = 100; // n is int
-auto x = 1.5; // x is double
-auto y = 1.3e12L; // y is long double
-```
-
-Automatic type deduction becomes much more useful when dealing with complicated
-types, such as those in the **STL (Standard Template Library)**. For example:
-
-C++98 code:
-
-```cpp
-std::vector<double> scores;
-std::vector<double>::iterator pv = scores.begin();
-```
-
-C++11 code:
-
-```cpp
-std::vector<double> scores;
-auto pv = scores.begin();
-```
-
-## Chapter 4: Compound Types
-
-<details><summary>
-        List of what you will learn
-</summary>
-
-```cpp
-Creating and using arrays
-Creating and using C-style strings
-Creating and using string-class strings
-Using the getline() and get() methods for reading strings
-Mixing string and numeric input
-Creating and using structures
-Creating and using unions
-Creating and using enumerations
-Creating and using pointers
-Managing dynamic memory with new and delete
-Creating dynamic arrays
-Creating dynamic structures
-Automatic, static, and dynamic storage
-The vector and array classes (an introduction)
-```
-
+They are called functions
 </details>
 
-### Arrays
+<details><summary>
+02. What does the following preprocessor directive do?
 
-Data form that can hold many values of one type. Declaration should indicate three things:
-
-- The type of value to be stored in each element
-- The name of the array
-- The number of elements in the array
-
-`typeName arrayName[arraySize];` - *arraySize* cannot be a variable whose value
-is set while the program is running. However, later in this chapter you’ll learn
-how to use `the` new operator to get around that restriction
+<pre>
 
 ```cpp
-short months[12]; // creates array of 12 short
+cpp #include <iostream>
 ```
 
-An array is called a `compound` type because it is built from some other type.
-(C uses the term `derived` type, but because C++ uses the term `derived` for
-class relationships, it had to come up with a new term.)
-
-You can access array elements individually.The way to do this is to use a
-`subscript`, or an `index`, to number the elements. C++ array numbering starts
-with zero. **The `index` of the last element is one less than the size of the `array`**
-
-<img src="./assets/_ch4Array.png" alt="Image description"
-style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
-
-*Declaring* an `array`, *assigning values* to `array` elements,
-and *initializing* an `array`:
-
-??? example "arrayone.cpp"
-    <!--codeinclude-->
-    [](./../programs/arrayone.cpp)
-    <!--/codeinclude-->
-
-#### Array Initialization
-
-You can use the initialization form only when defining the array.
-You cannot use it later, and you cannot assign one array wholesale to another:
-
-```cpp
-int cards[4] = {3, 6, 8, 10};   // okay
-int hand[4];                    // okay
-hand[4] = {5, 6, 7, 9};         // not allowed
-hand = cards;                   // not allowed
-
-// If you partially initialize an array, 
-// the compiler sets the remaining elements to zero.
-float hotelTips[5] = {5.0, 2.5};
-
-// If you leave the square brackets ([]) empty 
-// when you initialize an array, the C++ compiler
-// counts the elements for you.
-short things[] = {1, 5, 3, 8};
-```
-
-Often, letting the compiler count the number of elements is poor practice because
-its count can be different from what you think it should be. You could, for instance,
-accidently omit an initial value from the list. However, this approach can be a
-safe one for initializing a character array to a string, as you’ll soon see.
-And if your main concern is that the program, not you, knows how large an array
-is, you can do something like this:
-
-```cpp
-short things[] = {1, 5, 3, 8};
-int num_elements = sizeof things / sizeof (short);
-```
-
-##### C++11 Array Initialization
-
-```cpp
-// 1. You can drop the = sign when initializing an array:
-double earnings[4] {1.2e4, 1.6e4, 1.1e4, 1.7e4}; // okay with C++11
-
-// 2. You can use empty braces to set all the elements to 0:
-unsigned int counts[10] = {}; // all elements set to 0
-float balances[100] {}; // all elements set to 0
-
-// 3. List-initialization protects against narrowing (As in Chapter 3):
-long plifs[] = {25, 92, 3.0}; // not allowed
-char slifs[4] {'h', 'i', 1122011, '\0'}; // not allowed
-char tlifs[4] {'h', 'i', 112, '\0'}; // allowed
-```
-
-`vector` - STL alternative for arrays
-`array` template class - C++11 alternative for arrays
-
-### Strings
-
-Series of characters stored in consecutive bytes of memory.
-
-#### C-style strings
-
-C-style strings have a special feature:The last character of every string is the null
-character, written `\0`.
-
-```cpp
-char dog[8] = { 'b', 'e', 'a', 'u', 'x', ' ', 'I', 'I'}; // not a string!
-char cat[8] = {'f', 'a', 't', 'e', 's', 's', 'a', '\0'}; // a string!
-char bird[11] = "Mr. Cheeps"; // the \0 is understood
-char fish[] = "Bubbles"; // let the compiler count
-```
-
-<!-- <img src="./assets/_ch4CString.png" alt="Image description"
-style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;"> -->
-
-```cpp
-char shirt_size = 'S'; // this is fine
-char shirt_size = "S"; // illegal type mismatch
-```
-
-But `"S"` is not a character constant; it represents the string consisting of
-two characters, the `S` and the `\0` characters. Even worse, `"S"` actually
-represents the memory address at which the string is stored. So a statement
-like the following attempts to assign a memory address to shirt_size.
-
-##### Concatenating String Literals
-
-C++ enables
-you to concatenate string literals—that is, to combine two quoted  strings into one.
-`\0` character from the first string is replaced by the first character of the
-second string. The following output statements are equivalent to each other:
-
-```cpp
-cout << "I'd give my right arm to be" " a great violinist.\n";
-cout << "I'd give my right arm to be a great violinist.\n";
-cout << "I'd give my right ar"
-"m to be a great violinist.\n";
-```
-
-<img src="./assets/_ch4CString2.png" alt="Image description"
-style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
-
-??? example "Strings in an Array: strings.cpp"
-    <!--codeinclude-->
-    [](../programs/strings.cpp)
-    <!--/codeinclude-->
-
-??? example "Problem 1: instr1.cpp, reading string input via cin"
-    <!--codeinclude-->
-    [](../programs/instr1.cpp)
-    <!--/codeinclude-->
-
-??? example "Solution 1: instr2.cpp, Line-Oriented Input with getline()"
-    <!--codeinclude-->
-    [](../programs/instr2.cpp)
-    <!--/codeinclude-->
-
-??? example "Solution 2: instr3.cpp, Line-Oriented Input with get()"
-    <!--codeinclude-->
-    [](../programs/instr3.cpp)
-    <!--/codeinclude-->
-
-??? example "numstr.cpp, Mixing String and Numeric Input"
-    <!--codeinclude-->
-    [](../programs/numstr.cpp)
-    <!--/codeinclude-->
-
-In short:
-
-```cpp
-cin.getline(dessert, ArSize);
-
-cin.getline(name1, ArSize).getline(name2, ArSize); // overloading 
-
-cin.get(name, ArSize);
-cin.get(dessert, Arsize); // a problem ()
-
-cin.get(name, ArSize); // read first line
-cin.get(); // read newline
-cin.get(dessert, Arsize); // read second line
-
-cin.get(name, ArSize).get(); // concatenate member functions
-
-// get() (but not getline()) reads an empty
-// line, it sets something called the failbit. The implications of 
-// this act are that further input is blocked, but you can restore 
-// input with the following command:
-cin.clear();
-
-// You can also use
-cin.get(); // or cin.get(ch);
-(cin >> year).get(); // or (cin >> year).get(ch);
-```
-
-### `string` Class
-
-To use the string class, a program has to include the string header file.
-
-You should learn from this example that, in many ways, you can use a string
-object in the same manner as a character array:
-
-- You can initialize a string object to a C-style string.
-- You can use cin to store keyboard input in a string object.
-- You can use cout to display a string object.
-- You can use array notation to access individual characters stored in a string object.
-
-??? example "strtype1.cpp, differences between string objects and character arrays."
-    <!--codeinclude-->
-    [](../programs/strtype1.cpp)
-    <!--/codeinclude-->
-
-C++11 string initialization
-
-```cpp
-char first_date[] = {"Le Chapon Dodu"};
-char second_date[] {"The Elegant Plate"};
-string third_date = {"The Bread Bowl"};
-string fourth_date {"Hank's Fine Eats"};
-```
-
-#### Assignment, Concatenation, and Appending
-
-String class make *some* operations simpler. you can’t simply assign one array
-to  nother. But you can assign one string object to another:
-
-```cpp
-char charr1[20];            // create an empty array
-char charr2[20] = "jaguar"; // create an initialized array
-string str1;                // create an empty string object
-string str2 = "panther";    // create an initialized string
-charr1 = charr2;            // INVALID, no array assignment
-str1 = str2;                // VALID, object assignment ok
-
-string str3;
-str3 = str1 + str2;         // assign str3 the joined strings
-str1 += str2;               // add str2 to the end of str1
-```
-
-??? example "strtype2.cpp, assigning, adding, and appending strings."
-    <!--codeinclude-->
-    [](../programs/strtype2.cpp)
-    <!--/codeinclude-->
-
-#### More `string` Class operations
-
-You can use the `strcpy()` function to copy a string to a character array,
-and you can use the `strcat()` function to append a string to a character array:
-
-```cpp
-strcpy(charr1, charr2);     // copy charr2 to charr1
-strcat(charr1, charr2);     // append contents of charr2 to char1
-```
-
-??? example "strtype3.cpp, compares techniques used with string objects with techniques used with character arrays."
-    <!--codeinclude-->
-    [](../programs/strtype3.cpp)
-    <!--/codeinclude-->
-
-#### More `string` Class I/O
-
-??? example "strtype4.cpp, reading a line at a time instead of a word at time uses a different syntax (class and not class)."
-    <!--codeinclude-->
-    [](../programs/strtype4.cpp)
-    <!--/codeinclude-->
-
-#### Other Forms of `string` Literals
-
-C++ adds: `wchar_t` in addition to `char`
-C++11 adds: `char16_t`, `char32_t` + raw string (`R` prefix) + support UTF-8 (`u8` prefix)
-
-Use literals with L, u, and U prefixes:
-
-```cpp
-wchar_t title[] = L"Chief Astrogator";      // w_char string
-char16_t name[] = u"Felonia Ripova";        // char_16 string
-char32_t car[] = U"Humber Super Snipe";     // char_32 string
-```
-
-Raw string
-
-`cout << R"(Jim "King" Tutt uses "\n" instead of endl.)" << '\n';`
-   This would display the following: `Jim "King" Tutt uses \n instead of endl.`
-
-The standard string literal equivalent would be this:
-`cout << "Jim \"King\" Tutt uses \" \\n\" instead of endl." << '\n';`
-
-Raw string syntax allows you to place additional characters between the
-opening - the statement: `cout << R"+*("(Who wouldn't?)", she whispered.)+*" << endl;`
-would display the following: `"(Who wouldn't?)", she whispered.`
-
-### Structures
-
-`array` can store only one type of data
-`structure`  can store different types of data at the same time
-
-```cpp
-#include <string>
-struct inflatable_string // structure definition
-{
-    std::string name;
-    float volume;
-    double price;
-};
-
-struct inflatable // structure declaration with 'inflatible' identifier/tag
-{
-    char name[20];
-    float volume;
-    double price;
-};
-
-inflatable hat;             // hat is a structure variable of type inflatable
-inflatable woopie_cushion;  // type inflatable variable
-inflatable mainframe;       // type inflatable variable
-
-struct inflatable goose;    // keyword struct required in C
-inflatable vincent;         // keyword struct not required in C++
-```
-
-Given that `hat` is type inflatable, you use the membership operator (.)
-to access individual members. For example, `hat.volume` refers to the `volume`
-member of the structure, and `hat.price` refers to the `price` member.
-
-<img src="./assets/_ch4Structure.png" alt="Image description"
-style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
-
-??? example "structur.cpp, example use of structure."
-    <!--codeinclude-->
-    [](../programs/structur.cpp)
-    <!--/codeinclude-->
-
-`structures` can be declared outside any function, which is called `external declaration`
-
-#### C++11 Initialization
-
-```cpp
-inflatable duck {"Daphne", 0.12, 9.98}; // can omit the = in C++11
-inflatable mayor {}; // individual members being set to 0
-```
-
-Narrowing is not allowed.
-
-#### Other `structure` properties
-
-`memberwise assignment` - you can use the assignment operator (=) to assign one
-structure to another of the same type.
-
-??? example "assgn_st.cpp, example use of memberwise assignment."
-    <!--codeinclude-->
-    [](../programs/assgn_st.cpp)
-    <!--/codeinclude-->
-
-#### Arrays of Structures
-
-```cpp
-inflatable gifts[100]; // array of 100 inflatable structures
-...
-cin >> gifts[0].volume; // use volume member of first struct
-cout << gifts[99].price << endl; // display price member of last struct
-
-inflatable guests[2] = // initializing an array of structs
-{
-    {"Bambi", 0.5, 21.99}, // first structure in array
-    {"Godzilla", 2000, 565.99} // next structure in array
-};
-```
-
-??? example "arrstruct.cpp, array of structures."
-    <!--codeinclude-->
-    [](../programs/arrstruct.cpp)
-    <!--/codeinclude-->
-
-#### Bit Fields in Structures
-
-C++, like C, enables you to specify structure members that occupy
-a particular number of bits
-
-```cpp
-struct torgle_register
-{
-    u`nsigned int SN : 4; // 4 bits for SN value
-    unsigned int : 4; // 4 bits unused
-    bool goodIn : 1; // valid input (1 bit)
-    b`ool goodTorgle : 1; // successful torgling
-};
-
-torgle_register tr = { 14, true, false };
-...
-if (tr.goodIn)
-```
-
-#### Unions
-
-A union is a data format that can hold different data types but
-only one type at a time
-
-```cpp
-union one4all
-{
-    int int_val;
-    long long_val;
-    double double_val;
-};
-
-one4all pail;
-pail.int_val = 15; // store an int
-cout << pail.int_val;
-pail.double_val = 1.38; // store a double, int value is lost
-cout << pail.double_val;
-```
-
-`anonymous union` - has no name; in essence, its members become
-variables that share the same address.
-
-```cpp
-struct widget
-{
-    char brand[20];
-    int type;
-    union // anonymous union
-    {
-        long id_num; // type 1 widgets
-        char id_char[20]; // other widgets
-    };
-};
-...
-widget prize;
-...
-if (prize.type == 1)
-cin >> prize.id_num;
-else
-cin >> prize.id_char;
-```
-
-#### Enumerations
-
-`enum` facility provides an alternative to `const` for creating symbolic constants
-
-```cpp
-enum spectrum {red, orange, yellow, green, blue, violet, indigo, ultraviolet};
-```
-
-- It makes spectrum the name of a new type; spectrum is termed an enumeration,
-much as a struct variable is called a structure.
-- It establishes red, orange, yellow, and so on, as symbolic constants for the
-integer values 0–7.These constants are called enumerators.
-
-```cpp
-spectrum band; // band a variable of type spectrum
-
-band = blue; // valid, blue is an enumerator
-band = 2000; // invalid, 2000 not an enumerator
-
-band = orange; // valid
-++band; // not valid, ++ discussed in Chapter 5
-band = orange + red; // not valid, but a little tricky
-
-int color = blue; // valid, spectrum type promoted to int
-band = 3; // invalid, int not converted to spectrum
-color = 3 + red; // valid, red converted to int
-
-band = spectrum(3); // typecast 3 to type spectrum
-band = spectrum(40003); // undefined
-```
-
-#### Setting Enumerator Values
-
-```cpp
-enum bits{one = 1, two = 2, four = 4, eight = 8};
-enum bigstep{first, second = 100, third};
-enum {zero, null = 0, one, numero_uno = 1};
-```
-
-##### Range of enumerations
-
-```cpp
-enum bits{one = 1, two = 2, four = 4, eight = 8};
-bits myflag;
-// In this case, the following is valid:
-myflag = bits(6); // valid, because 6 is in bits range
-```
-
-Here `6` is not one of the enumerations, but it lies in the range the
-enumerations define. The range is defined as follows. First, to find
-the upper limit, you take the largest enumerator value.Then you find
-the smallest power of two greater than this largest value and subtract one;
-the result is the upper end of the range (For example, the largest `bigstep`
-value, as previously defined, is 101. The smallest power of two greater
-than this is 128, so the upper end of the range is 127.)
-
-#### Pointers and the Free Store
-
-**address operator**, represented by `&` to a variable to get its location;
-if `home` is a variable, `&home` is its address
-
-The implicit `address operator` returns the address of the invoking object (that is, the
-value of the `this` pointer). That’s fine for our purposes, and we won’t discuss this member
-function further.
-
-??? example "address.cpp"
-    <!--codeinclude-->
-    [](../programs/address.cpp)
-    <!--/codeinclude-->
-
-??? note "Pointers and the C++ Philosophy"
-    Object-oriented programming differs from traditional procedural programming in that OOP
-    emphasizes making decisions during runtime instead of during compile time. Runtime
-    means while a program is running, and compile time means when the compiler is putting a
-    program together. A runtime decision is like, when on vacation, choosing what sights to see
-    depending on the weather and your mood at the moment, whereas a compile-time decision
-    is more like adhering to a preset schedule, regardless of the conditions.
-    Runtime decisions provide the flexibility to adjust to current circumstances. For example,
-    consider allocating memory for an array. The traditional way is to declare an array. To
-    declare an array in C++, you have to commit yourself to a particular array size. Thus, the
-    array size is set when the program is compiled; it is a compile-time decision. Perhaps you
-    think an array of 20 elements is sufficient 80% of the time but that occasionally the program
-    will need to handle 200 elements. To be safe, you use an array with 200 elements.
-    This results in your program wasting memory most of the time it’s used. OOP tries to make
-    a program more flexible by delaying such decisions until runtime. That way, after the program
-    is running, you can tell it you need only 20 elements one time or that you need 205
-    elements another time.
-    In short, with OOP you would like to make the array size a runtime decision. To make this
-    approach possible, the language has to allow you to create an array—or the equivalent—
-    while the program runs. The C++ method, as you soon see, involves using the keyword new
-    to request the correct amount of memory and using pointers to keep track of where the
-    newly allocated memory is found.
-    Making runtime decisions is not unique to OOP. But C++ makes writing the code a bit more
-    straightforward than does C.
-
-A special type of variable the `pointer` — holds the address of a value.
-Thus, the name of the pointer represents the location
-
-Applying the `*` operator, called the indirect value or the dereferencing operator,
-yields the value at the location.
-
-??? example "pointer.cpp"
-    <!--codeinclude-->
-    [](../programs/pointer.cpp)
-    <!--/codeinclude-->
-
-<img src="./assets/_ch4Pointer.png" alt="Image description"
-style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
-
-<img src="./assets/_ch4Pointer2.png" alt="Image description"
-style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
-
-In C++, the combination `int *` is a compound type, pointer-to-int.
-
-``` cpp
-int * p_updates;
-
-// the following declaration creates one pointer (p1) and one ordinary int (p2):
-int* p1, p2;
-
-double * tax_ptr; // tax_ptr points to type double
-char * str; // str points to type char
-```
-
-??? example "init_ptr.cpp, initialize a pointer to an address."
-    <!--codeinclude-->
-    [](../programs/init_ptr.cpp)
-    <!--/codeinclude-->
-
-#### Pointer Danger
-
-```cpp
-long * fellow; // create a pointer-to-long
-*fellow = 223323; // place a value in never-never land
-
-// Pointer Golden Rule: Always initialize a pointer to a definite and
-// appropriate address before you apply the dereferencing operator (*) to it.
-
-int * pt;
-pt = 0xB8000000; // type mismatch
-
-int * pt;
-pt = (int *) 0xB8000000; // types now match
-```
-
-#### Allocating Memory with `new`
-
-In C, you can allocate memory with the library function `malloc()`
-
-```cpp
-// typeName * pointer_name = new typeName;
-int * pn = new int;
-
-// for comparison
-int higgens;
-int * pt = &higgens;
-```
-
-We say that `pn` points to a `data object`
-
-??? example "use_new.cpp, use new."
-    <!--codeinclude-->
-    [](../programs/use_new.cpp)
-    <!--/codeinclude-->
-
-??? note "Out of Memory?"
-    It’s possible that a computer might not have sufficient memory available to satisfy a new
-    request. When that is the case, new normally responds by throwing an exception, an errorhandling
-    technique discussed in Chapter 15, “Friends, Exceptions, and More.” In older implementations
-    new returns the value 0. In C++, a pointer with the value 0 is called the null
-    pointer. C++ guarantees that the null pointer never points to valid data, so it is often used to
-    indicate failure for operators or functions that otherwise return usable pointers. The if
-    statement, discussed in Chapter 6, helps you deal with this possibility. For now, the important
-    point is that C++ provides the tools to detect and respond to allocation failures.
-
-#### Freeing Memory with `delete`
-
-This removes the memory to which ps points; it doesn’t remove the pointer ps itself.
-Memory that you return, or `free`, can then be reused by other parts of the program
-
-```cpp
-int * ps = new int; // allocate memory with new
-. . . // use the memory
-delete ps; // free memory with delete when done
-
-int * ps = new int; // ok
-delete ps; // ok
-delete ps; // not ok now
-int jugs = 5; // ok
-int * pi = &jugs; // ok
-delete pi; // not allowed, memory not allocated by new
-
-// Ordinarily, you won’t create two pointers to the same block of memory because that
-// raises the possibility that you will mistakenly try to delete the same block twice.
-int * ps = new int; // allocate memory
-int * pq = ps; // set second pointer to same block
-delete pq; // delete with second pointer
-```
-
-#### Using `new` to Create Dynamic Arrays
-
-```cpp
-//type_name * pointer_name = new type_name [num_elements];
-int * psome = new int [10]; // get a block of 10 ints
-delete [] psome; // free a dynamic array
-
-int * pt = new int;
-short * ps = new short [500];
-delete [] pt; // effect is undefined, don't do it
-delete ps; // effect is undefined, don't do it
-```
-
-- Don’t use delete to free memory that new didn’t allocate.
-- Don’t use delete to free the same block of memory twice in succession.
-- Use delete [] if you used new [] to allocate an array.
-- Use delete (no brackets) if you used new to allocate a single entity.
-- It’s safe to apply delete to the null pointer (nothing happens).
-
-??? example "arraynew.cpp, use dynamic array"
-    <!--codeinclude-->
-    [](../programs/arraynew.cpp)
-    <!--/codeinclude-->
-
-#### Pointers, Arrays, and Pointer Arithmetic
-
-??? example "addpntrs.cpp, pointer addition"
-    <!--codeinclude-->
-    [](../programs/addpntrs.cpp)
-    <!--/codeinclude-->
-
-<img src="./assets/_ch4PointerAddition.png" alt="Image description"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
+</pre>
+
+</summary>
+It causes the contents of the iostream file to be substituted for this
+directive before final compilation.
+</details>
 
 <details><summary>
-     The Address of an Array
-    </summary>
+03. What does the following statement do?
 
-Taking the address of an array is another case in which the name of an array is not interpreted
-as its address. But wait, isn’t the name of an array interpreted as the address of the
-array? Not quite—the name of the array is interpreted as the address of the first element of
-an array, whereas applying the address operator yields the address of the whole array:
-
-`short tell[10]; // tell an array of 20 bytes`
-`cout << tell << endl; // displays &tell[0]`
-`cout << &tell << endl; // displays address of whole array`
-
-Numerically, these two addresses are the same, but conceptually `&tell[0]`, and hence
-tell, is the address of a 2-byte block of memory, whereas `&tell` is the address of a 20-
-byte block of memory. So the expression tell + 1 adds 2 to the address value, whereas
-`&tell + 1` adds 20 to the address value. Another way of expressing this is to say that
-tell is type pointer-to-short, or `short *`, and `&tell` is type pointer-to-array-of-20-shorts,
-or short [*](20).
-Now you might be wondering about the genesis of that last type description. First, here is
-how you could declare and initialize a pointer of that type:
-
-`short (*pas)[20] = &tell; // pas points to array of 20 shorts`
-
-If you omit the parentheses, precedence rules would first associate [20] with pas, making
-pas an array of 20 pointers-to-short, so the parentheses are necessary. Next, if you wish to
-describe the type of a variable, you can use the declaration of that variable as a guide and
-remove the variable name. Thus, the type of pas is `short (*)[20]`. Also note that
-because pas is set to `&tell`, *pas is equivalent to tell, so `(*pas)[0]` would be the first
-element of the `tell` array.
-</details><br>
-
-#### `pointer` Summary
-
-##### Declaring Pointers
-
-To declare a pointer to a particular type, use this form:
+<pre>
 
 ```cpp
-typeName * pointerName;
-```
-
-Here are some examples:
-
-```cpp
-double * pn; // pn can point to a double value
-char * pc; // pc can point to a char value
-```
-
-Here pn and pc are pointers, and double *and char* are the C++ notations for
-the types pointer-to-double and pointer-to-char.
-
-##### Assigning Values to Pointers
-
-You should assign a memory address to a pointer.You can apply the & operator
-to a variable name to get an address of named memory, and the new operator returns
-the address of unnamed memory.
-
-Here are some examples:
-
-```cpp
-double * pn; // pn can point to a double value
-double * pa; // so can pa
-char * pc; // pc can point to a char value
-double bubble = 3.2;
-pn = &bubble; // assign address of bubble to pn
-pc = new char; // assign address of newly allocated char memory to pc
-pa = new double[30]; // assign address of 1st element of array of 30 double to pa
-```
-
-##### Dereferencing Pointers
-
-Dereferencing a `pointer` means referring to the pointed-to value.
-You apply the dereferencing, or indirect value, operator (`*`) to a
-`pointer` to `dereference` it. Thus, if `pn` is a `pointer` to `bubble`,
-as in the preceding example, then `*pn` is the pointed-to value, or 3.2,
-in this case.
-
-Here are some examples:
-
-```cpp
-cout << *pn; // print the value of bubble
-*pc = 'S'; // place 'S' into the memory location whose address is pc
-```
-
-Array notation is a second way to dereference a pointer; for instance, `pn[0]`
-is the same as `*pn`. You should never dereference a pointer that has not been
-initialized to a proper address.
-
-##### Distinguishing Between a Pointer and the Pointed-to Value
-
-Remember, if pt is a pointer-to-int, `*pt` is not a pointer-to-int; instead, `*pt`
-is the complete equivalent to a type int variable. It is `pt` that is the `pointer`.
-
-Here are some examples:
-
-```cpp
-int * pt = new int; // assigns an address to the pointer pt
-*pt = 5; // stores the value 5 at that address
-```
-
-##### Array Names
-
-In most contexts, C++ treats the name of an array as equivalent to the address
-of the first element of an array.
-
-```cpp
-Here is an example:
-int tacos[10]; // now tacos is the same as &tacos[0]
-```
-
-One exception is when you use the name of an array with the sizeof operator. In that
-case, sizeof returns the size of the entire array, in bytes.
-
-##### Pointer Arithmetic
-
-C++ allows you to add an integer to a pointer.The result of adding one equals
-the original address value plus a value equal to the number of bytes in the
-pointed-to object. You can also subtract an integer from a pointer to take
-the difference between two pointers. The last operation, which yields an integer,
-is meaningful only if the two pointers point into the same array (pointing to one
-position past the end is allowed, too); it then yields the separation between
-the two elements.
-
-Here are some examples:
-
-```cpp
-int tacos[10] = {5,2,8,4,1,2,2,4,6,8};
-int * pt = tacos; // suppose pf and tacos are the address 3000
-pt = pt + 1; // now pt is 3004 if a int is 4 bytes
-int *pe = &tacos[9]; // pe is 3036 if an int is 4 bytes
-pe = pe - 1; // now pe is 3032, the address of tacos[8]
-int diff = pe - pt; // diff is 7, the separation between
-// tacos[8] and tacos[1]
-```
-
-##### Dynamic Binding and Static Binding for Arrays
-
-You can use an array declaration to create an array with static binding—that is,
-an array  whose size is set during the compilation process:
-
-```cpp
-int tacos[10]; // static binding, size fixed at compile time
-```
-
-You use the new [] operator to create an array with dynamic binding (a dynamic array)
-that is, an array that is allocated and whose size can be set during runtime.
-You free the memory with delete [] when you are done:
-
-```cpp
-int size;
-cin >> size;
-int * pz = new int [size]; // dynamic binding, size set at run time
-...
-delete [] pz; // free memory when finished
-```
-
-##### Structure pointers
-
-If the data object is a `structure` initialized with `new`, you can use the
-pointer dereferencing operator (`->`) to access structure members
-
-```cpp
-BOP *stBOP = new BOP[5];
-
-strcpy(stBOP[0].fullname, "Wimp Macho");
-strcpy(stBOP[1].fullname, "Wimp Macho");
-
-bop *stBOP = new bop;
-strcpy(stBOP->fullname, "Wimp Macho");
-```
-
-The `.` operator works instead of the `->` operator because you are accessing
-the members of the `bop struct` using an `array` of `structs` (`stBOP`),
-not a `pointer` to a `struct`.
-
-When you use the array notation `stBOP[0]`, it refers to the first element of
-the array, which is an object of the `bop` `struct`. Therefore, you can use
-the `.` operator to access its members directly.
-
-**Use the `.` operator to access members of a `struct` or `class` directly, and**
-**use the `->` operator to access members through a pointer to a `struct` or `class`.**
-
-#### Pointers and Strings
-
-With cout and with most C++ expressions, the name of an array of char,
-a pointer-tochar, and a quoted string constant are all interpreted as the
-address of the first character of a string.
-
-The `strcpy(var_dest, var_copyFrom)` function copies a string from one location to another.
-The `strncpy(var_dest, var_copyFrom, int_sizeof_var_copyFrom)` function copies
-a string from one location to another with the new size of it.
-The `strlen()` function returns the length of a string, not counting the null character
-When using these functions, you include the `cstring` or the `string.h` header file.
-
-??? example "ptrstr.cpp"
-    <!--codeinclude-->
-    [](../programs/ptrstr.cpp)
-    <!--/codeinclude-->
-
-```cpp
-const char * bird = "wren"; // bird holds address of string
-
-// you can use the pointer bird just as you would use the string "wren", as in this example:
-cout << "A concerned " << bird << " speaks\n";
-
-char food[20] = "carrots"; // initialization
-strcpy(food, "flan"); // otherwise
-
-
-ps = animal; // set ps to point to string
-...
-cout << animal << " at " << (int *) animal << endl;
-cout << ps << " at " << (int *) ps << endl;
-
-// It produces the following output:
-// fox at 0x0065fd30
-// fox at 0x0065fd30
-```
-
-#### Using new to Create Dynamic Structures
-
-```cpp
-inflatable * ps = new inflatable;
-inflatable * ps = new inflatable[10];
-```
-
-<img src="./assets/_ch4NewStructure.png" alt="Image description"
-style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
-
-??? example "newstrct.cpp"
-    <!--codeinclude-->
-    [](../programs/newstrct.cpp)
-    <!--/codeinclude-->
-
-##### Using `new` and `delete`
-
-??? example "delete.cpp"
-    <!--codeinclude-->
-    [](../programs/delete.cpp)
-    <!--/codeinclude-->
-
-#### Automatic Storage, Static Storage, and Dynamic Storage
-
-Ordinary variables defined inside a function use automatic storage and are
-called automatic variables.
-Automatic variables typically are stored on a `stack`.
-
-Static storage is storage that exists throughout the execution of an entire program.
-There are two ways to make a variable static.
-
-The new and delete operators provide a more flexible approach than automatic
-and static variables.They manage a pool of memory, which C++ refers to as
-the `free` store or `heap`.
-
-#### Combinations of Types
-
-??? example "mixtypes.cpp"
-    <!--codeinclude-->
-    [](../programs/mixtypes.cpp)
-    <!--/codeinclude-->
-
-#### Array Alternatives - `vector`
-
-`vector` class does use new and delete to manage memory, but it does so automatically.
-
-```cpp
-vector<typeName> vt(n_elem);
-```
-
-```cpp
-#include <vector>
-...
 using namespace std;
-vector<int> vi; // create a zero-size array of int
-int n;
-cin >> n;
-vector<double> vd(n); // create an array of n doubles
 ```
 
-We say that vi is an object of type vector<int> and that vd is an object of type vector<double>.
+</pre>
 
-**C++11 `array` Template Class**
-
-Comparing Arrays, Vector Objects, and Array Objects
-
-??? example "choices.cpp"
-    <!--codeinclude-->
-    [](../programs/choices.cpp)
-    <!--/codeinclude-->
-
-Pointers and arrays are closely connected. If ar is an array name, then the expression
-`ar[i]`is interpreted as `*(ar + i)`, with the array name interpreted as the address
-of the first element of the array. Thus, the array name plays the same role as a pointer.
-
-##### Assign safety
-
-```cpp
-// a2[-2] = .5; // still allowed (out of range)
-a2.at(1) = 2.3; // assign 2.3 to a2[1] 
-```
-
-The difference between using bracket notation and the `at()` member function is
-that if you use `at()`, an invalid index is caught during runtime and the program,
-by default, aborts.
-
-## Chapter 5: Loops and Relational Expressions
+</summary>
+It makes definitions made in the std namespace available to a program.
+</details>
 
 <details><summary>
-        List of what you will learn
-    </summary>
+04. What statement would you use to print the phrase “Hello, world” and then
+start a new line?
+</summary>
 
 ```cpp
- - The for loop 
- - Expressions and statements 
- - The increment and decrement operators: ++ and -- 
- - Combination assignment operators 
- - Compound statements (blocks) 
- - The comma operator 
- - Relational operators: >, >=, ==, <=, <, and != 
- - The while loop 
- - The typedef facility 
- - The do while loop 
- - The get() character input method 
- - The end-of-file condition 
- - Nested loops and two-dimensional arrays 
+cout << "Hello, world\n";
 ```
 
-</details> <br>
-
-### Loops, Expressions and Statements
-
-You can’t assign a for loop to a variable. In the following example,
-the for loop is not an expression, so it has no value and you can’t assign it:
+or
 
 ```cpp
-int fx = for (i = 0; i< 4; i++)
-cout >> i; // not possible
-
-for (expression; expression; expression)
-    statement
+cout << "Hello, world" << endl;
 ```
 
-??? example "formore.cpp - factorials in cpp"
-    <!--codeinclude-->
-    [](../programs/formore.cpp)
-    <!--/codeinclude-->
+</details>
 
-??? example "forstr1.cpp - (string) letters in reverse order"
-    <!--codeinclude-->
-    [](../programs/forstr1.cpp)
-    <!--/codeinclude-->
-
-Consider this statement:
+<details><summary>
+05. What statement would you use to create an integer variable with the name
+cheeses ?
+</summary>
 
 ```cpp
-y = (4 + x++) + (6 + x++);
+int cheeses;
 ```
 
-The expression `4 + x++` is not a full expression, so C++ does not guarantee
-that `x` will be incremented immediately after the subexpression `4 + x++` is evaluated.
-Here the full expression is the entire assignment statement, and the semicolon marks
-the sequence point, so all that C++ guarantees is that x will have been incremented
-twice by the time the program moves to the following statement. C++ does not specify
-whether x is incremented after each subexpression is evaluated or only after all
-the expressions have been evaluated, which is why you should avoid statements
-of this kind.
+</details>
 
-### Prefix & Postfix
-
-postfix version works by first stashing a copy of the value, incrementing the
-value, and then returning the stashed copy.Thus, for classes, the prefix version
-is a bit more efficient than the postfix version.
-
-In short, for built-in types, it most likely makes no difference which form you use.
-For user-defined types having user-defined increment and decrement operators,
-the prefix form is more efficient.
-
-The right-to-left association rule for prefix operators implies that `*++pt`
-means first apply `++` to `pt` (because the `++` is to the right of the `*`)
-and then apply `*` to the new value of pt:
+<details><summary>
+06. What statement would you use to assign the value 32 to the variable cheeses?
+</summary>
 
 ```cpp
-double x = *++pt; // increment pointer, take the value; i.e., arr[2], or 23.4
-++*pt; // increment the pointed to value; i.e., change 23.4 to 24.4
-(*pt)++; // increment pointed-to value
-x = *pt++; // dereference original location, then increment pointer
+cheeses = 32;
 ```
 
-**Incrementing and decrementing pointers follow pointer arithmetic rules.**
-**Thus, if pt points to the first member of an array, ++pt changes pt so**
-**that it points to the second member.**
+</details>
+
+<details><summary>
+07. What statement would you use to read a value from keyboard input into the<br>
+&emsp; variable cheeses ?
+</summary>
+
+```cpp
+cin >> cheeses;
+```
+
+</details>
+
+<details><summary>
+08. What statement would you use to print “We have X varieties of cheese,”<br>
+&emsp; where the current value of the cheeses variable replaces X ?
+
+</summary>
+
+```cpp
+cout << "We have " << cheeses << " varieties of cheese\n";
+```
+
+</details>
+
+<details><summary>
+09. What do the following function prototypes tell you about the functions?
+
+```cpp
+int prune(void);
+int froop(double t);
+void rattle(int n);
+```
+
+</summary>
+
+The function froop() expects to be called with one argument, which will be type
+double, and that the function will return a type int value. For instance, it
+could be used as follows: <code> int gval = froop(3.14159); </code><br>
+
+The function rattle() has no return value and expects an int argument.
+For instance, it could be used as follows: <code> rattle(37); </code><br>
+
+The function prune() returns an int and expects to be used without an argument.
+For instance, it could be used as follows: <code> int residue = prune(); </code><br>
+</details>
+
+<details><summary>
+10.  When do you not have to use the keyword return when you define a function?
+</summary>
+
+You don’t have to use return in a function when the function has the return type
+<code>void</code>. However, you can use it if you don’t give a return value: <code> return; </code>
+
+</details>
+
+<details><summary>
+11. Suppose your main() function has the following line:
+
+<pre>
+
+```cpp
+cout << “Please enter your PIN: “;
+```
+
+</pre>
+
+And suppose the compiler complains that cout is an unknown identifier.
+What is the likely cause of this complaint, and what are three ways to fix the problem?
+
+</summary>
+
+<b>Lack of caller for std library.<b>
+
+Use directive:
+
+```cpp
+using namespace std;
+```
+
+or
+
+```cpp
+using std::cout
+```
+
+for only <code>cout</code> or call library with <code>std::cout</code> instead of <code>cout</code>
+
+</details>
 
 ---
 
-#### Assignment Operators
-
-```cpp
-+= Assigns L + R to L
--= Assigns L - R to L
-*= Assigns L * R to L
-/= Assigns L / R to L
-%= Assigns L % R to L
-```
-
-#### Relational Operators
-
-```cpp
-<< Is less than
-<= Is less than or equal to
-== Is equal to
-> Is greater than
->= Is greater than or equal to
-!= Is not equal to
-```
-
-### Compound Statements, or Blocks, Syntax Tricks
-
-??? example "block.cpp - Example of local code block"
-    <!--codeinclude-->
-    [](../programs/block.cpp)
-    <!--/codeinclude-->
-
-```cpp
-++j, --i // two expressions count as one for syntax purposes
-int i, j; // comma is a separator here, not an operator
-```
-
-??? example "forstr2.cpp - Example of comma separator trick"
-    <!--codeinclude-->
-    [](../programs/forstr2.cpp)
-    <!--/codeinclude-->
-
-The relational operators have a lower precedence than the arithmetic operators.That
-means this expression:
-`x + 3 > y - 2 // Expression 1`
-corresponds to this:
-`(x + 3) > (y - 2) // Expression 2`
-and not to the following:
-`x + (3 > y) - 2 // Expression 3`
-
-```cpp
-strcmp(word, "mate") != 0 // strings are not the same
-```
-
-??? example "compstr1.cpp - Example comparison c-string in search for word"
-    <!--codeinclude-->
-    [](../programs/compstr1.cpp)
-    <!--/codeinclude-->
-
-??? example "compstr2.cpp - Example comparison string class in search for word"
-    <!--codeinclude-->
-    [](../programs/compstr2.cpp)
-    <!--/codeinclude-->
-
-### When use other loop forms
-
-??? example "while.cpp - while for verticalized and ASCIIized string class input"
-    <!--codeinclude-->
-    [](../programs/while.cpp)
-    <!--/codeinclude-->
-
-You can rewrite the while line this way:
-
-```cpp
-while (name[i])
-```
-
-because when `name[i]` is an ordinary character, its value is the character code,
-which is nonzero, or true. But when name[i] is the null character,
-its character-code value is 0, or false.This notation is more concise
-(and more commonly used)
-
-### Time-Delay Loop
-
-ctime header file (time.h on less current implementations) provides solution:
-
-- First, it defines a symbolic constant, CLOCKS_PER_SEC, that equals the number
-of system time units per second. (So dividing the system time by this value yields seconds)
-- Or you can multiply seconds by CLOCKS_PER_SEC to get time in the system units.
-- ctime establishes clock_t as an alias for the clock() return type.
-(See the sidebar “Type Aliases,” later in this chapter.) This means you can
-declare a variable as type clock_t, and the compiler converts it to long or
-unsigned int or whatever is the proper type for your system.
-
-??? example "waiting.cpp - using clock() in a time-delay loop"
-    <!--codeinclude-->
-    [](../programs/waiting.cpp)
-    <!--/codeinclude-->
+## Chapter 3
 
 <details><summary>
-     Type Aliases
-    </summary>
+01. Why does C++ have more than one integer type?
+</summary>
 
-C++ has two ways to establish a new name as an alias for a type.
-One is to use the preprocessor:
+Having more than one integer type lets you choose the type that is best suited to
+a particular need. For example, you could use <code>short</code> to conserve space or <code>long</code>
+to guarantee storage capacity or to find that a particular type speeds up a
+particular calculation.
 
-```cpp
-#define BYTE char // preprocessor replaces BYTE with char
-```
-
-The preprocessor then replaces all occurrences of BYTE with char when you
-compile a program, thus making `BYTE` an alias for `char`.
-The second method is to use the C++ (and C) keyword `typedef` to create an alias.
-For example, to make byte an alias for `char`, you use this:
-
-```cpp
-typedef char byte; // makes byte an alias for char
-typedef typeName aliasName; // general form
-```
-
-In other words, if you want `aliasName` to be an alias for a particular type,
-you declare `aliasName` as if it were a variable of that type and then prefix
-the declaration with the `typedef` keyword. For example, to make `byte_pointer`
-an alias for pointer-to-char, you could declare `byte_pointer` as a pointer-to-char
-and then stick `typedef` in front:
-
-```cpp
-typedef char * byte_pointer; // pointer to char type
-```
-
-You could try something similar with #define, but that wouldn’t work if you
-declared a list of variables. For example, consider the following
-
-```cpp
-#define FLOAT_POINTER float *
-FLOAT_POINTER pa, pb;
-
-//Preprocessor substitution converts the declaration to this:
-float * pa, pb; // pa a pointer to float, pb just a float
-```
-
-The `typedef` approach doesn’t have that problem. Its ability to handle more complex type
-aliases makes using `typedef` a better choice than #define—and sometimes it is the
-only choice.
-
-Notice that `typedef` doesn’t create a new type. It just creates a new name for an old type.
-If you make `word` an alias for `int`, `cout` treats a type `word` value as the `int` it really is.
-</details><br>
-
-??? example "dowhile.cpp - for user input in loop (instead strange for loops)"
-    <!--codeinclude-->
-    [](../programs/dowhile.cpp)
-    <!--/codeinclude-->
-
-#### The Range-Based `for` Loop (C++11)
-
-```cpp
-double prices[5] = {4.99, 10.99, 6.87, 7.99, 8.49};
-for (double x : prices)
-    cout << x << std::endl; // Here x initially represents the first member of the prices array
-```
-
-To modify array values, you need a different syntax for the loop variable:
-
-```cpp
-for (double &x : prices)
-x = x * 0.80; //20% off sale
-```
-
-It can be used with initialization lists
-
-```cpp
-for (int x : {3, 5, 2, 8, 6})
-cout << x << " ";
-cout << ‘\n’;
-```
-
-### Loops and Text Input
-
-??? example "textin1.cpp - reading chars with a while loop, enter # to quit - cin() PROBLEMS"
-    <!--codeinclude-->
-    [](../programs/textin1.cpp)
-    <!--/codeinclude-->
-
-??? example "textin2.cpp - reading chars with a while loop, enter # to quit - cin.get(char) SOLUTION"
-    <!--codeinclude-->
-    [](../programs/textin2.cpp)
-    <!--/codeinclude-->
-
-### End-of-File Condition and Read data from keyboard
-
-The program to take input from the `fishtale` file instead of from the
-**keyboard**. The `<` symbol is the redirection operator for both Unix
-and the Windows Command Prompt mode.
-
-```sh
-gofish <fishtale
-```
-
-When `cin` detects the `EOF`, it sets two bits (the `eofbit` and the `failbit`) to 1.
-You can use a member function named `eof()` to see whether the `eofbit` has been set;
-the call `cin.eof()` returns the bool value true if the `EOF` has been detected and false otherwise
-
-Some systems do not support simulated EOF from the keyboard.
-Other systems support it imperfectly. If you have been using cin.get() to
-freeze the screen until you can read it, that won’t work here because detecting
-the EOF turns off further attempts to read input.
-
-??? example "textin3.cpp - reading chars till EOF (keyboard break)"
-    <!--codeinclude-->
-    [](../programs/textin3.cpp)
-    <!--/codeinclude-->
-
-The following is the essential design of a loop intended to read text
-a character at a time until EOF:
-
-```cpp
-cin.get(ch); // attempt to read a char
-while (cin.fail() == false) // test for EOF
-{
-    ... // do stuff
-    cin.get(ch); // attempt to read another char
-}
-
-// you can use instead:
-while (!cin.fail()) // while input has not failed  (`!` - 'not true' operator)
-
-// This is a bit more general than using !cin.fail() or !cin.eof() because it detects
-// other possible causes of failure, such as disk failure
-while (cin) // while input is successful
-```
-
-`cin.get(ch)` can condense loop above:
-Here, `cin.get(char)` is called once in the test condition instead of twice—once
-before the loop and once at the end of the loop.
-
-```cpp
-while (cin.get(ch)) // while input is successful
-{
-... // do stuff
-}
-```
-
-The cin.get() member function with no arguments returns the next character from
-the input.That is, you use it in this way: `ch = cin.get();`
-(Recall that cin.get(ch) returns an object, not the character read.)
-Similarly, you can use the `cout.put(ch)`
-
-??? example "textin4.cpp - incorporates the cin.get() and codense code"
-    <!--codeinclude-->
-    [](../programs/textin4.cpp)
-    <!--/codeinclude-->
-
-| Property                                  | `cin.get(ch)`                                            | `ch=cin.get()`                              |
-|-------------------------------------------|----------------------------------------------------------|---------------------------------------------|
-| Method for conveying input character      | Assign to argument ch                                    | Use function return value to assign to `ch` |
-| Function return value for character input | A class `istream` object (true after `bool` conversion)  | Code for character as type `int` value      |
-| Function return value at EOF              | A class `istream` object (false after `bool` conversion) | EOF                                         |
-
-### Nested Loops and Two-Dimensional Arrays
-
- Initialize
-
-```cpp
-int maxtemps[4][5] = // 2-D array
-{
-{96, 100, 87, 101, 105}, // values for maxtemps[0]
-{96, 98, 91, 107, 104}, // values for maxtemps[1]
-{97, 101, 93, 108, 107}, // values for maxtemps[2]
-{98, 103, 95, 109, 108} // values for maxtemps[3]
-};
-```
-
-??? example "nested.cpp - nested loops and 2-D array"
-    <!--codeinclude-->
-    [](../programs/nested.cpp)
-    <!--/codeinclude-->
-
-## Chapter 6: Branching Statements and Logical Operators
+</details>
 
 <details><summary>
-        List of what you will learn
-    </summary>
+02. Declare variables matching the following descriptions:<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp a. A short integer with the value 80<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp b. An unsigned int integer with the value 42, 110<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp c. An integer with the value 3, 000, 000, 000
+
+</summary>
 
 ```cpp
- - The `if` statement
- - The `if else` statement
- - Logical operators: `&&`, `||`, and `!`
- - The `cctype` library of character functions
- - The conditional operator: `?:`
- - The switch statement
- - The continue and break statements
- - Number-reading loops
- - Basic file input/output
+short rbis = 80; // or short int rbis = 80;
+unsigned int q = 42110; // or unsigned q = 42110;
+unsigned long ants = 3000000000;
+// or long long ants = 3000000000;
+
+//Note: Don’t count on int being large enough to hold 3,000,000,000.Also if your
+//system supports universal list-initialization, you could use it:
+short rbis = {80}; // = is optional
+unsigned int q {42110}; // could use = {42110}
+long long ants {3000000000};
 ```
 
 </details>
 
-### Statements and logical operators
-
-??? example "if.cpp - (count spaces in while) simple use of if statement"
-    <!--codeinclude-->
-    [](../programs/if.cpp)
-    <!--/codeinclude-->
-
-??? example "ifelse.cpp - (simplest cipher from keyboard) simple use of if else statement"
-    <!--codeinclude-->
-    [](../programs/ifelse.cpp)
-    <!--/codeinclude-->
-
-??? example "ifelseif.cpp -  simple use of if elseif else statement for guess game"
-    <!--codeinclude-->
-    [](../programs/ifelseif.cpp)
-    <!--/codeinclude-->
-
-#### Conditional Operators and Bug Prevention
-
-Many programmers reverse the more intuitive expression `variable == value` to
-`value == variable` in order to catch errors where the equality is mistyped as
-an assignment operator. For example, entering the conditional as follows is
-valid and will work properly: `if (3 == myNumber)`
-However, if you happen to mistype as follows, the compiler will generate an
-error message because it believes you are attempting to assign a value to a
-literal (3 always equals 3 and can’t be assigned another value):
-`if (3 = myNumber)`
-Suppose you made a similar mistake, using the former notation:
-`if (myNumber = 3)`
-The compiler would simply assign the value 3 to myNumber, and the block within
-the if would run—a very common error, and a difficult error to find.
-(However, many compilers will issue a warning, which you would be wise to heed.)
-As a general rule, writing code that allows the compiler to find errors is much
-easier than repairing the causes of mysterious faulty results.
-
-### Logical expressions
-
-`||` - Logical OR Operator is true, when one or both of two conditions satisfy a requirement.
-`&&` - Logical AND Operator is true only if both of the original expressions are true.
-`!` - Logical NOT Operator negates, or reverses the truth value of, the expression that follows it.
-
-logical OR and logical AND operators have a lower precedence than relational operators.
-This means that an expression such as this: `x > 5 && x < 10` is interpreted this way:
-`(x > 5) && (x < 10)`
-
-The logical AND operator has a higher precedence than the logical OR, Thus this
-expression: `age > 30 && age < 45 || weight > 300`, means the following:
-`(age > 30 && age < 45) || weight > 300`
-
-C++ guarantees that when a program evaluates a logical expression, it evaluates
-it from left to right and stops evaluation as soon as it knows what the answer is.
-
-??? example "or.cpp - simple use of the logical OR operator"
-    <!--codeinclude-->
-    [](../programs/or.cpp)
-    <!--/codeinclude-->
-
-??? example "and.cpp - simple use of the logical AND operator"
-    <!--codeinclude-->
-    [](../programs/and.cpp)
-    <!--/codeinclude-->
-
-??? example "more_and.cpp - range using AND operator"
-    <!--codeinclude-->
-    [](../programs/more_and.cpp)
-    <!--/codeinclude-->
-
-??? example "not.cpp - simple use of NOT operator"
-    <!--codeinclude-->
-    [](../programs/not.cpp)
-    <!--/codeinclude-->
-
-### Range Tests
-
-Note that each part of a range test should use the AND operator to join
-two complete relational expressions:
-`if (age > 17 && age < 35) // OK`
-Don’t borrow from mathematics and use the following notation:
-`if (17 < age < 35) // Don't do this!`
-If you make this mistake, the compiler won’t catch it as an error because
-it is still valid C++ syntax. The `<` operator associates from left to right,
-so the previous expression means the following:
-`if ( (17 < age) < 35)`
-But `17 < age` is either `true`, or `1`, or else `false`, or `0`. In either case,
-the expression `17 < age` is less than 35, so the entire test is always true!
-
-### `cctype` library of Character Functions
-
-simplify such tasks as determining whether a character is an uppercase letter
-or a digit or punctuation
-
-Using these functions is more convenient than using the AND and OR operators.
-For example, here’s how you might use AND and OR to test whether a character
-`ch` is an alphabetic character:
-
-```cpp
-if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
-```
-
-Is equivalent to:
-
-```cpp
-if (isalpha(ch))
-```
-
-In program `cctypes.cpp` below
-`isalpha()`,  tests for alphabetic characters;
-`isdigits()`,  tests for digit characters, such as 3;
-`isspace()`, tests for whitespace characters, such as newlines, spaces, and tabs;
-`ispunct()`,  tests for punctuation characters
-
-??? example "cctypes.cpp - demonstrates some functions of the ctype.h library"
-    <!--codeinclude-->
-    [](../programs/cctypes.cpp)
-    <!--/codeinclude-->
-
-Function Name
-
-- `isalnum()` - returns true if the argument is alphanumeric (that is, a letter or a digit).
-- `isalpha()` - returns true if the argument is alphabetic.
-- `isblank()` - returns true if the argument is a space or a horizontal tab.
-- `iscntrl()` - returns true if the argument is a control character.
-- `isdigit()` - returns true if the argument is a decimal digit (0–9).
-- `isgraph()` - returns true if the argument is any printing character other than a space.
-- `islower()` - returns true if the argument is a lowercase letter.
-- `isprint()` - returns true if the argument is any printing character, including a space.
-- `ispunct()` - returns true if the argument is a punctuation character.
-- `isspace()` - returns true if the argument is a standard whitespace character
-(that is, a space, formfeed, newline, carriage return, horizontal tab, vertical tab).
-- `isupper()` - returns true if the argument is an uppercase letter.
-- `isxdigit()` - returns true if the argument is a hexadecimal digit character
-(that is, 0–9, a–f, or A–F).
-- `tolower()` - If the argument is an uppercase character, tolower() returns
-the lowercase version of that character; otherwise, it returns the argument unaltered.
-- `toupper()` - If the argument is a lowercase character, toupper() returns the
-uppercase version of that character; otherwise, it returns the argument unaltered.
-
-### The `?:` Operator
-
-`expression1 ? expression2 : expression3`
-If `expression1` is `true`, then the value of the whole conditional expression
-is the value of `expression2`. Otherwise, the value of the whole expression
-is the value of `expression3`.
-
-```cpp
-5 > 3 ? 10 : 12 // 5 > 3 is true, so expression value is 10
-3 == 9 ? 25 : 18 // 3 == 9 is false, so expression value is 18
-```
-
-??? example "condit.cpp - example of ?: use"
-    <!--codeinclude-->
-    [](../programs/condit.cpp)
-    <!--/codeinclude-->
-
-### The `switch` Statement
-
-<img src="./assets/_ch6SwitchCase.png" alt="Image description"
-style="display: block; margin: auto; width: 50%; height: auto; border-radius: 8px;">
-<br>
-
-??? example "switch.cpp - menu program, example of switch use"
-    <!--codeinclude-->
-    [](../programs/switch.cpp)
-    <!--/codeinclude-->
-
-??? example "enum.cpp - menu program with enum labels"
-    <!--codeinclude-->
-    [](../programs/enum.cpp)
-    <!--/codeinclude-->
-
-### The break and continue Statements
-
-`break` statement causes program execution to pass to the next statement
-following the switch or the loop
-`continue` statement is used in loops and causes a program to skip the
-rest of the body of the loop
-
-??? example "jump.cpp - using continue and break"
-    <!--codeinclude-->
-    [](../programs/jump.cpp)
-    <!--/codeinclude-->
-
-??? example "cinfish.cpp - to terminate input before filling the array example"
-    <!--codeinclude-->
-    [](../programs/cinfish.cpp)
-    <!--/codeinclude-->
-
-??? example "cingolf.cpp - to terminate input before filling the array example and reset cin to accept new input."
-    <!--codeinclude-->
-    [](../programs/cingolf.cpp)
-    <!--/codeinclude-->
-
-### File Input/Output
-
-#### Write to file
-
-You have to declare your own `ofstream` object, choosing a name for it and
-associating it with a file.
-
-Declaration:
-
-```cpp
-ofstream outFile; // outFile an ofstream object
-ofstream fout; // fout an ofstream object
-```
-
-Association with file (`open()` method requires a C-style string as its argument):
-
-```cpp
-outFile.open("fish.txt"); // outFile used to write to the fish.txt file
-char filename[50];
-cin >> filename; // user specifies a name
-fout.open(filename); // fout used to read specified file
-```
-
-Use created object (after you’ve declared an ofstream object and associated
-it with a file, you use it exactly as you would use cout):
-
-```cpp
-double wt = 125.8;
-outFile << wt; // write a number to fish.txt
-char line[81] = "Objects are closer than they appear.";
-fout << line << endl; // write a line of text
-```
-
-Main steps for using file output:
-
-1. Include the fstream header file.
-2. Create an ofstream object.
-3. Associate the ofstream object with a file.
-4. Use the ofstream object in the same manner you would use cout.
-
-??? example "outfile.cpp - write data to file."
-    <!--codeinclude-->
-    [](../programs/outfile.cpp)
-    <!--/codeinclude-->
-
-#### Read from file
-
-You have to declare your own `ifstream` object, choosing a name for it and
-associating it with a file
-
-Declaration:
-
-```cpp
-ifstream inFile; // inFile an ifstream object
-ifstream fin; // fin an ifstream object
-```
-
-Association with file (open() method requires a C-style string as its argument):
-
-```cpp
-inFile.open("bowling.txt"); // inFile used to read bowling.txt file
-char filename[50];
-cin >> filename; // user specifies a name
-fin.open(filename); // fin used to read specified file
-```
-
-Use created object:
-
-```cpp
-double wt;
-inFile >> wt; // read a number from bowling.txt
-char line[81];
-fin.getline(line, 81); // read a line of text
-```
-
-Check for nonexisting file (`is_open()` method)
-
-```cpp
-inFile.open("bowling.txt");
-if (!inFile.is_open()){
-    exit(EXIT_FAILURE);
-}
-```
-
-For program below - write `datsumafile.txt`, that should be local,
-or `.\programs\datsumafile.txt` if compiled in `$PATH$`
-
-??? example "sumafile.cpp - reading double data from file."
-    <!--codeinclude-->
-    [](../programs/sumafile.cpp)
-    <!--/codeinclude-->
-
-??? example "datsumafile.txt - data for program."
-    <!--codeinclude-->
-    [](../programs/datsumafile.txt)
-    <!--/codeinclude-->
-
-```cpp
-// standard file-reading loop design
-inFile >> value; // get first value
-while (inFile.good()) // while input good and not at EOF
-{
-    // loop body goes here
-    inFile >> value; // get next value
-}
-```
-
-`inFile`, when placed in a context in which a `bool` value is expected,
-evaluates to `inFile.good()` — that is, to `true` or `false`, thus you
-can make above code more concise:
-
-```cpp
-// abbreviated file-reading loop design
-// omit pre-loop input
-while (inFile >> value) // read and test for success
-{
-    // loop body goes here
-    // omit end-of-loop input
-}
-```
-
-## Chapter 7: C++’s Programming Modules
-
 <details><summary>
-        List of what you will learn
+03. What safeguards does C++ provide to keep you from exceeding the limits of an
+integer type?
+
 </summary>
 
-```cpp
-- Function basics
-- Function prototypes
-- Passing function arguments by value
-- Designing functions to process arrays
-- Using const pointer parameters
-- Designing functions to process text strings
-- Designing functions to process structures
-- Designing functions to process objects of the string class
-- Functions that call themselves (recursion)
-- Pointers to functions
-```
-
-</details> <br>
-
-### Functions
-
-You can group functions into two categories: those that don’t have return values and those that do.
-
-```cpp
-void functionName(parameterList)
-{
-    statement(s)
-    return; // optional
-}
-```
-
-<img src="./assets/_ch7FunctionReturn.png" alt="Image description"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-### Prototyping
-
-Prototype describes the function interface to the compiler.That is, it tells the compiler what type of return value,
-if any, the function has, and it tells the compiler the number and type of function arguments.
-
-A function prototype is a statement, so it must have a terminating semicolon. The simplest way to get a prototype
-is to copy the function header from the function definition and add a semicolon.
-
-??? example "protos.cpp - Example of using prototypes and function calls."
-    <!--codeinclude-->
-    [](../programs/protos.cpp)
-    <!--/codeinclude-->
+C++ provides no automatic safeguards to keep you from exceeding integer limits;
+you can use the <code>climits</code> header file to determine what the limits are.
+</details>
 
 <details><summary>
-C++ Versus ANSI C Prototyping, ellypsis (...)
+04. What is the distinction between <code>33L</code> and <code>33</code>?
+
 </summary>
 
-ANSI C borrowed prototyping from C++, but the two languages do have some differences. The most important is that ANSI C,
-to preserve compatibility with classic C, made prototyping optional, whereas C++ makes prototyping mandatory.
-For example, consider the following function declaration:
-
-```cpp
-void say_hi();
-```
-
-In C++, leaving the parentheses empty is the same as using the keyword void within the
-parentheses. It means the function has no arguments. In ANSI C, leaving the parentheses
-empty means that you are declining to state what the arguments are. That is, it means
-you’re forgoing prototyping the argument list. The C++ equivalent for not identifying the argument
-list is to use an ellipsis:
-
-```cpp
-void say_bye(...); // C++ abdication of responsibility
-```
-
-Normally this use of an ellipsis is needed only for interfacing with C functions having a variable
-number of arguments, such as printf().
-
-</details><br>
-
-They greatly reduce the chances of program errors. In particular, prototypes ensure the following:
-
-- The compiler correctly handles the function return value.
-- The compiler checks that you use the correct number of function arguments.
-- The compiler checks that you use the correct type of arguments.
-If you don’t, it converts the arguments to the correct type, if possible.
-
-Prototyping takes place during compile time and is termed `static type checking`. `Static type checking`, as you’ve
-just seen, catches many errors that are much more difficult to catch during runtime.
-
-### Passing function arguments
-
-<img src="./assets/_ch7PassByValue.png" alt="Image description"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-A variable that’s used to receive passed values is called a `formal argument` or `formal parameter`.
-The value passed to the function is called the `actual argument` or `actual parameter`.
-
-Variables, including parameters, declared within a function are private to the function.
-When a function is called, the computer allocates the memory needed for these variables.
-When the function terminates, the computer frees the memory that was used for those variables.
-
-Prototype examples with many arguments:
-
-```cpp
-void fifi(float a, float b) // declare each variable separately
-void fufu(float a, b) // NOT acceptable
-
-void n_chars(char c, int n); // prototype, style 1
-void n_chars(char, int); // prototype, style 2
-```
-
-??? example "twoarg.cpp - a function with 2 arguments."
-    <!--codeinclude-->
-    [](../programs/twoarg.cpp)
-    <!--/codeinclude-->
-
-??? example "lotto.cpp - calculate probability of winning."
-    <!--codeinclude-->
-    [](../programs/lotto.cpp)
-    <!--/codeinclude-->
-
-### Functions and Arrays
-
-```cpp
-int sum_arr(int arr[], int n) // arr = array name, n = size
-```
-
-`arr` is not really an **array**; it’s a **pointer**!
-The good news is that you can write the rest of `the` function just as if arr were an array.
-
-The design decision to use array addresses as arguments saves the time and memory needed to copy an entire array.
-
-??? example "arrfun1.cpp - functions with an array argument."
-    <!--codeinclude-->
-    [](../programs/arrfun1.cpp)
-    <!--/codeinclude-->
-
-??? example "arrfun2.cpp - functions with an array argument."
-    <!--codeinclude-->
-    [](../programs/arrfun2.cpp)
-    <!--/codeinclude-->
-
-??? example "arrfun3.cpp - functions with an array argument."
-    <!--codeinclude-->
-    [](../programs/arrfun3.cpp)
-    <!--/codeinclude-->
-
-??? example "arrfun4.cpp - functions with an array range."
-    <!--codeinclude-->
-    [](../programs/arrfun4.cpp)
-    <!--/codeinclude-->
-
-C++ interprets an array name as the address of its first element:
-
-```cpp
-cookies == &cookies[0] // array name is address of first element
-```
-
-This suggests that the correct function header should be this:
-
-```cpp
-int sum_arr(int * arr, int n) // arr = array name, n = size
-
-arr[i] == *(ar + i) // values in two notations
-&arr[i] == ar + i // addresses in two notations
-
-// You can also lie about where the array starts when calling:
-sum = sum_arr(cookies + 4, 4);
-sum = sum_arr(cookies, cookies + 3); // first 3 elements - array ranges
-
-// Protecting array with const to keep a function from accidentally altering the contents of
-an array argument,
-void show_array(const double ar[], int n);
-```
-
-Remember that adding one to a pointer, including an array name, actually adds a value equal to the size, in bytes, of the
-type to which the pointer points
-
-<img src="./assets/_ch7PassArray.png" alt="Image description"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-### Pointers and `const`
-
-Pointers of variables can't be addressed to const values.
-
-```cpp
-int age = 39;
-const int * pt = &age;
-
-*pt += 1; // INVALID because pt points to a const int
-cin >> *pt; // INVALID for the same reason
-
-*pt = 20; // INVALID because pt points to a const int
-age = 20; // VALID because age is not declared to be const
-
-const float g_earth = 9.80;
-const float * pe = &g_earth; // VALID
-
-const float g_moon = 1.63;
-float * pm = &g_moon; // INVALID
-```
+The constant <code>33L</code> is type long, whereas the constant <code>33</code> is type <code>int</code>.
+</details>
 
 <details><summary>
-Using const When You Can
-    </summary>
-
-There are two strong reasons to declare pointer arguments as pointers to constant data:
-
-- It protects you against programming errors that inadvertently alter data.
-- Using `const` allows a function to process both `const` and non-`const` actual arguments,
-whereas a function that omits `const` in the prototype can accept only non-`const` data.
-
-</details><br>
-
-<img src="./assets/_ch7PointersConst.png" alt="Image description"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-### Functions and Two-Dimensional Arrays
+05. Consider the two C++ statements that follow:
 
 ```cpp
-int data[3][4] = {{1,2,3,4}, {9,8,7,6}, {2,4,6,8}};
-int total = sum(data, 3);
-
-// data is pointer-to-array-of-four-int,
-// so an appropriate prototype would be this:
-int sum(int (*ar2)[4], int size);
-
-// The simplest way is to use brackets twice, as in ar2[r][c].
-total += ar2[r][c];
-// But it is possible, if ungainly, to use the * operator twice
-ar2[r][c] == *(*(ar2 + r) + c) // same thing
-
-// To understand this, you can work out the
-// meaning of the subexpressions from the inside out:
-ar2 // pointer to first row of an array of 4 int
-ar2 + r // pointer to row r (an array of 4 int)
-*(ar2 + r) // row r (an array of 4 int, hence the name of an array,
-// thus a pointer to the first int in the row, i.e., ar2[r]
-*(ar2 +r) + c // pointer int number c in row r, i.e., ar2[r] + c
-*(*(ar2 + r) + c // value of int number c in row r, i.e. ar2[r][c]
+char grade = 65;
+char grade = 'A';
 ```
 
-### Functions and C-Style Strings
+Are they equivalent?
 
-You have three choices for representing a string:
-
-- An array of char
-- A quoted string constant (also called a string literal)
-- A pointer-to-char set to the address of a string
-
-```cpp
-char ghost[15] = "galloping";
-char * str = "galumphing";
-int n1 = strlen(ghost); // ghost is &ghost[0]
-int n2 = strlen(str); // pointer to char
-int n3 = strlen("gamboling"); // address of string
-```
-
-??? example "strgfun.cpp - functions with a string argument."
-    <!--codeinclude-->
-    [](../programs/strgfun.cpp)
-    <!--/codeinclude-->
-
-??? example "strgback.cpp - a function that returns a pointer to char."
-    <!--codeinclude-->
-    [](../programs/strgback.cpp)
-    <!--/codeinclude-->
-
-### Functions and Structures
-
-Defining the structure is simple:
-
-```cpp
-struct travel_time
-{
-    int hours;
-    int mins;
-};
-
-// Next, consider the prototype for a sum() function that
-// returns the sum of two such structures
-travel_time sum(travel_time t1, travel_time t2);
-```
-
-??? example "travel.cpp - using structures with functions."
-    <!--codeinclude-->
-    [](../programs/travel.cpp)
-    <!--/codeinclude-->
-
-??? example "strctfun.cpp - functions with a structure argument."
-    <!--codeinclude-->
-    [](../programs/strctfun.cpp)
-    <!--/codeinclude-->
-
-### Passing Structure Addresses
-
-Suppose you want to save time and space by passing the address of a structure instead of passing the entire structure.
-
-You need to make three changes:
-
-- When calling the function, pass it the address of the structure (`&pplace`) rather than the structure itself (`pplace`).
-- Declare the formal parameter to be a pointer-to-polar—that is, type polar `*`. Because the function shouldn’t modify the
-structure, use the `const` modifier.
-- Because the formal parameter is a pointer instead of a structure, use the indirect membership operator (`->`) rather than
-the membership operator (dot).
-
-```cpp
-void show_polar (const polar * pda)
-{
-    cout << "distance = " << pda->distance;
-}
-```
-
-??? example "strctptr.cpp - functions with a structure argument."
-    <!--codeinclude-->
-    [](../programs/strctptr.cpp)
-    <!--/codeinclude-->
-
-### Functions and string Class Objects
-
-`string` class object is more closely related to a structure than to an array.
-
-- you can assign a structure to another structure and an object to another object
-- You can pass a structure as a complete entity to a function, and you can pass an object as a complete entity.
-- you can declare a one-dimensional array of `string`
-objects instead of a two-dimensional array of `char`.
-
-??? example "topfive.cpp - handling an array of string objects."
-    <!--codeinclude-->
-    [](../programs/topfive.cpp)
-    <!--/codeinclude-->
-
-### Functions and array Objects
-
-Declared `array` object
-
-```cpp
-std::array<double, 4> expenses;
-
-show(expenses); // function display the contents
-show(&expenses); // if we want a function that modifies object
-
-// Prototypes
-void show(std::array<double, 4> da); // da an object
-void fill(std::array<double, 4> * pa); // pa a pointer to an object
-```
-
-??? example "arrobj.cpp - functions with a structure argument."
-    <!--codeinclude-->
-    [](../programs/arrobj.cpp)
-    <!--/codeinclude-->
-
-### Recursion
-
-C++ function can `call` itself. This ability is termed recursion
-
-Recursive function example
-
-```cpp
-// Single Recursive Call  
-void recurs(argumentlist)
-{
-    statements1
-    if (test)
-        recurs(arguments)
-    statements2
-}
-```
-
-??? example "recur.cpp - using recursion (single)."
-    <!--codeinclude-->
-    [](../programs/recur.cpp)
-    <!--/codeinclude-->
-
-This recursive approach below is sometimes called the `divide-and-conquer` strategy.
-
-??? example "ruler.cpp - using recursion to subdivide a ruler."
-    <!--codeinclude-->
-    [](../programs/ruler.cpp)
-    <!--/codeinclude-->
-
-### Pointers to Functions
-
-it’s possible to write a function that takes the address of another function as an argument.
-That enables the first function to find the second function and run it.
-
-You need to be able to do the following:
-
-- Obtain the address of a function.
-- Declare a pointer to a function.
-- Use a pointer to a function to invoke the function.
-
-#### Obtaining the address of a function
-
-It is simple. You just use the function name without
-trailing parentheses
-
-```cpp
-process(think); // passes address of think() to process()
-thought(think()); // passes return value of think() to thought()
-```
-
-#### Declaring a Pointer to a Function
-
-Pointer to a function has to specify to what type of function the pointer point
-
-```cpp
-double pam(int); // prototype of function to use
-double (*pf)(int); // pf points to a function that takes
-// one int argument and that
-// returns type double
-```
-
-<details><summary>
-Tip
 </summary>
 
-In general, to declare a pointer to a particular kind of function, you can first write a prototype for a regular function
-of the desired kind and then replace the function name with an expression in the form `(*pf)`. In this case, `pf` is a
-pointer to a function of that type.
-</details><br>
-
-```cpp
-double (*pf)(int); // pf points to a function that returns double
-double *pf(int); // pf() a function that returns a pointer-to-double
-
-double pam(int);
-double (*pf)(int);
-pf = pam; // pf now points to the pam() function
-
-double ned(double);
-int ted(int);
-double (*pf)(int);
-pf = ned; // invalid -- mismatched signature
-pf = ted; // invalid -- mismatched return types
-
-// prototype:
-void estimate(int lines, double (*pf)(int));
-
-estimate(50, pam); // function call telling estimate() to use pam()
-
-// Using a Pointer to Invoke a Function
-double pam(int);
-double (*pf)(int);
-pf = pam; // pf now points to the pam() function
-double x = pam(4); // call pam() using the function name
-double y = (*pf)(5); // call pam() using the pointer pf
-
-double y = pf(5); // also call pam() using the pointer pf
-```
-
-??? example "fun_ptr.cpp - pointers to functions."
-    <!--codeinclude-->
-    [](../programs/fun_ptr.cpp)
-    <!--/codeinclude-->
-
-```cpp
-const double * f1(const double ar[], int n);
-const double * f2(const double [], int);
-const double * f3(const double *, int);
-```
-
-The signatures might look different, but they are the same.
-
-```cpp
-const double * (*p1)(const double *, int);
-//This can be combined with initialization:
-const double * (*p1)(const double *, int) = f1;
-auto p2 = f2; // C++11 automatic type deduction
-
-*pd[3] // an array of 3 pointers
-(*pd)[3] // a pointer to an array of 3 elements
-
-**&pa == *pa == pa[0]
-```
-
-??? example "arfupt.cpp - an array of function pointers."
-    <!--codeinclude-->
-    [](../programs/arfupt.cpp)
-    <!--/codeinclude-->
+The two statements are not really equivalent, although they have the same effect
+on some systems. Most importantly, the first statement assigns the letter <code>A</code>
+to grade only on a system using the <code>ASCII</code> code, while the second statement
+also works for other codes. Second, <code>65</code> is a type int constant, whereas <code>'A'</code>
+is a type char constant.
+</details>
 
 <details><summary>
-Appreciating auto
-    </summary>
-One of the goals of C++11 is to make C++ easier to use, letting the programmer concentrate
-more on design and less on details. Listing 7.19 surely illustrates this point:
+06. How could you use C++ to find out which character the code 88 represents?
+Come up with at least two ways.
 
-```cpp
-auto pc = &pa; // C++11 automatic type deduction
-const double *(*(*pd)[3])(const double *, int) = &pa; // C++98, do it yourself
-```
-
-The automatic type deduction feature reflects a philosophical shift in the role of the compiler.
-In C++98, the compiler uses its knowledge to tell you when you are wrong. In C++11,
-at least with this feature, it uses its knowledge to help you get the right declaration.
-There is a potential drawback. Automatic type deduction ensures that the type of the variable
-matches the type of the initializer, but it still is possible that you might provide the
-wrong type of initializer:
-
-```cpp
-auto pc = *pa; // oops! used *pa instead of &pa
-```
-
-This declaration would make pc match the type of *pa, and that would result in a compiletime
-error when Listing 7.19 later uses pc, assuming that it is of the same type as &pa.
-
-</details><br>
-
-### Simplifying with `typedef`
-
-```cpp
-typedef double real; // makes real another name for double
-
-// you can do this to make p_fun an alias for the function pointer type
-typedef const double *(*p_fun)(const double *, int); // p_fun now a type name
-p_fun p1 = f1; // p1 points to the f1() function
-
-p_fun pa[3] = {f1,f2,f3}; // pa an array of 3 function pointers
-p_fun (*pd)[3] = &pa; // pd points to an array of 3 function pointers
-```
-
----
-
-## Chapter 8: Adventures in Functions
-
-<details><summary>
-        List of what you will learn
 </summary>
 
-```cpp
-- Inline functions
-- Reference variables
-- How to pass function arguments by reference
-- Default arguments
-- Function overloading
-- Function templates
-- Function template specializations
-```
-
-</details> <br>
-
-### Inline functions
-
-`Inline` keyword tells the compiler to consider function for `inlining`. If the function is small and called frequently, inlining it can lead to
-performance improvements because the overhead of a function call is avoided.
-
-`Inlining` - mean that the code of the function is inserted at the point where the function is called, instead of performing a regular function call.
-This can potentially improve performance by avoiding the overhead of a function call, but it might increase the size of the binary file because the
-function's code could be inserted in multiple places
-
-<img src="./assets/_ch8Inline.png" alt="Image description"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-??? example "inline.cpp - using an inline function."
-    <!--codeinclude-->
-    [](../programs/inline.cpp)
-    <!--/codeinclude-->
-
-<details><summary>
-Inline Versus Macros
-    </summary>
-<figure>
-
-The `inline` facility is an addition to C++. C uses the preprocessor `#define` statement to
-provide *macros*, which are crude implementations of inline code. For example, here’s a
-macro for squaring a number:
+Here are four ways:
 
 ```cpp
-#define SQUARE(X) X*X
-```
-
-This works not by passing arguments but through text substitution, with the `X` acting as a
-symbolic label for the “argument”:
-
-```cpp
-a = SQUARE(5.0); is replaced by a = 5.0*5.0;
-b = SQUARE(4.5 + 7.5); is replaced by b = 4.5 + 7.5 * 4.5 + 7.5;
-d = SQUARE(c++); is replaced by d = c++*c++;
-```
-
-Only the first example here works properly. You can improve matters with a liberal application
-of parentheses:
-
-Still, the problem remains that macros don’t pass by value. Even with this new definition,
-SQUARE(c++) increments c twice, but the inline square() function in Listing 8.1 evaluates
-c, passes that value to be squared, and then increments c once.
-
-```cpp
-#define SQUARE(X) ((X)*(X))
-```
-
-Still, the problem remains that macros don’t pass by value. Even with this new definition,
-`SQUARE(c++)` increments `c` twice, but the inline `square()` function in Listing 8.1 evaluates
-c, passes that value to be squared, and then increments `c` once.
-
-The intent here is not to show you how to write C macros. Rather, it is to suggest that if you
-have been using C macros to perform function-like services, you should consider converting
-them to C++ inline functions
-
-</figure>
-</details><br>
-
-### Reference Variables
-
-reference is a name that acts as an alias, or an alternative name, for a previously defined variable. For
-example, if you make `twain` a reference to the `clemens` variable, you can use `twain` and `clemens` interchangeably
-to represent that variable.
-
-Unlike po0inters you can’t declare the reference and then assign it a value later the way you can with a pointer:
-
-```cpp
-int rat;
-int & rodent;
-rodent = rat; // No, you can't do this.
-```
-
-??? example "firstref.cpp - defining and using a reference."
-    <!--codeinclude-->
-    [](../programs/firstref.cpp)
-    <!--/codeinclude-->
-
-??? example "secref.cpp - defining and using a reference."
-    <!--codeinclude-->
-    [](../programs/secref.cpp)
-    <!--/codeinclude-->
-
-<img src="./assets/_ch8PassingReference.png" alt="Image description"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-??? example "swaps.cpp - swapping with references and with pointers."
-    <!--codeinclude-->
-    [](../programs/swaps.cpp)
-    <!--/codeinclude-->
-
-??? example "cubes.cpp - regular and reference arguments."
-    <!--codeinclude-->
-    [](../programs/cubes.cpp)
-    <!--/codeinclude-->
-
-### Temporary Variables, Reference Arguments, and `const`
-
-First, when is a temporary variable created? Provided that the reference parameter is a
-const, the compiler generates a temporary variable in two kinds of situations:
-
-- When the actual argument is the correct type but isn’t an **lvalue**
-- When the actual argument is of the wrong type, but it’s of a type that can be converted
-to the correct type
-
-An argument that’s an `lvalue` is a data object that can be referenced
-by `address`. For example, a variable, an array element, a structure member, a reference, and
-a dereferenced pointer are lvalues.
-Non-lvalues include literal constants (aside from quoted strings,
-which are represented by their addresses) and expressions with multiple terms.
-
-Regular variable can be further characterized as being a
-`modifiable lvalue` and the const variable as a `non-modifiable lvalue`.
-
-```cpp
-double refcube(const double &ra)
-{
-return ra * ra * ra;
-}
-
-double side = 3.0;
-double * pd = &side;
-double & rd = side;
-long edge = 5L;
-double lens[4] = { 2.0, 5.0, 10.0, 12.0};
-double c1 = refcube(side); // ra is side
-double c2 = refcube(lens[2]); // ra is lens[2]
-double c3 = refcube(rd); // ra is rd is side
-double c4 = refcube(*pd); // ra is *pd is side
-double c5 = refcube(edge); // ra is temporary variable
-double c6 = refcube(7.0); // ra is temporary variable
-double c7 = refcube(side + 10.0); // ra is temporary variable
-```
-
-<details><summary>
-Note
-    </summary>
-<figure>
-
-If a function call argument isn’t an `lvalue` or does not match the type of the corresponding
-`const` reference parameter, C++ creates an anonymous variable of the correct type, assigns
-the value of the function call argument to the anonymous variable, and has the parameter
-refer to that variable.
-
-</figure>
-</details><br>
-
-<details><summary>
-Use `const` When You Can
-    </summary>
-<figure>
-
-There are three strong reasons to declare reference arguments as references to constant data:
-
-- Using `const` protects you against programming errors that inadvertently alter data.
-- Using `const` allows a function to process both `const` and `non-const` actual arguments,
-whereas a function that omits `const` in the prototype only can accept nonconst
-data.
-- Using a `const` reference allows the function to generate and use a temporary variable
-appropriately.
-
-You should declare formal reference arguments as `const` whenever it’s appropriate to do so.
-
-</figure>
-</details><br>
-
-C++11 introduces a second kind of reference, called an rvalue reference, that can refer to
-an rvalue. It’s declared using &&:
-
-```cpp
-double && rref = std::sqrt(36.00); // not allowed for double &
-double j = 15.0;
-double && jref = 2.0* j + 18.5; // not allowed for double &
-std::cout << rref << '\n'; // display 6.0
-std::cout << jref << '\n'; // display 48.5;
-```
-
-The `rvalue` reference was introduced mainly to help library designers provide more
-efficient implementations of certain operations. Chapter 18,“Visiting will the New C++
-Standard,” discusses how rvalue references are used to implement an approach called move
-semantics.The original reference type (the one declared using a single &) is now called an
-`lvalue` reference.
-
-### Using References with a Structure
-
-References work wonderfully with `structures` and `classes`
-References were introduced primarily for use with these types, not for use with the
-basic built-in types.
-
-Suppose we have the following definition of a structure:
-
-```cpp
-struct free_throws
-{
-    std::string name;
-    int made;
-    int attempts;
-    float percent;
-};
-```
-
-Then a function using a reference to this type could be prototyped as follows:
-
-```cpp
-void set_pc(free_throws & ft); // use a reference to a structure
-```
-
-If the intent is that the function doesn’t alter the structure, use const:
-
-```cpp
-void display(const free_throws & ft); // don't allow changes to structure
-```
-
-??? example "strc_ref.cpp - using structure references."
-    <!--codeinclude-->
-    [](../programs/strc_ref.cpp)
-    <!--/codeinclude-->
-
-A function that returns a reference is actually an alias for the referred-to variable.
-
-#### Being Careful About What a Return Reference Refers To
-
-```cpp
-const free_throws & clone2(free_throws & ft)
-{
-    free_throws newguy; // first step to big error
-    newguy = ft; // copy info
-    return newguy; // return reference to copy
-}
-```
-
-This has the unfortunate effect of returning a reference to a temporary variable
-(newguy) that passes from existence as soon as the function terminates.
-
-Here’s how you could do something similar with a reference:
-
-```cpp
-const free_throws & clone(free_throws & ft)
-{
-    free_throws * pt;
-    *pt = ft; // copy info
-    return *pt; // return reference to copy
-}
-```
-
-### Using References with a Class Object
-
-The general idea is to create a function that adds a given string
-to each end of another string. Listing 8.7 (strquote) provides three functions that are intended to do
-this. However, one of the designs is so flawed that it may cause the program to crash or
-even not compile.
-
-??? example "strquote.cpp - different designs."
-    <!--codeinclude-->
-    [](../programs/strquote.cpp)
-    <!--/codeinclude-->
-
-<details><summary>
-Passing a C-Style String Argument to a string Object Reference Parameter
-    </summary>
-<figure>
-
-You may have noticed a rather interesting fact about the `version1()` function: Both formal
-parameters (`s1` and `s2`) are type const string `&`, but the actual arguments (`input` and
-`"***"`) are type string and `const char *`, respectively. Because `input` is type `string`,
-there is no problem having `s1` refer to it. But how is it that the program accepts passing a
-`pointer-to-char` argument to a string reference?
-
-Two things are going on here. One is that the `string` class defines a `char *-to-string`
-conversion, which makes it possible to initialize a string `object` to a C-style string. The second
-is a property of `const` reference formal parameters that is discussed earlier in this
-chapter. Suppose the actual argument type doesn’t match the reference parameter type but
-can be converted to the reference type. Then the program creates a temporary variable of
-the correct type, initializes it to the converted value, and passes a reference to the temporary
-variable. Earlier this chapter you saw, for instance, that a `const double &` parameter
-can handle an int argument in this fashion. Similarly, a `const string &` parameter can
-handle a `char *` or `const char *` argument in this fashion.
-
-The convenient outcome of this is that if the formal parameter is type `const string &`, the
-actual argument used in the function call can be a `string` object or a C-style string, such as
-a quoted string literal, a null-terminated array of `char`, or a pointer variable that points to a
-`char`. Hence the following works fine:
-
-```cpp
-result = version1(input, "***");
-```
-
-</figure>
-</details><br>
-
-### Another Object Lesson: Objects, Inheritance, and References
-
-The language feature that makes it possible to pass
-features from one class to another is called **inheritance**.
-Eg.: objects of the `ofstream` type can use `ostream` methods, allowing file input/output to use the
-same forms as console input/output.
-
-??? example "filefunc.cpp - function with ostream & parameter."
-    <!--codeinclude-->
-    [](../programs/filefunc.cpp)
-    <!--/codeinclude-->
-
-### When to Use Reference/Pointer/Value Arguments
-
-There are two main reasons for using reference arguments:
-
-- To allow you to alter a data object in the calling function
-- To speed up a program by passing a reference instead of an entire data object
-
-So when should you use a reference? Use a pointer? Pass by value?
-The following are some guidelines.
-A function uses passed data without modifying it:
-
-- If the data object is small, such as a built-in data type or a small structure, pass it
-by value.
-- If the data object is an array, use a pointer because that’s your only choice. Make the
-pointer a pointer to `const`.
-- If the data object is a good-sized structure, use a `const` pointer or a `const` reference
-to increase program efficiency.You save the time and space needed to copy a structure
-or a class design. Make the pointer or reference `const`.
-- If the data object is a class object, use a `const` reference.The semantics of class
-
-design often require using a reference, which is the main reason C++ added this
-feature.Thus, the standard way to pass class object arguments is by reference.
-A function modifies data in the calling function:
-
-- If the data object is a built-in data type, use a pointer. If you spot code like
-`fixit(&x)`, where `x` is an `int`, it’s pretty clear that this function intends to modify `x`.
-- If the data object is an array, use your only choice: a pointer.
-- If the data object is a structure, use a reference or a pointer.
-- If the data object is a class object, use a reference.
-
-### Default Arguments
-
-`default argument` is a value that’s used automatically if you omit the corresponding actual argument
-from a function call.
-
-You must use the function prototype. Because the compiler looks at the prototype to see how many
-arguments a function uses, the function prototype also has to alert the program to the possibility
-of default arguments. The method is to assign a value to the argument in the prototype.
-For example, here’s the prototype fitting this description of `left()`:
-
-```cpp
-char * left(const char * str, int n = 1);
-
-int harpo(int n, int m = 4, int j = 5); // VALID
-int chico(int n, int m = 6, int j); // INVALID
-int groucho(int k = 1, int m = 2, int n = 3); // VALID
-
-beeps = harpo(2); // same as harpo(2,4,5)
-beeps = harpo(1,8); // same as harpo(1,8,5)
-beeps = harpo (8,7,6); // no default arguments used
-
-beeps = harpo(3, ,8); // invalid, doesn't set m to 4
-```
-
-??? example "left.cpp - string function with a default argument."
-    <!--codeinclude-->
-    [](../programs/left.cpp)
-    <!--/codeinclude-->
-
-### Function Overloading
-
-`Function polymorphism` is a neat C++ addition to C’s capabilities. Whereas default arguments
-let you call the same function by using varying numbers of arguments, function polymorphism,
-also called `function overloading`, lets you use multiple functions sharing the same name.
-
-You can use function overloading to design a family
-of functions that do essentially the same thing but using different argument lists.
-
-```cpp
-void print(const char * str, int width); // #1
-void print(double d, int width); // #2
-void print(long l, int width); // #3
-void print(int i, int width); // #4
-void print(const char *str); // #5
-
-print("Pancakes", 15); // use #1
-print("Syrup"); // use #5
-print(1999.0, 10); // use #2
-print(1999, 12); // use #4
-print(1999L, 15); // use #3
-```
-
-<details><summary>
-Overloading Reference Parameters
-    </summary>
-<figure>
-Class designs and the STL often use reference parameters, and it’s useful to know how
-overloading works with different reference types. Consider the following three prototypes:
-
-```cpp
-void sink(double & r1); // matches modifiable lvalue
-void sank(const double & r2); // matches modifiable or const lvalue, rvalue
-void sunk(double && r3); // matches rvalue
-```
-
-The lvalue reference parameter `r1` matches a modifiable lvalue argument, such as a
-double variable. The `const` lvalue reference parameter `r2` matches a modifiable lvalue
-argument, a `const` lvalue argument, and an rvalue argument, such as the sum of two
-double values. Finally, the rvalue reference `r3` matches an rvalue. Note how `r2` can match
-the same sort of arguments that `r1` and `r3` match. This raises the question of what happens
-when you overload a function on these three types of parameters. The answer is that
-the more exact match is made:
-
-```cpp
-void staff(double & rs); // matches modifiable lvalue
-void staff(const double & rcs); // matches rvalue, const lvalue
-void stove(double & r1); // matches modifiable lvalue
-void stove(const double & r2); // matches const lvalue
-void stove(double && r3); // matches rvalue
-```
-
-This allows you to customize the behavior of a function based on the `lvalue`, `const`, or
-rvalue nature of the argument:
-
-```cpp
-double x = 55.5;
-const double y = 32.0;
-stove(x); // calls stove(double &)
-stove(y); // calls stove(const double &)
-stove(x+y); // calls stove(double &&)
-```
-
-If, say, you omit the `stove(double &&)` function, then `stove(x+y)` will call the
-`stove(const double &)` function instead.
-
-</figure>
-</details><br>
-
-??? example "leftover.cpp - overloading the left() function."
-    <!--codeinclude-->
-    [](../programs/leftover.cpp)
-    <!--/codeinclude-->
-
-You might find function overloading fascinating, but you shouldn’t overuse it. You should
-reserve function overloading for functions that perform basically the same task but with
-different forms of data.
-
-```cpp
-char * left(const char * str, unsigned n); // two arguments
-char * left(const char * str); // one argument
-```
-
-<details><summary>
-What Is Name Decoration?
-    </summary>
-<figure>
-
-How does C++ keep track of which overloaded function is which? It assigns a secret identity
-to each of these functions. When you use the editor of your C++ development tool to write
-and compile programs, your C++ compiler performs a bit of magic on your behalf—known as
-name decoration or name mangling—through which each function name is encrypted, based
-on the formal parameter types specified in the function’s prototype. Consider the following
-undecorated function prototype:
-
-```cpp
-long MyFunctionFoo(int, float);
-```
-
-This format is fine for us humans; we know that the function accepts two arguments of type
-`int` and `float`, and it returns a value of type `long`. For its own use, the compiler documents
-this interface by transforming the name into an internal representation with a more
-unsightly appearance, perhaps something like this:
-
-```cpp
-?MyFunctionFoo@@YAXH
-```
-
-The apparent gibberish decorating the original name (or mangling it, depending on your attitude)
-encodes the number and types of parameters. A different function signature would
-result in a different set of symbols being added, and different compilers would use different
-conventions for their efforts at decorating.
-
-</figure>
-</details><br>
-
-### Function Templates
-
-A function template is a generic function description; that is, it defines a function
-in terms of a generic type for which a specific type, such as int or double, can be substituted.
-By passing a type as a parameter to a template, you cause the compiler to generate a
-function for that particular type.
-
-Because templates let you program in terms of a generic
-type instead of a specific type, the process is sometimes termed **generic programming**.
-
-Because types are represented by parameters, the template feature is sometimes referred to
-as parameterized types.
-
-Function templates enable you to define a function in terms of some arbitrary type. For
-example, you can set up a swapping template like this:
-
-```cpp
-template <typename AnyType>
-void Swap(AnyType &a, AnyType &b)
-{
-    AnyType temp;
-    temp = a;
-    a = b;
-    b = temp;
-}
-```
-
-The first line specifies that you are setting up a template and that you’re naming the
-arbitrary type AnyType.The keywords `template` and `typename` are obligatory, except that
-you can use the keyword `class` instead of `typename`. Also you must use the angle brackets.
-
-<details><summary>
-Tip
-    </summary>
-<figure>
-
-You should use templates if you need functions that apply the same algorithm to a variety of
-types. If you aren’t concerned with backward compatibility and can put up with the effort of
-typing a longer word, you can use the keyword `typename` rather than `class` when you
-declare type parameters.
-</figure>
-</details><br>
-
-To let the compiler know that you need a particular form of swap function, you just
-use a function called Swap() in your program.
-
-??? example "funtemp.cpp - using a function template."
-    <!--codeinclude-->
-    [](../programs/funtemp.cpp)
-    <!--/codeinclude-->
-
-### Overloaded Templates
-
-You use templates when you need functions that apply the same algorithm to a variety of types.
-To handle this possibility, you can overload template definitions, just as you overload
-regular function definitions.
-
-??? example "twotemps.cpp - using overloaded template functions."
-    <!--codeinclude-->
-    [](../programs/twotemps.cpp)
-    <!--/codeinclude-->
-
-### Template Limitations
-
-Suppose you have a template function:
-
-```cpp
-template <class T> // or template <typename T>
-void f(T a, T b)
-{...}
-```
-
-Often the code makes assumptions about what operations are possible for the type. For
-instance, the following statement assumes that assignment is defined, and this would not be
-true if type T is a built-in array type:
-
-```cpp
-a = b;
-```
-
-Similarly, the following assumes > is defined, which is not true if T is an ordinary
-structure:
-
-```cpp
-if (a > b)
-```
-
-Also the > operator is defined for array names, but because array names are addresses, it
-compares the addresses of the arrays, which may not be what you have in mind.And the
-following assumes the multiplication operator is defined for type T, which is not the case
-if T is an array, a pointer, or a structure:
-
-```cpp
-T c = a*b;
-```
-
-In short, it’s easy to write a template function that cannot handle certain types
-
-### Explicit Specializations
-
-You can supply a specialized function definition, called an explicit
-specialization, with the required code. If the compiler finds a specialized definition that
-exactly matches a function call, it uses that definition without looking for templates.
-The specialization mechanism has changed with the evolution of C++.We’ll look
-
-#### Third-Generation Specialization (ISO/ANSI C++ Standard)
-
-After some youthful experimentation with other approaches, the C++98 Standard settled
-on this approach:
-
-- For a given function name, you can have a non template function, a template function,
-and an explicit specialization template function, along with overloaded versions
-of all of these.
-- The prototype and definition for an explicit specialization should be preceded by
-`template <>` and should mention the specialized type by name.
-- A specialization overrides the regular template, and a non template function overrides
-both
-
-Here’s how prototypes for swapping type job structures would look for these three forms:
-
-```cpp
-// non template function prototype
-void Swap(job &, job &);
-
-// template prototype
-template <typename T>
-void Swap(T &, T &);
-
-// explicit specialization for the job type
-template <> void Swap<job>(job &, job &);
-```
-
-??? example "twoswap.cpp - specialization overrides a template."
-    <!--codeinclude-->
-    [](../programs/twoswap.cpp)
-    <!--/codeinclude-->
-
-### Instantiations and Specializations
-
-To extend your understanding of templates, let’s investigate the terms `instantiation` and `specialization`.
-Keep in mind that including a function template in your code does not in itself
-generate a function definition. It’s merely a plan for generating a function definition.
-
-```cpp
-template void Swap<int>(int, int); // explicit instantiation
-template <> void Swap<int>(int &, int &); // explicit specialization
-template <> void Swap(int &, int &); // explicit specialization
-```
-
-Caution
-It is an error to try to use both an explicit instantiation and an explicit specialization for the
-same type(s) in the same file, or, more generally, the same translation unit.
-
-```cpp
-template <class T>
-void Swap (T &, T &); // template prototype
-template <> void Swap<job>(job &, job &); // explicit specialization for job
-int main(void)
-{
-    template void Swap<char>(char &, char &); // explicit instantiation for char
-    short a, b;
-    ...
-    Swap(a,b); // implicit template instantiation for short
-    job n, m;
-    ...
-    Swap(n, m); // use explicit specialization for job
-    char g, h;
-    ...
-    Swap(g, h); // use explicit template instantiation for char
-    ...
-}
-```
-
-### Which Function Version Does the Compiler Pick?
-
-What with function overloading, function templates, and function template overloading,
-C++ needs, and has, a well-defined strategy for deciding which function definition to use
-for a function call, particularly when there are multiple arguments.The process is called
-overload resolution. Detailing the complete strategy would take a small chapter, so let’s take
-just a broad look at how the process works:
-
-- Phase 1—Assemble a list of candidate functions.These are functions and template
-functions that have the same names as the called functions.
-- Phase 2—From the candidate functions, assemble a list of viable functions.These
-are functions with the correct number of arguments and for which there is an
-implicit conversion sequence, which includes the case of an exact match for each
-type of actual argument to the type of the corresponding formal argument. For
-example, a function call with a type `float` argument could have that value converted
-to a `double` to match a type `double` formal parameter, and a template could
-generate an instantiation for float.
-- Phase 3—Determine whether there is a best viable function. If so, you use that
-function. Otherwise, the function call is an error.
-
-#### A Partial Ordering Rules Example
-
-Let’s examine a complete program that uses the partial ordering rules for identifying
-which template definition to use.
-
-If you remove Template B from the program, the compiler then uses Template A for
-listing the contents of `pd`, so it lists the addresses instead of the values.
-
-??? example "tempover.cpp - template overloading."
-    <!--codeinclude-->
-    [](../programs/tempover.cpp)
-    <!--/codeinclude-->
-
-In some circumstances, you can lead the compiler to make the choice you want by suitably
-writing the function call. Consider Listing 8.15, which, by the way, eliminates the
-template prototype and places the template function definition at the top of the file
-
-??? example "choicesTemplate.cpp - choosing a template."
-    <!--codeinclude-->
-    [](../programs/choicesTemplate.cpp)
-    <!--/codeinclude-->
-
-### The `decltype` Keyword (C++11)
-
-It can be used in this way:
-
-```cpp
-int x;
-decltype(x) y; // make y the same type as x
-
-// The argument to decltype can be an expression, so in the ft() example, we could use
-this code:
-decltype(x + y) xpy; // make xpy the same type as x + y
-xpy = x + y;
-
-// Alternatively, we could combine these two statements into an initialization:
-decltype(x + y) xpy = x + y;
-
-//--------
-// We can fix the ft() template this way:
-template<class T1, class T2>
-void ft(T1 x, T2 y)
-{
-    ...
-    decltype(x + y) xpy = x + y;
-    ...
-}
-
-
-// Stage 1: If expression is an unparenthesized identifier (that is, no additional parentheses),
-// then var is of the same type as the identifier, including qualifiers such as const:
-double x = 5.5;
-double y = 7.9;
-double &rx = x;
-const double * pd;
-decltype(x) w; // w is type double
-decltype(rx) u = y; // u is type double &
-decltype(pd) v; // v is type const double *
-
-// Stage 2: If expression is a function call, then var has the type of the function
-return type:
-long indeed(int);
-decltype (indeed(3)) m; // m is type int
-
-// Stage 3: If expression is an lvalue, then var is a reference to the expression type.
-// This might seem to imply that earlier examples such as w should have been reference
-// types, given that w is an lvalue. However, keep in mind that case was already captured in
-// Stage 1. For this stage to apply, expression can’t be an unparenthesized identifier. So
-// what can it be? One obvious possibility is a parenthesized identifier:
-double xx = 4.4;
-decltype ((xx)) r2 = xx; // r2 is double &
-decltype(xx) w = xx; // w is double (Stage 1 match)
-
-// Stage 4: If none of the preceding special cases apply, var is of the same type as
-// expression:
-int j = 3;
-int &k = j
-int &n = j;
-decltype(j+6) i1; // i1 type int
-decltype(100L) i2; // i2 type long
-decltype(k+n) i3; // i3 type int;
-```
-
-### Alternative Function Syntax (C++11 Trailing Return Type)
-
-The decltype mechanism by itself leaves another related problem unsolved. Consider this
-incomplete template function:
-
-```cpp
-template<class T1, class T2>
-?type? gt(T1 x, T2 y)
-{
-    ...
-    return x + y;
-}
-```
-
-C++11 allows a new syntax for declaring and defining
-functions. Here’s how it works using built-in types.The prototype
-
-```cpp
-double h(int x, float y);
-```
-
-can be written with this alternative syntax:
-
-```cpp
-auto h(int x, float y) -> double;
-```
-
-This moves the return type to after the parameter declarations.The combination ->
-double is called a `trailing return type`.
-
-```cpp
-template<class T1, class T2>
-auto gt(T1 x, T2 y) -> decltype(x + y)
-{
-...
-return x + y;
-}
-```
-
-## Chapter 9 Memory Models and Namespaces
-
-<details><summary>
-        List of what you will learn
-</summary>
-
-```cpp
-- Separate compilation of programs
-- Storage duration, scope, and linkage
-- Placement new
-- Namespaces
+char c = 88;
+cout << c << endl;              // char type prints as character
+cout.put(char(88));             // put() prints char as character
+cout << char(88) << endl;       // new-style type cast value to char
+cout << (char)88 << endl;       // old-style type cast value to char
 ```
 
 </details>
 
-### Separate Compilation
-
-Unix and Linux systems, for example, have make programs, which keep track of which files a program depends on and when
-they were last modified. If you run make, and it detects that you’ve changed one or more source files since the last compilation,
-make remembers the proper steps needed to reconstitute the program. Most integrated development environments (IDEs),
-including Embarcadero C++ Builder, Microsoft Visual C++,Apple Xcode, and Freescale CodeWarrior, provide similar
-facilities with their Project menus.
-
-`#include` - Instead of placing the structure declarations
-in each file, you can place them in a header file and then include that header file in each source code file.
-
-You can divide the original program into three parts:
-
-- A header file that contains the structure declarations and prototypes for functions
-that use those structures
-- A source code file that contains the code for the structure-related functions
-- A source code file that contains the code that calls the structure-related functions
-
-Things commonly found in header files:
-
-- Function prototypes
-- Symbolic constants defined using `#define` or `const`
-- Structure declarations
-- Class declarations
-- Template declarations
-- Inline functions
-
-It’s okay to put structure declarations in a header file because they don’t create variables;
-
-`"coordin.h"` - if the filename is enclosed in double quotation marks, the compiler first looks at the current working
-directory or at the source code directory
-
-`<coordin.h>` - filename is enclosed in angle brackets, the C++ compiler looks at the part of the host system’s
-file system that holds the standard header files
-
-??? example "coordin.h - structure templates and function prototypes."
-    <!--codeinclude-->
-    [](../programs/coordin.h)
-    <!--/codeinclude-->
-
 <details><summary>
-Header File Management
+07. Assigning a <code>long</code> value to a <code>float</code> can result in a rounding error.
+What about assigning <code>long</code> to <code>double</code> ? <code>long long</code> to <code>double</code> ?
+
 </summary>
 
-You should include a header file just once in a file. That might seem to be an easy thing to
-remember, but it’s possible to include a header file several times without knowing you did
-so. For example, you might use a header file that includes another header file. There’s a
-standard C/C++ technique for avoiding multiple inclusions of header files. It’s based on the
-preprocessor `#ifndef` (for if not defined) directive. A code segment like the following
-means “process the statements between the `#ifndef` and #endif only if the name
-`COORDIN_H_` has not been defined previously by the preprocessor #define directive”:
-
-```cpp
-#ifndef COORDIN_H_
-...
-#endif
-```
-
-Normally, you use the #define statement to create symbolic constants, as in the following:
-
-```cpp
-#define MAXIMUM 4096
-```
-
-But simply using `#define` with a name is enough to establish that a name is defined, as in
-the following:
-
-```cpp
-#define COORDIN_H_
-```
-
-The technique that Listing 9.1 uses is to wrap the file contents in an #ifndef:
-
-```cpp
-#ifndef COORDIN_H_
-#define COORDIN_H_
-// place include file contents here
-#endif
-```
-
-The first time the compiler encounters the file, the name `COORDIN_H_` should be undefined.
-(I chose a name based on the include filename, with a few underscore characters tossed
-in to create a name that is unlikely to be defined elsewhere.) That being the case, the compiler
-looks at the material between the #ifndef and the `#endif`, which is what you want.
-In the process of looking at the material, the compiler reads the line defining `COORDIN_H_`.
-If it then encounters a second inclusion of `coordin.h` in the same file, the compiler notes
-that `COORDIN_H_` is defined and skips to the line following the `#endif`. Note that this
-method doesn’t keep the compiler from including a file twice. Instead, it makes the compiler
-ignore the contents of all but the first inclusion. Most of the standard C and C++ header
-files use this guarding scheme. Otherwise you might get the same structure defined twice in
-one file, and that will produce a compile error.
-
-</details><br>
-
-Link it `g++ .\Notes\C++PrimerPlus\programs\file1.cpp .\Notes\C++PrimerPlus\programs\file2.cpp`
-
-??? example "file1.cpp - example of a three-file program"
-    <!--codeinclude-->
-    [](../programs/file1.cpp)
-    <!--/codeinclude-->
-
-??? example "file2.cpp - contains functions called in file1.cpp"
-    <!--codeinclude-->
-    [](../programs/file2.cpp)
-    <!--/codeinclude-->
-
-<img src="./assets/_ch9CompileMultipleFiles.png" alt="Image description"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-C++ Standard uses the term `translation unit` instead of `file` in order to preserve greater generality;
-the file metaphor is not the only possible way to organize information for a computer. For
-simplicity, this book will use the term file, but feel free to translate that to `translation unit`.
-
-<details><summary>
-Multiple Library Linking
-    </summary>
-<figure>
-
-The C++ Standard allows each compiler designer the latitude to implement name decoration
-or mangling (see the sidebar “What Is Name Decoration?” in Chapter 8, “Adventures in
-Functions”) as it sees fit, so you should be aware that binary modules (object-code files)
-created with different compilers will, most likely, not link properly. That is, the two compilers
-will generate different decorated names for the same function. This name difference will
-prevent the linker from matching the function call generated by one compiler with the function
-definition generated by a second compiler. When attempting to link compiled modules,
-you should make sure that each object file or library was generated with the same compiler.
-If you are provided with the source code, you can usually resolve link errors by recompiling
-the source with your compiler.
-    </figure>
-</details><br>
-
-### Storage Duration, Scope, and Linkage
-
-memory. C++ uses three separate schemes (four under C++11) for storing data, and the schemes differ in how long they preserve
-data in memory:
-
-- Automatic storage duration—Variables declared inside a function definition—
-including function parameters—have automatic storage duration.They are created
-when program execution enters the function or block in which they are defined,
-and the memory used for them is freed when execution leaves the function or
-block. C++ has two kinds of automatic storage duration variables.
-- Static storage duration—Variables defined outside a function definition or else
-by using the keyword `static` have static storage duration.They persist for the entire
-time a program is running. C++ has three kinds of static storage duration variables.
-- Thread storage duration (C++11)—These days multicore processors are common.
-These are CPUs that can handle several execution tasks simultaneously.This
-allows a program to split computations into separate threads that can be processed
-concurrently.Variables declared with the `thread_local` keyword have storage that
-persists for as long as the containing thread lasts.This book does not venture into
-concurrent programming.
-- Dynamic storage duration—Memory allocated by the `new` operator persists
-until it is freed with the `delete` operator or until the program ends, whichever
-comes first.This memory has dynamic storage duration and sometimes is termed
-the free store or the heap.
-
-### Scope and Linkage
-
-`Scope` describes how widely visible a name is in a file (translation unit).
-`Linkage` describes how a name can be shared in different units.
-
-A name with external linkage can be shared across files, and a name with internal linkage can be shared by functions
-within a single file. Names of automatic variables have no linkage because they are not shared. A C++ variable can
-have one of several scopes.A variable that has local scope (also termed block scope) is known only within the block
-in which it is defined.
-
-#### Automatic Storage Duration
-
-Function parameters and variables declared inside a function have, by default, automatic storage duration.
-They also have local scope and no linkage.That is, if you declare a variable called texas in `main()` and you declare
-another variable with the same name in a function called `oil()`, you’ve created two independent variables, each known
-only in the function in which it’s defined. Anything you do to the texas in `oil()` has no effect on the texas in main(),
-and vice versa.
-
-??? example "autoscp.cpp - illustrating scope of automatic variables"
-    <!--codeinclude-->
-    [](../programs/autoscp.cpp)
-    <!--/codeinclude-->
-
-<details><summary>
-Changes to auto in C++11
-    </summary>
-<figure>
-
-In C++11, the keyword auto is used for automatic type deduction, as you have seen in
-Chapters 3, 7, and 8. But in C and in prior versions of C++, `auto` has an entirely different
-meaning. It’s used to explicitly identify a variable as having automatic storage:
-
-```cpp
-int froob(int n)
-{
-    auto float ford; // ford has automatic storage
-    ...
-}
-```
-
-Because programmers can use the `auto` keyword only with variables that are already automatic
-by default, they rarely bother using it. Its main function is to document that you really
-wanted to use a local automatic variable.
-In C++11, this usage no longer is valid. The people who prepare standards are reluctant to
-introduce new keywords because doing so might invalidate existing code that already uses
-that word for other purposes. In this case, it was felt that the old use of `auto` was rare
-enough that it was better to repurpose this keyword rather than introduce a new one.
-</details><br>
-
-#### Automatic Variables and the Stack
-
-The usual means is to set aside a section of memory and treat it as a stack for managing
-the flow and ebb of variables. It’s called a stack because new data is figuratively
-stacked atop old data (that is, at an adjacent location, not at the same location) and then
-removed from the stack when a program is finished with it.The default size of the stack
-depends on the implementation, but a compiler typically provides the option of changing
-the size.The program keeps track of the stack by using two pointers. One points to the
-base of the stack, where the memory set aside for the stack begins, and one points to the
-top of the stack, which is the next free memory location.When a function is called, its
-automatic variables are added to the stack, and the pointer to the top points to the next
-available free space following the variables
-
-A stack is a LIFO (last-in, first-out) design, meaning the last variables added to the
-stack are the first to go.The design simplifies argument passing
-
-#### Register Variables
-
-C originally introduced the `register` keyword to suggest that the compiler use a CPU
-register to store an automatic variable:
-
-```cpp
-register int count_fast; // request for a register variable
-```
-
-The idea was that this would allow faster access to the variable.
-Prior to C++11, C++ used the keyword in the same fashion, except that as hardware
-and compilers developed in sophistication, the hint was generalized to mean that the variable
-was heavily used and perhaps the compiler could provide some sort of special treatment.
-
-With C++11, that hint is being deprecated, leaving `register` as just a way to
-explicitly **identify a variable as being automatic**.
-
-#### Static Duration Variables
-
-storage duration variables with three kinds of linkage: external
-linkage (accessible across files), internal linkage (accessible to functions within a single
-file), and no linkage (accessible to just one function or to one block within a function). All
-three last for the duration of the program; they are less ephemeral than automatic variables.
-Because the number of static variables doesn’t change as the program runs, the program
-doesn’t need a special device such as a stack to manage them. Instead, the compiler
-allocates a fixed block of memory to hold all the static variables, and those variables stay
-present as long as the program executes. Also if you don’t explicitly initialize a static variable,
-the compiler sets it to 0. Static arrays and structures have all the bits of each element
-or member set to 0 by default.
-
-<img src="./assets/_ch9VariableStorage.png" alt="Image description"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-##### Initializing Static Variables
-
-Static variables may be zero-initialized, they may undergo constant expression initialization,
-and they may undergo dynamic initialization.As you may have surmised, zero-initialization
-means setting the variable to the value zero
-
-`Zero-initialization` and `constant-expression` initialization collectively are called `static initialization`.
-This means the variable is initialized when the compiler processes the file (or
-translation unit). Dynamic initialization means the variable is initialized later
-
-```cpp
-#include <cmath>
-int x; // zero-initialization
-int y = 5; // constant-expression initialization
-long z = 13 * 13; // constant-expression initialization
-const double pi = 4.0 * atan(1.0); // dynamic initialization
-```
-
-C++11 introduces a new keyword, `constexpr`, to expand the options for creating constant
-expressions; this is one of the new C++11 features that this book does not pursue
-further
-
-#### Static Duration, External Linkage
-
-Variables with external linkage are often simply called `external variables`
-You can use an external variable in any function that follows
-the external variable’s definition in the file.Thus, external variables are also termed global
-variables, in contrast to automatic variables, which are local variables.
-
-##### The One Definition Rule
-
-On the one hand, an external variable has to be declared in each file that uses the variable.
-On the other hand, C++ has the “one definition rule” (also known as odr), which states
-that there can be only one definition of a variable.
-To satisfy these requirements, C++ has two kinds of variable declarations. One is the `defining declaration` or, simply,
-a `definition`. The second is the referencing declaration or, simply, a declaration. It does not cause storage to be
-allocated because it refers to an existing variable.
-
-A referencing declaration uses the keyword extern and does not provide initialization.
-Otherwise, a declaration is a definition and causes storage to be allocated:
-
-```cpp
-double up; // definition, up is 0
-extern int blem; // blem defined elsewhere
-extern char gr = 'z'; // definition because initialized
-```
-
-<img src="./assets/_ch9Extern.png" alt="Image description"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-??? example "_ch9_external.cpp - external variables"
-    <!--codeinclude-->
-    [](../programs/_ch9_external.cpp)
-    <!--/codeinclude-->
-
-??? example "_ch9_support.cpp - use external variable"
-    <!--codeinclude-->
-    [](../programs/_ch9_support.cpp)
-    <!--/codeinclude-->
-
-<details><summary>
-Global Versus Local Variables
-    </summary>
-
-Now that you have a choice of using global or local variables, which should you use? At first,
-global variables have a seductive appeal—because all functions have access to a global
-variable, you don’t have to bother passing arguments. But this easy access has a heavy
-price: unreliable programs. Computing experience has shown that the better job your program
-does of isolating data from unnecessary access, the better job the program does in
-preserving the integrity of the data. Most often, you should use local variables and pass
-data to functions on a need-to-know basis rather than make data available indiscriminately
-by using global variables. As you will see, OOP takes this data isolation a step further.
-Global variables do have their uses, however. For example, you might have a block of data
-that’s to be used by several functions, such as an array of month names or the atomic
-weights of the elements. The external storage class is particularly suited to representing
-constant data because you can use the keyword `const` to protect the data from change:
-
-```cpp
-const char * const months[12] =
-{
-    "January", "February", "March", "April", "May",
-    "June", "July", "August", "September", "October",
-    "November", "December"
-};
-```
-
-In this example, the first `const` protects the strings from change, and the second `const`
-makes sure that each pointer in the array remains pointing to the same string to which it
-pointed initially.
-</details><br>
-
-#### Static Duration, Internal Linkage
-
-Applying the static modifier to a file-scope variable gives it internal linkage.The difference
-between internal linkage and external linkage becomes meaningful in multifile programs.
-In that context, a variable with internal linkage is local to the file that contains it.
-But a regular external variable has external linkage, meaning that it can be used in different
-files, as the previous example showed.
-
-Declaration of a static external variable that has the same name as an ordinary
-external variable declared in another file, the static version is the one in scope for that file:
-
-??? example "_ch9_twofile1.cpp - variables with external and internal linkage"
-    <!--codeinclude-->
-    [](../programs/_ch9_twofile1.cpp)
-    <!--/codeinclude-->
-
-??? example "_ch9_twofile2.cpp - variables with internal and external linkage"
-    <!--codeinclude-->
-    [](../programs/_ch9_twofile2.cpp)
-    <!--/codeinclude-->
-
-```cpp
-// file1
-int errors = 20; // external declaration
-...
----------------------------------------------
-// file2
-static int errors = 5; // known to file2 only
-void froobish()
-{
-cout << errors; // uses errors defined in file2
-...
-```
-
-This doesn’t violate the one definition rule because the keyword static establishes
-that the identifier errors has internal linkage, so no attempt is made to bring in an external
-definition.
-
-#### Static Storage Duration, No Linkage
-
-You create such a variable by applying the static modifier
-to a variable defined inside a block.When you use it inside a block, static causes a local
-variable to have static storage duration.This means that even though the variable is known
-within that block, it exists even while the block is inactive.Thus a static local variable can
-preserve its value between function calls.
-
-??? example "static.cpp - variables with external and internal linkage"
-    <!--codeinclude-->
-    [](../programs/static.cpp)
-    <!--/codeinclude-->
-
-### Specifiers and Qualifiers
-
-Certain C++ keywords, called `storage class specifiers` and `cv-qualifiers`, provide additional
-information about storage. Here’s a list of the storage class specifiers:
-
-```cpp
-auto (eliminated as a specifier in C++11)
-register
-static
-extern
-thread_local (added by C++11)
-mutable
-```
-
-A `thread_local` variable is to a thread much as a regular static variable is to the whole program.The keyword `mutable`
-is explained in terms of `const`, so let’s look at the cv-qualifiers first before returning to `mutable`.
-
-#### Cv-Qualifiers
-
-```cpp
-const
-volatile
-```
-
-(As you may have guessed, cv stands for `const` and `volatile`.) The most commonly used
-cv-qualifier is `const`, and you’ve already seen its purpose: It indicates that memory, after initialized,
-should not be altered by a program.
-
-The `volatile` keyword indicates that the value in a memory location can be altered
-even though nothing in the program code modifies the contents.
-
-#### `mutable`
-
-```cpp
-struct data
-{
-    char name[30];
-    mutable int accesses;
-    ...
-};
-const data veep = {"Claybourne Clodde", 0, ... };
-strcpy(veep.name, "Joye Joux"); // not allowed
-veep.accesses++; // allowed
-```
-
-The `const` qualifier to `veep` prevents a program from changing veep’s members, but
-the `mutable` specifier to the `accesses` member shields `accesses` from that restriction.
-This book doesn’t use `volatile` or mutable, but there is more to learn about const
-
-#### More About `const`
-
-In C++ (but not C), the const modifier alters the default storage classes slightly.Whereas
-a global variable has external linkage by default, a const global variable has internal linkage
-by default.That is, C++ treats a global const definition, such as in the following code
-fragment, as if the static specifier had been used:
-
-```cpp
-const int fingers = 10; // same as static const int fingers = 10;
-int main(void)
-{
-
-// extern would be required if const had external linkage
-extern const int fingers; // can't be initialized
-extern const char * warning;
-
-// If, for some reason, you want to make a constant have external linkage, you can use the
-// extern keyword to override the default internal linkage:
-extern const int states = 50; // definition with external linkage
-...
-```
-
-<details><summary>
-Where C++ Finds Functions
-</summary>
-<figure>
-Suppose you call a function in a particular file in a program. Where does C++ look for the
-function definition? If the function prototype in that file indicates that the function is static,
-the compiler looks only in that file for the function definition. Otherwise, the compiler (and
-the linker, too) looks in all the program files. If it finds two definitions, the compiler sends
-you an error message because you can have only one definition for an external function. If it
-fails to find any definition in the files, the function then searches the libraries. This implies
-that if you define a function that has the same name as a library function, the compiler
-uses your version rather than the library version. (However, C++ reserves the names of the
-standard library functions, so you shouldn’t reuse them.) Some compiler-linkers need
-explicit instructions to identify which libraries to search.
-**One definition rule** - use one definition for function.
-</figure>
-</details><br>
-
-#### Language Linking
-
-suppose you want to use a precompiled function from a C library in a C++ program?
-For example, suppose you have this code:
-
-```cpp
-spiff(22); // want spiff(int) from a C library
-```
-
-Its hypothetical symbolic name in the C library file is `_spiff`, but for our hypothetical
-linker, the C++ look-up convention is to look for the symbolic name `_spiff_i`. To get
-around this problem, you can use the function prototype to indicate which protocol to use:
-
-```cpp
-extern "C" void spiff(int); // use C protocol for name look-up
-extern void spoff(int); // use C++ protocol for name look-up
-extern "C++" void spaff(int); // use C++ protocol for name look-up```
-```
-
-### The Placement `new` Operator
-
-With `new` header file, you can create your own memory-management
-procedures or to deal with hardware that is accessed via a particular address or to construct objects in a particular
-memory location.
-
-```cpp
-#include <new>
-
-struct chaff
-{
-    char dross[20];
-    int slag;
-};
-
-char buffer1[50];
-char buffer2[500];
-
-int main()
-{
-    chaff *p1, *p2;
-    int *p3, *p4;
-    // first, the regular forms of new
-    p1 = new chaff; // place structure in heap
-    p3 = new int[20]; // place int array in heap
-    // now, the two forms of placement new
-    p2 = new (buffer1) chaff; // place structure in buffer1
-    p4 = new (buffer2) int[20]; // place int array in buffer2
-    ...
-
-// ----
-// Just as regular new invokes a new function with one argument, the 
-// standard placement new invokes a new function with two arguments:
-int * pi = new int; // invokes new(sizeof(int))
-int * p2 = new(buffer) int; // invokes new(sizeof(int), buffer)
-int * p3 = new(buffer) int[40]; // invokes new(40*sizeof(int), buffer)
-```
-
-??? example "newplace.cpp - using placement new"
-    <!--codeinclude-->
-    [](../programs/newplace.cpp)
-    <!--/codeinclude-->
-
-### Namespaces
-
-You might want the `List` class from one library and the `Tree` from the other,
-and each might expect its own version of Node.
-Such conflicts are termed `namespace problems`.
-
-`declarative region` - region in which declarations can be made
-`potential scope` - for a variable it begins at its point of declaration and extends to the end of its declarative region.
-So the potential scope is more limited than the declarative region because you can’t use a variable above the point
-where it is first defined. However, a variable might not be visible everywhere in its potential scope.
-`scope` - The portion of the program that can actually see the variable
-
-#### Traditional C++ Namespaces
-
-C++’s rules about global and local variables define a kind of namespace hierarchy. Each
-declarative region can declare names that are independent of names declared in other
-declarative regions. A local variable declared in one function doesn’t conflict with a local
-variable declared in a second function.
-
-#### New Namespace Features
-
-C++ now adds the ability to create named namespaces by defining a new kind of declarative
-region, one whose main purpose is to provide an area in which to declare names.
-
-New keyword `namespace` to create two namespaces, `Jack` and `Jill`:
-
-```cpp
-namespace Jack {
-    double pail;    // variable declaration
-    void fetch();   // function prototype
-    int pal;        // variable declaration
-    struct Well { ... }; // structure declaration
-}
-
-namespace Jill {
-    double bucket(double n) { ... } // function definition
-    double fetch;   // variable declaration
-    int pal;        // variable declaration
-    struct Hill { ... }; // structure declaration
-}
-```
-
-The simplest way is to use `::`, the `scope-resolution operator`, to qualify a name with its namespace:
-
-```cpp
-Jack::pail = 12.34; // use a variable
-Jill::Hill mole;    // create a type Hill structure
-Jack::fetch();      // use a function
-```
-
-An unadorned name, such as `pail`, is termed the `unqualified name`, whereas a name with
-the namespace, as in `Jack::pail`, is termed a `qualified name`.
-
-One thing to keep in mind about using directives and using declarations is that they
-increase the possibility of name conflicts
-
-```cpp
-using jack::pal;
-using jill::pal;
-pal = 4; // which one? now have a conflict
-```
-
-##### `using` Declarations and `using` Directives
-
-A `using` declaration, then, makes a single name available. In contrast, the `using` directive
-makes all the names available
-
-Having to qualify names every time they are used is not always an appealing prospect, so
-C++ provides two mechanisms—the `using declaration` and the `using directive` — to simplify
-`using` namespace names.
-
-`using` directive in a function treats the
-namespace names as being declared outside the function, it doesn’t make those names
-available to other functions in the file.
-
-###### `using` Declaration
-
-For example, the using declaration of `Jill::fetch` in `main()` adds fetch to the
-declarative region defined by `main()`.
-
-After making this declaration, you can use the name `fetch` instead of `Jill::fetch`.
-
-```cpp
-namespace Jill {
-    double bucket(double n) { ... }
-    double fetch;
-    struct Hill { ... };
-}
-char fetch;
-int main()
-{
-using Jill::fetch;  // put fetch into local namespace
-    double fetch;   // Error! Already have a local fetch
-    cin >> fetch;   // read a value into Jill::fetch
-    cin >> ::fetch; // read a value into global fetch
-    ...
-}
-```
-
-###### `using` Directive
-
-```cpp
-using namespace Jack; // make all the names in Jack available
-```
-
-##### More Namespace Features
-
-You can nest namespace declarations, like this:
-
-```cpp
-namespace elements
-{
-    namespace fire
-    {
-        int flame;
-        ...
-    }
-    float water;
-}
-```
-
-Also you can use using directives and using declarations inside namespaces, like this:
-
-```cpp
-namespace myth
-{
-    using Jill::fetch;
-    using namespace elements;
-    using std::cout;
-    using std::cin;
-}
-```
-
-Suppose you want to access `Jill::fetch`. Because `Jill::fetch` is now part of the
-`myth` namespace, where it can be called `fetch`, you can access it this way:
-
-```cpp
-std::cin >> myth::fetch;
-std::cout << Jill::fetch; // display value read into myth::fetch
-```
-
-`unnamed namespace`:
-
-```cpp
-namespace // unnamed namespace
-{
-    int ice; // internal linkage
-    int bandycoot;
-}
-```
-
-This code behaves as if it were followed by a using directive; that is, the names
-declared in this namespace are in potential scope until the end of the declarative region
-that contains the unnamed namespace
-
-##### Namespace's Program Example
-
-<details><summary>
-Explanation:
-</summary>
-
-The first file in this example (see Listing 9.11) is a header file that contains some
-items normally found in header files—constants, structure definitions, and function prototypes.
-In this case, the items are placed in two namespaces.The first namespace, pers, contains
-a definition of a Person structure, plus prototypes for a function that fills a structure
-with a person’s name and a function that displays the structure’s contents.The second
-namespace, debts, defines a structure for storing the name of a person and the amount of
-money owed to that person.This structure uses the Person structure, so the debts namespace
-has a using directive to make the names in the pers namespace available in the
-debts namespace.The debts namespace also contains some prototypes.
-
-The second file in this example (see Listing 9.12) follows the usual pattern of having a
-source code file provide definitions for functions prototyped in a header file.The function
-names, which are declared in a namespace, have namespace scope, so the definitions need
-to be in the same namespace as the declarations.This is where the open nature of namespaces
-comes in handy.The original namespaces are brought in by including namesp.h
-(refer to Listing 9.11).The file then adds the function definitions to the two namespaces,
-as shown in Listing 9.12.Also the namesp.cpp file illustrates bringing in elements of the
-std namespace with the using declaration and the scope-resolution operator.
-
-Finally, the third file of this program (see Listing 9.13) is a source code file that uses
-the structures and functions declared and defined in the namespaces. Listing 9.13 shows
-several methods of making the namespace identifiers available.
-
-</details><br>
-
-??? example "namesp.h"
-    <!--codeinclude-->
-    [](../programs/namesp.h)
-    <!--/codeinclude-->
-
-??? example "namesp.cpp - namespaces"
-    <!--codeinclude-->
-    [](../programs/namesp.cpp)
-    <!--/codeinclude-->
-
-??? example "usenmsp.cpp - using namespaces"
-    <!--codeinclude-->
-    [](../programs/usenmsp.cpp)
-    <!--/codeinclude-->
-
-##### Namespace's using guidlines
-
-- Use variables in a named namespace instead of using external global variables.
-- Use variables in an unnamed namespace instead of using static global variables.
-- If you develop a library of functions or classes, place them in a namespace. Indeed,
-C++ currently already calls for placing standard library functions in a namespace
-called std.This extends to functions brought in from C. For example, the `math.c`
-header file, which is C-compatible, doesn’t use namespaces, but the C++ `cmath`
-header file should place the various math library functions in `the` std namespace.
-- Use the `using` directive only as a temporary means of converting old code to
-namespace usage.
-- Don’t use `using` directives in header files; for one thing, doing so conceals which
-names are being made available.Also the ordering of header files may affect
-behavior. If you use a `using` directive, place it after all the preprocessor `#include`
-directives.
-- Preferentially import names by using the scope-resolution operator or a `using`
-declaration.
-- Preferentially use local scope instead of global scope for `using` declarations.
-
-Bear in mind that the main motivation for using namespaces is to simplify management
-of large programming projects. For simple, one-file programs, using a `using` directive
-is no great sin.
-
----
-
-## Chapter 10: Objects and Classes
-
-<details><summary>
-List of what you will learn
-</summary>
-
-```sh
- - Procedural and object-oriented programming
- - The concept of classes
- - How to define and implement a class
- - Public and private class access
- - Class data members
- - Class methods (also called class function members)
- - Creating and using class objects
- - Class constructors and destructors
- - const member functions
- - The this pointer
- - Creating arrays of objects
- - Class scope
- - Abstract data types
-```
-
-</details><br>
-
-Object-oriented programming (OOP) is a particular conceptual approach to designing
-programs, and C++ has enhanced C with features that ease the way to applying that
-approach.The following are the most important OOP features:
-
-- Abstraction
-- Encapsulation and data hiding
-- Polymorphism
-- Inheritance
-- Reusability of code
-
-### Abstraction and Classes
-
-Abstraction is the crucial step of representing information in terms of its interface with the user. That is, you
-abstract the essential operational features of a problem and express a solution in those
-terms. In the softball statistics example, the interface describes how the user initializes,
-updates, and displays the data. From abstraction, it is a short step to the user-defined type,
-which in C++ is a class design that implements the abstract interface
-
----
-
-Basic data type does three things:
-
-- It determines how much memory is needed for a data object.
-- It determines how the bits in memory are interpreted. (A long and a float might
-use the same number of bits in memory, but they are translated into numeric values
-differently.)
-- It determines what operations, or methods, can be performed using the data object.
-
-`class` is a C++ vehicle for translating an abstraction to a user-defined type. It combines
-data representation and methods for manipulating that data into one neat package.
-
-`Interface` - shared framework for interactions between two systems—for instance,
-between a computer and a printer or between a user and a computer program.
-
-### Access Control
-
-Also new are the keywords private and public. These labels describe access control for
-class members.Any program that uses an object of a particular class can access the public
-portions directly. A program can access the private members of an object only by using the
-public member functions.
-This insulation of data from direct access by a pro-
-gram is called `data hiding`
-
-### Implementing Class Member Functions
-
-Member function
-definitions are much like regular function definitions. Each has a function header and a
-function body. Member function definitions can have return types and arguments. But
-they also have two special characteristics:
-
-- When you define a member function, you use the scope-resolution operator (::) to
-identify the class to which the function belongs.
-- Class methods can access the private components of the class.
-
-This notation means you are defining the `update()` function that is a member of the `Stock` class:
-
-```cpp
-void Stock::update(double price)
-```
-
-Method can access the private members of a class.
-
-Any function with a definition in the class declaration automatically becomes an inline function.
-
-You can define a member function outside the class declaration and still
-make it inline.To do so, you just use the inline qualifier
-
----
-
--- 001 png
-
-<details><summary>
-The Client/Server model
-</summary>
-
-OOP programmers often discuss program design in terms of a client/server model. In this
-conceptualization, the client is a program that uses the class. The class declaration, includ-
-ing the class methods, constitute the server, which is a resource that is available to the pro-
-grams that need it. The client uses the server through the publicly defined interface only.
-This means that the client’s only responsibility, and, by extension, the client’s programmer’s
-only responsibility, is to know that interface. The server’s responsibility, and, by extension,
-the server’s designer’s responsibility, is to see that the server reliably and accurately per-
-forms according to that interface.
-
+The answer depends on how large the two types are. If <code>long</code> is 4 bytes,
+there is no loss. That’s because the largest <code>long</code> value would be about
+2 billion, which is 10 digits. Because <code>double</code> provides at least 13 significant
+figures, no rounding would be needed. The <code>long long</code> type, on the other hand,
+can reach 19 digits, which exceeds the 13 significant figures guaranteed for <code>double</code> .
 </details>
 
-Change of precision for vars
-
-```cpp
-void Stock::show()
-{
-    using std::cout;
-    using std::ios_base;
-
-    // set format to #.###
-    ios_base::fmtflags orig =
-    cout.setf(ios_base::fixed, ios_base::floatfield);
-    std::streamsize prec = cout.precision(3);
-    cout << "Company: " << company
-    << " Shares: " << shares << ‘\n’;
-    cout << " Share Price: $" << share_val;
-
-    // set format to #.##
-    cout.precision(2);
-    cout << " Total Worth: $" << total_val << ‘\n’;
-
-    // restore original format
-    cout.setf(orig, ios_base::floatfield);
-    cout.precision(prec);
-}
-```
-
-### Class Constructors and Destructors
-
-you need to devise an appropriate member function if you’re to suc-
-ceed in initializing an object. (You could initialize a class object as just shown if you made
-the data members public instead of private, but making the data public goes against one of
-the main justifications for using classes: data hiding.)
-
-C++ uses a class constructor whenever you create an object of that class, even when
-you use new for dynamic memory allocation. Here’s how to use the constructor with new:
-
-```cpp
-Stock *pstock = new Stock("Electroshock Games", 18, 19.0);
-```
-
-A `default constructor` is a constructor that is used to create an object when you don’t provide
-explicit initialization values.That is, it’s a constructor used for declarations like this:
-
-```cpp
-Stock fluffy_the_cat;
-// uses the default constructor
-```
-
-The `destructor` should clean
-up any debris, so it actually serves a useful purpose. For example, if your constructor uses
-`new` to allocate memory, the `destructor` should use delete to free that memory.
-
-A destructor must have no arguments. Thus, the prototype for a Stock
-destructor must be this:
-
-```cpp
-~Stock();
-```
-
-Because a Stock destructor has no vital duties, you can code it as a do-nothing function:
-
-```cpp
-Stock::~Stock()
-{
-}
-```
-
 <details><summary>
-Member Names and Parameter Names
-</summary>
-Often those new to constructors try to use the class member names as parameter names
-in the constructor, as in this example:
+08. Evaluate the following expressions as C++ would:
 
 ```cpp
-// NO!
-Stock::Stock(const string & company, long shares, double share_val)
-{...}
+a. 8 * 9 + 2 
+b. 6 * 3 / 4 
+c. 3 / 4 * 6 
+d. 6.0 * 3 / 4 
+e. 15 % 4 
 ```
 
-This is wrong. The constructor arguments don’t represent the class members; they repre-
-sent values that are assigned to the class members. Thus, they must have distinct names,
-or you end up with confusing code like this:
+</summary>
 
 ```cpp
-shares = shares;
+a. 8 * 9 + 2 is 72 + 2 is 74
+b. 6 * 3 / 4 is 18 / 4 is 4
+c. 3 / 4 * 6 is 0 * 6 is 0
+d. 6.0 * 3 / 4 is 18.0 / 4 is 4.5
+e. 15 % 4 is 3
 ```
 
 </details>
 
-??? example "stock10.cpp - Implementation of a Stock class program file"
-    <!--codeinclude-->
-    [](../programs/stock10.cpp)
-    <!--/codeinclude-->
-
-??? example "stock10.h -- Stock class declaration with constructors, destructor added"
-    <!--codeinclude-->
-    [](../programs/stock10.h)
-    <!--/codeinclude-->
-
-??? example "usestock1.cpp - Client file"
-    <!--codeinclude-->
-    [](../programs/usestock1.cpp)
-    <!--/codeinclude-->
-
 <details><summary>
-Note
+09.  Suppose <code>x1</code> and <code>x2</code> are two type <code>double</code> variables that you want to
+add as <code>integers</code> and assign to an <code>integer</code> variable. Construct a C++ statement
+for doing so. What if you want to add them as type <code>double</code> and then convert to <code>int</code> ?
+
 </summary>
 
-You may have noticed that `Client file` has an extra brace at the beginning and near the end
-of main(). Automatic variables such as stock1 and stock2 expire when the program exits
-the block that contains their definitions. Without the extra braces, that block would be the
-body of main(), so the destructors would not be called until after main() completed execu-
-tion. In a windowing environment, this would mean that the window would close before the
-last two destructor calls, preventing you from seeing the last two messages. But with the
-braces, the last two destructor calls occur before the return statement is reached, so the
-messages are displayed.
-</details>
-
-### C++11 List Initialization
-
-With C++11, can you use the list-initialization syntax with classes? Yes, you can, providing
-the brace contents match the argument list of a constructor:
+Either of the following would work for the first task:
 
 ```cpp
-Stock hot_tip = {"Derivatives Plus Plus", 100, 45.0};
-Stock jock {"Sport Age Storage, Inc"};
-Stock temp {};
+int pos = (int) x1 + (int) x2;
+int pos = int(x1) + int(x2);
 ```
 
-The braced lists in the first two declarations match the following constructor:
-Therefore, that constructor will be used to create the two objects.
+To add them as type double and then convert, you could do either of the following:
 
 ```cpp
-Stock::Stock(const std::string & co, long n = 0, double pr = 0.0);
-```
-
-### const Member Functions
-
-Consider the following code snippet:
-
-```cpp
-const Stock land = Stock("Kludgehorn Properties");
-land.show();
-```
-
-With current C++, the compiler should object to the second line.Why? Because the
-code for show() fails to guarantee that it won’t modify the invoking object, which,
-because it is const, should not be altered.
-
-That is, the show() declaration should look like this:
-
-```cpp
-void show() const;          // promises not to change invoking object
-```
-
-Similarly, the beginning of the function definition should look like this:
-
-```cpp
-void stock::show() const    // promises not to change invoking object
-```
-
-Class functions declared and defined this way are called const member functions.
-
-### The `this` Pointer
-
-Suppose, then, that you want to compare the Stock objects stock1 and stock2 and
-assign the one with the greater total value to the object top.You can use either of the fol-
-lowing statements to do so:
-
-```cpp
-top = stock1.topval(stock2);
-top = stock2.topval(stock1);
-```
-
-Here’s a partial implementation that highlights the problem:
-
-```cpp
-const Stock & Stock::topval(const Stock & s) const
-{
-    if (s.total_val > total_val)
-        return s;       // argument object
-    else
-        return ?????;   // invoking object -> should be *this
-}
-```
-
-`*this` is as an alias for the invoking object.
-The fact that the return type is a reference means that the returned object is the
-invoking object itself rather than a copy passed by the return mechanism.
-
-### An Array of Objects
-
-```cpp
-Stock mystuff[4]; // creates an array of 4 Stock object
-const Stock * tops = mystuff[2].topval(mystuff[1]);
-    // compare 3rd and 2nd elements and set tops
-    // to point at the one with a higher total value
-
-    // You can use a constructor to initialize the array elements
-const int STKS = 4;
-Stock stocks[STKS] = {
-    Stock("NanoSmart", 12.5, 20),
-    Stock("Boffo Objects", 200, 2.0),
-    Stock("Monolithic Obelisks", 130, 3.25),
-    Stock("Fleep Enterprises", 60, 6.5)
-};
-```
-
-<img src="./assets/_ch9ObjectProblem.png" alt="Image description"
-style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
-
-### Abstract Data Types
-
-Using classes is a good way to implement what computer scientists describe as abstract data types (ADTs)
-ADT describes a data type in a general fashion without bringing in language or implementa-
-tion details.
-
-Stack example: you can store data so that Abstract Data Types
-data is always added to or deleted from the top of the stack. For example, C++ programs
-use a stack to manage automatic variables.As new automatic variables are generated, they
-are added to the top of the stack.When they expire, they are removed from the stack.
-
-Stack is characterized by the operations you can perform on it:
-
-- You can create an empty stack.
-- You can add an item to the top of a stack (that is, you can push an item).
-- You can remove an item from the top (that is, you can pop an item).
-- You can check whether the stack is full.
-- You can check whether the stack is empty.
-
-??? example "stack.h - stack data type library"
-    <!--codeinclude-->
-    [](../programs/stack.h)
-    <!--/codeinclude-->
-
-??? example "stack.cpp - implementation of class methods"
-    <!--codeinclude-->
-    [](../programs/stack.cpp)
-    <!--/codeinclude-->
-
-??? example "stacker.cpp - testing stack program - LIFO approach"
-    <!--codeinclude-->
-    [](../programs/stacker.cpp)
-    <!--/codeinclude-->
-
-## Chapter 11: Working with Classes
-
-<details><summary>
-List of what you will learn
-</summary>
-
-```cpp
-In this chapter you’ll learn about the following:
- - Operator overloading
- - Friend functions
- - Overloading the << operator for output
- - State members
- - Using rand() to generate random values
- - Automatic conversions and type casts for classes
- - Class conversion functions
-```
-</details>
-
-### Operator Overloading
-
-To overload an operator, you use a special function form called an operator function. An
-operator function has the following form, where `<sbl>` is the symbol for the operator being
-overloaded:
-
-```cpp
-operator<sbl>(argument-list)
-// For example, operator+() overloads the + operator
-
-// To overload the + operator so that it adds
-// sales figures of one salesperson object to another -> if `district2``, `sid`, and `sara` are
-// all objects of the `Salesperson` class, you can write this equation:
-district2 = sid + sara;
-
-// The compiler, recognizing the operands as belonging to the Salesperson class,
-// replaces the operator with the corresponding operator function:
-district2 = sid.operator+(sara);
-```
-
-??? note
-    Don’t return a reference to a local variable or another temporary object. When the function
-    terminates and the local variable or temporary object disappears, the reference becomes a
-    reference to non-existent data.
-
-Practical example - class for calculating time with `+` operator:
-
-??? example "mytime.h - Prototypes"
-    <!--codeinclude-->
-    [](../programs/mytime.h)
-    <!--/codeinclude-->
-
-??? example "mytime.cpp - Methods"
-    <!--codeinclude-->
-    [](../programs/mytime.cpp)
-    <!--/codeinclude-->
-
-??? example "usetime.cpp - Program"
-    <!--codeinclude-->
-    [](../programs/usetime.cpp)
-    <!--/codeinclude-->
-
-#### Overloading restrictions
-
-- Overloaded operator must have at least one operand that is a user-defined type (Prevents overloading for standard types)
-- You can’t use an operator in a manner that violates the syntax rules for the original operator (eg. use `%` with only single operand)
-- You can’t create new operator symbols
-- You cannot overload the following operators:
-
-|Operator|Description|
-|---|---|
-| `sizeof` | The sizeof operator |
-| `.` | The membership operator |
-| `.*` | The pointer-to-member operator|
-| `::` | The scope-resolution operator |
-| `?:` | The conditional operator |
-| `typeid` | An RTTI operator |
-| `const_cast` | A type cast operator |
-| `dynamic_cast` | A type cast operator |
-| `reinterpret_cast` | A type cast operator |
-| `static_cast` | A type cast operator |
-| `=` | Assignment operator |
-| `()` | Function call operator |
-| `[]` | Subscripting operator |
-| `->` | Class member access by pointer operator |
-
-#### Operators That Can Be Overloaded
-
-|||||||
-|---|---|---|---|---|---|
-| `+` | `-` | `*` | `/` | `%` | `^` |
-| `&` | `\|` | `~` | `!` | `=` | `<` |
-| `>` | `+=` | `-=` | `*=` | `/=` | `%=` |
-| `^=` | `&=` | `\|=` | `<<` | `>>` | `>>=` |
-| `<<=` | `==` | `!=` | `<=` | `>=` | `&&` |
-| `\|\|` | `++` | `--` | `,` | `->*` | `->` |
-| `()` | `[]` | `new` | `delete` | `new`[] | `delete[]` |
-
-### Friends (578)
-
-</details>
-
-### Operator Overloading
-
-To overload an operator, you use a special function form called an operator function. An
-operator function has the following form, where `<sbl>` is the symbol for the operator being
-overloaded:
-
-```cpp
-operator<sbl>(argument-list)
-// For example, operator+() overloads the + operator
-
-// To overload the + operator so that it adds
-// sales figures of one salesperson object to another -> if `district2``, `sid`, and `sara` are
-// all objects of the `Salesperson` class, you can write this equation:
-district2 = sid + sara;
-
-// The compiler, recognizing the operands as belonging to the Salesperson class,
-// replaces the operator with the corresponding operator function:
-district2 = sid.operator+(sara);
-```
-
-??? note
-    Don’t return a reference to a local variable or another temporary object. When the function
-    terminates and the local variable or temporary object disappears, the reference becomes a
-    reference to non-existent data.
-
-Practical example - class for calculating time with `+` operator:
-
-??? example "mytime.h - Prototypes"
-    <!--codeinclude-->
-    [](../programs/mytime.h)
-    <!--/codeinclude-->
-
-??? example "mytime.cpp - Methods"
-    <!--codeinclude-->
-    [](../programs/mytime.cpp)
-    <!--/codeinclude-->
-
-??? example "usetime.cpp - Program"
-    <!--codeinclude-->
-    [](../programs/usetime.cpp)
-    <!--/codeinclude-->
-
-#### Overloading restrictions
-
-- Overloaded operator must have at least one operand that is a user-defined type (Prevents overloading for standard types)
-- You can’t use an operator in a manner that violates the syntax rules for the original operator (eg. use `%` with only single operand)
-- You can’t create new operator symbols
-- You cannot overload the following operators:
-
-|Operator|Description|
-|---|---|
-| `sizeof` | The sizeof operator |
-| `.` | The membership operator |
-| `.*` | The pointer-to-member operator|
-| `::` | The scope-resolution operator |
-| `?:` | The conditional operator |
-| `typeid` | An RTTI operator |
-| `const_cast` | A type cast operator |
-| `dynamic_cast` | A type cast operator |
-| `reinterpret_cast` | A type cast operator |
-| `static_cast` | A type cast operator |
-| `=` | Assignment operator |
-| `()` | Function call operator |
-| `[]` | Subscripting operator |
-| `->` | Class member access by pointer operator |
-
-#### Operators That Can Be Overloaded
-
-|||||||
-|---|---|---|---|---|---|
-| `+` | `-` | `*` | `/` | `%` | `^` |
-| `&` | `\|` | `~` | `!` | `=` | `<` |
-| `>` | `+=` | `-=` | `*=` | `/=` | `%=` |
-| `^=` | `&=` | `\|=` | `<<` | `>>` | `>>=` |
-| `<<=` | `==` | `!=` | `<=` | `>=` | `&&` |
-| `\|\|` | `++` | `--` | `,` | `->*` | `->` |
-| `()` | `[]` | `new` | `delete` | `new`[] | `delete[]` |
-
-### Friends
-
-Friends come in three varieties:
-
-- Friend functions
-- Friend classes
-- Friend member functions
-
-Overloading a binary operator (operator with two arguments) for a `class` generates
-a need for `friends`. Multiplying a `Time` object by a real number provides just such a situation.
-
-In `Time` class example, overloaded multiplication operator is different
-from the other two overloaded operators, it combines two different types -
-`addition` and `subtraction` operators each combine two `Time` values, but the `multiplication`
-operator combines a `Time` value with a `double` value. This restricts how the operator
-can be used. Remember, the left operand is the invoking object.That is,
-
-```cpp
-A = B * 2.75;
-
-//Translates to member function call:
-A = B.operator*(2.75);
-```
-
-```cpp
-A = 2.75 * B; // cannot correspond to a member function
-
-// nonmember funtion call from above
-A = operator*(2.75, B);
-
-// Would be handled by function with prototype
-Time operator*(double m, const Time & t);
-```
-
-#### Create Friend
-
-```cpp
-// Prototype in class declaration
-friend Time operator*(double m, const Time & t); // goes in class declaration
-
-// definition
-Time operator*(double m, const Time & t) // friend not used in definition
-{
-    Time result;
-    long totalminutes = t.hours * mult * 60 +t. minutes * mult;
-    result.hours = totalminutes / 60;
-    result.minutes = totalminutes % 60;
-    return result;
-}
-
-//...
-// It will make statement like below work
-A = 2.75 * B; // A = operator*(2.75, B);
-```
-
-??? note
-    At first glance, it might seem that friends violate the OOP principle of data hiding because
-    the friend mechanism allows nonmember functions to access private data. However, that’s
-    an overly narrow view. Instead, you should think of friend functions as part of an extended
-    interface for a class. For example, from a conceptual point of view, multiplying a `double` by a
-    `Time` value is pretty much the same as multiplying a `Time` value by a double. That the first
-    requires a friend function whereas the second can be done with a member function is the
-    result of C++ syntax, not of a deep conceptual difference. By using both a friend function
-    and a class method, you can express either operation with the same user interface. Also
-    keep in mind that only a class declaration can decide which functions are friends, so the
-    class declaration still controls which functions access private data. In short, class methods
-    and friends are simply two different mechanisms for expressing a class interface.
-
-You can write this particular friend function as a non-friend by altering the
-definition so that it switches which value comes first in the multiplication
-
-```cpp
-Time operator*(double m, const Time & t)
-{
-    return t * m; // use t.operator*(m)
-}
-```
-
-#### Overload `<<` Operator
-
-```cpp
-cout << trip; // Time member comes first (left to right) like with * overload
-```
-
-Definition
-
-```cpp
-void operator<<(ostream & os, const Time & t)
-{
-    os << t.hours << " hours, " << t.minutes << " minutes";
-}
-```
-
-The function access individual members of the `Time` object but only uses the `ostream` object as a whole.
-Because `operator<<()` accesses `private Time` object members directly, it has to be a friend to the `Time` class</br>
-
-But the implementation doesn’t allow you to combine the redefined `<<` operator with
-the ones cout normally uses:
-
-```cpp
-cout << "Trip time: " << trip << " (Tuesday)\n"; // can't do
-// --- 
-cout << x << y;     // The compiler reads such code
-(cout << x) << y;   // As if it were this
-// --- 
-```
-
-Thus expression `cout << x` satisfies requirement because `cout` is an `ostream` object.
-But the output statement also requires that the whole expression `(cout << x)` be a type
-`ostream` object because that expression is to the left of `<< y`.
-
-```cpp
-ostream & operator<<(ostream & os, const Time & t)
-{
-    os << t.hours << " hours, " << t.minutes << " minutes";
-    return os;
-}
-```
-
-this version of `operator<<()` also can be used for file output
-
-```cpp
-ofstream fout;
-fout.open("savetime.txt");
-Time trip(12, 40);
-// --- 
-fout << trip;           // this statement 
-operator<<(fout, trip); // becomes this 
-// ---
-```
-
-Program mytime changed for class definition as modified to include the two friend functions
-`operator*()` and `operator<<()`.
-
-??? example "mytime2.h - Prototypes"
-    <!--codeinclude-->
-    [](../programs/mytime2.h)
-    <!--/codeinclude-->
-
-??? example "mytime2.cpp - Methods"
-    <!--codeinclude-->
-    [](../programs/mytime2.cpp)
-    <!--/codeinclude-->
-
-??? example "usetime2.cpp - Program"
-    <!--codeinclude-->
-    [](../programs/usetime2.cpp)
-    <!--/codeinclude-->
-
-A nonmember version of an overloaded operator function requires as many formal parameters
-as the operator has operands. A member version of the same operator requires one
-fewer parameter because one operand is passed implicitly as the invoking object.
-
-```cpp
-Time operator+(const Time & t) const; // member version
-// nonmember version
-friend Time operator+(const Time & t1, const Time & t2);
-```
-
-### Vector class - abstract data type, overloading and friend functions
-
-<details><summary>
-Vectors - phisics and math basics
-</summary>
-
-Say you’re a worker bee and have discovered a marvelous nectar cache. You rush back to
-the hive and announce that you’ve found nectar 120 yards away. “Not enough information,”
-buzz the other bees. “You have to tell us the direction, too!” You answer, “It’s 30 degrees
-north of the sun direction.” Knowing both the distance (magnitude) and the direction, the
-other bees rush to the sweet site. Bees know vectors.</br></br>
-
-Many quantities involve both a magnitude and a direction. The effect of a push, for example,
-depends on both its strength and direction. Moving an object on a computer screen involves
-a distance and a direction. You can describe such things by using vectors. For example, you
-can describe moving (displacing) an object onscreen with a vector, which you can visualize
-as an arrow drawn from the starting position to the final position. The length of the vector is
-its magnitude, and that describes how far the point has been displaced. The orientation of
-the arrow describes the direction (see figure below). A vector representing such a change in
-position is called a displacement vector.
-
-<img src="./assets/_ch11VectorDisplacement.png" alt="Vector Displacement"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-Now say you’re Lhanappa, the great mammoth hunter. Scouts report a mammoth herd 14.1
-kilometers to the northwest. But because of a southeast wind, you don’t want to approach
-from the southeast. So you go 10 kilometers west and then 10 kilometers north, approaching
-the herd from the south. You know these two displacement vectors bring you to the
-same location as the single 14.1-kilometer vector pointing northwest. Lhanappa, the great
-mammoth hunter, also knows how to add vectors.
-
-Adding two vectors has a simple geometric interpretation. First, draw one vector. Then draw
-the second vector, starting from the arrow end of the first vector. Finally, draw a vector from
-the starting point of the first vector to the endpoint of the second vector. This third vector
-represents the sum of the first two (see figure below). Note that the length of the sum can
-be less than the sum of the individual lengths.
-
-<img src="./assets/_ch11VectorAdding.png" alt="Vector Adding"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-</details><br>
-
-- You can describe a vector by its `magnitude (length)` and `direction (an angle)`.
-- You can represent a vector by its `x` and `y` components.
-
-<img src="./assets/_ch11VectorDisplay.png" alt="Vector Display"
-style="display: block; margin: auto; width: 60%; height: auto; border-radius: 8px;">
-<br>
-
-`Vector Class` on a `Random Walk Algorithm` example
-
-??? example "vect.h - Prototypes"
-    <!--codeinclude-->
-    [](../programs/vect.h)
-    <!--/codeinclude-->
-
-??? example "vect.cpp - Methods"
-    <!--codeinclude-->
-    [](../programs/vect.cpp)
-    <!--/codeinclude-->
-
-??? example "randwalk.cpp - Program"
-    <!--codeinclude-->
-    [](../programs/randwalk.cpp)
-    <!--/codeinclude-->
-
-`State Member` - in the example above the `Vector` class stores both the rectangular coordinates and the polar coordinates for a
-vector. It uses a member called mode to control which form the constructor, the `reset()`
-method, and the overloaded `operator<<()` function use, with the enumerations `RECT`
-representing the rectangular mode (the default) and POL the polar mode
-Such a member
-is termed a state member because it describes the state an object is in.
-
-### Automatic Conversions and Type Casts for Classes
-
-Conversions for its built-in types - the following statements all generate numeric type conversions
-
-```cpp
-long count = 8; // int value 8 converted to type long
-double time = 11; // int value 11 converted to type double
-int side = 3.33; // double value 3.33 converted to type int 3
-```
-
-The C++ language does not automatically convert types that are not compatible (left side is a pointer type, whereas the right side is a number)
-
-```cpp
-int * p = 10; // type clash
-```
-
-When automatic conversions fail, you may use a type cast:
-
-```cpp
-int * p = (int *) 10; // ok, p and (int *) 10 both pointers
-```
-
-Example for classes
-
-```cpp
-Stonewt myCat; // create a Stonewt object
-myCat = 19.6; // not valid if Stonewt(double) is declared as explicit
-mycat = Stonewt(19.6); // ok, an explicit conversion
-mycat = (Stonewt) 19.6; // ok, old form for explicit typecast
-```
-
-Conversions for Stone classes program examples</br>
-(Conversion of number to Stone object)
-
-??? example "stonewt.h - Prototypes"
-    <!--codeinclude-->
-    [](../programs/stonewt.h)
-    <!--/codeinclude-->
-
-??? example "stonewt.cpp - Methods"
-    <!--codeinclude-->
-    [](../programs/stonewt.cpp)
-    <!--/codeinclude-->
-
-??? example "stone.cpp - Program"
-    <!--codeinclude-->
-    [](../programs/stone.cpp)
-    <!--/codeinclude-->
-
-### Conversion Functions
-
-(Conversion of Stone object to number)
-
-??? example "stonewt1.h - Prototypes"
-    <!--codeinclude-->
-    [](../programs/stonewt1.h)
-    <!--/codeinclude-->
-
-??? example "stonewt1.cpp - Methods"
-    <!--codeinclude-->
-    [](../programs/stonewt1.cpp)
-    <!--/codeinclude-->
-
-??? example "stone1.cpp - Program"
-    <!--codeinclude-->
-    [](../programs/stone1.cpp)
-    <!--/codeinclude-->
-
-`Conversion functions` are user-defined type casts, and you can use them the way you
-would use a type cast. For example, if you define a `Stonewt-to-double` conversion function,
-you can use the following conversions:
-
-```cpp
-Stonewt wolfe(285.7);
-double host = double (wolfe); // syntax #1
-double thinker = (double) wolfe; // syntax #2
-
-Stonewt wells(20, 3);
-double star = wells; // implicit use of conversion function
-```
-
-Note the following points:
-
-- The `conversion function` must be a `class` method.
-- The `conversion function` must not specify a `return` type.
-- The `conversion function` must have `no arguments`.
-
-You should use implicit conversion functions with care. Often a function that can only be
-invoked explicitly is the best choice.
-
-C++ provides the following type conversions for classes:
-
-- A class constructor that has but a single argument serves as an instruction for converting
-a value of the argument type to the class type. For example, the `Stonewt` class
-constructor with a type int argument is invoked automatically when you assign a
-type int value to a `Stonewt` object. However, using explicit in the constructor
-declaration eliminates implicit conversions and allows only explicit conversions.
-- A special class member operator function called a `conversion function` serves as an
-instruction for converting a class object to some other type. The `conversion function`
-is a class member, has no declared return type, has no arguments, and is called
-operator `typeName()`, where typeName is the type to which the object is to be
-converted.This `conversion function` is invoked automatically when you assign a
-class object to a variable of that type or use the type cast operator to that type.
-
-Friend functions
-
-```cpp
-total = jennySt.operator+(kennyD); // member function
-// or else
-total = operator+(jennySt, kennyD); // friend function
-```
-
-## Chapter 12: Classes and Dynamic Memory Allocation
-
-<details><summary>
-List of what you will learn
-</summary>
-
-```cpp
-- Using dynamic memory allocation for class members
-- Implicit and explicit copy constructors
-- Implicit and explicit overloaded assignment operators
-- What you must do if you use new in a constructor
-- Using static class members
-- Using placement new with objects
-- Using pointers to objects
-- Implementing a queue abstract data type (ADT)
+int pos = (int) (x1 + x2);
+int pos = int(x1 + x2);
 ```
 
 </details>
 
-### Dynamic Memory and Classes
-
-<img src="./assets/_ch12StaticMemberClass.png" alt="Image description"
-style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
-
-??? example "strngbad.h - Prototypes - flawed string class definition"
-    <!--codeinclude-->
-    [](../programs/strngbad.h)
-    <!--/codeinclude-->
-
-??? example "strngbad.cpp - Methods"
-    <!--codeinclude-->
-    [](../programs/strngbad.cpp)
-    <!--/codeinclude-->
-
-??? example "vegnews.cpp - Program"
-    <!--codeinclude-->
-    [](../programs/vegnews.cpp)
-    <!--/codeinclude-->
-
-The class definition declares and defines two constructors,
-but the program uses three constructors.
-Consider this line:
+<details><summary>
+10.  What is the variable type for each of the following declarations?
 
 ```cpp
-StringBad sailor = sports;
-StringBad sailor = StringBad(sports);   //<- how compiler see it /constructor using sports
-StringBad(const StringBad &);           // matching constructor could have this prototype:
-//compiler automatically generates this constructor (called a copy constructor),
-//which is Special Member Function
+a. `auto cars = 15;`
+
+b. `auto iou = 150.37f;`
+c. `auto level = 'B';`
+
+d. `auto crat = U'/U00002155';`
+
+e. `auto fract = 8.25f/2.5;`
+
 ```
 
-#### Default *Copy Constructor*
-
-Automatically generated *copy constructor* make `shallow copy` (called `memberwise copying`) of the object - thus the problem.
-`memberwise copying` - does not copy the string; it copies the pointer to a string (member-by-member, that is by value - pointer value is address).
-You can solve this type of problems in the class design by making a `deep copy`.
-Memberwise copying schema is presented on the image below
-
-<img src="./assets/_ch12DefaultCopyConstructor.png" alt="Image description"
-style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
-
-Compiler uses a *copy constructor* whenever a program generates copies of an object
-Compiler might generate a temporary `Vector` object to hold an intermediate result when adding three `Vector` objects.
-
-In `vegnews.cpp` program invokes a *copy constructor* `callme2(headline2);`
-
-The program uses a *copy constructor* to initialize `sb`, the formal `StringBad`-type
-parameter for the `callme2()` function.
-
-#### Default *Assignment Constructor*
+</summary>
 
 ```cpp
-Class_name & Class_name::operator=(const Class_name &);
+a. int
+b. float
+c. char
+d. char32_t
+e. double
 ```
 
-That is, it takes and returns a reference to an object of the class. For example, here’s the
-prototype for the `StringBad` class:
-
-```cpp
-StringBad & StringBad::operator=(const StringBad &);
-```
-
-```cpp
-StringBad metoo = knot; // use copy constructor, possibly assignment, too
-```
-
-Like a *copy constructor*, an implicit implementation of an assignment operator performs
-a member-to-member (`memberwise copying`) copy. If a member is itself an object of some class, the program
-uses the *assignment operator* defined for that class to do the copying for that
-particular member. *Static* data members are unaffected.
-
-Thus again, the address was copied instead of value.
-
-??? danger "Necessary thing to do if `new` is used in class
-    If a class contains members that are pointers initialized by new, you should define a copy
-    constructor that copies the pointed-to data instead of copying the pointers themselves. This
-    is termed deep copying. The alternative form of copying (memberwise, or shallow, copying)
-    just copies pointer values. A shallow copy is just that—the shallow “scraping off” of pointer
-    information for copying, rather than the deeper “mining” required to copy the constructs
-    referred to by the pointers.
-
-### `Special Member Functions`
-
-C++ automatically provides the following member functions:
-
-- `Default constructor` if you define no constructors
-- `Default destructor` if you don’t define one
-- `Copy constructor` if you don’t define one
-- `Assignment operator` if you don’t define one
-- `Address operator` if you don’t define one
-
-C++11 provides two more special member functions—the `move constructor` and the
-`move assignment operator`
-
-### Solve problem - Defining an Explicit Copy Constructor
-
-Explicit Copy Constructor with a `deep copy` - eg. duplication of the string and
-assigning the address of the duplicate to the `str` member.
-
-In short:
-
-- `deep copy` - Copy the member data to the new location
-- `membership copy` - Copy the location of the member data
-
-```cpp
-StringBad::StringBad(const StringBad & st)
-{
-    num_strings++;                  // handle static member update
-    len = st.len;                   // same length
-    str = new char [len + 1];       // allot space
-    std::strcpy(str, st.str);       // copy string to new location
-    cout << num_strings << ": \"" << str
-    << "\" object created\n";       // For Your Information
-}
-```
-
-<img src="./assets/_ch12DeepCopyExample.png" alt="Image description"
-style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
-
-### Solve problem - Overloading an Assignment Operator
-
-```cpp
-StringBad & StringBad::operator=(const StringBad & st)
-{
-    if (this == &st)                // object assigned to itself
-        return *this;               // all done
-
-    // If you don’t first apply the delete operator, the previous `string` will remain in memory.
-    // Because the program no longer has a pointer to the old string, that memory will be wasted.
-    delete [] str;                  // free old string 
-    len = st.len;
-    str = new char [len + 1];       // get space for new string
-    std::strcpy(str, st.str);       // copy the string
-    return *this;                   // return reference to invoking object
-}
-```
-
-Implementation is *similar* to that of the *copy constructor*, but there are some differences:
-
-- Because the target object may already refer to previously allocated data, the function
-should use `delete []` to free former obligations.
-- The function should protect against assigning an object to itself; otherwise, the freeing
-of memory described previously could erase the object’s contents before they
-are reassigned.
-- The function returns a reference to the invoking object.
-
-??? note "C++11 Null Pointer"
-    In C++98, the literal `0` has two meanings—it can be the numeric value `0`, and it can be the
-    `null pointer` — thus making it difficult for the reader and compiler to distinguish between the
-    two. Sometimes programmers use `(void *) 0` to identify the pointer version. (The null
-    pointer itself may have a nonzero internal representation.) Other programmers use `NULL`, a
-    C macro defined to represent the null pointer. However, this proved to be an incomplete solution.
-    C++11 provides a better solution by introducing a new keyword, nullptr, to denote
-    the null pointer. You still can use `0` as before—otherwise an enormous amount of existing
-    code would be invalidated—but henceforth the recommendation is to use `nullptr` instead:
-    `str = nullptr; // C++11 null pointer notation`
-
-### Improved `String` Class from `StringBad`
-
-With bracket notation and added few operators.
-
-??? example "string1.h - Prototypes"
-    <!--codeinclude-->
-    [](../programs/string1.h)
-    <!--/codeinclude-->
-
-??? example "string1.cpp - Methods"
-    <!--codeinclude-->
-    [](../programs/string1.cpp)
-    <!--/codeinclude-->
-
-??? example "sayings1.cpp - Program"
-    <!--codeinclude-->
-    [](../programs/sayings1.cpp)
-    <!--/codeinclude-->
-
-??? note "Older versions of `get(char *, int)`"
-    Older versions of <code>get(char *, int)</code> don’t evaluate to false upon reading an empty line.
-    For those versions, however, the first character in the string is a null character if an empty
-    line is entered. This example uses the following code:
-    <code>
-    if (!cin || temp[0] == '\0') // empty line?
-    break; // i not incremented
-    </code>
-    If the implementation follows the current C++ Standard, the first test in the if statement
-    detects an empty line, whereas the second test detects the empty line for older implementations
-
-### When Using `new` in Constructors
-
-In particular, you should do the following:
-
-- If you use `new` to initialize a pointer member in a constructor, you should use
-`delete` in the destructor.
-- The uses of `new` and `delete` should be compatible. You should pair `new` with `delete`
-and `new []` with `delete []`.
-- If there are multiple constructors, all should use `new` the same way—either all with
-brackets or all without brackets. There’s only one destructor, so all constructors have
-to be compatible with that destructor. However, it is permissible to initialize a
-pointer with `new` in one constructor and with the null pointer (`0`, or, with C++11,
-`nullptr`) in another constructor because it’s okay to apply the `delete` operation
-(with or without brackets) to the null pointer.
-
-??? note "NULL or 0 or nullptr?"
-    Historically, the null pointer can be represented by `0` or by `NULL`, a symbolic constant defined
-    as `0` in several header files. C programmers often use `NULL` instead of `0` as a visual
-    reminder that the value is a pointer value, just as they use `'\0'` instead of `0` for the null
-    character as a visual reminder that this value is a character. The C++ tradition, however, has
-    favored a simple `0` instead of the equivalent `NULL`. And, as mentioned earlier, C++11 offers
-    the `nullptr` keyword as a better alternative.
-
-- You should define a copy constructor that initializes one object to another by doing
-deep copying. Typically, the constructor should emulate the following example:
-
-    ```cpp
-    String::String(const String & st)
-    {
-        num_strings++;                  // handle static member update if necessary
-        len = st.len;                   // same length as copied string
-        str = new char [len + 1];       // allot space
-        std::strcpy(str, st.str);       // copy string to new location
-    }
-    ```
-
-    In particular, the copy constructor should allocate space to hold the copied data, and
-    it should copy the data, not just the address of the data.Also it should update any
-    static class members whose value would be affected by the process.
-
-- You should define an assignment operator that copies one object to another by
-doing deep copying. Typically, the class method should emulate the following
-example:
-
-    ```cpp
-    String & String::operator=(const String & st)
-    {
-        if (this == &st) // object assigned to itself
-        return *this; // all done
-        delete [] str; // free old string
-        len = st.len;
-        str = new char [len + 1]; // get space for new string
-        std::strcpy(str, st.str); // copy the string
-        return *this; // return reference to invoking object
-    }
-    ```
-
-    In particular, the method should check for self-assignment; it should free memory formerly
-    pointed to by the member pointer; it should copy the data, not just the address of
-    the data; and it should return a reference to the invoking object.
-
-#### Do's and Don'ts
-
-Constructor:
-
-```cpp
-String::String()
-{
-    str = "default string"; // oops, no new []
-    len = std::strlen(str);
-}
-
-String::String(const char * s)
-{
-    len = std::strlen(s);
-    str = new char; // oops, no []
-    std::strcpy(str, s); // oops, no room
-}
-
-String::String(const String & st)
-{
-    len = st.len;
-    str = new char[len + 1]; // good, allocate space
-    std::strcpy(str, st.str); // good, copy value
-}
-```
-
-The result of applying `delete` to a pointer not initialized by `new` is undefined, but it is probably bad
-Any of the following would be okay:
-
-```cpp
-String::String()
-{
-    len = 0;
-    str = new char[1]; // uses new with []
-    str[0] = '\0';
-}
-
-String::String()
-{
-    len = 0;
-    str = 0; // or, with C++11, str = nullptr;
-}
-
-String::String()
-{
-    static const char * s = "C++"; // initialized just once
-    len = std::strlen(s);
-    str = new char[len + 1]; // uses new with []
-    std::strcpy(str, s);
-}
-```
-
-*Destructor* that doesn’t work correctly with the previous *constructors*:
-
-```cpp
-String::~String()
-{
-    delete str; // oops, should be delete [] str;
-}
-```
-
-### Returning objects
-
-- Reference to a `const` Object - efficient, but with restrictions
-
-??? note "Example"
-    If a function *returns* an *object* that is *passed* to it, either by
-    *object invocation* or as a *method argument*, you can increase the efficiency of the method
-    by having it return a `reference`.
-
-    ```cpp
-    // version 1
-    Vector Max(const Vector & v1, const Vector & v2)
-    {
-        if (v1.magval() > v2.magval())
-            return v1;
-        else
-            return v2;
-    }
-
-    // version 2
-    const Vector & Max(const Vector & v1, const Vector & v2)
-    {
-        if (v1.magval() > v2.magval())
-            return v1;
-        else
-            return v2;
-    }
-    ```
-
-- Reference to a Non-`const` Object - eg. overloading assignment operator (*efficiency*) and the `<<` operator (*necessity*)
-
-??? note "Example"
-
-    ```cpp
-    // The return value of operator=() is used for chained assignment:
-    String s1("Good stuff");
-    String s2, s3;
-    s3 = s2 = s1
-    // The return value of operator<<() is used for chained output:
-    String s1("Good stuff");
-    cout << s1 << "is coming!";
-    ```
-
-- Object return
-If its *local* to called *function*, it shouldn't be returned by *reference* (local data is automatically destroyed)
-In this case return an `object`
-
-??? note "Example"
-
-    ```cpp
-    Vector Vector::operator+(const Vector & b) const
-    {
-        return Vector(x + b.x, y + b.y);
-    }
-    ```
-
-- `const` Object return
-
-`Vector::operator+()` allows you to use:
-
-```cpp
-net = force1 + force2;                              // 1: three Vector objects
-force1 + force2 = net;                              // 2: dyslectic programming
-cout << (force1 + force2 = net).magval() << endl;   // 3: demented programming
-```
-
-If `Vector::operator+()` is declared to have return type `const Vector`, then Statement 1 is
-still allowed but Statements 2 and 3 become invalid.
-
-### `Pointers` to `Objects`
-
-Creating object using keyword `new`
-
-<img src="./assets/_ch12ObjCreate.png" alt="Image description"
-style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
-
-Using pointers with objects
-
-<img src="./assets/_ch12ObjUse.png" alt="Image description"
-style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
-
-??? example "sayings2.cpp"
-    <!--codeinclude-->
-    [](../programs/sayings2.cpp)
-    <!--/codeinclude-->
-
-??? example "placenew1.cpp"
-    <!--codeinclude-->
-    [](../programs/placenew1.cpp)
-    <!--/codeinclude-->
-
-??? example "placenew2.cpp (fixed placenew1)"
-    <!--codeinclude-->
-    [](../programs/placenew2.cpp)
-    <!--/codeinclude-->
-
-??? note "Object Initialization with `new`"
-    In general, if Class_name is a class and if value is of type Type_name, the statement
-
-    ```cpp
-        Class_name * pclass = new Class_name(value);
-    ```
-
-    invokes this constructor:
-
-    ```cpp
-        Class_name(Type_name);
-    ```
-
-    There may be trivial conversions, such as to this:
-
-    ```cpp
-        Class_name(const Type_name &);
-    ```
-
-    Also the usual conversions invoked by prototype matching, such as from int to double,
-    takes place as long as there is no ambiguity. An initialization in the following form invokes
-    the default constructor:
-
-    ```cpp
-        Class_name * ptr = new Class_name;
-    ```
-
-### Overload `<<` Operator
-
-Define a friend operator function in form:
-
-```cpp
-ostream & operator<<(ostream & os, const c_name & obj)
-{
-    os << ... ; // display object contents
-    return os;
-}
-```
-
-### Queue Simulation
-
-Problem: Client (Bank) want estimates of how long customers will have to wait in line
-
-A queue is an abstract data type (ADT) and is a FIFO (first in, first out)
-structure.
-
-- A queue holds an ordered sequence of items.
-- A queue has a limit on the number of items it can hold.
-- You should be able to create an empty queue.
-- You should be able to check whether a queue is empty.
-- You should be able to check whether a queue is full.
-- You should be able to add an item to the end of a queue.
-- You should be able to remove an item from the front of a queue.
-- You should be able to determine the number of items in the queue.
-
-For implementation of queue simulation, `linked list` was used, which consist of `sequence of nodes`,
-which is represented by structure:
-
-```cpp
-struct Node
-{
-    Item item; // data stored in the node
-    struct Node * next; // pointer to next node
-};
-```
-
-<img src="./assets/_ch12LinkedList.png" alt="Image description"
-style="display: block; margin: auto; width: 35%; height: auto; border-radius: 8px;">
-
-#### `member initializer list`
-
-Problem: `const int qsize` need to be initialized
-
-```cpp
-Queue::Queue(int qs)
-{
-    front = rear = NULL;
-    items = 0;
-    qsize = qs; // not acceptable!
-}
-```
-
-Solution:
-
-```cpp
-// initializer-list syntax
-// 
-// Data members are initialized in the order in which they appear in the class declaration,
-// not in the order in which initializers are listed.
-Queue::Queue(int qs) : qsize(qs) // initialize qsize to qs (via member initializer list)
-{
-    front = rear = NULL;
-    items = 0;
-}
-
-Queue::Queue(int qs) : qsize(qs), front(NULL), rear(NULL), items(0) // Also acceptanble
-{
-}
-
-// C++ 11 Member In-Class Initialization
-class Classy
-{
-    int mem1 = 10; // in-class initialization
-    const int mem2 = 20; // in-class initialization
-    ...
-}
-```
-
-Simulation program and class implementation:
-
-??? example "queue.h - Prototypes"
-    <!--codeinclude-->
-    [](../programs/queue.h)
-    <!--/codeinclude-->
-
-??? example "queue.cpp - Methods"
-    <!--codeinclude-->
-    [](../programs/queue.cpp)
-    <!--/codeinclude-->
-
-??? example "bank.cpp - Program"
-    <!--codeinclude-->
-    [](../programs/bank.cpp)
-    <!--/codeinclude-->
-
-
-<!--    
-```sh
-./programs/
-
-[str 627] ch 12 - dynamic memory -> [699] Summary
-[str 707] ch 13 - class inheritance -> [778] Summary
-
-ch 14 - reusing code in c++ 
-ch 15 - friends, exemptions, and more
-ch 16 - string class and STL 
-ch 17 - input, output and files 
-ch 18 - the new c++ standard 
--> [1213]
+</details>
 
 ## Chapter 4
 
 <details><summary>
-        List of what you will learn
+01. How would you declare each of the following?
+
+```cpp
+a. actors is an array of 30 char.
+b. betsie is an array of 100 short.
+c. chuck is an array of 13 float.
+d. dipsea is an array of 64 long double.
+```
+
 </summary>
 
 ```cpp
+char actors[30];
+short betsie[100];
+float chuck[13];
+long double dipsea[64];
+```
+
+</details>
+
+<details><summary>
+02. Do Chapter Review Question 1 and use the array template class instead of
+built-in arrays.
+
+</summary>
+
+```cpp
+array<char, 30> actors;
+array<short, 100> betsie;
+array<float, 13> chuck;
+array<long double, 64> dipsea;
+```
+
+</details>
+
+<details><summary>
+03. Declare an array of five ints and initialize it to the first five odd
+positive integers
+
+</summary>
+
+```cpp
+int oddly[5] = {1, 3, 5, 7, 9};
+array<int, 5> at {1, 3, 5, 7, 9}; // also correct
+```
+
+</details>
+
+<details><summary>
+04. Write a statement that assigns the sum of the first and last elements of the
+array in Question 3 to the variable even.
+
+</summary>
+
+```cpp
+int even = array[0] + array[4]; 
+```
+
+</details>
+
+<details><summary>
+05. Write a statement that displays the value of the second element in the float
+array ideas.
+
+</summary>
+
+```cpp
+std::cout << ideas[1];
+```
+
+</details>
+
+<details><summary>
+06. Declare an array of char and initialize it to the string "cheeseburger".
+
+</summary>
+
+```cpp
+char food[] {"cheeseburger"};
+// or
+char lunch[13] = "cheeseburger"; // number of characters + 1
+```
+
+</details>
+
+<details><summary>
+07. Declare a string object and initialize it to the string "Waldorf Salad".
+
+</summary>
+
+```cpp
+std::string obj = "Waldorf Salad";
+```
+
+</details>
+
+<details><summary>
+08. Devise a structure declaration that describes a fish. The structure should
+include the kind, the weight in whole ounces, and the length in fractional inches.
+
+</summary>
+
+```cpp
+struct fish {
+    char kind[20];
+    int weight;
+    float length;
+};
+```
+
+</details>
+
+<details><summary>
+09. Declare a variable of the type defined in Question 8 and initialize it.
+
+</summary>
+
+```cpp
+fish petes =
+{
+    "trout",
+    12,
+    26.25
+};
+
+// OR
+
+fish flounder;
+flounder.kind = "fishy";
+flounder.weight = 21;
+flounder.length = 21;
+```
+
+</details>
+
+<details><summary>
+10.  Use enum to define a type called Response with the possible values <code>Yes</code>,
+<code>No</code>, and <code>Maybe</code>.<br> <code>Yes</code> should be <code>1</code>, <code>No</code>
+should be <code>0</code>, and <code>Maybe</code> should be <code>2</code>.
+
+</summary>
+
+```cpp
+enum response {No, Yes, Maybe};
+```
+
+</details>
+
+<details><summary>
+11.  Suppose ted is a double variable.
+Declare a pointer that points to ted and use the pointer to display ted’s value.
+
+</summary>
+
+```cpp
+double *ptrTed = &ted;
+std::cout << *ptrTed;
+```
+
+</details>
+
+<details><summary>
+12.  Suppose treacle is an array of 10 floats. Declare a pointer that points
+to the first element of treacle and use the pointer to display the first and
+last elements of the array.
+
+</summary>
+
+```cpp
+float *ptrTreacle = treacle; // or = &treacle[0]
+cout << pf[0] << " " << pf[9] << "\n";
+
+std::cout << ptrTreacle[0] << "last" << ptrTreacle[9];
+// or use:
+std::cout << *(ptrTreacle + 1) << "last" << *(ptrTreacle + 9);
+```
+
+</details>
+
+<details><summary>
+13. Write a code fragment that asks the user to enter a positive integer and
+then creates a dynamic array of that many ints.
+Do this by using <code>new</code>, then again using a <code>vector</code> object.
+
+</summary>
+
+```cpp
+unsigned int iUsr {};
+cout << "Enter a positive integer: ";
+std::cin >> iUsr;
+
+int *sth = new int[iUsr];
+vector<int> sth(iUsr);
+```
+
+</details>
+
+<details><summary>
+14. Is the following valid code? If so, what does it print?
+
+```cpp
+cout << (int *) “Home of the jolly bytes”;
+```
+
+</summary>
+
+//Yes</br>
+//Start of memory of this Literal</br></br>
+
+Yes, it is valid. The expression "Home of the jolly bytes" is a string constant;
+hence it evaluates as the address of the beginning of the string. The cout object
+interprets the address of a char as an invitation to print a string, but the type cast
+(int *) converts the address to type pointer-to-int, which is then printed as an
+address. In short, the statement prints the address of the string, assuming the int
+type is wide enough to hold an address.
+</details>
+
+<details><summary>
+15. Write a code fragment that dynamically allocates a structure of the type
+described in Question 8 and then reads a value for the <code>kind</code> member of the structure.
+
+</summary>
+
+```cpp
+struct fish
+{
+    char kind[20];
+    int weight;
+    float length;
+};
+
+int main(){
+    fish * pole = new fish;    
+
+    std::cout << "Enter kind of fish: ";
+    std::cin >> pole->kind;
+}
+```
+
+</details>
+
+<details><summary>
+16. Listing 4.6 (numstr.cpp) illustrates a problem created by following numeric input with
+line-oriented string input. How would replacing:
+
+```cpp
+// this:
+cin.getline(address,80);
+
+// with this:
+cin >> address;
+
+// affect the working of this program?
+```
+
+</summary>
+
+<code>cin >> address</code> will read from user only to the space. Data after space will be in the queue;
+Using <code>cin >> address</code> causes a program to skip over whitespace until it finds non-whitespace.
+It then reads characters until it encounters whitespace again. Thus, it
+will skip over the newline following the numeric input, avoiding that problem. On
+the other hand, it will read just a single word, not an entire line.
+</details>
+
+<details><summary>
+17. Declare a vector object of 10 string objects and an array object of 10 string objects.</br>
+Show the necessary header files and don’t use using. Do use a const for the number of strings.
+</summary>
+
+```cpp
+#include <string>
+#include <vector>
+#include <array>
+
+// Like this
+vector<string> vSth(10);
+array<string, 10> aSth;
+
+
+// Solution in a book
+const int Str_num {10}; // or = 10
+
+... 
+
+std::vector<std::string> vstr(Str_num);
+std::array<std::string, Str_num> astr;
+```
+
+</details>
+
+## Chapter 5
+
+<details><summary>
+01. What’s the difference between an entry-condition loop and an exit-condition loop?
+Which kind is each of the C++ loops?
+
+</summary>
+
+// entry-condition loop - check condition before entering the loop <br>
+// exit-condition loop -  check condition at the end of loop, making at least 1 loop<br><br>
+
+An entry-condition loop evaluates a test expression before entering the body of the
+loop. If the condition is initially false, the loop never executes its body. An exitcondition
+loop evaluates a test expression after processing the body of the loop.
+Thus, the loop body is executed once, even if the test expression is initially false.
+The for and while loops are entry-condition loops, and the do while loop is an
+exit-condition loop
+</details>
+
+<details><summary>
+02. What would the following code fragment print if it were part of a valid program?
+
+```cpp
+int i;
+for (i = 0; i < 5; i++)
+    cout << i;
+    cout << endl;
+```
+
+</summary>
+It would print the following:</br></br>
+
+```sh
+01234
+```
+
+Note that <code>cout << endl;</code> is not part of the loop body (because there are no
+braces).
+</details>
+
+<details><summary>
+03. What would the following code fragment print if it were part of a valid program?
+
+```cpp
+int j;
+for (j = 0; j < 11; j += 3)
+    cout << j;
+cout << endl << j << endl;
+```
+
+</summary>
+It would print the following:
+
+```sh
+0369
+12
+```
+
+</details>
+
+<details><summary>
+04. What would the following code fragment print if it were part of a valid program?
+
+```cpp
+int j = 5;
+while ( ++j < 9)
+    cout << j++ << endl;
+```
+
+</summary>
+It would print the following:
+
+```sh
+6
+8
+```
+
+</details>
+
+<details><summary>
+05. What would the following code fragment print if it were part of a valid program?
+
+```cpp
+int k = 8;
+do
+    cout <<" k = " << k << endl;
+while (k++ < 5);
+```
+
+</summary>
+It would print the following:
+
+```sh
+k = 8
+```
+
+</details>
+
+<details><summary>
+06. Write a <code>for</code> loop that prints the values <code>1 2 4 8 16 32 64</code> by increasing the value of
+a counting variable by a factor of two in each cycle.
+
+</summary>
+
+It’s simplest to use the <code>*=</code> operator:<br>
+
+```cpp
+for(int i {}; i < 65; i *= 2)
+    cout << i << " ";
+```
+
+</details>
+
+<details><summary>
+07. How do you make a loop body include more than one statement?
+
+</summary>
+
+//add curly braces <code>{}</code> <br>
+
+You enclose the statements within paired braces to form a single compound statement,
+or block.
+</details>
+
+<details><summary>
+08. Is the following statement valid? If not, why not? If so, what does it do?
+
+```cpp
+int x = (1,024);
+```
+
+What about the following?
+
+```cpp
+int y;
+y = 1,024;
+```
+
+</summary>
+//1st is valid, but 1 will be assigned to x due to precedence and first value will do nothing <br>
+//in 2nd 1 will be assigned to y, and 024 will do nothing, but confuse. <br><br>
+
+Yes, the first statement is valid. The expression 1, 024 consists of two expressions — 1
+and 024 — joined by a comma operator. The value is the value of the right-hand
+expression. This is 024, which is octal for 20, so the declaration assigns the value 20
+to x. The second statement is also valid. However, operator precedence causes it to
+be evaluated as follows:
+
+```cpp
+(y = 1), 024;
+```
+
+That is, the left expression sets y to 1, and the value of the entire expression, which
+isn’t used, is <code>024</code> , or <code>20</code> .
+
+</details>
+
+<details><summary>
+09. How does <code>cin >> ch</code> differ from <code>cin.get(ch)</code> and <code>ch=cin.get()</code> in how it views
+input?
+
+</summary>
+// My answer</br>
+<code>cin>>ch</code> will omit spaces, <code>cin.get(ch)</code> will return <code>bool</code> true, false if EOF,
+<code>ch=cin.get()</code> will assign <code>int</code> value and EOF if EOF <br><br>
+
+// Answer in the book</br>
+The <code>cin >> ch</code> form skips over spaces, newlines, and tabs when it encounters them.
+The other two forms read those characters
+</details>
+
+## Chapter 6
+
+<details><summary>
+01. Consider the following two code fragments for counting spaces and newlines
+
+```cpp
+// Version 1
+while (cin.get(ch)) // quit on eof
+{
+    if (ch == ' ')
+        spaces++;
+    if (ch == '\n')
+        newlines++;
+}
+// Version 2
+while (cin.get(ch)) // quit on eof
+{
+    if (ch == ' ')
+        spaces++;
+    else if (ch == '\n')
+        newlines++;
+}
+```
+
+What advantages, if any, does the second form have over the first?
+</summary>
+// My answer</br>
+Because version 1 checks every times both conditions, thus it's less efficient.<br>
+Version 2 checks 2 condition only if first is not true.<br><br>
+
+// Answer in the book</br>
+Both versions give the same answers, but the if else version is more efficient.
+Consider what happens, for example, when ch is a space. Version 1, after incrementing
+spaces, tests whether the character is a newline. This wastes time because the
+program has already established that ch is a space and hence could not be a newline.
+Version 2, in the same situation, skips the newline test.
+</details>
+
+<details><summary>
+02. In Listing 6.2, what is the effect of replacing <code>++ch</code> with <code>ch+1</code>?
+
+```cpp
+Listing 6.2 ifelse.cpp
+// ifelse.cpp -- using the if else statement
+#include <iostream>
+    int
+    main()
+{
+    char ch;
+    std::cout << "Type, and I shall repeat.\n";
+    std::cin.get(ch);
+    while (ch != '.')
+    {
+        if (ch == '\n')
+            std::cout << ch; // done if newline
+        else
+            std::cout << ++ch; // done otherwise
+        std::cin.get(ch);
+    }
+    std::cout << "\nPlease excuse the slight confusion.\n";
+    return 0;
+}
+```
+
+</summary>
+
+// My answer</br>
+The <code>char</code> is promoted to <code>int</code> , and display numbers</br></br>
+
+// Answer in the book</br>
+Both <code>++ch</code> and <code>ch + 1</code> have the same numerical value. But <code>++ch</code> is type char and
+prints as a character, while <code>ch + 1</code> , because it adds a <code>char</code> to an <code>int</code> ,
+is type <code>int</code> and prints as a number.
+
+</details>
+
+<details><summary>
+03. Carefully consider the following program:
+
+```cpp
+#include <iostream>
+using namespace std;
+int main()
+{
+    char ch;
+    int ct1, ct2;
+    ct1 = ct2 = 0;
+    while ((ch = cin.get()) != '$')
+    {
+        cout << ch;
+        ct1++;
+        if (ch = '$')
+            ct2++;
+        cout << ch;
+    }
+    cout << "ct1 = " << ct1 << ", ct2 = " << ct2 << "\n";
+    return 0;
+}
+```
+
+Suppose you provide the following input, pressing the Enter key at the end of each line:
+
+```sh
+Hi!
+Send $10 or $20 now!
+```
+
+What is the output? (Recall that input is buffered.)
+
+</summary>
+
+// My answer</br>
+
+```sh
+// Program print after every read character `$` and if in input is `$` , the while loop will end.
+// `Hi!`
+
+// `H$i$!$`
+
+// `$Send $10 or $20 now!`
+
+// `S$e$n$d$ $ct1 = 8, ct2 = 8` // `$` is added even newline, and `ct` is added with it, I didn't include that
+```
+
+// Answer in the book</br>
+Because the program uses <code>ch = `$` </code> instead of <code>ch == `$`</code> , the combined input and
+output looks like this:
+
+```sh
+Hi!
+H$i$!$
+$Send $10 or $20 now!
+S$e$n$d$ $ct1 = 9, ct2 = 9
+```
+
+Each character is converted to the <code>$</code> character before being printed the second
+time. Also the value of the expression <code>ch = $</code> is the code for the <code>$</code> character, hence
+nonzero, hence <code>true</code> ; so <code>ct2</code> is incremented each time.
+</details>
+
+<details><summary>
+04. Construct logical expressions to represent the following conditions:
+
+```cpp
+    a. weight is greater than or equal to 115 but less than 125.
+    b. ch is q or Q.
+    c. x is even but is not 26.
+    d. x is even but is not a multiple of 26.
+    e. donation is in the range 1,000–2,000 or guest is 1.
+    f. ch is a lowercase letter or an uppercase letter. (Assume, as is true for ASCII, 
+    that lowercase letters are coded sequentially and that uppercase letters are coded 
+    sequentially but that there is a gap in the code between uppercase and lowercase.)
+```
+
+</summary>
+
+```cpp
+weight >= 115 && weight < 125                           //a
+ch == `q` || ch == `Q`                                  //b
+x % 2 == 0 && x != 26                                   //c
+
+x % 2 == 0 && x % 26 != 0                               //d
+x % 2 == 0 && !(x % 26 == 0)                            //d
+donation >= 1000 && donation <= 2000 || guest == 1      //e
+
+(ch => `a` && ch <= z) || (ch >= `A` && ch <= `Z`)      //f
+isalpha(ch)                                             //f
+```
+
+</details>
+
+<details><summary>
+05. In English, the statement “I will not not speak” means the same as
+“I will speak.” In C++, is <code>!!x</code> the same as <code>x</code>?
+
+</summary>
+//My answer</br>
+No. Return from `!!x` is boolean/int, while `x` have defined type by programmer</br></br>
+
+// Answer in the book</br>
+Not necessarily. For example, if `x` is 10, then `!x` is 0 and `!!x` is 1.
+However, if `x` is a `bool` variable, then `!!x` is `x` .
+</details>
+
+<details><summary>
+06. Construct a conditional expression that is equal to the absolute value of a variable.
+That is, if a variable x is positive, the value of the expression is just x,
+but if x is negative, the value of the expression is -x, which is positive.
+
+</summary>
+
+```cpp
+// x > 0 ? x : -x
+
+(x < 0)? -x : x
+// or
+(x >= 0)? x : -x;
+```
+
+</details>
+
+<details><summary>
+07. Rewrite the following fragment using switch:
+
+```cpp
+if (ch == 'A')
+    a_grade++;
+else if (ch == 'B')
+    b_grade++;
+else if (ch == 'C')
+    c_grade++;
+else if (ch == 'D')
+    d_grade++;
+else
+    f_grade++;
+```
+
+</summary>
+
+```cpp
+switch (ch)
+{
+    case `A`:   a_grade++;
+                break;
+    case `B`:   b_grade++;
+                break;
+    case `C`:   c_grade++;
+                break;
+    case `D`:   d_grade++;
+                break;
+    default:    f_grade++;
+                break;
+}
+```
+
+</details>
+
+<details><summary>
+08. In Listing 6.10, what advantage would there be in using character labels,
+such as a and c, instead of numbers for the menu choices and switch cases?
+(Hint: Think about what happens if the user types q in either case and what
+happens if the user types 5 in either case.)
+
+```cpp
+Listing 6.10 switch.cpp
+// switch.cpp -- using the switch statement
+#include <iostream>
+    using namespace std;
+void showmenu(); // function prototypes
+void report();
+void comfort();
+int main()
+{
+    showmenu();
+    int choice;
+    cin >> choice;
+    while (choice != 5)
+    {
+        switch (choice)
+        {
+        case 1:
+            cout << "\a\n";
+            break;
+        case 2:
+            report();
+            break;
+        case 3:
+            cout << "The boss was in all day.\n";
+            break;
+        case 4:
+            comfort();
+            break;
+        default:
+            cout << "That's not a choice.\n";
+        }
+        showmenu();
+        cin >> choice;
+    }
+    cout << "Bye!\n";
+    return 0;
+}
+void showmenu()
+{
+    cout << "Please enter 1, 2, 3, 4, or 5:\n"
+            "1) alarm 2) report\n"
+            "3) alibi 4) comfort\n"
+            "5) quit\n";
+}
+void report()
+{
+    cout << "It's been an excellent week for business.\n"
+            "Sales are up 120%. Expenses are down 35%.\n";
+}
+void comfort()
+{
+    cout << "Your employees think you are the finest CEO\n"
+            "in the industry. The board of directors think\n"
+            "you are the finest CEO in the industry.\n";
+}
+```
+
+</summary>
+// Character labels would be more resistant to invalid input (characters promoted to int instead numbers); <br>
+// It would also not go into infinite loop due to buffered characters from user input <br> <br>
+
+If you use integer labels and the user types a noninteger such as q, the program
+hangs because integer input can’t process a character. But if you use character labels
+and the user types an integer such as 5, character input will process 5 as a character.
+Then the default part of the switch can suggest entering another character.
+</details>
+
+<details><summary>
+09. Consider the following code fragment:
+
+```cpp
+int line = 0;
+char ch;
+while (cin.get(ch))
+{
+    if (ch == 'Q')
+        break;
+    if (ch != '\n')
+        continue;
+    line++;
+}
+```
+
+Rewrite this code without using break or continue.
+
+</summary>
+
+```cpp
+int line = 0;
+char ch;
+while (cin.get(ch) && ch != 'Q')
+{
+    if (ch == '\n')
+        line++;
+}
+```
+
+</details>
+
+## Chapter 7
+
+<!-- -------------------------------------------- -->
+<details><summary>
+01. What are the three steps in using a function?
+</summary>
+
+```sh
+// Definition
+// Prototype
+// Caller
+```
+
+The three steps are defining the function, providing a prototype, and calling the function.
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+02. Construct function prototypes that match the following descriptions:</br></br>
+
+- <code>igor()</code> takes no arguments and has no return value.</br>
+- <code>tofu()</code> takes an int argument and returns a float.</br>
+- <code>mpg()</code> takes two type double arguments and returns a double.</br>
+- <code>summation()</code> takes the name of a long array and an array size as values and returns a long value.</br>
+- <code>doctor()</code> takes a string argument (the string is not to be modified) and returns a double value.</br>
+- <code>ofcourse()</code> takes a boss structure as an argument and returns nothing.</br>
+- <code>plot()</code> takes a pointer to a map structure as an argument and returns a string.</br>
+
+</summary>
+
+```cpp
+void igor(void); // or void igor()
+float tofu(int n); // or float tofu(int);
+double mpg(double miles, double gallons);
+long summation(long harray[], int size);
+double doctor(const char * str);
+void ofcourse(boss dude);
+char * plot(map *pmap);
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+03. Write a function that takes three arguments: the name of an int array, the array
+size, and an int value. Have the function set each element of the array to the int
+value.
+</summary>
+
+```cpp
+void set_array(int arr[], int size, int value)
+{
+    for (int i = 0; i < size; i++)
+    arr[i] = value;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+04. Write a function that takes three arguments: a pointer to the first element of a
+range in an array, a pointer to the element following the end of a range in an array,
+and an int value. Have the function set each element of the array to the int value.
+</summary>
+
+```cpp
+// // My solution -> tested 
+// fnTemp(int *begin, int *end, int val){
+//     int i{};
+//     while(*(begin + i) != *end){
+//         *(begin + i) = val;
+//         ++i;
+//     }
+// }
+
+void set_array(int * begin, int * end, int value)
+{
+    for (int * pt = begin; pt != end; pt++)
+    pt* = value;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+05. Write a function that takes a double array name and an array size as arguments and
+returns the largest value in that array. Note that this function shouldn’t alter the
+contents of the array.
+</summary>
+
+```cpp
+// // My solution -> tested 
+// double fnTemp(const double name[], int size){
+//     double max = name[0];
+//     for(int i {}; i < size; ++i)
+//         if(name[i] > max)
+//             max = name[i];
+//     return max;
+// }
+
+double biggest (const double foot[], int size)
+{
+    double max;
+    if (size < 1)
+    {
+        cout << "Invalid array size of " << size << endl;
+        cout << "Returning a value of 0\n";
+        return 0;
+    }
+    else // not necessary because return terminates program
+    {
+        max = foot[0];
+        for (int i = 1; i < size; i++)
+        if (foot[i] > max)
+        max = foot[i];
+        return max;
+    }
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+06. Why don’t you use the const qualifier for function arguments that are one of the fundamental types?
+</summary>
+You use the const qualifier with pointers to protect the original pointed-to data from being altered.
+When a program passes a fundamental type such as an int or a double, it passes it by value so that the function
+works with a copy. Thus, the original data is already protected.
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+07. What are the three forms a C-style string can take in a C++ program?
+</summary>
+
+```cpp
+char str[]; 
+"asdf";
+char *ptr = &str;
+```
+
+A string can be stored in a <code>char array</code> , it can be represented by a string constant in double quotation marks, and it can
+be represented by a pointer pointing to the first character of a string.
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+08. Write a function that has this prototype:
+
+```cpp
+int replace(char * str, char c1, char c2);
+```
+
+Have the function replace every occurrence of c1 in the string str with c2, and have the function return the number
+of replacements it makes.
+</summary>
+
+```cpp
+int replace(char * str, char c1, char c2)
+{
+    int count = 0;
+    while (*str) // while not at end of string
+    {
+        if (*str == c1)
+        {
+            *str = c2;
+            count++;
+        }
+        str++; // advance to next character
+    }
+return count;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+09. What does the expression <code>*"pizza"</code> mean? What about <code>"taco"[2]</code>?
+</summary>
+
+Because C++ interprets <code>"pizza"</code> as the address of its first element, applying the <code>*</code> operator yields the value of that
+first element, which is the character <code>p</code>. Because C++ interprets <code>"taco"</code> as the address of its first element, it interprets
+<code>"taco"[2]</code> as the value of the element two positions down the line that is, as the character <code>c</code> . In other words, the string
+constant acts the same as an array name
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+10. C++ enables you to pass a structure by value, and it lets you
+pass the address of a structure. If glitz is a structure variable, how would you pass it by value?
+How would you pass its address? What are the trade-offs of the two approaches?
+</summary>
+
+```sh
+// My answer
+By value: fun(glitz)
+- it copies everything from glitz to local structure - less efficient
+
+By address: fun(*glitz)
+- operates on original data - more prone to data corruption 
+- less understandable, use indirect membership operator (->)
+```
+
+// Answer in the book</br>
+To pass it by value, you just pass the structure name <code>glitz</code> . To pass its address, you use the address operator <code>&glitz</code>.
+Passing by the value automatically protects the original data, but it takes time and memory.
+Passing by address saves time and memory but doesn’t protect the original data unless you use the const modifier for the
+function parameter. Also passing by value means you can use ordinary structure member notation, but passing a pointer
+means you have to remember to use the indirect membership operator.
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+11. The function <code>judge()</code> has a type <code>int</code> return value. As an argument, it takes the
+address of a function. The function whose address is passed, in turn, takes a pointer
+to a const char as an argument and returns an int. Write the function prototype.
+
+</summary>
+
+```cpp
+int judge (int (*pf)(const char *));
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+12. Suppose we have the following structure declaration:
+
+```cpp
+struct applicant {
+    char name[30];
+    int credit_ratings[3];
+};
+```
+
+- Write a function that takes an applicant structure as an argument and displays its contents.</br>
+- Write a function that takes the address of an applicant structure as an argument and displays the contents of the
+pointed-to structure
+
+</summary>
+
+// My answer</br>
+
+```cpp
+fnTemp(applicant)(
+    std::cout << applicant.name << "  " << applicant.credit_ratings;
+)
+
+fnTemp(*applicant)(
+    std::cout << applicant->name << "  " << applicant->credit_ratings;
+)
+```
+
+// Answer in the book</br>
+
+a. Note that if <code>ap</code> is an applicant structure, then <code>ap.credit_ratings</code> is an array name and <code>ap.credit_ratings[i]</code>
+is an array element.
+
+```cpp
+void display(applicant ap)
+{
+    cout << ap.name << endl;
+    for (int i = 0; i < 3; i++)
+        cout << ap.credit_ratings[i] << endl;
+}
+```
+
+b. Note that if pa is a pointer to an applicant structure, then <code>pa->credit_ratings</code> is an array name and
+<code>pa->credit_ratings[i]</code> is an array element.
+
+```cpp
+void show(const applicant * pa)
+{
+    cout << pa->name << endl;
+    for (int i = 0; i < 3; i++)
+        cout << pa->credit_ratings[i] << endl;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+13. Suppose the functions <code>f1()</code> and <code>f2()</code> have the following prototypes:
+
+```cpp
+void f1(applicant * a);
+const char * f2(const applicant * a1, const applicant * a2);
+```
+
+Declare <code>p1</code> as a pointer that points to <code>f1</code> and <code>p2</code> as a pointer to <code>f2</code> .
+Declare <code>ap</code> as an array of five pointers of the same type as <code>p1</code> ,
+and declare <code>pa</code> as a pointer to an array of ten pointers of the same type as <code>p2</code> .
+Use <code>typedef</code> as an aid.
+
+</summary>
+
+```cpp
+typedef void (*p_f1)(applicant *);
+p_f1 p1 = f1;
+typedef const char * (*p_f2)(const applicant *, const applicant *);
+p_f2 p2 = f2;
+p_f1 ap[5];
+p_f2 (*pa)[10];
+```
+
+</details>
+
+## Chapter 8
+
+<!-- -------------------------------------------- -->
+<details><summary>
+01. What kinds of functions are good candidates for inline status?
+</summary>
+// Short ones.</br>
+// The ones, that are not repeatable</br></br>
+
+Short, nonrecursive functions that can fit in one line of code are good candidates for <code>inline status</code> .
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+02. Suppose the <code>song()</code> function has this prototype:
+
+```cpp
+void song(const char * name, int times);
+```
+
+a. How would you modify the prototype so that the default value for <code>times</code> is <code>1</code>?</br>
+b. What changes would you make in the function definition?</br>
+c. Can you provide a default value of <code>"O, My Papa"</code> for name?
+
+</summary>
+
+a.
+
+```cpp
+void song(const char * name, int times = 1);
+```
+
+b. None. Only prototypes contain the default value information.</br>
+
+c. Yes, provided that you retain the default value for times:
+
+```cpp
+void song(char * name = "O, My Papa", int times = 1);
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+03. Write overloaded versions of <code>iquote()</code>, a function that displays its argument
+enclosed in double quotation marks. Write three versions: one for an <code>int</code> argument,
+one for a <code>double</code> argument, and one for a <code>string</code> argument.
+</summary>
+
+You can use either the string <code>"\""</code> or the character <code>"</code> to print a quotation mark.
+The following functions show both methods:
+
+```cpp
+#include <iostream.h>
+void iquote(int arg){
+    cout << "\"" << arg << "\"" << endl;
+}
+
+void iquote(double arg){
+    cout << "\"" << arg << "\"" << endl;
+}
+
+void iquote(const char * str){
+    cout << "\"" << arg << "\"" << endl;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+04. The following is a structure template:
+
+```cpp
+struct box
+{
+    char maker[40];
+    float height;
+    float width;
+    float length;
+    float volume;
+};
+```
+
+a. Write a function that has a reference to a <code>box</code> structure as its formal argument
+and displays the value of each member.</br>
+b. Write a function that has a reference to a <code>box</code> structure as its formal argument
+and sets the <code>volume</code> member to the product of the other three dimensions.
+
+</summary>
+
+a. This function shouldn’t alter the structure members, so use the const qualifier:
+
+```cpp
+void show_box(const box & container)
+{
+    cout << "Made by " << container. maker << endl;
+    cout << "Height = " << container.height << endl;
+    cout << "Width = " << container.width << endl;
+    cout << "Length = " << container.length << endl;
+    cout << "Volume = " << container.volume << endl;
+}
+```
+
+b.
+
+```cpp
+void set_volume(box & crate)
+{
+    crate.volume = crate.height * crate.width * crate.length;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+05. What changes would need be made to Listing 7.15 (arrobj) so that the functions <code>fill()</code>
+and <code>show()</code> use reference parameters?
+</summary>
+
+Note that <code>show()</code> should use const to protect the object from being modified.
+Next, within <code>main()</code> , change the <code>fill()</code> call to this:
+
+Note that <code>(*pa)[i]</code> gets changed to the simpler <code>pa[i]</code> .
+Finally, the only change to <code>show()</code> is to the function header.
+
+```cpp
+// arrobj.cpp -- functions with array objects (C++11)
+#include <iostream>
+#include <array>
+#include <string>
+
+// constant data
+const int Seasons = 4;
+const std::array<std::string, Seasons> Snames =
+    {"Spring", "Summer", "Fall", "Winter"};
+
+// function to modify array object
+void fill(std::array<double, Seasons> &pa);
+// function that uses array object without modifying it
+void show(const std::array<double, Seasons> &da);
+
+int main()
+{
+    std::array<double, Seasons> expenses;
+    fill(expenses);
+    show(expenses);
+    return 0;
+}
+
+void fill(std::array<double, Seasons> &pa)
+{
+    using namespace std;
+    for (int i = 0; i < Seasons; i++)
+    {
+        cout << "Enter " << Snames[i] << " expenses: ";
+        cin >> pa[i];
+    }
+}
+
+void show(const std::array<double, Seasons> &da)
+{
+    using namespace std;
+    double total = 0.0;
+    cout << "\nEXPENSES\n";
+    for (int i = 0; i < Seasons; i++)
+    {
+        cout << Snames[i] << ": $" << da[i] << endl;
+        total += da[i];
+    }
+    cout << "Total Expenses: $" << total << endl;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+06. The following are some desired effects. Indicate whether each can be accomplished
+with default arguments, function overloading, both, or neither. Provide
+appropriate prototypes.</br>
+
+a. <code>mass(density, volume)</code> returns the mass of an object having a density of
+<code>density</code> and a volume of <code>volume</code> , whereas<code>mass(density)</code> returns the mass
+having a density of<code>density</code> and a <code>volume</code> of 1.0 cubic meters. All quantities
+are type<code>double</code>.</br>
+b. <code>repeat(10, "I'm OK")</code> displays the indicated string 10 times, and
+<code>repeat("But you're kind of stupid")</code> displays the indicated string 5
+times.</br>
+c. <code>average(3, 6)</code> returns the int average of two int arguments, and
+<code>average(3.0, 6.0)</code> returns the double average of two double values.</br>
+d. <code>mangle("I'm glad to meet you")</code> returns the character I or a pointer to
+the string "I'm mad to gleet you", depending on whether you assign the
+return value to a char variable or to a char* variable.</br>
+
+</summary>
+
+```cpp
+// My answer
+double mass(double density, double volume = 1);
+
+void repeat(int num, const char * words[]);
+void repeat(const char * words[], int num = 5);
+
+int average(int numA, int numB);
+double average(double numA, double numB);
+
+???
+```
+
+```cpp
+// Answer in the book
+// a. This can be done by using a default value for the second argument:
+double mass(double d, double v = 1.0);
+It can also be done by using function overloading:
+double mass(double d, double v);
+double mass(double d);
+
+// b. You can’t use a default for the repeat value because you have to provide
+// default values from right to left. You can use overloading:
+void repeat(int times, const char * str);
+void repeat(const char * str);
+
+// c. You can use function overloading:
+int average(int a, int b);
+double average(double x, double y);
+
+// d. You can’t do this because both versions would have the same signature.
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+07. Write a function template that returns the larger of its two arguments.
+</summary>
+
+```cpp
+// My answer
+template <typename t1, typpename t2>
+auto(t1 myTypeA, t2 myTypeB){
+    return myTypeA > myTypeB ? myTypeA : myTypeB;
+}
+```
+
+```cpp
+template<class T>
+T max(T t1, T t2) // or T max(const T & t1, const T & t2)
+{
+    return t1 > t2? t1 : t2;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+08. Given the template of Chapter Review Question 7 and the box structure of Chapter
+Review Question 4, provide a template specialization that takes two box arguments
+and returns the one with the larger volume.
+</summary>
+
+```cpp
+template<> box max(box b1, box b2)
+{
+    return b1.volume > b2.volume? b1 : b2;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+09. What types are assigned to v1, v2, v3, v4, and v5 in the following code (assuming
+the code is part of a complete program)?
+
+```cpp
+int g(int x);
+...
+float m = 5.5f;
+float & rm = m;
+decltype(m) v1 = m;
+decltype(rm) v2 = m;
+decltype((m)) v3 = m;
+decltype (g(100)) v4;
+decltype (2.0 * m) v5;
+```
+
+</summary>
+
+```sh
+v1 = float
+v2 = float &
+v3 = float
+v4 = int
+v5 = double (The literal 2.0 is type double)
+```
+
+</details>
+
+## Chapter 9
+
+<!-- -------------------------------------------- -->
+<details><summary>
+01. What storage scheme would you use for the following situations?</br></br>
+
+a. <code>homer</code> is a formal argument (parameter) to a function.</br>
+b. The <code>secret</code> variable is to be shared by two files.</br>
+c. The <code>topsecret</code> variable is to be shared by the functions in one file but hidden
+from other files.</br>
+d. <code>beencalled</code> keeps track of how many times the function containing it has
+been called.</br>
+
+</summary>
+
+a. <code>homer</code> is automatically an automatic variable.</br>
+b. <code>secret</code> should be defined as an external variable in one file and declared using extern in the second file.</br>
+c. <code>topsecret</code> could be defined as a static variable with internal linkage by prefacing the external definition with the
+keyword static. Or it could be defined in an unnamed namespace.</br>
+d. <code>beencalled</code> should be defined as a local static variable by prefacing a declaration in the function with the
+keyword static.</br>
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+02. Describe the differences between a <code>using</code> declaration and a <code>using</code> directive
+</summary>
+
+//Declaration will only allow to use one declared thing from namespace.</br>
+//Directive will allow to use all things declared namespace.</br></br>
+
+A using declaration makes available a single name from a namespace, and it has the
+scope corresponding to the declarative region in which the using declaration
+occurs. A using directive makes available all the names in a namespace. When you
+use a using directive, it is as if you have declared the names in the smallest declarative
+region containing both the using declaration and the namespace itself.
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+03. Rewrite the following so that it doesn’t use using declarations or using directives:
+
+```cpp
+#include <iostream>
+using namespace std;
+int main()
+{
+    double x;
+    cout << "Enter value: ";
+    while (!(cin >> x))
+    {
+        cout << "Bad input. Please enter a number: ";
+        cin.clear();
+        while (cin.get() != '\n')
+            continue;
+    }
+    cout << "Value = " << x << endl;
+    return 0;
+}
+```
+
+</summary>
+
+```cpp
+#include <iostream>
+
+int main()
+{
+    double x;
+    std::cout << "Enter value: ";
+    while (!(std::cin >> x))
+    {
+        std::cout << "Bad input. Please enter a number: ";
+        std::cin.clear();
+        while (std::cin.get() != '\n')
+            continue;
+    }
+    std::cout << "Value = " << x << std::endl;
+    return 0;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+04. Rewrite the following so that it uses using declarations instead of the using directive:
+
+```cpp
+#include <iostream>
+
+int main()
+{
+    double x;
+    cout << "Enter value: ";
+    while (!(cin >> x))
+    {
+        cout << "Bad input. Please enter a number: ";
+        cin.clear();
+        while (cin.get() != '\n')
+            continue;
+    }
+    cout << "Value = " << x << endl;
+    return 0;
+}
+```
+
+</summary>
+
+```cpp
+#include <iostream>
+
+int main()
+{
+    using std::cin;
+    using std::cout;
+    using std::endl;
+
+    double x;
+    cout << "Enter value: ";
+    while (!(cin >> x))
+    {
+        cout << "Bad input. Please enter a number: ";
+        cin.clear();
+        while (cin.get() != '\n')
+            continue;
+    }
+    cout << "Value = " << x << endl;
+    return 0;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+05. Suppose you want the <code>average(3,6)</code> function to return an int average of the two
+int arguments when it is called in one file, and you want it to return a double
+average of the two int arguments when it is called in a second file in the same program.
+How could you set this up?
+</summary>
+
+You could have separate static function definitions in each file. Or each file could
+define the appropriate <code>average()</code> function in an unnamed namespace.
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+06. What will the following two-file program display?
+
+```cpp
+// file1.cpp
+#include <iostream>
+using namespace std;
+void other();
+void another();
+int x = 10;
+int y;
+int main()
+{
+    cout << x << endl;
+    {
+        int x = 4;
+        cout << x << endl;
+        cout << y << endl;
+    }
+    other();
+    another();
+    return 0;
+}
+void other()
+{
+    int y = 1;
+    cout << "Other: " << x << ", " << y << endl;
+}
+
+// file 2.cpp
+#include <iostream>
+using namespace std;
+extern int x;
+namespace
+{
+    int y = -4;
+}
+void another()
+{
+    cout << "another(): " << x << ", " << y << endl;
+}
+```
+
+</summary>
+
+```sh
+10
+4
+0 //?? - why, y is not initialized... - undefined
+Other: 10, 1
+another(): 10, -4
 
 ```
 
 </details>
 
-### Chapter Review
-
-Notes\C++PrimerPlus\exercises\
-
+<!-- -------------------------------------------- -->
 <details><summary>
-!!!!!Question!!!!!
+07. What will the following program display?
+
+```cpp
+#include <iostream>
+using namespace std;
+void other();
+namespace n1
+{
+    int x = 1;
+}
+namespace n2
+{
+    int x = 2;
+}
+int main()
+{
+    using namespace n1;
+    cout << x << endl;
+    {
+        int x = 4;
+        cout << x << ", " << n1::x << ", " << n2::x << endl;
+    }
+    using n2::x;
+    cout << x << endl;
+    other();
+    return 0;
+}
+void other()
+{
+    using namespace n2;
+    cout << x << endl;
+    {
+        int x = 4;
+        cout << x << ", " << n1::x << ", " << n2::x << endl;
+    }
+    using n2::x;
+    cout << x << endl;
+}
+```
+
 </summary>
-!!!!!Answer!!!!!
+
+```cpp
+1
+4, 1, 2
+2
+2
+4, 1, 2
+2
+```
+
 </details>
 
-### Programming Exercises
+## Chapter 10
 
- [1.](../exercises/exercise_ch4_1.cpp) -->
+<!-- -------------------------------------------- -->
+<details><summary>
+01. What is a class?</br></br>
+
+</summary>
+
+Schema for creating object.</br></br>
+
+A class is a definition of a user-defined type. A class declaration specifies how data is
+to be stored, and it specifies the methods (class member functions) that can be used
+to access and manipulate that data.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+02. How does a class accomplish abstraction, encapsulation, and data hiding?</br></br>
+
+</summary>
+
+by division of methods and variables by <code>public</code> and <code>private</code></br></br>
+
+A class represents the operations you can perform on a class object with a public
+interface of class methods; this is abstraction.</br> The class can use private visibility (the
+default) for data members, meaning that the data can be accessed only through the
+member functions; this is data hiding.</br> Details of the implementation, such as data
+representation and method code, are hidden; this is encapsulation.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+03. What is the relationship between an object and a class?</br></br>
+
+</summary>
+
+Class is used for creating object and defining its behaviour.
+We can use object on operate on it in accordance to the methods defined in class.</br></br>
+
+A class defines a type, including how it can be used. An object is a variable or
+another data object, such as that produced by new, which is created and used
+according to the class definition. The relationship between a class and an object is
+the same as that between a standard type and a variable of that type
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+04. In what way, aside from being functions, are class function members different from class data members?</br></br>
+
+</summary>
+
+Class functions are used with objects and part of the processed data can be encapsulated.</br></br>
+
+If you create several objects of a given class, each object comes with storage for its
+own set of data. But all the objects use the one set of member functions. (Typically,
+methods are public and data members are private, but that’s a matter of policy, not
+of class requirements.)
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+05. Define a class to represent a bank account.
+Data members should include the depositor’s name, the account number (use a string), and the balance. Member functions should allow the following:
+
+- Creating an object and initializing it.</br>
+- Displaying the depositor’s name, account number, and balance</br>
+- Depositing an amount of money given by an argument</br>
+- Withdrawing an amount of money given by an argument</br>
+
+Just show the class declaration, not the method implementations. (Programming Exercise 1 provides you with an opportunity to write the implementation.)
+</br></br>
+
+</summary>
+
+```cpp
+// #include <cstring>
+// class definition
+class BankAccount
+{
+private:
+    char name[40]; // or std::string name;
+    char acctnum[25]; // or std::string acctnum;
+    double balance;
+    public:
+BankAccount(const char * client, const char * num, double bal = 0.0);
+    //or BankAccount(const std::string & client,
+    // const std::string & num, double bal = 0.0);
+    void show(void) const;
+    void deposit(double cash);
+    void withdraw(double cash);
+};
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+06. When are class constructors called? When are class destructors called?</br></br>
+
+</summary>
+
+constructors are called when object is created and during initialization.
+destructors are called when object is deleted or on the end of the program.</br></br>
+
+A class constructor is called when you create an object of that class or when you
+explicitly call the constructor. A class destructor is called when the object expires.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+07. Provide code for a constructor for the bank account class from Chapter Review Question 5.</br></br>
+
+</summary>
+
+These are two possible solutions (note that you must include cstring or string.h
+in order to use <code>strncpy()</code> or else you must include <code>string</code> to use the string
+class):
+
+```cpp
+BankAccount::BankAccount(const char * client, const char * num, double bal)
+{
+    strncpy(name, client, 39);
+    name[39] = '\0';
+    strncpy(acctnum, num, 24);
+    acctnum[24] = '\0';
+    balance = bal;
+}
+```
+
+or
+
+```cpp
+BankAccount::BankAccount(const std::string & client,
+const std::string & num, double bal)
+{
+    name = client;
+    acctnum = num;
+    balance = bal;
+}
+```
+
+Keep in mind that default arguments go in the prototype, not in the function definition.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+08. What is a default constructor? What is the advantage of having one?</br></br>
+
+</summary>
+
+It initializes class without any arguments.</br></br>
+
+A default constructor either has no arguments or has defaults for all the arguments.
+Having a default constructor enables you to declare objects without initializing
+them, even if you’ve already defined an initializing constructor. It also allows you to
+declare arrays.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+09. Modify the Stock class definition (the version in stock20.h) so that it has member
+    functions that return the values of the individual data members. Note: A member
+    that returns the company name should not provide a weapon for altering the array.
+    That is, it can’t simply return a string reference. It could return a const reference.</br></br>
+
+</summary>
+
+```cpp
+// stock30.h
+#ifndef STOCK30_H_
+#define STOCK30_H_
+
+class Stock
+{
+private:
+    std::string company;
+    long shares;
+    double share_val;
+    double total_val;
+    void set_tot() { total_val = shares * share_val; }
+public:
+    Stock(); // default constructor
+    Stock(const std::string & co, long n, double pr);
+    ~Stock() {} // do-nothing destructor
+    void buy(long num, double price);
+    void sell(long num, double price);
+    void update(double price);
+    void show() const;
+    const Stock & topval(const Stock & s) const;
+    int numshares() const { return shares; }
+    double shareval() const { return share_val; }
+    double totalval() const { return total_val; }
+const string & co_name() const { return company; }
+};
+
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+10. What are <code>this</code> and <code>*this</code>?</br></br>
+
+</summary>
+
+<code>this</code>  - pointer to current object</br>
+<code>*this</code> - dereferention of object (object itself)</br></br>
+
+The <code>this</code> pointer is available to class methods. It points to the object used to
+invoke the method. Thus, this is the address of the object, and <code>*this</code> represents the
+object itself.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+## Chapter 11
+
+<details><summary>
+01. Use a member function to overload the multiplication operator for the <code>Stonewt</code>
+class;</br> have the operator multiply the data members by a type double value.</br> Note
+that this will require carry over for the stone–pound representation. That is, twice 10
+stone 8 pounds is 21 stone 2 pounds.</br></br>
+
+</summary>
+
+// My answer
+
+```cpp
+class Stonewt{
+    private:
+        enum{Pds_to_stn = 14};
+        int stone;
+        double fracPound;
+        double pound;
+    public:
+        // code ...
+        Stonewt operator*(double mt){
+                        
+            stone     *= (int)mt;
+            fracPound += (int)mt % Pds_to_stn + mt - int(mt);
+
+            pound     *= mt;
+            stone     += (int)pound % Pds_to_stn;
+            pound     -= int(pound);
+
+            return dm;
+        }
+}
+```
+
+// Answer in the book</br>
+
+Here’s a prototype for the class definition file and a function definition for the
+methods file:
+
+```cpp
+// prototype
+Stonewt operator*(double mult);
+
+// definition — let constructor do the work
+Stonewt Stonewt::operator*(double mult)
+{
+    return Stonewt(mult * pounds);
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+02. What are the differences between a friend function and a member function?</br></br>
+
+</summary>
+
+// My answer</br>
+Friend functions have access to private data of a class (ivoked object).</br></br>
+
+// Answer in the book</br>
+A member function is part of a class definition and is invoked by a particular
+object.The member function can access members of the invoking object implicitly,
+without using the membership operator. A friend function is not part of a class, so
+it’s called as a straight function call. It can’t access class members implicitly, so it
+must use the membership operator applied to an object passed as an argument.
+Compare, for instance, the answer to Review Question 1 with the answer to
+Review Question 4.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+03. Does a nonmember function have to be a friend to access a class’s members?</br></br>
+
+</summary>
+
+// My answer</br>
+For the direct access to the private members - Yes</br>
+For the direct access to the public members - No</br>
+For indirect access - via public methods - No</br></br>
+
+// Answer in the book</br>
+It must be a friend to access private members, but it doesn’t have to be a friend to
+access public members.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+04. Use a friend function to overload the multiplication operator for the Stonewt class;
+have the operator multiply the double value by the Stone value.</br></br>
+
+</summary>
+
+// My answer
+
+```cpp
+class Stonewt{
+    private:
+        enum{Pds_to_stn = 14};
+        int stone;
+        double fracPound;
+        double pound;
+    public:
+        // code ...
+        friend Stonewt operator*(double mt, Stonewt &dm){
+            Stone tmp;
+            
+            tmp.stone = dm.stone;
+            tmp.fracPound = dm.fracPound;
+            tmp.pound = dm.pound;
+            
+            tmp.stone     *= (int)mt;
+            tmp.fracPound += (int)mt % Pds_to_stn + mt - int(mt);
+
+            tmp.pound     *= mt;
+            tmp.stone     += (int)dm.pound % Pds_to_stn;
+            tmp.pound     -= int(dm.pound);
+
+            return tmp;
+        }
+}
+```
+
+// Answer in the book </br>
+
+Here’s a prototype for the class definition file and a function definition for the
+methods file:
+
+```cpp
+// prototype
+friend Stonewt operator*(double mult, const Stonewt & s);
+
+// definition — let constructor do the work
+Stonewt operator*(double mult, const Stonewt & s)
+{
+    return Stonewt(mult * s.pounds);
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+05. Which operators cannot be overloaded?</br></br>
+
+</summary>
+
+The following five operators cannot be overloaded:
+
+```cpp
+sizeof
+.
+.*
+::
+? :
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+06. What restriction applies to overloading the following operators? <code>=</code>, <code>()</code>, <code>[]</code>, and <code>-></code></br></br>
+
+</summary>
+
+These operations cannot overload basic functions they currently perform,
+thus they need to be defined by using a member function.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+07. Define a conversion function for the Vector class that converts a Vector object to
+a type double value that represents the vector’s magnitude.</br></br>
+
+</summary>
+
+// My answer - it should be by simple context.. again
+
+```cpp
+class Vector{
+    private:
+        double x;
+        double y;
+    public:
+        // code ...
+        // option 1
+        double conv(Vector vc) const{
+            return sqrt(vc.x * vc.x + vc.y * vc.y);
+        }
+        // option 2
+        operator double(){
+            return sqrt(vc.x * vc.x + vc.y * vc.y);
+        }
+}
+```
+
+// Answer in the book</br>
+
+Here are a possible prototype and definition:
+
+```cpp
+// prototype and inline definition
+operator double () {return mag;}
+```
+
+Note, however, that it makes better sense to use the <code>magval()</code> method than to
+define this conversion function.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+## Chapter 12
+
+<!-- -------------------------------------------- -->
+<details><summary>
+01. Suppose a String class has the following private members:
+
+```cpp
+class String
+{
+    private:
+    char * str; // points to string allocated by new
+    int len; // holds length of string
+    //...
+};
+```
+
+a. What’s wrong with this default constructor?
+
+```cpp
+String::String() {}
+```
+
+b. What’s wrong with this constructor?
+
+```cpp
+String::String(const char * s)
+{
+    str = s;
+    len = strlen(s);
+}
+```
+
+c. What’s wrong with this constructor?
+
+```cpp
+String::String(const char * s)
+{
+    strcpy(str, s);
+    len = strlen(s);
+}
+```
+
+</summary>
+
+a. Constructor won't initialize data for proper use of object</br>
+b. It is so called `shallow copy` for str. It will copy only pointer `s` to string, thus two objects will point into the same string</br>
+c. `s` is `const` and is put into function
+
+// Answer in the book</br>
+
+a. The syntax is fine, but this constructor leaves the `str` pointer uninitialized.
+The constructor should either set the pointer to NULL or use `new []` to initialize
+the pointer.
+b. This constructor does not create a new string; it merely copies the address of
+the old string. It should use `new []` and `strcpy()`.
+c. It copies the string without allocating the space to store it. It should use new
+`char[len + 1]` to allocate the proper amount of memory.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+02. Name three problems that may arise if you define a class in which a pointer member
+is initialized by using <code>new</code>. Indicate how they can be remedied.</br></br>
+
+</summary>
+
+// Answer in the book</br>
+
+First, when an object of that type expires, the data pointed to by the object’s member
+pointer remains in memory, using space and remaining inaccessible because the
+pointer has been lost. That can be fixed by having the class destructor delete memory
+allocated by `new` in the constructor functions.</br>
+
+Second, after the destructor deletes such memory, it might end up trying to delete it twice if a program initializes
+one such object to another.That’s because the default initialization of one
+object to another copies pointer values but does not copy the pointed-to data, and
+this produces two pointers to the same data.The solution is to define a class copy
+constructor that causes initialization to copy the pointed-to data.</br>
+
+Third, assigning one object to another can produce the same situation of two pointers pointing to
+the same data. The solution is to overload the assignment operator so that it copies
+the data, not the pointers.</br>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+03. What class methods does the compiler generate automatically if you don’t provide
+them explicitly? Describe how these implicitly generated functions behave.</br></br>
+
+</summary>
+
+// Answer in the book</br>
+
+- A default constructor if you define no constructors
+- A copy constructor if you don’t define one
+- An assignment operator if you don’t define one
+- A default destructor if you don’t define one
+- An address operator if you don’t define one
+
+The default constructor does nothing, but it allows you to declare arrays and uninitialized
+objects. The default copy constructor and the default assignment operator
+use memberwise assignment.The default destructor does nothing.The implicit
+address operator returns the address of the invoking object (that is, the value of the
+`this` pointer).
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+04. Identify and correct the errors in the following class declaration:
+
+```cpp
+class nifty
+{
+    // data
+    char personality[];
+    int talents;
+    // methods
+    nifty();
+    nifty(char *s);
+    ostream &operator<<(ostream &os, nifty &n);
+} 
+
+nifty : nifty()
+{
+    personality = NULL;
+    talents = 0;
+}
+
+nifty : nifty(char *s)
+{
+    personality = new char[strlen(s)];
+    personality = s;
+    talents = 0;
+}
+
+ostream &nifty : operator<<(ostream & os, nifty & n)
+{
+    os << n;
+}
+```
+
+</summary>
+
+
+```cpp
+class nifty
+{
+    // data
+    char personality[];
+    int talents;
+    // methods
+    nifty();
+    nifty(char *s);
+    ostream &operator<<(ostream &os, nifty &n);
+
+    // Lack of destructor, when new is used
+    ~nifty();
+
+    // Lack of assignment operator - shallow copy error
+    nifty &operator=(nifty n);
+} 
+
+nifty : nifty()
+{
+    personality = NULL;
+    talents = 0;
+}
+
+nifty : nifty(char *s)
+{
+    personality = new char[strlen(s)];
+    // personality = s; // pointer assigned - shallow copy
+    strcpy(personality, s);
+    talents = 0;
+}
+
+ostream &nifty : operator<<(ostream & os, nifty & n)
+{
+    os << n;
+}
+
+~nifty : nifty(){
+    delete personality;
+}
+
+nifty &operator=(nifty n){
+    if(personality != NULL)
+        delete personality;
+    personality = new char[strlen(n.personality)];
+    strcpy(personality, n.personality);
+    talents = n.talents;
+}
+
+```
+
+// Answer in the book</br>
+
+The personality member should be declared either as a character array or as a
+pointer-to-char. Or you could make it a String object or a string object. The
+declaration fails to make the methods public. Then there are several small errors.
+Here is a possible solution, with changes (other than deletions) in boldface:
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+class nifty
+{
+private:                  // optional
+    char personality[40]; // provide array size
+    int talents;
+
+public: // needed
+    // methods
+    nifty();
+    nifty(const char *s);
+    friend ostream &operator<<(ostream &os, const nifty &n);
+}; // note closing semicolon
+nifty::nifty()
+{
+    personality[0] = '\0';
+    talents = 0;
+}
+nifty::nifty(const char *s)
+{
+    strcpy(personality, s);
+    talents = 0;
+}
+ostream &operator<<(ostream &os, const nifty &n)
+{
+    os << n.personality << '\n';
+    os << n.talent << '\n';
+    return os;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+05. Consider the following class declaration:</br></br>
+
+```cpp
+class Golfer
+{
+private:
+    char *fullname; // points to string containing golfer's name
+    int games;      // holds number of golf games played
+    int *scores;    // points to first element of array of golf scores
+public:
+    Golfer();
+    Golfer(const char *name, int g = 0);
+    // creates empty dynamic array of g elements if g > 0
+    Golfer(const Golfer &g);
+    ~Golfer();
+};
+```
+
+a. What class methods would be invoked by each of the following statements ?
+
+```cpp
+Golfer nancy;                    // #1
+Golfer lulu(“Little Lulu”);      // #2
+Golfer roy(“Roy Hobbs”, 12);     // #3
+Golfer *par = new Golfer;        // #4
+Golfer next = lulu;              // #5
+Golfer hazzard = “Weed Thwacker”;// #6
+*par = nancy;                    // #7 
+nancy = “Nancy Putter”;          // #8
+```
+
+b. Clearly, the class requires several more methods to make it useful. What additional
+    method does it require to protect against data corruption?
+
+</summary>
+
+a.
+
+```cpp
+Golfer nancy;                    // #1 Golfer()
+Golfer lulu(“Little Lulu”);      // #2 Golfer(const char *name, int g = 0);
+Golfer roy(“Roy Hobbs”, 12);     // #3 Golfer(const char *name, int g = 0);
+Golfer *par = new Golfer;        // #4 Golfer operator=(Golfer *n);
+Golfer next = lulu;              // #5 Golfer operator=(Golfer n); // wrong
+Golfer hazzard = “Weed Thwacker”;// #6 Golfer operator=(String n); // wrong
+*par = nancy;                    // #7 Golfer *operator=(Golfer n); 
+nancy = “Nancy Putter”;          // #8 Golfer operator=(String n); // wrong
+```
+
+b.
+
+```cpp
+Golfer &operator=(const Golfer &);
+```
+
+// Answer in the book</br>
+
+a.
+
+```cpp
+Golfer nancy; // default constructor
+Golfer lulu("Little Lulu"); // Golfer(const char * name, int g)
+Golfer roy("Roy Hobbs", 12); // Golfer(const char * name, int g)
+Golfer * par = new Golfer; // default constructor
+Golfer next = lulu; // Golfer(const Golfer &g)
+Golfer hazard = "Weed Thwacker"; // Golfer(const char * name, int g)
+*par = nancy; // default assignment operator
+nancy = "Nancy Putter";// Golfer(const char * name, int g), then
+// the default assignment operator
+```
+
+Note that some compilers additionally call the default assignment operator
+for Statements 5 and 6.
+
+b. The class should define an assignment operator that copies data rather than
+addresses.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+## Chapter 13
+
+<!-- -------------------------------------------- -->
+<details><summary>
+01. What does a derived class inherit from a base class?</br></br>
+
+</summary>
+
+All public and protected methods and variables.
+
+// Answer in the book</br>
+
+The public members of the base class become public members of the derived class.
+The protected members of the base class become protected members of the derived
+class.The private members of the base class are inherited but cannot be accessed
+directly. The answer to Review Question 2 provides the exceptions to these general
+rules.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+02. What doesn’t a derived class inherit from a base class?</br></br>
+
+</summary>
+
+The constructor methods are not inherited, the destructor is not inherited, the
+assignment operator is not inherited, and friends are not inherited.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+03. Suppose the return type for the <code>baseDMA::operator=()</code> function were defined as
+<code>void</code> instead of <code>baseDMA &</code>.
+</br>What effect, if any, would that have? What if the return
+type were <code>baseDMA</code> instead of <code>baseDMA &</code>?</br></br>
+
+</summary>
+
+`void` - returns nothing instead of reference to `baseDMA`, that is you would not be able to return `baseDMA` object and its data via `=` so the chain assignment wont work, only single assignment</br>
+Returning object, not reference to it, makes execution slower due to necessity of copying everything to return it, instead of pointing to memory with already created object.
+
+// Answer in the book</br>
+
+If the return type were void, you would still be able to use single assignment but
+not chain assignment:
+
+```cpp
+baseDMA magazine("Pandering to Glitz", 1);
+baseDMA gift1, gift2, gift3;
+gift1 = magazine; // ok
+gift 2 = gift3 = gift1; // no longer valid
+```
+
+If the method returned an object instead of a reference, the method execution
+would be slowed a bit because the return statement would involve copying the
+object.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+04. In what order are class constructors and class destructors called when a derived class
+object is created and deleted?</br></br>
+
+</summary>
+
+In reverse order to invoking constructors.
+In case of constructor with inheritance - it would be base class invoked via member initializator list `:`, constructed in order from left to right (in case of many classes).
+
+// Answer in the book</br>
+
+Constructors are called in the order of derivation, with the most ancestral constructor
+called first. Destructors are called in the opposite order.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+05. If a derived class doesn’t add any data members to the base class, does the derived
+class require constructors?</br></br>
+
+</summary>
+
+Yes, and it need to invoke base class constructor.
+
+// Answer in the book</br>
+
+Yes, every class requires its own constructors. If the derived class adds no new members,
+the constructor can have an empty body, but it must exist.
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+06. Suppose a base class and a derived class both define a method with the same name
+and a derived-class object invokes the method. What method is called?</br></br>
+
+</summary>
+
+Method in derived class.
+
+// Answer in the book</br>
+
+Only the derived-class method is called. It supersedes the base-class definition.A
+base-class method is called only if the derived class does not redefine the method or
+if you use the scope-resolution operator. However, you really should declare as virtual
+any functions that will be redefined
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+07. When should a derived class define an assignment operator?</br></br>
+
+</summary>
+
+When it need to perform deep copy - that is, if it have dynamically allocated data.
+
+// Answer in the book</br>
+
+The derived class should define an assignment operator if the derived-class constructors
+use the `new` or `new []` operator to initialize pointers that are members of
+that class. More generally, the derived class should define an assignment operator if
+the default assignment is incorrect for derived-class members.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+08. Can you assign the address of an object of a derived class to a pointer to the base
+class?</br> Can you assign the address of an object of a base class to a pointer to the
+derived class?</br></br>
+
+</summary>
+
+Yes to both.
+Pointer of derived class to base class is called upcasting.
+Pointer of base class to derived class is called downcasting.
+
+// Answer in the book</br>
+
+Yes, you can assign the address of an object of a derived class to a pointer to the
+base class. You can assign the address of a base-class object to a pointer to a derived
+class (downcasting) only by making an explicit type cast, and it is not necessarily
+safe to use such a pointer.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+09. Can you assign an object of a derived class to an object of the base class? Can you
+assign an object of a base class to an object of the derived class?</br></br>
+
+</summary>
+
+If you will make methods that will handle this - yes.
+
+// Answer in the book</br>
+
+Yes, you can assign an object of a derived class to an object of the base class. Any
+data members that are new to the derived type are not passed to the base type,
+however. The program uses the base-class assignment operator. Assignment in the
+opposite direction (base to derived) is possible only if the derived class defines a
+`conversion operator`, which is a constructor that has a reference to the base type
+as its sole argument, or else defines an assignment operator with a base-class
+parameter.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+10. Suppose you define a function that takes a reference to a base-class object as an
+argument. Why can this function also use a derived-class object as an argument?</br></br>
+
+</summary>
+
+Because it is inherited.
+Derived class object holds base class object.  
+
+// Answer in the book</br>
+
+It can do so because C++ allows a reference to a base type to refer to any type
+derived from that base.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+11. Suppose you define a function that takes a base-class object as an argument (that is,
+the function passes a base-class object by value). Why can this function also use a
+derived-class object as an argument?</br></br>
+
+</summary>
+
+Because it is inherited.
+Derived class object holds base class object.  
+
+// Answer in the book</br>
+
+Passing an object by value invokes the copy constructor. Because the formal argument
+is a base-class object, the base-class copy constructor is invoked.The copy
+constructor has as its argument a reference to the base class, and this reference can
+refer to the derived object passed as an argument.The net result is that a new baseclass
+object whose members correspond to the base class portion of the derived
+object is produced
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+12. Why is it usually better to pass objects by reference than by value?</br></br>
+
+</summary>
+
+Because passing by value makes copy of an object, when reference is the address of the original object. 
+
+// Answer in the book</br>
+
+Passing an object by reference instead of by value enables the function to avail itself
+of virtual functions. Also passing an object by reference instead of by value may use
+less memory and time, particularly for large objects. The main advantage of passing
+by value is that it protects the original data, but you can accomplish the same end
+by passing the reference as a `const` type.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+13. Suppose <code>Corporation</code> is a base class and <code>PublicCorporation</code> is a derived class. Also
+suppose that each class defines a <code>head()</code> member function, that <code>ph</code> is a pointer to
+the <code>Corporation</code> type, and that <code>ph</code> is assigned the address of a <code>PublicCorporation</code>
+object. How is <code>ph->head()</code> interpreted if the base class defines <code>head()</code> as a</br>
+&emsp;a. Regular nonvirtual method</br>
+&emsp;b. Virtual method</br></br>
+
+</summary>
+
+- via regular method - the `PublicCorporation->head()` will be invoked
+- via virtual method - the `Corporation->head()` will be invoked
+
+// Answer in the book</br>
+
+If `head()` is a regular method, then `ph->head()` invokes `Corporation::head()`. If
+`head()` is a virtual function, then `ph->head()` invokes
+`PublicCorporation::head()`.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+14. What’s wrong, if anything, with the following code?
+
+```cpp
+class Kitchen
+{
+private:
+    double kit_sq_ft;
+
+public:
+    Kitchen() { kit_sq_ft = 0.0; }
+    virtual double area() const { return kit_sq_ft * kit_sq_ft; }
+};
+
+class House : public Kitchen
+{
+private:
+    double all_sq_ft;
+
+public:
+    House() { all_sq_ft += kit_sq_ft; }
+    double area(const char *s) const
+    {
+        cout << s;
+        return all_sq_ft;
+    }
+};
+```
+
+</summary>
+
+Why `House` inherits `Kitchen`, instead containing it (it is has-a model) or via private deriviation(chapter 14)?  
+The keyword `virtual` in derived class `area` constructor don't need to be used, because base class function is overridden in a derived class via declared function as virtual in the base class.
+`Kitchen` and `House` constructors don't allow any input that assigns value to private values, which mean the `kit_sq_ft` and `all_sq_ft` will always be `0.0`.
+
+// Answer in the book</br>
+
+First, the situation does not fit the is-a model, so public inheritance is not appropriate.
+Second, the definition of `area()` in `House` hides the `Kitchen` version of `area()`
+because the two methods have different signatures.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+## Chapter 14
+
+<!-- -------------------------------------------- -->
+<details><summary>
+01. For each of the following sets of classes, indicate whether public or private derivation
+is more appropriate for Column B:
+
+|Lp|A|B|
+|---|---|---|
+|1|class Bear|class PolarBear|
+|2|class Kitchen|class Home|
+|3|class Person|class Programmer|
+|4|class Person|class HorseAndJockey|
+|5|class Person, class Automobile|class Driver|
+
+</summary>
+
+// Answer in the book</br>
+
+1. Public; a polar bear is a kind of bear
+2. Private; a home has a kitchen
+3. Public; a programmer is a kind of
+person
+4. Private; a horse and jockey team
+contains a person
+5. Person public because a driver is a person;
+Automobile private because a
+driver has an automobile
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+02. Suppose you have the following definitions:
+
+```cpp
+class Frabjous
+{
+private:
+    char fab[20];
+
+public:
+    Frabjous(const char *s = "C++") : fab(s) {}
+    virtual void tell() { cout << fab; }
+};
+
+class Gloam
+{
+private:
+    int glip;
+    Frabjous fb;
+
+public:
+    Gloam(int g = 0, const char *s = "C++");
+    Gloam(int g, const Frabjous &f);
+    void tell();
+};
+```
+
+Given that the <code>Gloam</code> version of <code>tell()</code> should display the values of <code>glip</code> and <code>fb</code>, provide definitions for the three <code>Gloam</code> methods.
+
+</summary>
+
+```cpp
+Gloam::Gloam(int g, const char *s)
+{
+    glip = g;
+    strcpy(fb.fab, s); 
+}
+
+Gloam::Gloam(int g, const Frabjous &f)
+{
+    glip = g;
+    strcpy(fb.fab, f.fab);     
+}
+
+void Gloam::tell()
+{
+    cout << glip;
+    cout << fb.fab;
+}
+```
+
+// Answer in the book</br>
+
+```cpp
+Gloam::Gloam(int g, const char * s) : glip(g), fb(s) { }
+Gloam::Gloam(int g, const Frabjous & fr) : glip(g), fb(fr) { }
+// note: the above uses the default Frabjous copy constructor
+void Gloam::tell()
+{
+    fb.tell();
+    cout << glip << endl;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+03. Suppose you have the following definitions:
+
+```cpp
+class Frabjous
+{
+private:
+    char fab[20];
+
+public:
+    Frabjous(const char *s = "C++") : fab(s) {}
+    virtual void tell() { cout << fab; }
+};
+
+class Gloam : private Frabjous
+{
+private:
+    int glip;
+
+public:
+    Gloam(int g = 0, const char *s = "C++");
+    Gloam(int g, const Frabjous &f);
+    void tell();
+};
+```
+
+Given that the <code>Gloam</code> version of <code>tell()</code> should display the values of <code>glip</code> and <code>fab</code>,
+provide definitions for the three <code>Gloam</code> methods.
+
+</summary>
+
+
+```cpp
+// Gloam::Gloam(int g, const char *s) // wrong 
+// {
+//     glip = g;
+//     this(s); // Error: this is a pointer, not a function - this keyword is a pointer to the current object, and it cannot be used to call constructor
+// }
+
+// Gloam::Gloam(int g, const Frabjous &f) // wrong
+// {
+//     glip = g;
+//     this(f); // Error: this is a pointer, not a function
+// }
+
+Gloam::Gloam(int g, const char * s)
+           : glip(g), Frabjous(s) { }
+Gloam::Gloam(int g, const Frabjous & fr)
+           : glip(g), Frabjous(fr) { }
+
+void Gloam::tell()
+{
+    cout << glip;
+    Frabjous::tell();
+}
+```
+
+// Answer in the book</br>
+
+```cpp
+Gloam::Gloam(int g, const char * s)
+            : glip(g), Frabjous(s) { }
+Gloam::Gloam(int g, const Frabjous & fr)
+            : glip(g), Frabjous(fr) { }
+// note: the above uses the default Frabjous copy constructor
+void Gloam::tell()
+{
+    Frabjous::tell();
+    cout << glip << endl;
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+04. Suppose you have the following definition, based on the <code>Stack</code> template of Listing
+14.13 (stacktp.h) and the <code>Worker</code> class of Listing 14.10 (workermi.h):
+
+```cpp
+Stack<Worker *> sw;
+```
+
+Write out the class declaration that will be generated. Just do the class declaration,
+not the non-inline class methods.
+
+</summary>
+
+```cpp
+template <class Worker *>
+class Stack
+{
+private:
+    enum
+    {
+        MAX = 10
+    };               // constant specific to class
+    Worker * items[MAX]; // holds stack items
+    int top;         // index for top stack item
+public:
+    Stack();
+    bool isempty();
+    bool isfull();
+    bool push(const Worker &item); // add item to stack
+    bool pop(Worker &item);        // pop top into item
+};
+```
+
+// Answer in the book</br>
+
+```cpp
+class Stack<Worker *>
+{
+private:
+    enum {MAX = 10}; // constant specific to class
+    Worker * items[MAX]; // holds stack items
+    int top; // index for top stack item
+public:
+    Stack();
+    Boolean isempty();
+    Boolean isfull();
+    Boolean push(const Worker * & item); // add item to stack
+    Boolean pop(Worker * & item); // pop top into item
+};
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+05. Use the template definitions in this chapter to define the following:
+
+- An array of <code>string</code> objects
+- A stack of arrays of <code>double</code>
+- An array of stacks of pointers to <code>Worker</code> objects
+
+How many template class definitions are produced in Listing 14.18 (twod.cpp)?
+
+</summary>
+
+```cpp
+vector<std::string> one;
+Stack<vector<double>> two;
+vector<Stack<* Worker>> three;
+```
+
+In `twop.cpp` 4 template class definitions are produced  
+
+// Answer in the book</br>
+
+```cpp
+ArrayTP<string> sa;
+StackTP< ArrayTP<double> > stck_arr_db;
+ArrayTP< StackTP<Worker *> > arr_stk_wpr;
+```
+
+Listing 14.18 generates four templates: `ArrayTP<int, 10>`, `ArrayTP<double, 10>`,
+`ArrayTP<int,5>`, and `Array< ArrayTP<int,5>, 10>`.
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+06. Describe the differences between virtual and nonvirtual base classes.</br></br>
+
+</summary>
+
+In case of upcasting, the base class methods for nonvirtual base class will not be invoked, which can result in errors
+
+// Answer in the book</br>
+
+If two lines of inheritance for a class share a common ancestor, the class winds up
+having two copies of the ancestor’s members. Making the ancestor class a virtual
+base class to its immediate descendants solves that problem.
+
+</details>
+<!-- -------------------------------------------- -->
+
+## Chapter 15
+
+<!-- -------------------------------------------- -->
+<details><summary>
+01. What’s wrong with the following attempts at establishing friends?
+
+a.
+
+```cpp
+class snap
+{
+    friend clasp;
+    ...
+};
+class clasp
+{
+    ...
+};
+```
+
+b.
+
+```cpp
+class cuff
+{
+public:
+    void snip(muff &){...}...
+};
+class muff
+{
+    friend void cuff::snip(muff &);
+    ...
+};
+```
+
+c.
+
+```cpp
+class muff
+{
+    friend void cuff::snip(muff &);
+    ...
+};
+class cuff
+{
+public:
+    void snip(muff &){...}...
+};
+```
+
+</summary>
+
+// Answer in the book</br>
+
+a.The friend declaration should be as follows :
+
+```cpp
+friend class clasp;
+```
+
+b.This needs a forward declaration so that the compiler can interpret void snip(muff &) :
+
+```cpp
+class muff; // forward declaration
+class cuff
+{
+public:
+    void snip(muff &){...}...
+};
+class muff
+{
+    friend void cuff::snip(muff &);
+    ...
+};
+```
+
+c. First, the cuff class declaration should precede the muff class so that the compiler can understand the term cuff::snip().
+Second, the compiler needs a forward declaration of muff so that it can understand snip(muff &) : 
+
+```cpp
+class muff; // forward declaration
+class cuff
+{
+public:
+    void snip(muff &){...}
+    ...
+};
+class muff
+{
+    friend void cuff::snip(muff &);
+    ...
+};
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+02. You’ve seen how to create mutual class friends. Can you create a more restricted
+form of friendship in which only some members of Class B are friends to Class A
+and some members of A are friends to B? Explain.</br></br>
+
+</summary>
+
+With forward declaration:
+
+```cpp
+class A; // forward declaration
+
+class B{
+        friend void sync(A &cA, B &cB);
+}
+
+class A{
+        friend void sync(A &cA, B &cB);
+}
+
+// only protected & public members are shared - there is no more restrictive way
+```
+
+// Answer in the book</br>
+
+No. For Class A to have a friend that’s a member function of Class B, the B declaration
+must precede the A declaration. A forward declaration is not enough because it
+would tell A that B is a class, but it wouldn’t reveal the names of the class members.
+Similarly, if B has a friend that’s a member function of A, the complete A declaration
+must precede the B declaration.These two requirements are mutually exclusive.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+03. What problems might the following nested class declaration have?
+
+```cpp
+class Ribs
+{
+private:
+    class Sauce
+    {
+        int soy;
+        int sugar;
+
+    public:
+        Sauce(int s1, int s2) : soy(s1), sugar(s2) {}
+    };
+    ...
+};
+```
+
+</summary>
+
+The public interface of nested Sauce class will only be visible (will have a scope of) Ribs class.
+
+// Answer in the book</br>
+
+The only access to a class is through its public interface, which means the only
+thing you can do with a Sauce object is call the constructor to create one. The
+other members (soy and sugar) are private by default.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+04. How does <code>throw</code> differ from <code>return</code>?</br></br>
+
+</summary>
+
+
+`throw()` will get directly into main - it is faster 
+`throw(fun)` can jump into desired function  
+
+
+// Answer in the book</br>
+
+
+Suppose the function f1() calls the function f2(). A return statement in f2()
+causes program execution to resume at the next statement following the f2() function
+call in function f1(). A throw statement causes the program to back up
+through the current sequence of function calls until it finds a try block that
+directly or indirectly contains the call to f2(). This might be in f1() or in a function
+that called f1(), and so on. Once there, execution goes to the next matching
+catch block, not to the first statement after the function call.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+05. Suppose you have a hierarchy of exception classes that are derived from a base
+exception class. In what order should you place <code>catch</code> blocks?</br></br>
+
+</summary>
+
+// Answer in the book</br>
+
+You should arrange the catch blocks in order, from most derived class to least
+derived.
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+06. Consider the <code>Grand</code>, <code>Superb</code>, and <code>Magnificent</code> classes defined in this chapter. Suppose
+<code>pg</code> is a type <code>Grand * pointer</code> that is assigned the address of an object of one of
+these three classes and that <code>ps</code> is a type <code>Superb *</code> pointer.What is the difference in
+how the following two code samples behave?
+
+```cpp
+if (ps = dynamic_cast<Superb *>(pg))
+    ps->say(); // sample #1
+
+if (typeid(*pg) == typeid(Superb))
+    (Superb *) pg->say(); // sample #2
+
+```
+
+</summary>
+
+sample1 - if with dynamic cast - will assign any class as long as it is safe
+sample2 - if with typeid - will only check if pg is the exact pointer of Superb class  
+
+// Answer in the book</br>
+
+For Sample #1, the if condition is true if pg points to a Superb object or to an
+object of any class descended from Superb. In particular, it is also true if pg points
+to a Magnificent object. In Sample #2, the if condition is true only for a Superb
+object, not for objects derived from Superb.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+07. How is the <code>static_cast</code> operator different from the <code>dynamic_cast</code> operator?</br></br>
+
+</summary>
+
+static_cast is only valid when compiler can convert type name into the same type expression has, 
+while dynamic_cast can assigning into expression is safe (upcasting)
+
+// Answer in the book</br>
+
+The dynamic_cast operator only allows upcasting in a class hierarchy, whereas a
+static_cast operator allows both upcasting and downcasting.The static_cast
+operator also allows conversions from enumeration types to integer types, and vice
+versa, and between various numeric types.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+## Chapter 16
+
+<!-- -------------------------------------------- -->
+<details><summary>
+01. Consider the following class declaration:
+
+```cpp
+class RQ1
+{
+private:
+    char *st; // points to C-style string
+public:
+    RQ1()
+    {
+        st = new char[1];
+        strcpy(st, "");
+    }
+    RQ1(const char *s)
+    {
+        st = new char[strlen(s) + 1];
+        strcpy(st, s);
+    }
+    RQ1(const RQ1 &rq)
+    {
+        st = new char[strlen(rq.st) + 1];
+        strcpy(st, rq.st);
+    }
+    ~RQ1(){delete[] st};
+    RQ &operator=(const RQ &rq);
+    // more stuff
+};
+```
+
+Convert this to a declaration that uses a <code>string</code> object instead.</br>
+What methods no longer need explicit definitions?
+
+</summary>
+
+
+```cpp
+class RQ1
+{
+private:
+    std::string st;
+public:
+    RQ1()
+    {
+        st = "";
+    }
+    RQ1(const char *s)
+    {
+        strcpy(st, s);
+    }
+    ~RQ1(){};
+    RQ &operator=(const RQ &rq);
+    // more stuff
+};
+```
+
+delete, (const RQ1 &rq)
+
+// Answer in the book</br>
+
+```cpp
+#include <string>
+using namespace std;
+class RQ1
+{
+private:
+    string st; // a string object
+public:
+    RQ1() : st("") {}
+    RQ1(const char *s) : st(s) {}
+    ~RQ1(){};
+    // more stuff
+};
+```
+
+The explicit copy constructor, destructor, and assignment operator are no longer
+needed because the <code>string</code> object provides its own memory management.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+02. Name at least two advantages <code>string</code> objects have over C-style strings in terms
+of ease-of-use.</br></br>
+
+</summary>
+
+- string obj is an object, thus use destructor - for c-style you need to remember yourself to deallocate data
+- string obj can be used with STL
+
+// Answer in the book</br>
+
+You can assign one string object to another. A string object provides its own
+memory management so that you normally don’t have to worry about a string
+exceeding the capacity of its holder
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+03. Write a function that takes a reference to a <code>string</code> object as an argument and that
+converts the <code>string</code> object to all uppercase.</br></br>
+
+</summary>
+
+```cpp
+void fun(string &st)
+{
+    st.toupper();
+}
+```
+
+// Answer in the book</br>
+
+```cpp
+#include <string>
+#include <cctype>
+using namespace std;
+void ToUpper(string &str)
+{
+    for (int i = 0; i < str.size(); i++)
+        str[i] = toupper(str[i]);
+}
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+04. Which of the following are not examples of correct usage (conceptually or syntactically)
+of <code>auto_ptr</code>? (Assume that the needed header files have been included.)
+
+```cpp
+auto_ptr<int> pia(new int[20]);
+auto_ptr<string>(new string);
+int rigue = 7;
+auto_ptr<int> pr(&rigue);
+auto_ptr dbl(new double);
+```
+
+</summary>
+
+`auto_ptr<int> pia(new int[20]);` - table cannot be assigned to auto_ptr
+`auto_ptr<string>(new string);` - name?
+`auto_ptr<int> pr(&rigue);` - reference to automatic value // runtime error
+`auto_ptr dbl(new double);` - lack of data type in <> // compile error
+
+// Answer in the book</br>
+
+```cpp
+auto_ptr<int> pia= new int[20]; // wrong, use with new, not new[]
+auto_ptr<string>(new string); // wrong, no name for pointer
+int rigue = 7;
+auto_ptr<int>(&rigue); // wrong, memory not allocated by new
+auto_ptr dbl (new double); // wrong, omits <double>
+```
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+05. If you could make the mechanical equivalent of a stack that held golf clubs instead
+of numbers, why would it (conceptually) be a bad golf bag?</br></br>
+
+</summary>
+
+Because you will need to get/open all golf before correct one.
+
+// Answer in the book</br>
+
+The LIFO aspect of a stack means you might have to remove a lot of clubs before
+reaching the one you need
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+06. Why would a <code>set</code> container be a poor choice for storing a hole-by-hole record of
+your golf scores?</br></br>
+
+</summary>
+
+Because it can store only unique values.
+
+// Answer in the book</br>
+
+The set will store just one copy of each value, so, say, five scores of 5 would be
+stored as a single 5.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+07. Because a pointer is an iterator, why didn’t the STL designers simply use pointers
+instead of iterators?</br></br>
+
+</summary>
+
+// Answer in the book</br>
+
+Using iterators allows you to use objects with a pointer-like interface to move
+through data that is organized in some fashion other than an array (for example,
+data in a doubly linked list).
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+08. Why didn’t the STL designers simply define a base iterator class, use inheritance to
+derive classes for the other iterator types, and express the algorithms in terms of
+those iterator classes?</br></br>
+
+</summary>
+
+// Answer in the book</br>
+
+The STL approach allows STL functions to be used with ordinary pointers to
+ordinary arrays as well as with iterators to STL container classes, thus increasing
+generality.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+09. Give at least three examples of convenience advantages that a <code>vector</code> object has
+over an ordinary array.</br></br>
+
+</summary>
+
+- Dynamic and simple data allocation - .pushback(data)
+- Use of STL: .size(), .sort() 
+- It uses destructor
+
+// Answer in the book</br>
+
+You can assign one vector object to another. A vector manages its own memory,
+so you can insert items into a vector and have it resize itself automatically. By using
+the `at()` method, you can get automatic bounds checking.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+10. If Listing 16.9 were implemented with <code>list</code> instead of vector, what parts of the
+program would become invalid? Could the invalid part be fixed easily? If so, how?</br></br>
+
+
+```cpp 
+
+// vect3.cpp -- using STL functions
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+struct Review
+{
+    std::string title;
+    int rating;
+};
+
+bool operator<(const Review &r1, const Review &r2);
+bool worseThan(const Review &r1, const Review &r2);
+bool FillReview(Review &rr);
+void ShowReview(const Review &rr);
+
+int main()
+{
+    using namespace std;
+    vector<Review> books;
+    Review temp;
+    while (FillReview(temp))
+        books.push_back(temp);
+    if (books.size() > 0)
+    {
+        cout << "Thank you. You entered the following "
+             << books.size() << " ratings:\n"
+             << "Rating\tBook\n";
+        for_each(books.begin(), books.end(), ShowReview);
+        sort(books.begin(), books.end());
+        cout << "Sorted by title:\nRating\tBook\n";
+        for_each(books.begin(), books.end(), ShowReview);
+        sort(books.begin(), books.end(), worseThan);
+        cout << "Sorted by rating:\nRating\tBook\n";
+        for_each(books.begin(), books.end(), ShowReview);
+        random_shuffle(books.begin(), books.end());
+        cout << "After shuffling:\nRating\tBook\n";
+        for_each(books.begin(), books.end(), ShowReview);
+    }
+    else
+        cout << "No entries. ";
+    cout << "Bye.\n";
+    return 0;
+}
+
+bool operator<(const Review &r1, const Review &r2)
+{
+    if (r1.title < r2.title)
+        return true;
+    else if (r1.title == r2.title && r1.rating < r2.rating)
+        return true;
+    else
+        return false;
+}
+
+bool worseThan(const Review &r1, const Review &r2)
+{
+    if (r1.rating < r2.rating)
+        return true;
+    else
+        return false;
+}
+
+bool FillReview(Review &rr)
+{
+    std::cout << "Enter book title (quit to quit): ";
+    std::getline(std::cin, rr.title);
+    if (rr.title == "quit")
+        return false;
+    std::cout << "Enter book rating: ";
+    std::cin >> rr.rating;
+    if (!std::cin)
+        return false;
+    // get rid of rest of input line
+    while (std::cin.get() != '\n')
+        continue;
+    return true;
+}
+
+void ShowReview(const Review &rr)
+{
+    std::cout << rr.rating << "\t" << rr.title << std::endl;
+}
+```
+
+</summary>
+
+Declaration 
+
+// Answer in the book</br>
+
+The two `sort()` functions and the `random_shuffle()` function require a random
+access iterator, whereas a list object just has a bidirectional iterator.You can use
+the list template class `sort()` member functions (see Appendix G,“The STL
+Methods and Functions”) instead of the general-purpose functions to do the sorting,
+but there is no member function equivalent to `random_shuffle()`. However,
+you could copy the list to a `vector`, shuffle the vector, and copy the results back to
+the list.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+11. Consider the <code>TooBig</code> functor in Listing 16.15.
+What does the following code do, and what values get assigned to bo?
+
+```cpp
+// Listing 16.15 Too Big
+template <class T> // functor class defines operator()()
+class TooBig
+{
+private:
+    T cutoff;
+
+public:
+    TooBig(const T &t) : cutoff(t) {}
+    bool operator()(const T &v) { return v > cutoff; }
+};
+```
+
+
+```cpp
+bool bo = TooBig<int>(10)(15);
+```
+
+</summary>
+
+used in functions/methods via operator overloading().
+Returns bool 10>15;
+
+// Answer in the AI</br>
+
+The given code snippet creates an instance of the `TooBig` functor with the template parameter `int`, and the cutoff value set to `10`. Then it calls the `operator()` function with the argument `15`.
+
+The `TooBig` functor checks if the passed argument (`15`) is greater than the cutoff value (`10`). Since `15` is indeed greater than `10`, the function returns `true`. Therefore, the `boolean` variable `bo` is assigned the value `true`.
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+## Chapter 17
+
+<!-- -------------------------------------------- -->
+<details><summary>
+01. What role does the <code>iostream</code> file play in C++ I/O?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+02. Why does typing a number such as 121 as input require a program to make a conversion?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+03. What’s the difference between the standard output and the standard error?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+04. Why is cout able to display various C++ types without being provided explicit
+instructions for each type?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+05. What feature of the output method definitions allows you to concatenate output?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+06. Write a program that requests an integer and then displays it in decimal, octal, and
+hexadecimal forms. Display each form on the same line, in fields that are 15 characters
+wide, and use the C++ number base prefixes.</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+07. Write a program that requests the following information and that formats it as
+shown:
+
+```sh
+Enter your name: Billy Gruff
+Enter your hourly wages: 12
+Enter number of hours worked: 7.5
+First format:
+Billy Gruff: $ 12.00: 7.5
+Second format:
+Billy Gruff : $12.00 :7.5
+```
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+08. Consider the following program:
+
+```cpp
+// rq17-8.cpp
+#include <iostream>
+int main()
+{
+    using namespace std;
+    char ch;
+    int ct1 = 0;
+    cin >> ch;
+    while (ch != 'q')
+    {
+        ct1++;
+        cin >> ch;
+    }
+    int ct2 = 0;
+    cin.get(ch);
+    while (ch != 'q')
+    {
+        ct2++;
+        cin.get(ch);
+    }
+    cout << "ct1 = " << ct1 << "; ct2 = " << ct2 << "\n";
+    return 0;
+}
+```
+
+What does it print, given the following input:
+
+```sh
+I see a q<Enter>
+I see a q<Enter>
+```
+
+Here <code><Enter></code> signifies pressing the Enter key.
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+09. Both of the following statements read and discard characters up to and including the
+end of a line. In what way does the behavior of one differ from that of the other?
+
+```cpp
+while (cin.get() != '\n')
+    continue;
+cin.ignore(80, '\n');
+```
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+## Chapter 18
+
+<!-- -------------------------------------------- -->
+<details><summary>
+01. Rewrite the following code using braced initialization list syntax; the rewrite
+should dispense with using the array ar:
+
+```cpp
+class Z200
+{
+private:
+    int j;
+    char ch;
+    double z;
+
+public:
+    Z200(int jv, char chv, zv) : j(jv), ch(chv), z(zv){}...
+};
+
+double x = 8.8;
+std::string s = "What a bracing effect!";
+int k(99);
+Z200 zip(200, 'Z', 0.675);
+std::vector<int> ai(5);
+int ar[5] = {3, 9, 4, 7, 1};
+for (auto pt = ai.begin(), int i = 0; pt != ai.end(); ++pt, ++i)
+    *pt = ai[i];
+```
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+02. For the following short program, which function calls are errors and why? For the
+valid calls, what does the reference argument refer to?
+
+```cpp
+#include <iostream>
+using namespace std;
+double up(double x) { return 2.0 * x; }
+void r1(const double &rx) { cout << rx << endl; }
+void r2(double &rx) { cout << rx << endl; }
+void r3(double &&rx) { cout << rx << endl; }
+int main()
+{
+    double w = 10.0;
+    r1(w);
+    r1(w + 1);
+    r1(up(w));
+    r2(w);
+    r2(w + 1);
+    r2(up(w));
+    r3(w);
+    r3(w + 1);
+    r3(up(w));
+    return 0;
+}
+```
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+03.
+
+a. What does the following short program display and why?
+
+```cpp
+#include <iostream>
+using namespace std;
+
+double up(double x) { return 2.0 * x; }
+void r1(const double &rx) { cout << “const double & rx\n”; }
+void r1(double &rx) { cout << “double & rx\n”; }
+
+int main()
+{
+    double w = 10.0;
+    r1(w);
+    r1(w + 1);
+    r1(up(w));
+    return 0;
+}
+```
+
+b. What does the following short program display and why?
+
+```cpp
+#include <iostream>
+using namespace std;
+
+double up(double x) { return 2.0 * x; }
+void r1(double &rx) { cout << "double & rx\n"; }
+void r1(double &&rx) { cout << "double && rx\n"; }
+
+int main()
+{
+    double w = 10.0;
+    r1(w);
+    r1(w + 1);
+    r1(up(w));
+    return 0;
+}
+```
+
+c. What does the following short program display and why?
+
+```cpp
+#include <iostream>
+using namespace std;
+
+double up(double x) { return 2.0 * x; }
+void r1(const double &rx) { cout << "const double & rx\n"; }
+void r1(double &&rx) { cout << "double && rx\n"; }
+
+int main()
+{
+    double w = 10.0;
+    r1(w);
+    r1(w + 1);
+    r1(up(w));
+    return 0;
+}
+```
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+04. Which member functions are special member functions, and what makes them
+special?</br></br>
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+05. Suppose the Fizzle class has only the data members shown:
+
+```cpp
+class Fizzle
+{
+private:
+    double bubbles[4000];
+    ...
+};
+```
+
+Why would this class not be a good candidate for a user-defined move constructor?
+What change in approach to storing the 4000 double values would make the class a
+good candidate for a move function?
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+<details><summary>
+06. Revise the following short program so that it uses a lambda expression instead of
+<code>f1()</code>. Don’t change <code>show2()</code>.
+
+```cpp
+#include <iostream>
+
+template <typename T>
+    void show2(double x, T &fp) { std::cout << x << " -> " << fp(x) << '\n'; }
+double f1(double x) { return 1.8 * x + 32; }
+
+int main()
+{
+    show2(18.0, f1);
+    return 0;
+}
+```
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
+
+<details><summary>
+07. Revise the following short and ugly program so that it uses a lambda expression
+instead of the <code>Adder</code> functor. Don’t change <code>sum()</code>.
+
+```cpp
+#include <iostream>
+#include <array>
+
+const int Size = 5;
+template <typename T>
+void sum(std::array<double, Size> a, T &fp);
+
+class Adder
+{
+    double tot;
+
+public:
+    Adder(double q = 0) : tot(q) {}
+    void operator()(double w) { tot += w; }
+    double tot_v() const { return tot; };
+};
+int main()
+{
+    double total = 0.0;
+    Adder ad(total);
+    std::array<double, Size> temp_c = {32.1, 34.3, 37.8, 35.2, 34.7};
+    sum(temp_c, ad);
+    total = ad.tot_v();
+    std::cout << "total: " << ad.tot_v() << '\n';
+    return 0;
+}
+template <typename T>
+void sum(std::array<double, Size> a, T &fp)
+{
+    for (auto pt = a.begin(); pt != a.end(); ++pt)
+    {
+        fp(*pt);
+    }
+}
+```
+
+</summary>
+
+</details>
+
+<!-- -------------------------------------------- -->
