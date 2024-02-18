@@ -46,13 +46,9 @@ They are called functions
 <details><summary>
 02. What does the following preprocessor directive do?
 
-<pre>
-
 ```cpp
-cpp #include <iostream>
+#include <iostream>
 ```
-
-</pre>
 
 </summary>
 It causes the contents of the iostream file to be substituted for this
@@ -62,13 +58,9 @@ directive before final compilation.
 <details><summary>
 03. What does the following statement do?
 
-<pre>
-
 ```cpp
 using namespace std;
 ```
-
-</pre>
 
 </summary>
 It makes definitions made in the std namespace available to a program.
@@ -169,13 +161,9 @@ You don’t have to use return in a function when the function has the return ty
 <details><summary>
 11. Suppose your main() function has the following line:
 
-<pre>
-
 ```cpp
-cout << “Please enter your PIN: “;
+cout << "Please enter your PIN: ";
 ```
-
-</pre>
 
 And suppose the compiler complains that cout is an unknown identifier.
 What is the likely cause of this complaint, and what are three ways to fix the problem?
