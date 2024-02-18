@@ -4084,6 +4084,16 @@ The `TooBig` functor checks if the passed argument (`15`) is greater than the cu
 
 </summary>
 
+It define classes that can create objects to control stream of data from and to selected source (default is keyboard). 
+
+// Answer in the book</br>
+
+The `iostream` file defines the classes, constants, and manipulators used to manage
+input and output.These objects manage the streams and buffers used to handle I/O.
+The file also creates standard objects (`cin`, `cout`, `cerr`, and `clog` and their widecharacter
+equivalents) used to handle the standard input and output streams connected
+to every program.
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -4092,6 +4102,15 @@ The `TooBig` functor checks if the passed argument (`15`) is greater than the cu
 02. Why does typing a number such as 121 as input require a program to make a conversion?</br></br>
 
 </summary>
+
+It is a raw stream of data from keyboard, that to be displayed as human-readable text, need to be converted.
+
+// Answer in the book</br>
+
+Keyboard entry generates a series of characters. Typing `121` generates three characters,
+each represented by a 1-byte binary code. If the value is to be stored as type
+int, these three characters have to be converted to a single binary representation of
+the value `121`.
 
 </details>
 
@@ -4102,15 +4121,43 @@ The `TooBig` functor checks if the passed argument (`15`) is greater than the cu
 
 </summary>
 
+`standard output` describes stream of data from program to selected destination, while `standard error` describes fault in program that is send as stream of data to the standard output.
+
+// Answer in the book</br>
+
+By default, both the standard output and the standard error send output to the standard
+output device, typically a monitor. If you have the operating system redirect
+output to a file, however, the standard output connects to the file instead of to the
+screen, but the standard error continues to be connected to the screen.
+
 </details>
 
 <!-- -------------------------------------------- -->
 
 <details><summary>
-04. Why is cout able to display various C++ types without being provided explicit
-instructions for each type?</br></br>
+04. Why is <code>cout</code> able to display various C++ types without being provided explicit instructions for each type?</br></br>
 
 </summary>
+
+Due to large number of overloadings in insertion operators `<<` and extraction operators `>>`.
+
+// Answer in the book</br>
+
+The `ostream` class defines a version of the `operator<<()` function for each basic
+C++ type.The compiler interprets an expression like
+
+```cpp
+cout << spot;
+```
+
+as the following:
+
+```cpp
+cout.operator<<(spot);
+``` 
+
+It can then match this method call to the function prototype that has the same
+argument type.
 
 </details>
 
@@ -4120,6 +4167,15 @@ instructions for each type?</br></br>
 05. What feature of the output method definitions allows you to concatenate output?</br></br>
 
 </summary>
+
+ios_base class file mode method `ios_base::app`, that append new data to the end of file.
+In case of reading the file, than changing the data, `.clear` method will clear `eof` flag and allow to further manipulate data.
+
+// Answer in the book</br>
+
+You can concatenate output methods that return type `ostream &`. This causes the
+invoking of a method with an object to return that object. The returned object can
+then invoke the next method in a sequence.
 
 </details>
 
@@ -4131,13 +4187,68 @@ wide, and use the C++ number base prefixes.</br></br>
 
 </summary>
 
+```cpp
+#include <iostream>
+
+int main(){
+    int data{};
+
+    std::cout << "\nEnter integer number: ";
+    std::cin >> data; 
+    while (std::cin.get() != '\n') continue; 
+
+    // Use + before positive numbers. - num base prefix
+    std::cout.setf(std::ios_base::showpos); 
+    std::cout << "You have entered:\n";
+
+    std::cout << "In decimal:\t";
+    std::cout.width(15);
+    std::cout << data << std::endl;
+    
+    std::cout << std::hex;
+    std::cout << "In hexadecimal:\t";
+    std::cout.width(15);
+    std::cout << data << std::endl;
+    
+    std::cout << std::oct;
+    std::cout << "In octal:\t";
+    std::cout.width(15);
+    std::cout << data << std::endl;
+
+    std::cout << "\nAdios!";
+
+    return 0;
+}
+```
+
+// Answer in the book</br>
+
+```cpp
+// rq17-6.cpp
+#include <iostream>
+#include <iomanip>
+int main()
+{
+    using namespace std;
+    cout << "Enter an integer: ";
+    int n;
+    cin >> n;
+    cout << setw(15) << "base ten" << setw(15)
+         << "base sixteen" << setw(15) << "base eight"
+         << "\n";
+    cout.setf(ios::showbase); // or cout << showbase;
+    cout << setw(15) << n << hex << setw(15) << n
+         << oct << setw(15) << n << "\n";
+    return 0;
+}
+```
+
 </details>
 
 <!-- -------------------------------------------- -->
 
 <details><summary>
-07. Write a program that requests the following information and that formats it as
-shown:
+07. Write a program that requests the following information and that formats it as shown:
 
 ```sh
 Enter your name: Billy Gruff
@@ -4150,6 +4261,82 @@ Billy Gruff : $12.00 :7.5
 ```
 
 </summary>
+
+```cpp
+#include <iostream>
+#include <string>
+
+int main(){
+
+    std::string name;
+    float wage_hour{};
+    float work_hours{};
+
+    std::cout << "\nEnter your name: ";
+    std::getline(std::cin, name);
+    std::cout << "Enter your hourly wage_hours: ";
+    std::cin >> wage_hour; 
+    while (std::cin.get() != '\n') continue; 
+    std::cout << "Enter number of hours worked: ";
+    std::cin >> work_hours; 
+    while (std::cin.get() != '\n') continue; 
+
+    std::cout.setf(std::ios_base::fixed, std::ios_base::floatfield);
+    std::cout << "First format:\n";
+    std::cout.precision(2);
+    std::cout << name << ": $ " << wage_hour;
+    std::cout.precision(1);
+    std::cout << ": " << work_hours << std::endl;
+
+    std::cout << "Second format:\n";
+    std::cout.precision(2);
+    std::cout << name << " : $" << wage_hour;
+    std::cout.precision(1);
+    std::cout << " :" << work_hours << std::endl;
+
+    std::cout << "\nAdios!";
+
+    return 0;
+}
+```
+
+// Answer in the book</br>
+
+```cpp
+// rq17-7.cpp
+#include <iostream>
+#include <iomanip>
+int main()
+{
+    using namespace std;
+    char name[20];
+    float hourly;
+    float hours;
+
+    cout << "Enter your name: ";
+    cin.get(name, 20).get();
+    cout << "Enter your hourly wages: ";
+    cin >> hourly;
+    cout << "Enter number of hours worked: ";
+    cin >> hours;
+
+    cout.setf(ios::showpoint);
+    cout.setf(ios::fixed, ios::floatfield);
+    cout.setf(ios::right, ios::adjustfield);
+
+    // or cout << showpoint << fixed << right;
+    cout << "First format:\n";
+    cout << setw(30) << name << ": $" << setprecision(2)
+         << setw(10) << hourly << ":" << setprecision(1)
+         << setw(5) << hours << "\n";
+    cout << "Second format:\n";
+    cout.setf(ios::left, ios::adjustfield);
+    cout << setw(30) << name << ": $" << setprecision(2)
+         << setw(10) << hourly << ":" << setprecision(1)
+         << setw(5) << hours << "\n";
+    return 0;
+}
+```
 
 </details>
 
@@ -4195,6 +4382,18 @@ Here <code><Enter></code> signifies pressing the Enter key.
 
 </summary>
 
+It will print:
+`ct1 = 5; ct2 = 8`
+
+// Answer in the book</br>
+
+Here is the output:
+`ct1 = 5; ct2 = 9`</br>
+The first part of the program ignores spaces and newline characters; the second part
+doesn’t. Note that the second part of the program begins reading at the newline
+character following the first q, and it counts that newline character as part of its
+total.
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -4210,6 +4409,14 @@ cin.ignore(80, '\n');
 ```
 
 </summary>
+
+`cin.ignore` discard `80` characters up to `\n` or eof condition;
+this `while` loop will discard characters until `\n` occur; 
+
+// Answer in the book</br>
+
+The `ignore()` form falters if the input line exceeds 80 characters. In that case, it
+skips only the first 80 characters.
 
 </details>
 
@@ -4246,6 +4453,8 @@ for (auto pt = ai.begin(), int i = 0; pt != ai.end(); ++pt, ++i)
 
 </summary>
 
+// Answer in the book</br>
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -4278,6 +4487,8 @@ int main()
 ```
 
 </summary>
+
+// Answer in the book</br>
 
 </details>
 
@@ -4348,6 +4559,8 @@ int main()
 
 </summary>
 
+// Answer in the book</br>
+
 </details>
 
 <!-- -------------------------------------------- -->
@@ -4357,6 +4570,8 @@ int main()
 special?</br></br>
 
 </summary>
+
+// Answer in the book</br>
 
 </details>
 
@@ -4378,7 +4593,10 @@ Why would this class not be a good candidate for a user-defined move constructor
 What change in approach to storing the 4000 double values would make the class a
 good candidate for a move function?
 
+
 </summary>
+
+// Answer in the book</br>
 
 </details>
 
@@ -4402,6 +4620,8 @@ int main()
 ```
 
 </summary>
+
+// Answer in the book</br>
 
 </details>
 
@@ -4449,6 +4669,8 @@ void sum(std::array<double, Size> a, T &fp)
 ```
 
 </summary>
+
+// Answer in the book</br>
 
 </details>
 
