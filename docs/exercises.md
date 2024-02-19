@@ -2951,7 +2951,7 @@ that leaves the `$` in the input stream.
 
 ??? note " "
     <!--codeinclude-->
-    <!-- [](../exercises/chapter17/) -->
+    [](../exercises/chapter17/ch17_1.cpp)
     <!--/codeinclude-->
 
 2 -
