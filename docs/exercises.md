@@ -2969,7 +2969,7 @@ from the command line. Have the program report if it cannot open a file.
 
 ??? note " "
     <!--codeinclude-->
-    <!-- [](../exercises/chapter17/) -->
+    [](../exercises/chapter17/ch17_3.cpp)
     <!--/codeinclude-->
 
 4 -

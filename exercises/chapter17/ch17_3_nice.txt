@@ -1,0 +1,4 @@
+Good morning!
+This is new file created via compiled ch17_2.cpp file.
+Written data too!!!
+Good night... : )
