@@ -2960,7 +2960,7 @@ to a file named on the command line.
 
 ??? note " "
     <!--codeinclude-->
-    <!-- [](../exercises/chapter17/) -->
+    [](../exercises/chapter17/ch17_2.cpp)
     <!--/codeinclude-->
 
 3 -
