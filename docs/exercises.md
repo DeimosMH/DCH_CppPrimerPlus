@@ -3002,7 +3002,17 @@ stones
 
 ??? note " "
     <!--codeinclude-->
-    <!-- [](../exercises/chapter17/) -->
+    [](../exercises/chapter17/ch17_4.cpp)
+    <!--/codeinclude-->
+
+??? note " "
+    <!--codeinclude-->
+    [](../exercises/chapter17/ch17_41.txt)
+    <!--/codeinclude-->
+
+??? note " "
+    <!--codeinclude-->
+    [](../exercises/chapter17/ch17_42.txt)
     <!--/codeinclude-->
 
 5 -
@@ -3011,17 +3021,27 @@ Exercise 8 in Chapter 16, except now they want a program that uses files.
 They have asked you to write a program that does the following:
 
 - Reads a list of Mat’s friends’ names from a text file called <code>mat.dat</code>, which lists
-one friend per line.The names are stored in a container and then displayed in
+one friend per line. The names are stored in a container and then displayed in
 sorted order.
 - Reads a list of Pat’s friends’ names from a text file called <code>pat.dat</code>, which lists
-one friend per line.The names are stored in a container and then displayed in
+one friend per line. The names are stored in a container and then displayed in
 sorted order.
 - Merges the two lists, eliminating duplicates and stores the result in the file
 matnpat.dat, one friend per line.
 
 ??? note " "
     <!--codeinclude-->
-    <!-- [](../exercises/chapter17/) -->
+    [](../exercises/chapter17/ch17_5.cpp)
+    <!--/codeinclude-->
+
+??? note " "
+    <!--codeinclude-->
+    [](../exercises/chapter17/ch17_mat.dat)
+    <!--/codeinclude-->
+
+??? note " "
+    <!--codeinclude-->
+    [](../exercises/chapter17/ch17_pat.dat)
     <!--/codeinclude-->
 
 6 -
