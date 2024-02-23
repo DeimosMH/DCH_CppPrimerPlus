@@ -3046,12 +3046,13 @@ matnpat.dat, one friend per line.
 
 6 -
 Consider the class definitions of Programming Exercise 5 in Chapter 14,“Reusing
-Code in C++”. If you haven’t yet done that exercise, do so now.Then do the
+Code in C++”. If you haven’t yet done that exercise, do so now. Then do the
 following:
+
 Write a program that uses standard C++ I/O and file I/O in conjunction with data
 of types employee, manager, fink, and highfink, as defined in Programming Exercise
 5 in Chapter 14. The program should be along the general lines of Listing 17.17
-in that it should let you add new data to a file.The first time through, the program
+in that it should let you add new data to a file. The first time through, the program
 should solicit data from the user, show all the entries, and save the information in a
 file. On subsequent uses, the program should first read and display the file data, let the
 user add data, and show all the data. One difference is that data should be handled by
@@ -3203,7 +3204,7 @@ get data into the string rather than read directly into it.
 
 ??? note " "
     <!--codeinclude-->
-    <!-- [](../exercises/chapter17/) -->
+    [](../exercises/chapter17/ch17_7.cpp)
     <!--/codeinclude-->
 
 ## Chapter 18
