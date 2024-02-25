@@ -2949,7 +2949,7 @@ reversed order.
 Write a program that counts the number of characters up to the first `$` in input and
 that leaves the `$` in the input stream.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
     [](../exercises/chapter17/ch17_1.cpp)
     <!--/codeinclude-->
@@ -2958,7 +2958,7 @@ that leaves the `$` in the input stream.
 Write a program that copies your keyboard input (up to the simulated end-of-file)
 to a file named on the command line.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
     [](../exercises/chapter17/ch17_2.cpp)
     <!--/codeinclude-->
@@ -2967,7 +2967,7 @@ to a file named on the command line.
 Write a program that copies one file to another. Have the program take the filenames
 from the command line. Have the program report if it cannot open a file.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
     [](../exercises/chapter17/ch17_3.cpp)
     <!--/codeinclude-->
@@ -3000,17 +3000,17 @@ balloons hammers finance drama
 stones
 ```
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
     [](../exercises/chapter17/ch17_4.cpp)
     <!--/codeinclude-->
 
-??? note " "
+??? note "txt 1'st file"
     <!--codeinclude-->
     [](../exercises/chapter17/ch17_41.txt)
     <!--/codeinclude-->
 
-??? note " "
+??? note "txt 2'nd file"
     <!--codeinclude-->
     [](../exercises/chapter17/ch17_42.txt)
     <!--/codeinclude-->
@@ -3029,17 +3029,17 @@ sorted order.
 - Merges the two lists, eliminating duplicates and stores the result in the file
 matnpat.dat, one friend per line.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
     [](../exercises/chapter17/ch17_5.cpp)
     <!--/codeinclude-->
 
-??? note " "
+??? note "Pat dat"
     <!--codeinclude-->
     [](../exercises/chapter17/ch17_mat.dat)
     <!--/codeinclude-->
 
-??? note " "
+??? note "Mat dat"
     <!--codeinclude-->
     [](../exercises/chapter17/ch17_pat.dat)
     <!--/codeinclude-->
@@ -3099,7 +3099,7 @@ intended data to a file.
 
 </details>
 
-The tricky part is recovering the data from the file.The problem is, how can the
+The tricky part is recovering the data from the file. The problem is, how can the
 program know whether the next item to be recovered is an <code>employee</code> object, a
 <code>manager</code> object, a <code>fink</code> type, or a <code>highfink</code> type? One approach is, when writing
 the data for an object to a file, precede the data with an integer that indicates the
@@ -3131,9 +3131,19 @@ information:
 pc[i++]->getall();
 ```
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter17/) -->
+    [](../exercises/chapter17/ch17_6.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - classes prototypes"
+    <!--codeinclude-->
+    [](../exercises/chapter17/ch17_6_emp.h)
+    <!--/codeinclude-->
+
+??? note "Code - classes methods"
+    <!--codeinclude-->
+    [](../exercises/chapter17/ch17_6_emp.cpp)
     <!--/codeinclude-->
 
 7 -

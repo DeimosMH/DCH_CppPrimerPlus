@@ -5,6 +5,15 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
+
+enum classkind
+{
+    Employee,
+    Manager,
+    Fink,
+    Highfink
+}; // in class header
 
 class abstr_emp
 {
@@ -19,6 +28,8 @@ public:
 
     virtual void ShowAll() const; // labels and shows all data
     virtual void SetAll();        // prompts user for values
+    virtual void ReadAll(std::ifstream &fi);
+    virtual void WriteAll(std::ofstream &fo);
 
     friend std::ostream &operator<<(std::ostream &os, const abstr_emp &e);
 
@@ -33,6 +44,8 @@ public:
     employee(const std::string &fn, const std::string &ln, const std::string &j);
     virtual void ShowAll() const;
     virtual void SetAll();
+    virtual void ReadAll(std::ifstream &fi);
+    virtual void WriteAll(std::ofstream &fo);
 };
 
 class manager : virtual public abstr_emp
@@ -52,6 +65,8 @@ public:
     manager(const manager &m);
     virtual void ShowAll() const;
     virtual void SetAll();
+    virtual void ReadAll(std::ifstream &fi);
+    virtual void WriteAll(std::ofstream &fo);
 };
 
 class fink : virtual public abstr_emp
@@ -62,6 +77,7 @@ private:
 protected:
     const std::string ReportsTo() const { return reportsto; }
     std::string &ReportsTo() { return reportsto; }
+    void setReportsTo(std::string rt) { reportsto = rt; }
 
 public:
     fink();
@@ -71,6 +87,8 @@ public:
     fink(const fink &e);
     virtual void ShowAll() const;
     virtual void SetAll();
+    virtual void ReadAll(std::ifstream &fi);
+    virtual void WriteAll(std::ofstream &fo);
 };
 
 class highfink : public manager, public fink // management fink
@@ -86,6 +104,8 @@ public:
     highfink(const highfink &h);
     virtual void ShowAll() const;
     virtual void SetAll();
+    virtual void ReadAll(std::ifstream &fi);
+    virtual void WriteAll(std::ofstream &fo);
 };
 
 #endif

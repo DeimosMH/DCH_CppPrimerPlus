@@ -1,130 +1,241 @@
-// pe14-5.cpp
-
-
-/*
-Write a program that uses standard C++ I/O and file I/O in conjunction with data
-of types employee, manager, fink, and highfink, as defined in Programming Exercise
-5 in Chapter 14. The program should be along the general lines of Listing 17.17
-in that it should let you add new data to a file. The first time through, the program
-should solicit data from the user, show all the entries, and save the information in a
-file. On subsequent uses, the program should first read and display the file data, let the
-user add data, and show all the data. One difference is that data should be handled by
-an array of pointers to type employee.That way, a pointer can point to an employee
-object or to objects of any of the three derived types. Keep the array small to facilitate
-checking the program; for example, you might limit the array to 10 elements:
-
-```cpp
-const int MAX = 10; // no more than 10 objects
-...
-employee * pc[MAX];
-```
-
-For keyboard entry, the program should use a menu to offer the user the choice of
-which type of object to create.The menu should use a switch to use <code>new</code> to create
-an object of the desired type and to assign the object’s address to a pointer in the pc
-array.Then that object can use the virtual <code>setall()</code> function to elicit the appropriate
-data from the user:
-
-```cpp
-pc[i]->setall(); // invokes function corresponding to type of object
-```
-
-To save the data to a file, devise a virtual writeall() function for that purpose:
-
-```cpp
-for (i = 0; i < index; i++)
-    pc[i]->writeall(fout);// fout ofstream connected to output file
-```
-
-<details><summary>
-     Note
-    </summary>
-
-Use text I/O, not binary I/O, for Programming Exercise 6. (Unfortunately, virtual objects
-include pointers to tables of pointers to virtual functions, and <code>write()</code> copies this information
-to a file. An object filled by using <code>read()</code> from the file gets weird values for the function
-pointers, which really messes up the behavior of virtual functions.) Use a newline character
-to separate each data field from the next; this makes it easier to identify fields on input. Or
-you could still use binary I/O, but not write objects as a whole. Instead, you could provide
-class methods that apply the <code>write()</code> and <code>read()</code> functions to each class member individually
-rather than to the object as a whole. That way, the program could save just the
-intended data to a file.
-
-</details>
-
-The tricky part is recovering the data from the file.The problem is, how can the
-program know whether the next item to be recovered is an <code>employee</code> object, a
-<code>manager</code> object, a <code>fink</code> type, or a <code>highfink</code> type? One approach is, when writing
-the data for an object to a file, precede the data with an integer that indicates the
-type of object to follow.Then, on file input, the program can read the integer and
-then use <code>switch</code> to create the appropriate object to receive the data:
-
-```cpp
-enum classkind
-{
-    Employee,
-    Manager,
-    Fink,
-    Highfink
-}; // in class header
-... int classtype;
-while ((fin >> classtype).get(ch)) // newline separates int from data
-{ 
-    switch (classtype)
-    {
-        case Employee:
-            pc[i] = new employee;
-                    : break;
-```
-
-Then you can use the pointer to invoke a virtual <code>getall()</code> function to read the
-information:
-
-```cpp
-pc[i++]->getall();
-```
-*/
-
 #include <iostream>
-#include "ch14_5_emp.h"
+#include <fstream>
+#include "ch17_6_emp.h"
 
 using namespace std;
 
+void printMenu();
+int countData(ifstream &fin, string fn);
+const int MAX = 10; // no more than 10 objects
+
 int main(void)
 {
-    employee em("Trip", "Harris", "Thumper");
-    cout << em << endl;
-    em.ShowAll();
+    int classtype{};
+    abstr_emp *pc[MAX];
+    ifstream fin;
+    ofstream fout;
+    string fname{"ch17_6_emp.dat"};
 
-    manager ma("Amorphia", "Spindragon", "Nuancer", 5);
-    cout << ma << endl;
-    ma.ShowAll();
+    fin.open(fname);
+    if (fin.good() && fin.is_open())
+    {
+        char ch;
+        int i{};
 
-    fink fi("Matt", "Oggs", "Oiler", "Juno Barr");
-    cout << fi << endl;
-    fi.ShowAll();
+        cout << "File found, loading data." << '\n';
 
-    highfink hf(ma, "Curly Kew"); // recruitment?
-    hf.ShowAll();
+        while ((fin >> classtype).get(ch))
+        {
 
-    cout << "Press a key for next phase:\n";
-    cin.get();
-    highfink hf2;
-    hf2.SetAll();
+            switch (classtype)
+            {
+            case Employee:
+                pc[i] = new employee();
+                break;
+            case Manager:
+                pc[i] = new manager();
+                break;
+            case Fink:
+                pc[i] = new fink();
+                break;
+            case Highfink:
+                pc[i] = new highfink();
+                break;
+            default:
+                cout << "\nErroneous input in file..\n";
+                break;
+            }
 
-    // cout << "Using an abstr_emp * pointer:\n";
-    // abstr_emp *tri[4] = {&em, &fi, &hf, &hf2};
-    // for (int i = 0; i < 4; i++)
-    //     tri[i]->ShowAll();
+            pc[i]->ReadAll(fin);
+            pc[i]->ShowAll();
+            i++;
 
-   
-    // Question tests
-    /* array of abstract class "abstr_emp" is not allowed:C/C++(604)
-    ch14_5.cpp(35, 15): function "abstr_emp::~abstr_emp" is a pure virtual function */
+            if (i >= MAX)
+            {
+                cout << "\nMaximum number of data reached!\n";
+                break;
+            }
+        }
 
-    // abstr_emp tri[4] = {em, fi, hf, hf2};
-    // for (int i = 0; i < 4; i++)
-    //     tri[i].ShowAll();
+        fin.close();
+    }
+    else if (!fin.good())
+    {
+        cout << "File don't exist!" << endl;
+    }
+    else
+    {
+        cerr << "Couldn't open file" << '\n';
+        exit(EXIT_FAILURE);
+    }
+
+    fout.open(fname, ios::out | ios::app);
+    if (fout.is_open())
+    {
+        char ch;
+        int i{};
+        bool wi{false};
+        bool qm{false};
+        bool fst_app{false}; // first time appending
+
+        printMenu();
+
+        while ((cin >> classtype).get(ch))
+        {
+            wi = false;
+
+            if (!fst_app && classtype < 4)
+            {
+                fst_app = true;
+                fout << '\n';
+            }
+            
+            switch (classtype)
+            {
+            case Employee:
+                fout << Employee << endl;
+                pc[i] = new employee();
+                break;
+            case Manager:
+                fout << Manager << endl;
+                pc[i] = new manager();
+                break;
+            case Fink:
+                fout << Fink << endl;
+                pc[i] = new fink();
+                break;
+            case Highfink:
+                fout << Highfink << endl;
+                pc[i] = new highfink();
+                break;
+            case 9:
+                cout << "\nBye!\n";
+                qm = true;
+                break;
+            default:
+                wi = true;
+                cout << "\nWrong input.\n";
+                while (cin.get() != '\n')
+                {
+                    continue;
+                }
+                break;
+            }
+
+            if (qm)
+            {
+                break;
+            }
+
+            if (!wi)
+            {
+               
+                pc[i]->SetAll();
+                pc[i]->WriteAll(fout);
+                pc[i]->ShowAll();
+                i++;
+
+                if (i >= MAX)
+                {
+                    cout << "\nMaximum number of data reached!\n";
+                    break;
+                }
+            }
+            printMenu();
+        }
+
+        fout.close();
+    }
+    else
+    {
+        cerr << "Couldn't open/make file" << '\n';
+        exit(EXIT_FAILURE);
+    }
+
+    countData(fin, fname);
+
+    fin.clear();
+    fin.open(fname);
+    if (fin.good() && fin.is_open())
+    {
+        char ch;
+        int i{};
+
+        cout << "Current data in file:" << endl;
+
+        while ((fin >> classtype).get(ch))
+        {
+
+            switch (classtype)
+            {
+            case Employee:
+                pc[i] = new employee();
+                break;
+            case Manager:
+                pc[i] = new manager();
+                break;
+            case Fink:
+                pc[i] = new fink();
+                break;
+            case Highfink:
+                pc[i] = new highfink();
+                break;
+            default:
+                cout << "\nErroneous input in file..\n";
+                break;
+            }
+
+            pc[i]->ReadAll(fin);
+            pc[i]->ShowAll();
+            i++;
+        }
+
+        fin.close();
+    }
+    else if (!fin.good())
+    {
+        cerr << "File don't exist!" << endl;
+        exit(EXIT_FAILURE);
+    }
+    else
+    {
+        cerr << "Couldn't open file" << '\n';
+        exit(EXIT_FAILURE);
+    }
+
+    cout << "\nDone!" << endl;
+    return 0;
+}
+
+void printMenu()
+{
+    cout << "\nSelect type of data to write and save:\n"
+         << Employee << ") Employee\t" << Manager << ") Manager\n"
+         << Fink << ") Fink\t\t" << Highfink << ") High Fink\n"
+         << "9) Quit Write-Menu\n";
+}
+
+// Listing 17.17 count.cpp // without arg
+int countData(ifstream &fin, string fn)
+{
+
+    long count;
+    long total = 0;
+    char ch;
+    fin.open(fn);
+    if (!fin.is_open())
+    {
+        cerr << "Could not open " << fn << endl;
+        fin.clear();
+        return 1;
+    }
+    count = 0;
+    while (fin.get(ch))
+        count++;
+    cout << count << " characters in " << fn << endl;
+    total += count;
+    fin.clear(); // needed for some implementations
+    fin.close(); // disconnect file
 
     return 0;
 }

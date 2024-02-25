@@ -1,4 +1,4 @@
-#include "ch14_5_emp.h"
+#include "ch17_6_emp.h"
 
 /// abstr_emp /// --------------------------------------
 abstr_emp::abstr_emp()
@@ -41,6 +41,20 @@ void abstr_emp::SetAll()
     std::getline(std::cin, job);
 }
 
+void abstr_emp::ReadAll(std::ifstream &fi)
+{
+    std::getline(fi, fname);
+    std::getline(fi, lname);
+    std::getline(fi, job);
+}
+
+void abstr_emp::WriteAll(std::ofstream &fo)
+{
+    fo << fname << std::endl;
+    fo << lname << std::endl;
+    fo << job << std::endl;
+}
+
 std::ostream &operator<<(std::ostream &os, const abstr_emp &e)
 {
     os << e.fname << " " << e.lname << ", " << e.job;
@@ -70,6 +84,16 @@ void employee::ShowAll() const
 void employee::SetAll()
 {
     abstr_emp::SetAll();
+}
+
+void employee::ReadAll(std::ifstream &fi)
+{
+    abstr_emp::ReadAll(fi);
+}
+
+void employee::WriteAll(std::ofstream &fo)
+{
+    abstr_emp::WriteAll(fo);
 }
 
 /// manager /// --------------------------------------
@@ -123,6 +147,18 @@ void manager::SetAll()
         continue; // get rid of bad input
 }
 
+void manager::ReadAll(std::ifstream &fi)
+{
+    abstr_emp::ReadAll(fi);
+    fi >> inchargeof;
+}
+
+void manager::WriteAll(std::ofstream &fo)
+{
+    abstr_emp::WriteAll(fo);
+    fo << inchargeof << std::endl;
+}
+
 /// fink /// --------------------------------------
 fink::fink() : abstr_emp()
 {
@@ -159,6 +195,18 @@ void fink::SetAll()
     abstr_emp::SetAll();
     std::cout << "Enter superior to reports to: ";
     std::getline(std::cin, reportsto);
+}
+
+void fink::ReadAll(std::ifstream &fi)
+{
+    abstr_emp::ReadAll(fi);
+    std::getline(fi, reportsto);
+}
+
+void fink::WriteAll(std::ofstream &fo)
+{
+    abstr_emp::WriteAll(fo);
+    fo << reportsto << std::endl;
 }
 
 /// high fink /// --------------------------------------
@@ -199,6 +247,25 @@ void highfink::ShowAll() const
 
 void highfink::SetAll()
 {
-    manager::SetAll();
-    fink::SetAll(); // need protected setReportsto to be shorter
+    abstr_emp::SetAll();
+    std::cout << "In charge of: ";
+    std::cin >> manager::InChargeOf();
+    std::cin.ignore();
+    std::cout << "Reports to: ";
+    getline(std::cin, fink::ReportsTo());
+}
+
+void highfink::ReadAll(std::ifstream &fi)
+{
+    abstr_emp::ReadAll(fi);
+    fi >> manager::InChargeOf();
+    fi.ignore(); // necessary for correct work of getline !!!
+    getline(fi, fink::ReportsTo());
+}
+
+void highfink::WriteAll(std::ofstream &fo)
+{
+    abstr_emp::WriteAll(fo);
+    fo << manager::InChargeOf() << std::endl;
+    fo << fink::ReportsTo() << std::endl;
 }
