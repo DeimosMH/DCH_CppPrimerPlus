@@ -3212,7 +3212,7 @@ many characters from the file, appending them to an initially empty temporary
 string. Because a string’s data is private, you have to use a class method to
 get data into the string rather than read directly into it.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
     [](../exercises/chapter17/ch17_7.cpp)
     <!--/codeinclude-->

@@ -1,45 +1,55 @@
-/*
-Note that the file is opened in binary format and that the intention is that I/O be
-accomplished with <code>read()</code> and <code>write()</code>. Quite a bit remains to be done:
-
-- Write a <code>void ShowStr(const string &)</code> function that displays a string
-object followed by a newline character.
-
-- Write a <code>Store</code> functor that writes string information to a file.The Store
-    constructor should specify an <code>ifstream</code> object, and the overloaded
-    <code>operator()(const string &)</code> should indicate the string to write. A workable
-    plan is to first write the string’s size to the file and then write the string
-    contents. For example, if len holds the string size, you could use this:
-
-    ```cpp
-    os.write((char *)&len, sizeof(std::size_t)); // store length
-    os.write(s.data(), len); // store characters
-    ```
-
-    The <code>data()</code> member returns a pointer to an array that holds the characters in
-    the string. It’s similar to the <code>c_str()</code> member except that the latter appends a
-    null character.
-
-- Write a <code>GetStrs()</code> function that recovers information from the file. It can
-use <code>read()</code> to obtain the size of a string and then use a loop to read that
-many characters from the file, appending them to an initially empty temporary
-string. Because a string’s data is private, you have to use a class method to
-get data into the string rather than read directly into it.
-
-*/
 #include <iostream>
-#include <string> 
+#include <string>
 #include <vector>
 #include <algorithm> // for_each
+#include <fstream>
 
 using namespace std;
 
 // Store functor // functor that writes string information to a file.
-// operator()(const string &)
-
-void ShowStr(const string &) // function that displays a string object followed by a newline character.
+class Store
 {
+    ostream &os; // ofstream &os; // also correct -
 
+public:
+    Store(ofstream &o) : os(o) {}
+
+    // Binary output
+    void operator()(const string &str)
+    {
+        size_t len = str.size();
+        os.write((char *)&len, sizeof(size_t));
+        os.write(str.data(), len);
+    }
+};
+
+void GetStrs(std::ifstream &is, std::vector<std::string> &vstr) {
+    // The function reads the length of each string as a size_t from the binary file
+    // in any other cases there can be artefacts, because it was written in size_t
+    size_t len; 
+    char ch;
+    std::string temp;
+
+    while (is.read((char*)(&len), sizeof(len))) {
+        temp.clear();
+        // reads len characters into a temporary string temp
+        for (size_t i =  0; i < len; ++i) { 
+            if (is.read(&ch,  1)) { // byte after byte
+                temp += ch;
+            } else {
+                break;
+            }
+        }
+        if (is) { // Check if the stream is still good
+            vstr.push_back(temp);
+        }
+    }
+}
+
+// function that displays a string object followed by a newline character.
+void ShowStr(string &s)
+{
+    cout << s << "\n";
 }
 
 int main()
@@ -47,7 +57,7 @@ int main()
     using namespace std;
     vector<string> vostr;
     string temp;
-    
+
     // acquire strings
     cout << "Enter strings (empty line to quit):\n";
     while (getline(cin, temp) && temp[0] != '\0')
