@@ -3007,12 +3007,12 @@ stones
 
 ??? note "txt 1'st file"
     <!--codeinclude-->
-    [](../exercises/chapter17/ch17_41.txt)
+    [](../exercises/chapter17/ch17_4_1.txt)
     <!--/codeinclude-->
 
 ??? note "txt 2'nd file"
     <!--codeinclude-->
-    [](../exercises/chapter17/ch17_42.txt)
+    [](../exercises/chapter17/ch17_4_2.txt)
     <!--/codeinclude-->
 
 5 -
