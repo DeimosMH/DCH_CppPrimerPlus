@@ -53,7 +53,7 @@ int main()
     std::list<std::string> commonFriendNames;
 
     std::vector<std::string> fileNames{
-        "ch17_mat.dat", "ch17_pat.dat", "ch17_mrg.dat"};
+        "ch17_5_mat.dat", "ch17_5_pat.dat", "ch17_5_mrg.dat"};
 
     // Read, sort and display Mat friends
     read_friends(matFriendNames, fileNames[0]);

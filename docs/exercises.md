@@ -3036,12 +3036,12 @@ matnpat.dat, one friend per line.
 
 ??? note "Pat dat"
     <!--codeinclude-->
-    [](../exercises/chapter17/ch17_mat.dat)
+    [](../exercises/chapter17/ch17_5_mat.dat)
     <!--/codeinclude-->
 
 ??? note "Mat dat"
     <!--codeinclude-->
-    [](../exercises/chapter17/ch17_pat.dat)
+    [](../exercises/chapter17/ch17_5_pat.dat)
     <!--/codeinclude-->
 
 6 -
