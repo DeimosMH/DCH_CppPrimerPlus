@@ -115,3 +115,56 @@ Optional Sequence Requirements:
 |a.pop_back(t)| void| a.erase(--a.end())| vector, list, deque|
 |a[n]| T&| *(a.begin() + n)| vector, deque|
 |a.at(n)| T&| *(a.begin() + n)| vector, deque|
+
+
+### `rvalue`, `lvalue` and `std::move` semantics (transfer ownership of the data)
+
+"
+The traditional C++ reference, now called an lvalue reference, binds an identifier to an
+lvalue.
+An lvalue is an expression, such as a variable name or a dereferenced pointer, that
+represents data for which the program can obtain an address
+...
+C++11 adds the rvalue reference, indicated by using &&, that
+can bind to rvalues—that is, values that can appear on the right-hand side of an
+assignment expression but for which one cannot apply the address operator." - str. 1162 "C++ Prime Plus.
+
+```cpp
+string one("din"); // C-style string constructor
+string two(one); // copy constructor – one is an lvalue
+string three(one+two); // move constructor, sum is an rvalue
+
+three = one;        // automatic copy assignment 
+four = one + two;   // automatic copy assignment 
+four = std::move(one); // forced move assignment
+```
+
+`move` constructor:
+```cpp
+Useless::Useless(Useless && f): n(f.n)
+{
+    ++ct;
+    pc = f.pc; // steal address
+    f.pc = nullptr; // give old object nothing in return
+    f.n = 0;
+}
+```
+
+"...constructor then sets the original pointer to the null pointer
+because it is not an error to apply `delete []` to the null pointer
+This appropriation of ownership often is termed `pilfering`." - str. 1169 "C++ Prime Plus.
+
+### Delegating Constructors
+
+delegation - use of constructor as a part of the definition of another constructor.
+
+```cpp
+class Nots{
+    ...
+    Nots();
+    Nots(int, double, std::string);
+}
+
+Nots::Nots() : Nots(0, 0.1, "WOW"){...} // delegate
+Nots::Nots(int ii, double dd, std::string ss){...}
+```
