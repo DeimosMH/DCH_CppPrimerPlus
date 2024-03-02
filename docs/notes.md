@@ -168,3 +168,32 @@ class Nots{
 Nots::Nots() : Nots(0, 0.1, "WOW"){...} // delegate
 Nots::Nots(int ii, double dd, std::string ss){...}
 ```
+
+### Miscleanous
+
+Three approaches for passing information to an STL algorithm:
+`function pointers`, `functors`, and `lambdas`. </br> </br>
+
+"The `tuple` header file supports the tuple template.A tuple object is a generalization
+of a pair object. Whereas a pair object can hold two values whose types need not be the
+same, a tuple can hold an arbitrary number of items of different types. </br>
+The compile-time rational arithmetic library, supported by the ratio header file,
+allows the exact representation of any rational number whose numerator and denominator
+can be represented by the widest integer type. It also provides arithmetic operations
+for these numbers.</br>
+One of the most interesting additions is a regular expression library, supported by the
+regex header file.A regular expression specifies a pattern that can be used to match contents
+in a text string. For example, a bracket expression matches any single character in
+the brackets.Thus, [cCkK] matches a single c, C, k, or K, and [cCkK]at matches the words
+cat, Cat, kat, and Kat. Other patterns include \d for a digit, \w for a word, \t for a tab,
+and many, many others.The fact that a backslash has a special meaning in C++ as the first
+character in an escape sequence requires a pattern like \d\t\w\d (that is, digit-tab-worddigit)
+to be written as the string literal "\\d\\t\\w\\d", using \\ to represent \.This is
+one reason the raw string was introduced (see Chapter 4); it enables you to write the
+same pattern as R"\d\t\w\t".
+Unix utilities such as ed, grep, and awk used regular expressions, and the interpreted
+language Perl extended their capabilities.The C++ regular expressions library allows you
+to choose from several flavors of regular expressions. " - str. 1203 "C++ Prime Plus. </br> </br>
+
+metaprogramming - creating programs that create or modify other programs or even themselves (C++ this can be done during
+compile time using templates.)
