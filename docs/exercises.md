@@ -3243,9 +3243,9 @@ template function, with the type parameter being used to specify the kind of
 <code>initialized_list</code> template to be used as the function parameter and also to give
 the function return type.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter18/) -->
+    [](../exercises/chapter18/ch18_1.cpp)
     <!--/codeinclude-->
 
 2 -
@@ -3280,12 +3280,17 @@ public:
 The <code>operator+()</code> function should create an object whose <code>qcode</code> and <code>zcode</code> members
 concatenate the corresponding members of the operands. Provide code that
 implements move semantics for the move constructor and the move assignment
-operator.Write a program that uses all the methods. For testing purposes, make the
+operator. Write a program that uses all the methods. For testing purposes, make the
 various methods verbose so that you can see when they are used.
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter18/) -->
+    [](../exercises/chapter18/ch18_2.cpp)
+    <!--/codeinclude-->
+
+??? note "Code - class"
+    <!--codeinclude-->
+    [](../exercises/chapter18/ch18_2_cmpv.cpp)
     <!--/codeinclude-->
 
 3 -
@@ -3293,9 +3298,9 @@ Write and test a variadic template function <code>sum_values()</code> that accep
 long list of arguments with numeric values (they can be a mixture of types) and
 returns the sum as a <code>long double</code> value
 
-??? note " "
+??? note "Code - program"
     <!--codeinclude-->
-    <!-- [](../exercises/chapter18/) -->
+    [](../exercises/chapter18/ch18_3.cpp)
     <!--/codeinclude-->
 
 4 -
