@@ -4453,7 +4453,54 @@ for (auto pt = ai.begin(), int i = 0; pt != ai.end(); ++pt, ++i)
 
 </summary>
 
+```cpp
+#include <iostream>
+#include <vector>
+
+class Z200
+{
+private:
+     int j;
+     char ch;
+     double z;
+
+public:
+     Z200(int jv, char chv, double zv) : j(jv), ch(chv), z(zv){};
+};
+
+int main()
+{
+     double x{8.8};
+     std::string s {"What a bracing effect!"};
+     int k{99};
+     Z200 zip{200, 'Z', 0.675};
+     std::vector<int> ai{5};
+     int ar[5] {3, 9, 4, 7, 1};
+     for (auto pt {ai.begin()}, int i{0}; pt != ai.end(); ++pt, ++i)
+          *pt = ai[i];
+}
+```
+
 // Answer in the book</br>
+
+```cpp
+class Z200
+{
+private:
+     int j;
+     char ch;
+     double z;
+
+public:
+     Z200(int jv, char chv, zv) : j(jv), ch(chv), z(zv){}...
+};
+
+double x{8.8}; // or = {8.8}
+std::string s{"What a bracing effect!"};
+int k{99};
+Z200 zip{200,'Z',0.67};
+std::vector<int> ai{3, 9, 4, 7, 1};
+```
 
 </details>
 
@@ -4466,10 +4513,12 @@ valid calls, what does the reference argument refer to?
 ```cpp
 #include <iostream>
 using namespace std;
+
 double up(double x) { return 2.0 * x; }
 void r1(const double &rx) { cout << rx << endl; }
 void r2(double &rx) { cout << rx << endl; }
 void r3(double &&rx) { cout << rx << endl; }
+
 int main()
 {
     double w = 10.0;
@@ -4488,7 +4537,37 @@ int main()
 
 </summary>
 
+```cpp
+    r2(w + 1);  // reference need argument to bo to lvalue
+    r2(up(w));  // -||-
+    r3(w);      // for &&, argument need to be rvalue
+```
+
 // Answer in the book</br>
+
+```sh
+r1(w) is valid, and the argument rx refers to w.
+r1(w+1) is valid, and the argument rx refers to a temporary initialized to the value
+of w+1.
+r1(up(w)) is valid, and the argument rx refers to a temporary initialized to the
+return value of up(w).
+
+In general, if an lvalue is passed to a const lvalue reference parameter, the parameter
+is initialized to the lvalue. If an rvalue is passed to the function, a const lvalue
+reference parameter refers to a temporary copy of the value.
+
+r2(w) is valid, and the argument rx refers to w.
+r2(w+1) is an error because w+1 is an rvalue.
+r2(up(w)) is an error because the return value of up(w) is an rvalue.
+
+In general, if an lvalue is passed to a non-const lvalue reference parameter, the
+parameter is initialized to the lvalue. But a non-const lvalue reference parameter
+can’t accept an rvalue function argument.
+
+r3(w) is an error because an rvalue reference cannot refer to an lvalue, such as w.
+r3(w+1) is valid, and rx refers to the temporary value of the expression w+1.
+r3(up(w)) is valid, and rx refers to the temporary return value of up(w)
+```
 
 </details>
 
@@ -4558,10 +4637,61 @@ int main()
 ```
 
 </summary>
+ 
+a) 
+```sh
+double & rx
+double & rx
+const double & rx
+```
+
+b) 
+```sh
+double & rx
+double && rx
+double && rx
+```
+
+c) 
+```sh
+const double & rx
+double && rx
+double && rx
+```
 
 // Answer in the book</br>
 
 </details>
+
+```sh
+a. 
+double & rx
+const double & rx
+const double & rx
+
+The non-const lvalue reference matches the lvalue argument w. The other two
+arguments are rvalues, and the const lvalue reference can refer to copies of them.
+
+b. 
+double & rx
+double && rx
+double && rx
+
+The lvalue reference matches the lvalue argument w, and the rvalue references
+matches the two rvalue arguments.
+
+c. 
+const double & rx
+double && rx
+double && rx
+
+The const lvalue reference matches the lvalue argument w, and the rvalue reference
+matches the two rvalues.
+In short, a non-const lvalue parameter matches an lvalue argument, a non-const
+rvalue parameter matches an rvalue argument, and a const lvalue parameter can
+match either an lvalue or an rvalue argument, but the compiler will prefer the first
+two choices, if available.
+```
 
 <!-- -------------------------------------------- -->
 
@@ -4572,6 +4702,11 @@ special?</br></br>
 </summary>
 
 // Answer in the book</br>
+
+They are the default constructor, the copy constructor, the move constructor, the
+destructor, the copy assignment operator, and the move assignment operator. They
+are special because the compiler can automatically provide defaulted versions of
+these functions, depending on the context.
 
 </details>
 
@@ -4593,10 +4728,17 @@ Why would this class not be a good candidate for a user-defined move constructor
 What change in approach to storing the 4000 double values would make the class a
 good candidate for a move function?
 
-
 </summary>
 
+Make bubbles a dynamic pointer for move semantics
+
 // Answer in the book</br>
+
+A move constructor can be used when it makes sense to transfer ownership of data
+instead of copying it, but there is no mechanism for transferring ownership of a
+standard array. If the `Fizzle` class used a pointer and dynamic memory allocation,
+then one can transfer ownership by reassigning the address of the data to a new
+pointer.
 
 </details>
 
@@ -4621,7 +4763,31 @@ int main()
 
 </summary>
 
+```cpp
+#include <iostream>
+
+template <typename T>
+    void show2(double x, T &fp) { std::cout << x << " -> " << fp(x) << '\n'; }
+
+int main()
+{
+    show2(18.0, [] (double x)->double{return 1.8 * x + 32;} );
+    return 0;
+}
+
 // Answer in the book</br>
+
+```cpp
+#include <iostream>
+#include <algorithm>
+template<typename T>
+    void show2(double x, T fp) {std::cout << x << " -> " << fp(x) << '\n';}
+int main()
+{
+    show2(18.0, [](double x){return 1.8*x + 32;});
+    return 0;
+}
+```
 
 </details>
 
@@ -4670,7 +4836,64 @@ void sum(std::array<double, Size> a, T &fp)
 
 </summary>
 
+```cpp
+#include <iostream>
+#include <array>
+
+const int Size = 5;
+template <typename T>
+void sum(std::array<double, Size> a, T &fp);
+
+int main()
+{
+    double total = 0.0;
+    std::array<double, Size> temp_c = {32.1, 34.3, 37.8, 35.2, 34.7};
+    sum(temp_c, [&](double w){total += w});
+    std::cout << "total: " << total << '\n';
+    return 0;
+}
+
+template <typename T>
+void sum(std::array<double, Size> a, T &fp)
+{
+    for (auto pt = a.begin(); pt != a.end(); ++pt)
+    {
+        fp(*pt);
+    }
+}
+```
+
 // Answer in the book</br>
+
+```cpp
+#include <iostream>
+#include <array>
+#include <algorithm>
+
+const int Size = 5;
+template <typename T>
+void sum(std::array<double, Size> a, T &fp);
+
+int main()
+{
+     double total = 0.0;
+     std::array<double, Size> temp_c = {32.1, 34.3, 37.8, 35.2, 34.7};
+     sum(temp_c, [&total](double w)
+         { total += w; });
+     std::cout << "total: " << total << '\n';
+     std::cin.get();
+     return 0;
+}
+
+template <typename T>
+void sum(std::array<double, Size> a, T &fp)
+{
+     for (auto pt = a.begin(); pt != a.end(); ++pt)
+     {
+          fp(*pt);
+     }
+}
+```
 
 </details>
 
